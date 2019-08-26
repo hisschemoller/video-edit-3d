@@ -1,0 +1,13 @@
+{
+    "name": "threejs-experiments",
+    "version": "0.1.0",
+    "author": "Wouter Hisschemöller <wouter.hisschemoller@gmail.com>",
+    "description": "Experimenting with three.js",
+    "private": true,
+    "contributors": [],
+    "dependencies": {
+        "express": "^4.17.1",
+        "three": "^0.107.0"
+    },
+    "devDependencies": {}
+}

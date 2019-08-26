@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <base href="threejs-experiments">
+    <meta charSet="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <title>3js</title>
+    <meta name="description" content="Three.js experiments"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div id="app">
+      <div id="canvas-container"></div>
+      <div id="controls"></div>
+      <div class="dialog">
+        <div class="dialog__layer"></div>
+        <div class="dialog__window">
+          <div class="dialog__header">
+            <span class="header__label">header</span>
+          </div>
+          <div class="panel__viewport">
+            <div class="panel__content">
+              <span class="dialog__body">body</span>
+              <div class="dialog__controls">
+                <button type="button" class="btn dialog__reject">reject</button>
+                <button type="button" class="btn dialog__resolve">resolve</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/lib/three.js"></script>
+    <script src="js/lib/OrbitControls.js"></script>
+    <script src="js/lib/TransformControls.js"></script>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
