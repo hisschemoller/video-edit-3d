@@ -229,7 +229,7 @@ function setupWebGLWorld() {
   // scene.fog = new Fog( 0x59472b, 1000, FAR );
 
   // CAMERA
-  const fieldOfView = 23;
+  const fieldOfView = 45;
   const near = 1;
   const far = 1000;
   camera = new PerspectiveCamera(fieldOfView, defaultWidth / defaultHeight, near, far);
