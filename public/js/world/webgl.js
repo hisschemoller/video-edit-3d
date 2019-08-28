@@ -25,6 +25,9 @@ const {
   WebGLRenderer,
 } = THREE;
 
+const CAM_MOVE_SPEED = 0.05;
+const CAM_ROTATE_SPEED = 0.01;
+
 let camera,
   canvasRect,
   clock,
@@ -38,7 +41,9 @@ let camera,
   raycaster,
   renderer,
   rootEl,
-  scene;
+  scene,
+  camMoveDelta = 0,
+  camRotateDelta = 0;
 
 /**
  * General setup of the module.
@@ -50,6 +55,7 @@ export function setup() {
   createGround();
   createBox();
   draw();
+  console.log(scene.toJSON());
 }
 
 /**
@@ -57,20 +63,23 @@ export function setup() {
  */
 function addEventListeners() {
   document.addEventListener(STATE_CHANGE, onStateChange);
+  document.addEventListener('keydown', onKeyDown);
+  document.addEventListener('keyup', onKeyUp);
 }
 
 /**
  * Box.
  */
 function createBox() {
-  const { BoxGeometry, } = THREE;
-  const geometry = new BoxGeometry(1, 1, 1);
+  const { BoxBufferGeometry, } = THREE;
+  const geometry = new BoxBufferGeometry(1, 1, 1);
   const material = new MeshPhongMaterial({color: 0xcccccc});
   const box = new Mesh(geometry, material);
   box.position.set(0, 0.5, 0);
   box.castShadow = true;
   box.receiveShadow = true;
   scene.add(box);
+  // camera.lookAt(box.position);
 }
 
 /**
@@ -113,8 +122,54 @@ function createLights() {
  * Update the physics world and render the results in 3D.
  */
 function draw() {
+  if (camRotateDelta) {
+    camera.rotation.y = camera.rotation.y + camRotateDelta;
+  }
+  if (camMoveDelta) {
+    const direction = new Vector3();
+    camera.getWorldDirection(direction);
+    camera.position.add(direction.multiplyScalar(camMoveDelta));
+  }
   renderer.render(scene, camera);
   requestAnimationFrame(draw);
+}
+
+/**
+ * Key down handler.
+ * @param {Object} e Key event.
+ */
+function onKeyDown(e) {
+  switch (e.keyCode) {
+    case 37: // left
+      camRotateDelta = CAM_ROTATE_SPEED;
+      break;
+    case 38: // up
+      camMoveDelta = CAM_MOVE_SPEED;
+      break;
+    case 39: // right
+      camRotateDelta = -CAM_ROTATE_SPEED;
+      break;
+    case 40: // down
+      camMoveDelta = -CAM_MOVE_SPEED;
+      break;
+  }
+}
+
+/**
+ * Key up handler.
+ * @param {Object} e Key event.
+ */
+function onKeyUp(e) {
+  switch (e.keyCode) {
+    case 37: // left
+    case 39: // right
+      camRotateDelta = 0;
+      break;
+    case 38: // up
+    case 40: // down
+      camMoveDelta = 0;
+      break;
+  }
 }
 
 /**
@@ -178,8 +233,8 @@ function setupWebGLWorld() {
   const near = 1;
   const far = 1000;
   camera = new PerspectiveCamera(fieldOfView, defaultWidth / defaultHeight, near, far);
-  // camera.position.set(0, 2, 16);
-  // camera.lookAt(new Vector3(0, 2, 0));
+  camera.position.set(0, 2, 16);
+  camera.lookAt(new Vector3(0, 2, 0));
 
   // CLOCK
   clock = new Clock();
@@ -194,10 +249,13 @@ function setupWebGLWorld() {
   scene.add(axesHelper);
   
   // ORBIT CONTROL
-  const orbit = new OrbitControls(camera, renderer.domElement);
-  // orbit.target = new Vector3(0, 2, 0);
-  orbit.update();
+  // const orbit = new OrbitControls(camera, renderer.domElement);
+  // // orbit.target = new Vector3(0, 2, 0);
+  // orbit.update();
   
   // TRANSFORM CONTROL
-  const control = new TransformControls(camera, renderer.domElement);
+  // const control = new TransformControls(camera, renderer.domElement);
+
+  // POINTER LOCK CONTROL
+  // const pLockControl = new PointerLockControls(camera);
 }
