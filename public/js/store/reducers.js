@@ -1,7 +1,7 @@
 
 const initialState = {
-  canvasHeight: 300,
-  canvasWidth: 400,
+  canvasHeight: 600,
+  canvasWidth: 800,
 };
 
 /**
@@ -16,7 +16,7 @@ export default function reduce(state = initialState, action, actions = {}) {
     case actions.SET_PROJECT:
       return { 
         ...initialState,
-        ...(action.data || {}),
+        // ...(action.data || {}),
       };
 
     default:
