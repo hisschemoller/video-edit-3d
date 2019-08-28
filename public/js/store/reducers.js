@@ -1,5 +1,7 @@
 
-const defaultState = {
+const initialState = {
+  canvasHeight: 300,
+  canvasWidth: 400,
 };
 
 /**
@@ -8,9 +10,16 @@ const defaultState = {
  * @param {Object} action 
  * @param {String} action.type
  */
-export default function reduce(state = defaultState, action, actions = {}) {
+export default function reduce(state = initialState, action, actions = {}) {
   switch (action.type) {
+
+    case actions.SET_PROJECT:
+      return { 
+        ...initialState,
+        ...(action.data || {}),
+      };
+
     default:
-      return state ? state : defaultState;
+      return state ? state : initialState;
   }
 }

@@ -1,9 +1,9 @@
 
-const ACTION = 'ACTION';
+const SET_PROJECT = 'SET_PROJECT';
 
 // actions
 export default {
 
-  ACTION,
-  collide: id => ({ type: ACTION, id, }),
+  SET_PROJECT,
+  setProject: (data = {}) => ({ type: SET_PROJECT, data, }),
 };
