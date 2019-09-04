@@ -1,7 +1,7 @@
 
 const initialState = {
-  canvasHeight: 600,
-  canvasWidth: 800,
+  canvasHeight: 9 * 60,
+  canvasWidth: 16 * 60,
 };
 
 /**

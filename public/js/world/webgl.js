@@ -3,6 +3,7 @@ import { dispatch, getActions, STATE_CHANGE, } from '../store/store.js';
 const { 
   AmbientLight,
   AxesHelper,
+  BoxBufferGeometry,
   Clock,
   Color,
   DirectionalLight,
@@ -54,6 +55,7 @@ export function setup() {
   createLights();
   createGround();
   createBox();
+  createWalls();
   draw();
   console.log(scene.toJSON());
 }
@@ -71,7 +73,6 @@ function addEventListeners() {
  * Box.
  */
 function createBox() {
-  const { BoxBufferGeometry, } = THREE;
   const geometry = new BoxBufferGeometry(1, 1, 1);
   const material = new MeshPhongMaterial({color: 0xcccccc});
   const box = new Mesh(geometry, material);
@@ -101,6 +102,37 @@ function createGround() {
   scene.add(ground);
 }
 
+
+function createBackground() {
+
+}
+
+/**
+ * Single wall plane.
+ */
+function createWall(x, z, width, height) {
+  const geometry = new BoxBufferGeometry(width, height, 0.01);
+  const material = new MeshPhongMaterial({color: 0xf7f777});
+  const mesh = new Mesh(geometry, material);
+  mesh.position.set(x, height / 2, z);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+}
+
+/**
+ * Wall planes.
+ */
+function createWalls() {
+  createWall(0, -1, 8, 5);
+  createWall(-1.5, 0, 1, 4);
+  createWall(1.5, 0, 1, 4);
+  createWall(-2, 1, 1, 4);
+  createWall(2, 1, 1, 4);
+  createWall(-3, 2, 2, 4);
+  createWall(3, 2, 2, 4);
+}
+
 /**
  * Lights.
  */
@@ -108,8 +140,8 @@ function createLights() {
   const ambient = new AmbientLight(0x999999);
   scene.add(ambient);
 
-  const light = new THREE.DirectionalLight(0xeeeeee, 1, 100);
-  light.position.set(3, 9, 6);
+  const light = new DirectionalLight(0xeeeeee, 1);
+  light.position.set(4, 9, 6);
   light.castShadow = true;
   light.shadow.mapSize.width = 2048;  // default 512
   light.shadow.mapSize.height = 2048; // default 512
@@ -208,7 +240,7 @@ function setCanvasSize(state) {
  */
 function setupWebGLWorld() {
   const defaultWidth = 400;
-  const defaultHeight = 400;
+  const defaultHeight = 300;
   
   // RENDERER
   renderer = new WebGLRenderer({antialias: true});
