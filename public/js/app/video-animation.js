@@ -8,6 +8,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
     imgURLNr = 1,
     imgURLNrFirst,
     imgURLNrLast,
+    imgURLNrIncrease = 1,
     imgURLPrefix,
     imgURLSuffix,
     resource,
@@ -21,12 +22,13 @@ export function create(textureCanvas, data, resources, texture, fps) {
 
       // video resource
       resource = resources.find(resource => resource.id === resourceId);
-      const { url, width, height, frames } = resource;
+      const { url, width, height, fps: videoFPS = 30, frames, } = resource;
       imgURLPrefix = url.split('#')[0];
       imgURLSuffix = url.split('#')[1];
       imgURLNr = Math.floor(start * fps) + 1;
       imgURLNrFirst = imgURLNr;
-      imgURLNrLast = end ? Math.floor(end * fps) : frames;
+      imgURLNrLast = end ? Math.floor(end * videoFPS) : frames;
+      imgURLNrIncrease = videoFPS / fps;
 
       dx = canvas.offsetX - (offsetX * scale);
       dy = canvas.offsetY + ((offsetY - height) * scale);
@@ -37,15 +39,18 @@ export function create(textureCanvas, data, resources, texture, fps) {
       loadImage();
     },
 
+    /**
+     * Load a video frame image based on imgURLNr.
+     */
     loadImage = function() {
-      if (imgURLNr <= imgURLNrLast) {
-        img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + imgURLNr).slice(-5) : '99999') + imgURLSuffix;
+      // if (imgURLNr <= imgURLNrLast) {
+        img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + Math.round(imgURLNr)).slice(-5) : '99999') + imgURLSuffix;
         if (imgURLNr < imgURLNrLast) {
-          imgURLNr += 1;
+          imgURLNr += imgURLNrIncrease;
         } else {
           imgURLNr = imgURLNrFirst;
         }
-      }
+      // }
     },
 
     /**

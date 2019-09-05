@@ -1,7 +1,7 @@
 {
   "width": 960,
   "height": 540,
-  "fps": 30,
+  "fps": 12,
   "camera": {
     "fieldOfView": 18
   },
@@ -10,6 +10,7 @@
       "id": "leidseplein1",
       "url": "frames/leidseplein1/frame_#.png",
       "frames": 6303,
+      "fps": 30,
       "width": 640,
       "height": 480
     }
@@ -154,8 +155,8 @@
       },
       "video": {
         "resourceId": "leidseplein1",
-        "start": 10,
-        "end": 30,
+        "start": 0,
+        "end": 20,
         "isLoop": true,
         "offsetX": 200,
         "offsetY": 0,
