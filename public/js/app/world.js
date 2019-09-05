@@ -25,7 +25,7 @@ let renderer, camera, scene, mixer, clock, stats, actions;
 export function setup(settings) {
   createWorld(settings);
   createLights();
-  createGround(settings);
+  // createGround(settings);
   setupPopulation(settings, scene);
 }
 
@@ -35,7 +35,8 @@ export function getObjectByName(name) {
 
 function createWorld(settings) {
   const { camera: cam = {}, height = 360, width = 640, } = settings;
-  const { fieldOfView = 23, } = cam;
+  const { fieldOfView = 23, position: camPosition = [0, 2, 16], target: camTarget = [0, 2, 0] } = cam;
+  const cameraTarget = new Vector3(...camTarget);
 
   // RENDERER
   renderer = new WebGLRenderer({antialias: true});
@@ -54,8 +55,8 @@ function createWorld(settings) {
   const near = 1;
   const far = 1000;
   camera = new PerspectiveCamera(fieldOfView, width / height, near, far);
-  camera.position.set(0, 2, 16);
-  camera.lookAt(new Vector3(0, 2, 0));
+  camera.position.set(...camPosition);
+  camera.lookAt(cameraTarget);
 
   // SCENE
   scene = new Scene();
@@ -76,7 +77,7 @@ function createWorld(settings) {
   
   // ORBIT CONTROL
   const orbit = new OrbitControls(camera, renderer.domElement);
-  orbit.target = new Vector3(0, 2, 0);
+  orbit.target = cameraTarget;
   orbit.update();
   
   // TRANSFORM CONTROL
@@ -126,6 +127,7 @@ function draw() {
 // ANIMATION LOOP
 export function animate() {
   animatePopulation(clock.getDelta());
+  // camera.translateZ(-0.1)
   // stats.update();
   renderer.render(scene, camera);
 }
