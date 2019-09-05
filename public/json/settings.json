@@ -1,0 +1,166 @@
+{
+  "width": 960,
+  "height": 540,
+  "fps": 30,
+  "camera": {
+    "fieldOfView": 18
+  },
+  "resources": [
+    {
+      "id": "leidseplein1",
+      "url": "frames/leidseplein1/frame_#.png",
+      "frames": 6303,
+      "width": 640,
+      "height": 480
+    }
+  ],
+  "objects": [
+    {
+      "type": "canvas-extrude", 
+      "name": "wall-left",
+      "color": "#f7f777",
+      "depth": 0.01,
+      "x": -3.6, "y": 0, "z": 3.3,
+      "points": [
+        [0, 0],
+        [1.8, 0],
+        [1.8, 4],
+        [0, 4]
+      ],
+      "canvas": {
+        "offsetX": 256,
+        "offsetY": 256,
+        "scale": 60,
+        "width": 512,
+        "height": 512
+      },
+      "video": {
+        "resourceId": "leidseplein1",
+        "start": 0,
+        "end": 20,
+        "isLoop": true,
+        "offsetX": 0,
+        "offsetY": 0,
+        "scale": 0.5
+      }
+    },
+    {
+      "type": "canvas-extrude", 
+      "name": "wall-right",
+      "color": "#f7f777",
+      "depth": 0.01,
+      "x": 1.8, "y": 0, "z": 3.3,
+      "points": [
+        [0, 0],
+        [1.8, 0],
+        [1.8, 4],
+        [0, 4]
+      ],
+      "canvas": {
+        "offsetX": 256,
+        "offsetY": 256,
+        "scale": 60,
+        "width": 512,
+        "height": 512
+      },
+      "video": {
+        "resourceId": "leidseplein1",
+        "start": 0,
+        "end": 20,
+        "isLoop": true,
+        "offsetX": 420,
+        "offsetY": 0,
+        "scale": 0.5
+      }
+    },
+
+    {
+      "type": "canvas-extrude", 
+      "name": "wall-left-2",
+      "color": "#f7f777",
+      "depth": 0.01,
+      "x": -2, "y": 0, "z": 2,
+      "points": [
+        [0, 0],
+        [1.2, 0],
+        [1.2, 4],
+        [0, 4]
+      ],
+      "canvas": {
+        "offsetX": 256,
+        "offsetY": 256,
+        "scale": 60,
+        "width": 512,
+        "height": 512
+      },
+      "video": {
+        "resourceId": "leidseplein1",
+        "start": 0,
+        "end": 20,
+        "isLoop": true,
+        "offsetX": 200,
+        "offsetY": 0,
+        "scale": 0.5
+      }
+    },
+    {
+      "type": "canvas-extrude", 
+      "name": "wall-right-2",
+      "color": "#f7f777",
+      "depth": 0.01,
+      "x": 1, "y": 0, "z": 2,
+      "points": [
+        [0, 0],
+        [1.2, 0],
+        [1.2, 4],
+        [0, 4]
+      ],
+      "canvas": {
+        "offsetX": 256,
+        "offsetY": 256,
+        "scale": 60,
+        "width": 512,
+        "height": 512
+      },
+      "video": {
+        "resourceId": "leidseplein1",
+        "start": 0,
+        "end": 20,
+        "isLoop": true,
+        "offsetX": 300,
+        "offsetY": 0,
+        "scale": 0.5
+      }
+    },
+
+    {
+      "type": "canvas-extrude", 
+      "name": "wall-center",
+      "color": "#f7f777",
+      "depth": 0.01,
+      "x": -2, "y": 0, "z": 0,
+      "points": [
+        [0, 0],
+        [4, 0],
+        [4, 4],
+        [0, 4]
+      ],
+      "canvas": {
+        "offsetX": 256,
+        "offsetY": 256,
+        "scale": 60,
+        "width": 512,
+        "height": 512
+      },
+      "video": {
+        "resourceId": "leidseplein1",
+        "start": 10,
+        "end": 30,
+        "isLoop": true,
+        "offsetX": 200,
+        "offsetY": 0,
+        "scale": 0.5
+      }
+    }
+  ]
+}

@@ -1,13 +1,17 @@
 {
-    "name": "threejs-experiments",
-    "version": "0.1.0",
-    "author": "Wouter Hisschemöller <wouter.hisschemoller@gmail.com>",
-    "description": "Experimenting with three.js",
-    "private": true,
-    "contributors": [],
-    "dependencies": {
-        "express": "^4.17.1",
-        "three": "^0.107.0"
-    },
-    "devDependencies": {}
+  "name": "video-edit-3d",
+  "version": "0.0.1",
+  "main": "server.js",
+  "repository": "https://gitlab.com/hisschemoller/video-edit-3d.git",
+  "author": "Wouter Hisschemöller <wouter.hisschemoller@gmail.com>",
+  "description": "Video, 3D and animation in WebGL using three.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {}
 }

@@ -1,8 +1,5 @@
-@import 'variables.css';
-@import 'dialog.css';
-
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
@@ -27,33 +24,23 @@ time, mark, audio, video {
 	font-family: sans-serif;
 	vertical-align: baseline;
 }
-canvas {
-	display: block;
+.display {
+  background-color: #eee;
+  display: flex;
+  margin: 20px;
+  padding: 10px 20px;
+  text-align: center;
 }
-button {
-	background: none;
-	border: none;
-	outline: none;
+.display > div {
+  margin: 5px;
 }
-label {
-	font-size: 12px;
-}
-input[type='file'] {
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-  width: 0.1px;
-	z-index: -1;
-}
-select {
-	background: none;
-	border: none;
-	outline: none;
-}
-
-#controls {
-	left: 0;
-	position: absolute;
-	top: 0;
+.index,
+.time {
+  background-color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 10px;
+  width: 100px;
 }
