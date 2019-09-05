@@ -25,7 +25,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
       const { url, width, height, fps: videoFPS = 30, frames, } = resource;
       imgURLPrefix = url.split('#')[0];
       imgURLSuffix = url.split('#')[1];
-      imgURLNr = Math.floor(start * fps) + 1;
+      imgURLNr = Math.floor(start * videoFPS) + 1;
       imgURLNrFirst = imgURLNr;
       imgURLNrLast = end ? Math.floor(end * videoFPS) : frames;
       imgURLNrIncrease = videoFPS / fps;

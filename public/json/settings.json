@@ -37,8 +37,8 @@
       },
       "video": {
         "resourceId": "leidseplein1",
-        "start": 0,
-        "end": 20,
+        "start": 140,
+        "end": 210,
         "isLoop": true,
         "offsetX": 0,
         "offsetY": 0,
@@ -66,8 +66,8 @@
       },
       "video": {
         "resourceId": "leidseplein1",
-        "start": 0,
-        "end": 20,
+        "start": 140,
+        "end": 210,
         "isLoop": true,
         "offsetX": 420,
         "offsetY": 0,
@@ -96,8 +96,8 @@
       },
       "video": {
         "resourceId": "leidseplein1",
-        "start": 0,
-        "end": 20,
+        "start": 140,
+        "end": 210,
         "isLoop": true,
         "offsetX": 200,
         "offsetY": 0,
@@ -125,8 +125,8 @@
       },
       "video": {
         "resourceId": "leidseplein1",
-        "start": 0,
-        "end": 20,
+        "start": 140,
+        "end": 210,
         "isLoop": true,
         "offsetX": 300,
         "offsetY": 0,
@@ -155,10 +155,10 @@
       },
       "video": {
         "resourceId": "leidseplein1",
-        "start": 0,
-        "end": 20,
+        "start": 140,
+        "end": 210,
         "isLoop": true,
-        "offsetX": 200,
+        "offsetX": 160,
         "offsetY": 0,
         "scale": 0.5
       }
