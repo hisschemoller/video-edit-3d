@@ -214,7 +214,7 @@ function createCanvasTexture(data) {
  * @param {*} resolve
  */
 function createMesh(data, geometry, texture) {
-  const { name, x, y, z, rotation = {} } = data;
+  const { name, position, rotation = {} } = data;
   const { x: rx = 0, y: ry = 0, z: rz = 0 } = rotation;
 
   const material = new MeshPhongMaterial({ map: texture, wireframe: false, });
@@ -222,7 +222,7 @@ function createMesh(data, geometry, texture) {
   const mesh = new Mesh(geometry, material);
   mesh.castShadow = true;
   mesh.receiveShadow = true;
-  mesh.position.set(x, y, z);
+  mesh.position.set( ...position );
   mesh.rotateX(rx);
   mesh.name = name;
 

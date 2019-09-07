@@ -17,13 +17,30 @@
       "height": 480
     }
   ],
+  "score": [
+    {
+      "objectId": "wall-left",
+      "parameterId": "position",
+      "parameterType": "vector3",
+      "keys": [
+        {
+          "time": 1,
+          "value": [-3.6, 0, 3.3]
+        },
+        {
+          "time": 3,
+          "value": [-3.6, 0, 3.3]
+        }
+      ]
+    }
+  ],
   "objects": [
     {
-      "type": "canvas-extrude", 
+      "type": "canvas-extrude",
       "name": "wall-left",
       "color": "#f7f777",
       "depth": 0.01,
-      "x": -3.6, "y": 0, "z": 3.3,
+      "position": [-3.6, 0, 3.3],
       "points": [
         [0, 0],
         [1.8, 0],
@@ -52,7 +69,7 @@
       "name": "wall-right",
       "color": "#f7f777",
       "depth": 0.01,
-      "x": 1.8, "y": 0, "z": 3.3,
+      "position": [1.8, 0, 3.3],
       "points": [
         [0, 0],
         [1.8, 0],
@@ -82,7 +99,7 @@
       "name": "wall-left-2",
       "color": "#f7f777",
       "depth": 0.01,
-      "x": -2, "y": 0, "z": 2,
+      "position": [-2, 0, 2],
       "points": [
         [0, 0],
         [1.2, 0],
@@ -111,7 +128,7 @@
       "name": "wall-right-2",
       "color": "#f7f777",
       "depth": 0.01,
-      "x": 1, "y": 0, "z": 2,
+      "position": [0.8, 0, 2],
       "points": [
         [0, 0],
         [1.2, 0],
@@ -138,14 +155,14 @@
 
     {
       "type": "canvas-extrude", 
-      "name": "wall-center",
+      "name": "wall-left-3",
       "color": "#f7f777",
       "depth": 0.01,
-      "x": -2, "y": 0, "z": 0,
+      "position": [-2, 0, 0],
       "points": [
         [0, 0],
-        [4, 0],
-        [4, 4],
+        [2, 0],
+        [2, 4],
         [0, 4]
       ],
       "canvas": {
@@ -161,6 +178,36 @@
         "end": 210,
         "isLoop": true,
         "offsetX": 160,
+        "offsetY": 0,
+        "scale": 0.5
+      }
+    },
+
+    {
+      "type": "canvas-extrude", 
+      "name": "wall-right-3",
+      "color": "#f7f777",
+      "depth": 0.01,
+      "position": [0, 0, 0],
+      "points": [
+        [0, 0],
+        [2, 0],
+        [2, 4],
+        [0, 4]
+      ],
+      "canvas": {
+        "offsetX": 256,
+        "offsetY": 256,
+        "scale": 60,
+        "width": 512,
+        "height": 512
+      },
+      "video": {
+        "resourceId": "leidseplein1",
+        "start": 140,
+        "end": 210,
+        "isLoop": true,
+        "offsetX": 400,
         "offsetY": 0,
         "scale": 0.5
       }
