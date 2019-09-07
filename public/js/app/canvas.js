@@ -11,7 +11,9 @@ const animations = [];
 
 export function setup(settings) {
   const { objects = [], resources = [], fps = 30, } = settings;
-  objects.forEach(data => {
+  
+  for (let id in objects) {
+    const data = objects[id];
     const object3d = getObjectByName(data.name);
     const texture = object3d.material.map;
     const canvas = texture.image;
@@ -23,7 +25,7 @@ export function setup(settings) {
     } else if (data.image) {
       setupImageCanvas(data, texture, canvas);
     }
-  });
+  }
 }
 
 function setupAnimationCanvas(data, texture, canvas) {

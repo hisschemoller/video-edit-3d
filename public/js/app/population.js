@@ -6,14 +6,15 @@ let mixer = null;
 export function setup(settings, scene) {
   const { objects = [], } = settings;
 
-  objects.forEach(data => {
+  for (let id in objects) {
+    const data = objects[id];
     switch (data.type) {
       case 'canvas-extrude':
         const mesh = createExtrude(data);
         scene.add(mesh);
         break;
     }
-  });
+  }
 }
 
 export function animate(delta) {

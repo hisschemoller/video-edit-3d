@@ -34,8 +34,8 @@
       ]
     }
   ],
-  "objects": [
-    {
+  "objects": {
+    "scene1-wallL1": {
       "type": "canvas-extrude",
       "name": "wall-left",
       "color": "#f7f777",
@@ -64,7 +64,7 @@
         "scale": 0.5
       }
     },
-    {
+    "scene1-wallR1": {
       "type": "canvas-extrude", 
       "name": "wall-right",
       "color": "#f7f777",
@@ -94,7 +94,7 @@
       }
     },
 
-    {
+    "scene1-wallL2": {
       "type": "canvas-extrude", 
       "name": "wall-left-2",
       "color": "#f7f777",
@@ -123,7 +123,7 @@
         "scale": 0.5
       }
     },
-    {
+    "scene1-wallR2": {
       "type": "canvas-extrude", 
       "name": "wall-right-2",
       "color": "#f7f777",
@@ -153,7 +153,7 @@
       }
     },
 
-    {
+    "scene1-wallL3": {
       "type": "canvas-extrude", 
       "name": "wall-left-3",
       "color": "#f7f777",
@@ -183,7 +183,7 @@
       }
     },
 
-    {
+    "scene1-wallR3": {
       "type": "canvas-extrude", 
       "name": "wall-right-3",
       "color": "#f7f777",
@@ -212,5 +212,5 @@
         "scale": 0.5
       }
     }
-  ]
+  }
 }
