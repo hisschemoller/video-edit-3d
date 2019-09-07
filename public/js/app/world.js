@@ -25,7 +25,7 @@ let renderer, camera, scene, mixer, clock, stats, actions;
 export function setup(settings) {
   createWorld(settings);
   createLights();
-  // createGround(settings);
+  createGround(settings);
   setupPopulation(settings, scene);
 }
 
@@ -84,8 +84,8 @@ function createWorld(settings) {
   // const control = new TransformControls(camera, renderer.domElement);
   
   // STATS
-  // stats = new Stats();
-  // container.appendChild(stats.dom);
+  stats = new Stats();
+  container.appendChild(stats.dom);
 }
 
 // LIGHTS
@@ -128,6 +128,6 @@ function draw() {
 export function animate() {
   animatePopulation(clock.getDelta());
   // camera.translateZ(-0.1)
-  // stats.update();
+  stats.update();
   renderer.render(scene, camera);
 }

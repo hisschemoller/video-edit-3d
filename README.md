@@ -4,12 +4,13 @@ Video and animation in WebGL using three.js
 
 ## settings JSON
 
-```json
+```javascript
 {
   "objects": [
     {
       "type": "canvas-extrude", // an extruded geometric shape
       "name": "", // name used for the 3D object
+      "color": "#f7f777", // 3D object texture color
       "depth": 1, // extrude depth
       "x": 0, "y": 0, "z": 0, // object position in the 3D scene
       "points": [ // coordinates of the extruded shape
@@ -19,7 +20,7 @@ Video and animation in WebGL using three.js
         [0, 1]
       ],
       "canvas": {
-        "offsetX": 256,
+        "offsetX": 256, 
         "offsetY": 256,
         "scale": 128, // how many pixels to cover one 3D unit
         "width": 512, // canvas width
@@ -33,15 +34,15 @@ Video and animation in WebGL using three.js
 ## Matrix4
 
 Default
-```
+```javascript
 [ 1,0,0,0 ,0,1,0,0 ,0,0,1,0 ,0,0,0,1 ]
 ```
 Scale
-```
+```javascript
 [ x,0,0,0 ,0,y,0,0 ,0,0,z,0 ,0,0,0,1 ]
 ```
 Translate
-```
+```javascript
 [ 1,0,0,0 ,0,1,0,0 ,0,0,1,0 ,x,y,z,1 ]
 ```
 
@@ -49,7 +50,7 @@ Translate
 
 Convert AVI to MP4:
 
-```
+```bash
 ffmpeg -i input.avi -c:v libx264 -crf 19 -preset slow -c:a aac -b:a 192k -ac 2 output.mp4
 ```
 
