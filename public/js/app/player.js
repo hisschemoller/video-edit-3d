@@ -5,16 +5,25 @@ let frame = 0;
 let framesPerDraw = 0;
 let frameCounter = 0;
 
-export function setup(url, isCapture = false) {
-  fetch(url)
+export function setup(dataSource, isCapture = false) {
+  if (typeof dataSource === 'string') {
+    fetch(dataSource)
     .then(response => response.json())
     .then(response => {
-      const { fps = 30, } = response;
-      framesPerDraw = 60 / fps;
-      setupWorld(response);
-      setupCanvas(response);
-      requestAnimationFrame(isCapture ? capture : run);
+      setupWithData(response, isCapture);
     });
+  } else {
+    setupWithData(dataSource, isCapture);
+  }
+}
+
+function setupWithData(data, isCapture) {
+  console.log(data);
+  const { fps = 30, } = data;
+  framesPerDraw = 60 / fps;
+  setupWorld(data);
+  setupCanvas(data);
+  requestAnimationFrame(isCapture ? capture : run);
 }
 
 function run() {

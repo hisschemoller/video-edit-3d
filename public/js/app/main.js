@@ -1,3 +1,4 @@
 import { setup } from './player.js';
+import data from '../data/leidseplein.js';
 
-setup('../../json/settings.json', false);
+setup(data, false);

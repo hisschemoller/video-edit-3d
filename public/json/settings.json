@@ -20,16 +20,20 @@
   "score": [
     {
       "objectId": "wall-left",
-      "parameterId": "position",
-      "parameterType": "vector3",
-      "keys": [
+      "animations": [
         {
-          "time": 1,
-          "value": [-3.6, 0, 3.3]
-        },
-        {
-          "time": 3,
-          "value": [-3.6, 0, 3.3]
+          "parameterId": "position",
+          "parameterType": "vector3",
+          "keys": [
+            {
+              "time": 1,
+              "value": [-3.6, 0, 3.3]
+            },
+            {
+              "time": 3,
+              "value": [-3.6, 0, 3.3]
+            }
+          ]
         }
       ]
     }
