@@ -11,10 +11,10 @@ const animations = [];
 
 export function setup(settings) {
   const { objects = [], resources = [], fps = 30, } = settings;
-  
+
   for (let id in objects) {
     const data = objects[id];
-    const object3d = getObjectByName(data.name);
+    const object3d = getObjectByName(id);
     const texture = object3d.material.map;
     const canvas = texture.image;
     

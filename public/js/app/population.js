@@ -10,7 +10,7 @@ export function setup(settings, scene) {
     const data = objects[id];
     switch (data.type) {
       case 'canvas-extrude':
-        const mesh = createExtrude(data);
+        const mesh = createExtrude(id, data);
         scene.add(mesh);
         break;
     }

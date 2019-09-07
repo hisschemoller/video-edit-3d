@@ -18,12 +18,12 @@ const {
  * @param {*} data
  * @returns
  */
-export default function createExtrude(data) {
+export default function createExtrude(id, data) {
   const shapeGeometry = createFrontShapeGeometry(data);
   const geometry = createCustomGeometry(data, shapeGeometry);
   const texture = createCanvasTexture(data);
   computeFaceVertexUVs(geometry, shapeGeometry);
-  const mesh = createMesh(data, geometry, texture);
+  const mesh = createMesh(id, data, geometry, texture);
   return mesh;
 }
 
@@ -213,8 +213,8 @@ function createCanvasTexture(data) {
  * @param {*} texture
  * @param {*} resolve
  */
-function createMesh(data, geometry, texture) {
-  const { name, position, rotation = {} } = data;
+function createMesh(id, data, geometry, texture) {
+  const { position, rotation = {} } = data;
   const { x: rx = 0, y: ry = 0, z: rz = 0 } = rotation;
 
   const material = new MeshPhongMaterial({ map: texture, wireframe: false, });
@@ -224,7 +224,7 @@ function createMesh(data, geometry, texture) {
   mesh.receiveShadow = true;
   mesh.position.set( ...position );
   mesh.rotateX(rx);
-  mesh.name = name;
+  mesh.name = id;
 
   return mesh;
 }
