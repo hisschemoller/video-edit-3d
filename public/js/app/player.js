@@ -1,8 +1,9 @@
 import { setup as setupWorld, animate as animateWorld } from './world.js';
 import { setup as setupCanvas, draw as drawCanvas } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
+import createClip from './clip.js';
 
-const clipEndTimes = [];
+const clips = [];
 
 let frame = 0;
 let framesPerDraw = 0;
@@ -63,6 +64,10 @@ function capture() {
 
 }
 
+/**
+ * Check for score clips to start or end.
+ * @param {Number} position Time position within the main time.line
+ */
 function checkForNextClips(position) {
 
   // check for clips to start
@@ -70,13 +75,16 @@ function checkForNextClips(position) {
     for (let i = nextClipIndex, n = data.score.length; i < n; i++) {
       const { clipId, lifespan, } = data.score[i];
       if (lifespan[0] <= position) {
-        console.log('start clip ', i, data.score[i].lifespan[0], data.score[i].objectId );
         nextClipIndex++;
         nextClipTime = nextClipIndex < data.score.length ? data.score[nextClipIndex].lifespan[0] : Number.MAX_VALUE;
 
         // store the clip end time
-        clipEndTimes.push({ clipId, time: lifespan[1] });
-        clipEndTimes.sort((a, b) => a.time - b.time);
+        const clip = createClip(data.score[i]);
+        clips.push(clip);
+        clips.sort((a, b) => a.getTime() - b.getTime());
+
+        // start the clip
+        console.log('start clip ', i, data.score[i].lifespan[0], data.score[i].objectId );
       } else {
         break;
       }
@@ -84,11 +92,13 @@ function checkForNextClips(position) {
   }
 
   // check for clips to end
-  if (clipEndTimes.length && position >= clipEndTimes[0].time) {
-    while (clipEndTimes.length && position >= clipEndTimes[0].time) {
-      const clip = data.score.find(clip => clip.clipId === clipEndTimes[0].clipId);
-      console.log('end clip ', clip.objectId );
-      clipEndTimes.splice(0, 1);
+  if (clips.length && position >= clips[0].getTime()) {
+    while (clips.length && position >= clips[0].getTime()) {
+      const clip = data.score.find(clip => clip.clipId === clips[0].getId());
+      clips.splice(0, 1);
+
+      // end the clip
+      console.log('end clip ', clip.getId() );
     }
   }
 }
