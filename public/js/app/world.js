@@ -26,15 +26,16 @@ export function setup(settings) {
   createWorld(settings);
   createLights();
   createGround(settings);
-  setupPopulation(settings, scene);
+  // setupPopulation(settings, scene);
 }
 
 export function getObjectByName(name) {
   return scene.getObjectByName(name);
 }
 
-function createWorld(settings) {
-  const { camera: cam = {}, height = 360, width = 640, } = settings;
+function createWorld(data) {
+  const { camera: cam = {}, settings = {}, } = data;
+  const { height = 360, width = 640, } = settings;
   const { fieldOfView = 23, position: camPosition = [0, 2, 16], target: camTarget = [0, 2, 0] } = cam;
   const cameraTarget = new Vector3(...camTarget);
 

@@ -8,7 +8,7 @@ const timeSignatureDenominator = 4; // length of a beat (4 = quarter note, 8 = e
 setTiming(bpm, ppqn, timeSignatureNumerator, timeSignatureDenominator);
 
 const clip = {
-  lifespan: [0, Number.MAX_VALUE],
+  lifespan: [0, Number.POSITIVE_INFINITY],
   animations: [],
 };
 
@@ -16,7 +16,7 @@ const scoreScene1 = [
   {
     ...clip,
     objectId: 'scene1wallL1',
-    lifespan: [0, musicToTime('0:3:0')],
+    lifespan: [1, musicToTime('1:0:0')],
     animations: [
       {
         parameterId: 'position',
@@ -127,16 +127,16 @@ const data = {
       url: 'frames/leidseplein1/frame_#.png',
       frames: 6303,
       fps: 30,
-      width: 640,
-      height: 480
+      width: 960,
+      height: 540,
     }
   ],
   objects: {
     ...scene1,
   },
-  score: {
+  score: [
     ...scoreScene1,
-  },
+  ],
 };
 
 export default data;

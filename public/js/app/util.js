@@ -8,7 +8,8 @@ let bpm,
   secondsPerMeasure;
 
 /**
- * 
+ * Store timing of the piece to be able to convert musical notation to time.
+ * @export
  * @param {Number} BPM // beats per minute
  * @param {Number} ppqn // parts per quarter note
  * @param {Number} timeSignatureNumerator //number of beats in a measure
@@ -28,6 +29,12 @@ export function setTiming (BPM, PPQN, timeSignatureNumerator, timeSignatureDenom
   secondsPerMeasure = pulsesPerMeasure * secondsPerPulse;
 }
 
+/**
+ * Convert musical time notation into seconds.
+ * @export
+ * @param {String} timestamp Musical time as 'n:n:n', measures:beats:parts.
+ * @returns {Number} Time in seconds.
+ */
 export function musicToTime(timestamp) {
   if (typeof timestamp === 'string') {
     const timeArray = timestamp.split(':');
@@ -40,6 +47,28 @@ export function musicToTime(timestamp) {
   return 0;
 }
 
-export function timeToMusic() {
+/**
+ * Convert all animation times from seconds to milliseconds.
+ * @export
+ * @param {Array} score Score clips.
+ * @returns {Array} The same array with the times converted.
+ */
+export function convertToMilliseconds(score) {
+  score.forEach(clip => {
+    clip.lifespan = clip.lifespan.map(time => time * 1000);
+    clip.animations.forEach(animation => {
+      animation.keys.forEach(key => key.time *= 1000);
+    });
+  });
+  return score;
+}
 
+/**
+ * Sort score so lifespan starttimes are chronological.
+ * @export
+ * @param {Array} score Score clips.
+ * @returns {Array} The same array with the score clips sorted.
+ */
+export function sortScoreByLifespanStart(score) {
+  return score.sort((a, b) => a.lifespan[0] - b.lifespan[0]);
 }
