@@ -2,6 +2,8 @@ import { setup as setupWorld, animate as animateWorld } from './world.js';
 import { setup as setupCanvas, draw as drawCanvas } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
 
+const clipEndTimes = [];
+
 let frame = 0;
 let framesPerDraw = 0;
 let frameCounter = 0;
@@ -62,16 +64,31 @@ function capture() {
 }
 
 function checkForNextClips(position) {
+
+  // check for clips to start
   if (position >= nextClipTime) {
     for (let i = nextClipIndex, n = data.score.length; i < n; i++) {
-      const { lifespan, } = data.score[i];
+      const { clipId, lifespan, } = data.score[i];
       if (lifespan[0] <= position) {
         console.log('start clip ', i, data.score[i].lifespan[0], data.score[i].objectId );
         nextClipIndex++;
         nextClipTime = nextClipIndex < data.score.length ? data.score[nextClipIndex].lifespan[0] : Number.MAX_VALUE;
+
+        // store the clip end time
+        clipEndTimes.push({ clipId, time: lifespan[1] });
+        clipEndTimes.sort((a, b) => a.time - b.time);
       } else {
         break;
       }
+    }
+  }
+
+  // check for clips to end
+  if (clipEndTimes.length && position >= clipEndTimes[0].time) {
+    while (clipEndTimes.length && position >= clipEndTimes[0].time) {
+      const clip = data.score.find(clip => clip.clipId === clipEndTimes[0].clipId);
+      console.log('end clip ', clip.objectId );
+      clipEndTimes.splice(0, 1);
     }
   }
 }
