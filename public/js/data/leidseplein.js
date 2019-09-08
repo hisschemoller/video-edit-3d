@@ -1,3 +1,44 @@
+import { musicToTime, setTiming, } from '../app/util.js';
+
+const ppqn = 24; // parts per quarter note
+const bpm = 112; // beats per minute
+const timeSignatureNumerator = 4; // number of beats in a measure
+const timeSignatureDenominator = 4; // length of a beat (4 = quarter note, 8 = eight note)
+
+setTiming(bpm, ppqn, timeSignatureNumerator, timeSignatureDenominator);
+
+const clip = {
+  lifespan: [0, Number.MAX_VALUE],
+  animations: [],
+};
+
+const scoreScene1 = [
+  {
+    ...clip,
+    objectId: 'scene1wallL1',
+    lifespan: [0, musicToTime('0:3:0')],
+    animations: [
+      {
+        parameterId: 'position',
+        parameterType: 'vector3',
+        keys: [
+          {
+            time: 1,
+            value: [-3.6, 0, 3.3]
+          },
+          {
+            time: 3,
+            value: [-3.6, 0, 3.3]
+          }
+        ]
+      }
+    ]
+  },
+  { ...clip, objectId: 'scene1wallR1', },
+  { ...clip, objectId: 'scene1wallL2', },
+  { ...clip, objectId: 'scene1wallR2', },
+];
+
 const canvas = {
   offsetX: 256,
   offsetY: 256,
@@ -64,9 +105,17 @@ const scene1 = {
 };
 
 const data = {
-  width: 960,
-  height: 540,
-  fps: 12,
+  settings: {
+    width: 960,
+    height: 540,
+    fps: 12,
+    ppqn,
+    bpm,
+    timesignature: {
+      numerator: timeSignatureNumerator,
+      denominator: timeSignatureDenominator,
+    },
+  },
   camera: {
     fieldOfView: 18,
     position: [0, 2, 16],
@@ -84,6 +133,9 @@ const data = {
   ],
   objects: {
     ...scene1,
+  },
+  score: {
+    ...scoreScene1,
   },
 };
 
