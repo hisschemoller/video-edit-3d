@@ -1,4 +1,4 @@
-import { musicToTime, setTiming, } from '../app/util.js';
+import { musicToTime, setTiming, uuidv4, } from '../app/util.js';
 
 const ppqn = 24; // parts per quarter note
 const bpm = 112; // beats per minute
@@ -15,6 +15,7 @@ const clip = {
 const scoreScene1 = [
   {
     ...clip,
+    clipId: uuidv4(),
     objectId: 'scene1wallL1',
     lifespan: [1, musicToTime('1:0:0')],
     animations: [
@@ -34,9 +35,9 @@ const scoreScene1 = [
       }
     ]
   },
-  { ...clip, objectId: 'scene1wallR1', },
-  { ...clip, objectId: 'scene1wallL2', },
-  { ...clip, objectId: 'scene1wallR2', },
+  { ...clip, clipId: uuidv4(), objectId: 'scene1wallR1', },
+  { ...clip, clipId: uuidv4(), objectId: 'scene1wallL2', },
+  { ...clip, clipId: uuidv4(), objectId: 'scene1wallR2', },
 ];
 
 const canvas = {
