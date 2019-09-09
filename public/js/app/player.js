@@ -1,7 +1,6 @@
-import { setup as setupWorld, animate as animateWorld } from './world.js';
+import { setup as setupWorld, animate as animateWorld, createObject as createWorldObject, } from './world.js';
 import { setup as setupCanvas, draw as drawCanvas } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
-import createClip from './clip.js';
 
 const clips = [];
 
@@ -73,18 +72,21 @@ function checkForNextClips(position) {
   // check for clips to start
   if (position >= nextClipTime) {
     for (let i = nextClipIndex, n = data.score.length; i < n; i++) {
-      const { clipId, lifespan, } = data.score[i];
+      const { clipId, lifespan, objectId, } = data.score[i];
       if (lifespan[0] <= position) {
         nextClipIndex++;
         nextClipTime = nextClipIndex < data.score.length ? data.score[nextClipIndex].lifespan[0] : Number.MAX_VALUE;
 
         // store the clip end time
-        const clip = createClip(data.score[i]);
-        clips.push(clip);
-        clips.sort((a, b) => a.getTime() - b.getTime());
+        clips.push({
+          clipId,
+          lifespan,
+        });
+        clips.sort((a, b) => a.lifespan[1] - b.lifespan[1]);
 
-        // start the clip
-        console.log('start clip ', i, data.score[i].lifespan[0], data.score[i].objectId );
+        // create the clip's 3D object
+        const objectData = data.objects[objectId];
+        createWorldObject(objectId, objectData);
       } else {
         break;
       }
@@ -92,13 +94,13 @@ function checkForNextClips(position) {
   }
 
   // check for clips to end
-  if (clips.length && position >= clips[0].getTime()) {
-    while (clips.length && position >= clips[0].getTime()) {
-      const clip = data.score.find(clip => clip.clipId === clips[0].getId());
+  if (clips.length && position >= clips[0].lifespan[1]) {
+    while (clips.length && position >= clips[0].lifespan[1]) {
+      const clip = data.score.find(clip => clip.clipId === clips[0].clipId);
       clips.splice(0, 1);
 
       // end the clip
-      console.log('end clip ', clip.getId() );
+      console.log('end clip ', clip.clipId );
     }
   }
 }

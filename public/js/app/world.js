@@ -1,4 +1,5 @@
 import { setup as setupPopulation, animate as animatePopulation, } from './population.js';
+import createExtrude from './extrude.js';
 
 const {
   AmbientLight,
@@ -27,6 +28,15 @@ export function setup(settings) {
   createLights();
   createGround(settings);
   // setupPopulation(settings, scene);
+}
+
+export function createObject(objectId, data) {
+  switch (data.type) {
+    case 'canvas-extrude':
+      const mesh = createExtrude(objectId, data);
+      scene.add(mesh);
+      break;
+  }
 }
 
 export function getObjectByName(name) {
