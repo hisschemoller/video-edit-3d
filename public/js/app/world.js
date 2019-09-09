@@ -39,6 +39,11 @@ export function createObject(objectId, data) {
   }
 }
 
+export function destroyObject(objectId) {
+  const mesh = scene.getObjectByName(objectId);
+  scene.remove(mesh);
+}
+
 export function getObjectByName(name) {
   return scene.getObjectByName(name);
 }

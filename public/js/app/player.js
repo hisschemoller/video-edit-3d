@@ -1,4 +1,4 @@
-import { setup as setupWorld, animate as animateWorld, createObject as createWorldObject, } from './world.js';
+import { setup as setupWorld, animate as animateWorld, createObject as createWorldObject, destroyObject as destroyWorldObject, } from './world.js';
 import { setup as setupCanvas, draw as drawCanvas } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
 
@@ -99,8 +99,8 @@ function checkForNextClips(position) {
       const clip = data.score.find(clip => clip.clipId === clips[0].clipId);
       clips.splice(0, 1);
 
-      // end the clip
-      console.log('end clip ', clip.clipId );
+      // remove the clip's 3D object
+      destroyWorldObject(clip.objectId)
     }
   }
 }
