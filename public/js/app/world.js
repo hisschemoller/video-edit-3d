@@ -1,5 +1,5 @@
 import { setup as setupPopulation, animate as animatePopulation, } from './population.js';
-import createExtrude from './extrude.js';
+import createExtrude, { createExtrudeGeometry, } from './extrude.js';
 
 const {
   AmbientLight,
@@ -55,7 +55,18 @@ export function getObjectByName(name) {
 }
 
 export function loadClip(clipData) {
-  console.log('clipData', clipData);
+
+  // preprocess data: replace the custom extrude geometries with regular ones
+  clipData.geometries = clipData.geometries.map(geomData => {
+    if (geomData.type === 'CanvasExtrudeGeometry') {
+      const geometry = createExtrudeGeometry(geomData);
+      geometry.uuid = geomData.uuid;
+      return geometry.toJSON();
+    }
+    return geomData;
+  });
+
+  // Create 3D from data and add to scene
   const loader = new ObjectLoader();
   loader.parse(clipData, model => {
     console.log('model', model);

@@ -27,6 +27,12 @@ export default function createExtrude(id, data) {
   return mesh;
 }
 
+export function createExtrudeGeometry(data) {
+  const shapeGeometry = createFrontShapeGeometry(data);
+  const geometry = createCustomGeometry(data, shapeGeometry);
+  return geometry;
+}
+
 /**
  * Create a ShapeGeometry from coordinate points.
  *
