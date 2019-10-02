@@ -11,6 +11,7 @@ const {
   GridHelper,
   Mesh,
   MeshPhongMaterial,
+  ObjectLoader,
   OrbitControls,
   PCFShadowMap,
   PCFSoftShadowMap,
@@ -26,9 +27,14 @@ let renderer, camera, scene, mixer, clock, stats, actions;
 export function setup(settings) {
   createWorld(settings);
   createLights();
-  createGround(settings);
+  // createGround(settings);
   // setupPopulation(settings, scene);
+  setTimeout(() => {
+    console.log(scene.toJSON());
+  }, 1000);
 }
+
+// export function 
 
 export function createObject(objectId, data) {
   switch (data.type) {
@@ -46,6 +52,15 @@ export function destroyObject(objectId) {
 
 export function getObjectByName(name) {
   return scene.getObjectByName(name);
+}
+
+export function loadClip(clipData) {
+  console.log('clipData', clipData);
+  const loader = new ObjectLoader();
+  loader.parse(clipData, model => {
+    console.log('model', model);
+    scene.add(model);
+  });
 }
 
 function createWorld(data) {

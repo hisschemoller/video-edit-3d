@@ -38146,7 +38146,8 @@
 					console.warn( 'THREE.ObjectLoader: Undefined geometry', name );
 
 				}
-
+console.log(name);
+console.log(geometries);
 				return geometries[ name ];
 
 			}

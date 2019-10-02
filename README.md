@@ -108,3 +108,6 @@ Add wav audio to mp4 video
 ffmpeg -i input_vid.mp4 -i input_audio.wav -vcodec copy output.mp4
 ffmpeg -i input_vid.mp4 -i input_audio.wav -vcodec libx264 -acodec libmp3lame output.mp4
 ```
+
+## Data structure
+

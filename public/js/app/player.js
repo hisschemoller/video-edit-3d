@@ -1,4 +1,9 @@
-import { setup as setupWorld, animate as animateWorld, createObject as createWorldObject, destroyObject as destroyWorldObject, } from './world.js';
+import { 
+  setup as setupWorld,
+  animate as animateWorld,
+  createObject as createWorldObject,
+  destroyObject as destroyWorldObject,
+  loadClip as loadWorldClip } from './world.js';
 import { setup as setupCanvas, draw as drawCanvas } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
 
@@ -38,7 +43,7 @@ function setupWithData(dataSource, isCapture) {
   position = 0;
 
   setupWorld(data);
-  // setupCanvas(data);
+
   checkForNextClips(position);
   requestAnimationFrame(isCapture ? capture : run);
 }
@@ -72,7 +77,7 @@ function checkForNextClips(position) {
   // check for clips to start
   if (position >= nextClipTime) {
     for (let i = nextClipIndex, n = data.score.length; i < n; i++) {
-      const { clipId, lifespan, objectId, } = data.score[i];
+      const { clipId, lifespan, } = data.score[i];
       if (lifespan[0] <= position) {
         nextClipIndex++;
         nextClipTime = nextClipIndex < data.score.length ? data.score[nextClipIndex].lifespan[0] : Number.MAX_VALUE;
@@ -85,9 +90,14 @@ function checkForNextClips(position) {
         clips.sort((a, b) => a.lifespan[1] - b.lifespan[1]);
 
         // create the clip's 3D object
-        const objectData = data.objects[objectId];
-        createWorldObject(objectId, objectData);
+        // const objectData = data.objects[objectId];
+        // createWorldObject(objectId, objectData);
+
+        // create the clip's objects
+        loadWorldClip(data.score[i]);
       } else {
+
+        // nothing
         break;
       }
     }

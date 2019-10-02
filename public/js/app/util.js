@@ -56,9 +56,11 @@ export function musicToTime(timestamp) {
 export function convertToMilliseconds(score) {
   score.forEach(clip => {
     clip.lifespan = clip.lifespan.map(time => time * 1000);
-    clip.animations.forEach(animation => {
-      animation.keys.forEach(key => key.time *= 1000);
-    });
+    if (clip.animations && clip.animations.length) {
+      clip.animations.forEach(animation => {
+        animation.keys.forEach(key => key.time *= 1000);
+      });
+    }
   });
   return score;
 }
