@@ -28,6 +28,9 @@ export function setup(settings) {
   createLights();
   createGround(settings);
   // setupPopulation(settings, scene);
+  setTimeout(() => {
+    console.log(scene.toJSON());
+  }, 1000);
 }
 
 export function createObject(objectId, data) {
