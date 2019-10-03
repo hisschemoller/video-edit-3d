@@ -4,6 +4,8 @@ import { createCanvases as createSceneCanvases } from './canvas.js';
 
 const {
   AmbientLight,
+  AnimationClip,
+  AnimationMixer,
   AxesHelper,
   BoxGeometry,
   Clock,
@@ -11,6 +13,7 @@ const {
   DirectionalLight,
   Fog,
   GridHelper,
+  InterpolateLinear,
   Mesh,
   MeshPhongMaterial,
   ObjectLoader,
@@ -22,6 +25,7 @@ const {
   Scene,
   TransformControls,
   Vector3,
+  VectorKeyframeTrack,
   WebGLRenderer } = THREE;
 
 let renderer, camera, scene, mixer, clock, stats, actions;
@@ -90,7 +94,26 @@ export function loadScene(allData, sceneIndex) {
       model.remove(model.getObjectByName('placeholder'));
     }
 
+    // prepare texture canvases to be animated 
     createSceneCanvases(allData, sceneIndex, model);
+
+    // start animation
+    mixer = new AnimationMixer(model);
+    mixer.clipAction(model.animations[0]).play();
+
+    // programmed animation:
+
+    // const mesh = model.getObjectByName('scene1wallR1');
+    // const times = [0, 4];
+    // const values = [
+    //   0, 0, 0, 
+    //   4, 0, 0
+    // ];
+    // const track = new VectorKeyframeTrack(`${'scene1wallR1'}.position`, times, values, InterpolateLinear);
+    // const tracks = [track];
+    // const clip = new AnimationClip('testClip', 4, tracks);
+    // mixer = new AnimationMixer(mesh);
+    // mixer.clipAction(clip).play();
   });
 }
 
@@ -209,15 +232,10 @@ function createGround(settings) {
   scene.add(ground);
 }
 
-// DRAW LOOP
-function draw() {
-  renderer.render(scene, camera);
-}
-
 // ANIMATION LOOP
 export function animate() {
-  animatePopulation(clock.getDelta());
-  // camera.translateZ(-0.1)
+  mixer.update(clock.getDelta());
+  // camera.translateZ(-0.01);
   stats.update();
   renderer.render(scene, camera);
 }

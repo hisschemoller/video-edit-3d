@@ -54,14 +54,17 @@ export function musicToTime(timestamp) {
  * @returns {Array} The same array with the times converted.
  */
 export function convertToMilliseconds(score) {
-  score.forEach(clip => {
-    clip.lifespan = clip.lifespan.map(time => time * 1000);
-    if (clip.animations && clip.animations.length) {
-      clip.animations.forEach(animation => {
-        animation.keys.forEach(key => key.time *= 1000);
-      });
-    }
-  });
+  // score.forEach(scene => {
+  //   scene.lifespan = scene.lifespan.map(time => time * 1000);
+  //   if (scene.animations && scene.animations.length) {
+  //     scene.animations.forEach(animation => {
+  //       animation.tracks.forEach(track => {
+  //         track.keys.forEach(key => ({ ...key, time: key.time * 1000}));
+  //       });
+  //     });
+  //   }
+  // });
+  console.log(score);
   return score;
 }
 

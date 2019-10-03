@@ -30,9 +30,32 @@ const wallMesh = {
 };
 
 const scene = {
-  animations: {
-
-  },
+  animations: [
+    {
+      name: 'testAnimation',
+      fps: 30,
+      tracks: [
+        {
+          name: 'scene1wallL1.position',
+          type: 'vector3',
+          keys: [
+            {
+              value: [-3.6, 0, 3.3],
+              time: 0.001,
+            },
+            {
+              value: [-5, 0, 3.3],
+              time: 100,
+            },
+            {
+              value: [-3.6, 0, 3.3],
+              time: 200,
+            },
+          ],
+        }
+      ],
+    },
+  ],
   canvases: {
     'scene1wallL1-canvas': {
       ...canvas,
