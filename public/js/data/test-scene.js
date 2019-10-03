@@ -29,9 +29,14 @@ const wallMesh = {
   uuid: 'scene1wallR1',
 };
 
-const clip = {
+const scene = {
   animations: {
 
+  },
+  canvases: {
+    'scene1wallL1-canvas': {
+      ...canvas,
+    },
   },
   clipId: uuidv4(),
   geometries: [
@@ -42,18 +47,22 @@ const clip = {
       width: 10,
     },
     {
+      canvasId: 'scene1wallL1-canvas',
       depth: 0.01,
       points: [ [0, 0], [1.8, 0], [1.8, 4], [0, 4] ],
       uuid: 'wall-1-geom',
       type: 'CanvasExtrudeGeometry',
+      videoId: 'scene1wallL1-video',
     },
     {
+      canvasId: 'scene1wallL1-canvas',
       depth: 0.01,
       points: [ [0, 0], [1.2, 0], [1.2, 4], [0, 4] ],
       uuid: 'wall-2-geom',
       type: 'CanvasExtrudeGeometry',
     },
     {
+      canvasId: 'scene1wallL1-canvas',
       depth: 0.01,
       points: [ [0, 0], [2, 0], [2, 4], [0, 4] ],
       uuid: 'wall-3-geom',
@@ -108,28 +117,39 @@ const clip = {
         ...wallMesh,
         geometry: 'wall-2-geom',
         matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, -2, 0, 2, 1],
-        uuid: 'scene1wallL1',
+        uuid: 'scene1wallL2',
       },
       {
         ...wallMesh,
         geometry: 'wall-2-geom',
         matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 0.8, 0, 2, 1],
-        uuid: 'scene1wallR1',
+        uuid: 'scene1wallR2',
       },
       {
         ...wallMesh,
         geometry: 'wall-3-geom',
         matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, -2, 0, 0, 1],
-        uuid: 'scene1wallL1',
+        uuid: 'scene1wallL3',
       },
       {
         ...wallMesh,
         geometry: 'wall-3-geom',
         matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 0, 0, 0, 1],
-        uuid: 'scene1wallR1',
+        uuid: 'scene1wallR3',
       },
     ],
-  }
+  },
+  videos: {
+    'scene1wallL1-video': {
+      end: 210,
+      isLoop: true,
+      offsetX: 0,
+      offsetY: 0,
+      resourceId: 'dublin',
+      scale: 0.5,
+      start: 140,
+    },
+  },
 };
 
-export default clip;
+export default scene;

@@ -5,12 +5,14 @@ import { create as createVideoAnimation } from './video-animation.js';
 /**
  * 
  */
-
 const animations = [];
 
-
-export function setup(settings) {
-  const { objects = [], resources = [], fps = 30, } = settings;
+/**
+ * 
+ * @param {Object} data The complete configuration data.
+ */
+export function setup(data) {
+  const { objects = [], resources = [], fps = 30, } = data;
 
   for (let id in objects) {
     const data = objects[id];
@@ -28,6 +30,57 @@ export function setup(settings) {
   }
 }
 
+/**
+ * Create all canvases the textures used in a scene.
+ */
+export function createCanvases(allData, sceneIndex, rootObject3d) {
+  const objectData = allData.score[sceneIndex].object;
+  recurseObjects(objectData, allData, sceneIndex, rootObject3d);
+}
+
+/**
+ * Find all object data recursively.
+ * @param {Object} objectData 
+ * @param {Object} allData
+ */
+function recurseObjects(objectData, allData, sceneIndex, rootObject3d) {
+  const { children = [], geometry: geometryId, uuid, } = objectData;
+  if (geometryId) {
+    const { canvases, geometries, origGeoms, videos, } = allData.score[sceneIndex];
+    const { canvasId, videoId, } = origGeoms.find(geomData => geomData.uuid === geometryId);
+  
+    if (canvasId) {
+  
+      // get the mesh texture canvas
+      const object3d = rootObject3d.getObjectByName(objectData.uuid);
+
+      if (object3d.material) {
+        const texture = object3d.material.map;
+        const canvas = texture.image;
+    
+        if (videoId) {
+          const { settings, resources, } = allData;
+          const { fps, } = settings;
+          const data = {
+            canvasData: canvases[canvasId],
+            flipHorizontal: false,
+            videoData: videos[videoId],
+          };
+          setupVideoCanvas(data, texture, canvas, resources, fps);
+        }
+      }
+    }
+  }
+  
+  children.forEach(childObjectData => recurseObjects(childObjectData, allData, sceneIndex, rootObject3d));
+}
+
+/**
+ * 
+ * @param {*} data 
+ * @param {*} texture 
+ * @param {*} canvas 
+ */
 function setupAnimationCanvas(data, texture, canvas) {
   switch (data.animation.type) {
     case 'bars':
@@ -39,6 +92,12 @@ function setupAnimationCanvas(data, texture, canvas) {
   }
 }
 
+/**
+ * 
+ * @param {*} data 
+ * @param {*} texture 
+ * @param {*} canvas 
+ */
 function setupImageCanvas(data, texture, canvas) {
   const ctx = canvas.getContext('2d');
   if (data.image) {
@@ -60,9 +119,17 @@ function setupImageCanvas(data, texture, canvas) {
       }
       texture.needsUpdate = true;
     };
-  }
+  } 
 }
 
+/**
+ * 
+ * @param {*} data 
+ * @param {*} texture 
+ * @param {*} canvas 
+ * @param {*} resources 
+ * @param {*} fps 
+ */
 function setupVideoCanvas(data, texture, canvas, resources, fps) {
   animations.push({
     animation: createVideoAnimation(canvas, data, resources, texture, fps),
@@ -70,6 +137,10 @@ function setupVideoCanvas(data, texture, canvas, resources, fps) {
   });
 }
 
+/**
+ * 
+ * @param {*} frame 
+ */
 export function draw(frame) {
   animations.forEach(animation => {
     animation.animation.draw(frame);

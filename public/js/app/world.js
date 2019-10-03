@@ -1,5 +1,6 @@
 import { setup as setupPopulation, animate as animatePopulation, } from './population.js';
 import createExtrude, { createExtrudeGeometryOnly, } from './extrude.js';
+import { createCanvases as createSceneCanvases } from './canvas.js';
 
 const {
   AmbientLight,
@@ -32,14 +33,10 @@ let renderer, camera, scene, mixer, clock, stats, actions;
 export function setup(data) {
   createWorld(data);
   createLights();
-  // createGround(settings);
-  // setupPopulation(settings, scene);
   setTimeout(() => {
     console.log('scene', scene.toJSON());
   }, 1000);
 }
-
-// export function 
 
 export function createObject(objectId, data) {
   switch (data.type) {
@@ -63,11 +60,12 @@ export function getObjectByName(name) {
  * Create all 3D objects and populate the scene.
  * @param {Object} sceneData 
  */
-export function loadScene(clipData) {
+export function loadScene(allData, sceneIndex) {
 
   // preprocess: replace the custom extrude geometry data with regular data
-  clipData.origGeoms = [ ...clipData.geometries ];
-  clipData.geometries = clipData.geometries.map(geomData => {
+  const sceneData = allData.score[sceneIndex];
+  sceneData.origGeoms = [ ...sceneData.geometries ];
+  sceneData.geometries = sceneData.geometries.map(geomData => {
     if (geomData.type === 'CanvasExtrudeGeometry') {
       
       // create temporary placeholder geometry
@@ -81,16 +79,18 @@ export function loadScene(clipData) {
 
   // Create 3D from data and add to scene
   const loader = new ObjectLoader();
-  loader.parse(clipData, model => {
+  loader.parse(sceneData, model => {
     scene.add(model);
 
     // postprocess: replace each placeholder mesh with the custom extrude
-    addCustomExtrudeMeshes(model, clipData);
+    addCustomExtrudeMeshes(model, sceneData);
 
     // remove the placeholders
     while (model.getObjectByName('placeholder')) {
       model.remove(model.getObjectByName('placeholder'));
     }
+
+    createSceneCanvases(allData, sceneIndex, model);
   });
 }
 
@@ -100,14 +100,14 @@ export function loadScene(clipData) {
  * @param {Object} sceneData 
  */
 function addCustomExtrudeMeshes(object3D, sceneData) {
-  const { children, geometry, } = object3D;
+  const { children, geometry, uuid: Object3dUuid, } = object3D;
 
   if (geometry) {
-    const { name, uuid, } = geometry;
+    const { name, uuid: geomUuid, } = geometry;
     if (name === 'CanvasExtrudeGeometry') {
-      const { canvasId, depth, points, } = sceneData.origGeoms.find(geomData => geomData.uuid === uuid);
+      const { canvasId, depth, points, } = sceneData.origGeoms.find(geomData => geomData.uuid === geomUuid);
       const canvasData = sceneData.canvases[canvasId];
-      const mesh = createExtrude(uuid, { canvasData, depth, points, position: object3D.position, rotation: object3D.rotation, });
+      const mesh = createExtrude(Object3dUuid, { canvasData, depth, points, position: object3D.position, rotation: object3D.rotation, });
       mesh.position.add(object3D.position);
       mesh.rotation.copy(object3D.rotation);
       object3D.parent.add(mesh);

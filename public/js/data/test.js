@@ -1,5 +1,5 @@
 import { musicToTime, setTiming, uuidv4, } from '../app/util.js';
-import testClip from './test-clip.js'
+import testScene from './test-scene.js'
 
 const ppqn = 24; // parts per quarter note
 const bpm = 112; // beats per minute
@@ -39,7 +39,7 @@ const data = {
     }
   ],
   score: [
-    testClip,
+    testScene,
   ],
 };
 

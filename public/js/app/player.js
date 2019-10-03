@@ -4,7 +4,7 @@ import {
   createObject as createWorldObject,
   destroyObject as destroyWorldObject,
   loadScene as loadWorldScene } from './world.js';
-import { createCanvases as createSceneCanvases, draw as drawCanvas } from './canvas.js';
+import { draw as drawCanvas } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
 
 const clips = [];
@@ -59,8 +59,7 @@ function run() {
   
   position = performance.now() - origin;
   checkForNextClips(position);
-  // console.log(position);
-  // drawCanvas(frame);
+  drawCanvas(frame);
   animateWorld();
   frame += 1;
 }
@@ -78,7 +77,7 @@ function checkForNextClips(position) {
   // check for clips to start
   if (position >= nextClipTime) {
     for (let i = nextClipIndex, n = data.score.length; i < n; i++) {
-      const { canvases, score, } = data;;
+      const { canvases, score, } = data;
       const sceneData = score[i];
       const { clipId, lifespan, } = sceneData;
       if (lifespan[0] <= position) {
@@ -97,7 +96,7 @@ function checkForNextClips(position) {
         // createWorldObject(objectId, objectData);
 
         // create the clip's objects
-        loadWorldScene(sceneData);
+        loadWorldScene(data, i);
       } else {
 
         // nothing
