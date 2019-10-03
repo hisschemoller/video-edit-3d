@@ -12,11 +12,12 @@ const {
 } = THREE;
 
 /**
- *
- *
+ * Create a mesh with an extruded shape and canvas texture.
+ * 
  * @export
- * @param {*} data
- * @returns
+ * @param {String} id To use as name of the mesh.
+ * @param {Object} data Contains canvasData, color, depth and points properties to construct the geometry.
+ * @returns {Object} Mesh.
  */
 export default function createExtrude(id, data) {
   const shapeGeometry = createFrontShapeGeometry(data);
@@ -27,7 +28,12 @@ export default function createExtrude(id, data) {
   return mesh;
 }
 
-export function createExtrudeGeometry(data) {
+/**
+ * Create a ShapeGeometry on basis of configuration data.
+ * 
+ * @param {Object} data Geometry data of type CanvasExtrudeGeometry.
+ */
+export function createExtrudeGeometryOnly(data) {
   const shapeGeometry = createFrontShapeGeometry(data);
   const geometry = createCustomGeometry(data, shapeGeometry);
   return geometry;
@@ -36,8 +42,8 @@ export function createExtrudeGeometry(data) {
 /**
  * Create a ShapeGeometry from coordinate points.
  *
- * @param {Object} data
- * @returns
+ * @param {Object} data Contains coordinates describing a 2D shape.
+ * @returns {Object} shapeGeometry.
  */
 function createFrontShapeGeometry(data) {
   const { points, } = data;
@@ -56,11 +62,11 @@ function createFrontShapeGeometry(data) {
 }
 
 /**
- *
+ * Create extruded geometry from a 2D shapeGeometry,
  *
  * @param {Object} data
  * @param {Object} shapeGeometry
- * @returns
+ * @returns {Object} Geometry
  */
 function createCustomGeometry(data, shapeGeometry) {
   const { depth, points } = data;
@@ -98,7 +104,7 @@ function createCustomGeometry(data, shapeGeometry) {
 }
 
 /**
- *
+ * Create faceVertexUvs for a geometry.
  *
  * @param {Object} geometry
  * @param {Object} shapeGeometry
@@ -186,14 +192,14 @@ function computeFaceVertexUVs(geometry, shapeGeometry) {
 }
 
 /**
+ * Create a texture containing a canvas.
  *
- *
- * @param {*} data
- * @returns
+ * @param {Object} data Data.
+ * @returns {Object} Texture containing canvas.
  */
 function createCanvasTexture(data) {
-  const { canvas, color = '#ffffff' } = data;
-  const { width, height, offsetX, offsetY, scale } = canvas;
+  const { canvasData, color = '#ffffcc' } = data;
+  const { width, height, offsetX, offsetY, scale } = canvasData;
 
   const canvasEl = document.createElement('canvas');
   canvasEl.width = width;
@@ -212,15 +218,17 @@ function createCanvasTexture(data) {
 }
 
 /**
+ * Create a mesh with geometry and texture,
  *
- *
- * @param {*} data
- * @param {*} geometry
- * @param {*} texture
- * @param {*} resolve
+ * @param {String} id Set as mesh's name.
+ * @param {Object} data
+ * @param {Object} geometry Geometry.
+ * @param {Object} texture Texture.
+ * @returns {Object} Mesh.
  */
 function createMesh(id, data, geometry, texture) {
   const { position, rotation = {} } = data;
+  console.log('pr', position, rotation);
   const { x: rx = 0, y: ry = 0, z: rz = 0 } = rotation;
 
   const material = new MeshPhongMaterial({ map: texture, wireframe: false, });
@@ -228,8 +236,8 @@ function createMesh(id, data, geometry, texture) {
   const mesh = new Mesh(geometry, material);
   mesh.castShadow = true;
   mesh.receiveShadow = true;
-  mesh.position.set( ...position );
-  mesh.rotateX(rx);
+  // mesh.position.set(position);
+  // mesh.rotateX(rx);
   mesh.name = id;
 
   return mesh;

@@ -1,9 +1,10 @@
 import { setup as setupPopulation, animate as animatePopulation, } from './population.js';
-import createExtrude, { createExtrudeGeometry, } from './extrude.js';
+import createExtrude, { createExtrudeGeometryOnly, } from './extrude.js';
 
 const {
   AmbientLight,
   AxesHelper,
+  BoxGeometry,
   Clock,
   Color,
   DirectionalLight,
@@ -24,13 +25,17 @@ const {
 
 let renderer, camera, scene, mixer, clock, stats, actions;
 
-export function setup(settings) {
-  createWorld(settings);
+/**
+ * Set up an empty 3D world.
+ * @param {Object} data 
+ */
+export function setup(data) {
+  createWorld(data);
   createLights();
   // createGround(settings);
   // setupPopulation(settings, scene);
   setTimeout(() => {
-    console.log(scene.toJSON());
+    console.log('scene', scene.toJSON());
   }, 1000);
 }
 
@@ -54,12 +59,20 @@ export function getObjectByName(name) {
   return scene.getObjectByName(name);
 }
 
-export function loadClip(clipData) {
+/**
+ * Create all 3D objects and populate the scene.
+ * @param {Object} sceneData 
+ */
+export function loadScene(clipData) {
 
-  // preprocess data: replace the custom extrude geometries with regular ones
+  // preprocess: replace the custom extrude geometry data with regular data
+  clipData.origGeoms = [ ...clipData.geometries ];
   clipData.geometries = clipData.geometries.map(geomData => {
     if (geomData.type === 'CanvasExtrudeGeometry') {
-      const geometry = createExtrudeGeometry(geomData);
+      
+      // create temporary placeholder geometry
+      const geometry = new BoxGeometry(1, 1, 1);
+      geometry.name = 'CanvasExtrudeGeometry';
       geometry.uuid = geomData.uuid;
       return geometry.toJSON();
     }
@@ -69,11 +82,46 @@ export function loadClip(clipData) {
   // Create 3D from data and add to scene
   const loader = new ObjectLoader();
   loader.parse(clipData, model => {
-    console.log('model', model);
     scene.add(model);
+
+    // postprocess: replace each placeholder mesh with the custom extrude
+    addCustomExtrudeMeshes(model, clipData);
+
+    // remove the placeholders
+    while (model.getObjectByName('placeholder')) {
+      model.remove(model.getObjectByName('placeholder'));
+    }
   });
 }
 
+/**
+ * Add custom extrude geometry meshes. 
+ * @param {Object} object3D 
+ * @param {Object} sceneData 
+ */
+function addCustomExtrudeMeshes(object3D, sceneData) {
+  const { children, geometry, } = object3D;
+
+  if (geometry) {
+    const { name, uuid, } = geometry;
+    if (name === 'CanvasExtrudeGeometry') {
+      const { canvasId, depth, points, } = sceneData.origGeoms.find(geomData => geomData.uuid === uuid);
+      const canvasData = sceneData.canvases[canvasId];
+      const mesh = createExtrude(uuid, { canvasData, depth, points, position: object3D.position, rotation: object3D.rotation, });
+      mesh.position.add(object3D.position);
+      mesh.rotation.copy(object3D.rotation);
+      object3D.parent.add(mesh);
+      object3D.name = 'placeholder';
+    }
+  }
+
+  children.forEach(childObject3d => addCustomExtrudeMeshes(childObject3d, sceneData));
+}
+
+/**
+ * Create an empty world with camera and helpers.
+ * @param {Object} data 
+ */
 function createWorld(data) {
   const { camera: cam = {}, settings = {}, } = data;
   const { height = 360, width = 640, } = settings;

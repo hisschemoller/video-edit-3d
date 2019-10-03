@@ -1,4 +1,12 @@
 
+/**
+ * 
+ * @param {Object} textureCanvas Texture's canvas.
+ * @param {Object} data 
+ * @param {Object} resources 
+ * @param {Object} texture Mesh's texture.
+ * @param {Number} fps FPS of the app player.
+ */
 export function create(textureCanvas, data, resources, texture, fps) {
   const { canvas, flipHorizontal = false, video, } = data;
   const { resourceId, offsetX = 0, offsetY = 0, scale = 1, start = 0, end, isLoop = false } = video;

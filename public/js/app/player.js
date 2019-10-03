@@ -3,8 +3,8 @@ import {
   animate as animateWorld,
   createObject as createWorldObject,
   destroyObject as destroyWorldObject,
-  loadClip as loadWorldClip } from './world.js';
-import { setup as setupCanvas, draw as drawCanvas } from './canvas.js';
+  loadScene as loadWorldScene } from './world.js';
+import { createCanvases as createSceneCanvases, draw as drawCanvas } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
 
 const clips = [];
@@ -36,6 +36,7 @@ function setupWithData(dataSource, isCapture) {
   data.score = sortScoreByLifespanStart(data.score);
   data.score = convertToMilliseconds(data.score);
   console.log(data);
+
   const { fps = 30, } = data;
   framesPerDraw = 60 / fps;
 
@@ -77,7 +78,9 @@ function checkForNextClips(position) {
   // check for clips to start
   if (position >= nextClipTime) {
     for (let i = nextClipIndex, n = data.score.length; i < n; i++) {
-      const { clipId, lifespan, } = data.score[i];
+      const { canvases, score, } = data;;
+      const sceneData = score[i];
+      const { clipId, lifespan, } = sceneData;
       if (lifespan[0] <= position) {
         nextClipIndex++;
         nextClipTime = nextClipIndex < data.score.length ? data.score[nextClipIndex].lifespan[0] : Number.MAX_VALUE;
@@ -94,7 +97,7 @@ function checkForNextClips(position) {
         // createWorldObject(objectId, objectData);
 
         // create the clip's objects
-        loadWorldClip(data.score[i]);
+        loadWorldScene(sceneData);
       } else {
 
         // nothing
