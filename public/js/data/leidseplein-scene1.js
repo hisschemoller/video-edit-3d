@@ -59,6 +59,7 @@ const scene = {
   canvases: {
     'scene1wallL1-canvas': {
       ...canvas,
+      videoId: 'scene1wallL1-video',
     },
   },
   clipId: uuidv4(),
@@ -75,7 +76,6 @@ const scene = {
       points: [ [0, 0], [1.8, 0], [1.8, 4], [0, 4] ],
       uuid: 'wall-1-geom',
       type: 'CanvasExtrudeGeometry',
-      videoId: 'scene1wallL1-video',
     },
     {
       canvasId: 'scene1wallL1-canvas',

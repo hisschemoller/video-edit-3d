@@ -47,7 +47,7 @@ function recurseObjects(objectData, allData, sceneIndex, rootObject3d) {
   const { children = [], geometry: geometryId, uuid, } = objectData;
   if (geometryId) {
     const { canvases, geometries, origGeoms, videos, } = allData.score[sceneIndex];
-    const { canvasId, videoId, } = origGeoms.find(geomData => geomData.uuid === geometryId);
+    const { canvasId, } = origGeoms.find(geomData => geomData.uuid === geometryId);
   
     if (canvasId) {
   
@@ -57,6 +57,7 @@ function recurseObjects(objectData, allData, sceneIndex, rootObject3d) {
       if (object3d.material) {
         const texture = object3d.material.map;
         const canvas = texture.image;
+        const { videoId } = canvases[canvasId];
     
         if (videoId) {
           const { settings, resources, } = allData;
