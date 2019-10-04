@@ -44,15 +44,13 @@ export function createCanvases(allData, sceneIndex, rootObject3d) {
  * @param {Object} allData
  */
 function recurseObjects(objectData, allData, sceneIndex, rootObject3d) {
-  const { children = [], geometry: geometryId, uuid, } = objectData;
+  const { canvasId, children = [], geometry: geometryId, name, } = objectData;
   if (geometryId) {
-    const { canvases, geometries, origGeoms, videos, } = allData.score[sceneIndex];
-    const { canvasId, } = origGeoms.find(geomData => geomData.uuid === geometryId);
-  
+    const { canvases, videos, } = allData.score[sceneIndex];
     if (canvasId) {
   
       // get the mesh texture canvas
-      const object3d = rootObject3d.getObjectByName(objectData.uuid);
+      const object3d = rootObject3d.getObjectByName(name);
 
       if (object3d.material) {
         const texture = object3d.material.map;

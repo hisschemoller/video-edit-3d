@@ -22,10 +22,35 @@ const {
 export default function createExtrude(id, data) {
   const shapeGeometry = createFrontShapeGeometry(data);
   const geometry = createCustomGeometry(data, shapeGeometry);
-  const texture = createCanvasTexture(data);
   computeFaceVertexUVs(geometry, shapeGeometry);
-  const mesh = createMesh(id, geometry, texture);
+  const texture = createCanvasTexture(data);
+  const mesh = createExtrudeMesh(id, geometry, texture);
   return mesh;
+}
+
+/**
+ * Create a texture containing a canvas.
+ *
+ * @param {Object} data Data.
+ * @returns {Object} Texture containing canvas.
+ */
+export function createCanvasTexture(data) {
+  const { width, height, offsetX, offsetY, scale } = data;
+
+  const canvasEl = document.createElement('canvas');
+  canvasEl.width = width;
+  canvasEl.height = height;
+
+  const ctx = canvasEl.getContext('2d');
+  ctx.fillStyle = '#ffffcc';
+  ctx.fillRect(0, 0, width, height);
+
+  const texture = new Texture(canvasEl);
+  texture.offset = new Vector2(offsetX / width, offsetY / height);
+  texture.repeat = new Vector2(scale / width, scale / width);
+  texture.needsUpdate = true;
+
+  return texture;
 }
 
 /**
@@ -33,10 +58,30 @@ export default function createExtrude(id, data) {
  * 
  * @param {Object} data Geometry data of type CanvasExtrudeGeometry.
  */
-export function createExtrudeGeometryOnly(data) {
+export function createExtrudeGeometry(data) {
   const shapeGeometry = createFrontShapeGeometry(data);
   const geometry = createCustomGeometry(data, shapeGeometry);
+  computeFaceVertexUVs(geometry, shapeGeometry);
   return geometry;
+}
+
+/**
+ * Create a mesh with geometry and texture,
+ *
+ * @param {String} name Set as mesh's name.
+ * @param {Object} geometry Geometry.
+ * @param {Object} texture Texture.
+ * @returns {Object} Mesh.
+ */
+export function createExtrudeMesh(name, geometry, texture) {
+  const material = new MeshPhongMaterial({ map: texture, wireframe: false, });
+
+  const mesh = new Mesh(geometry, material);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  mesh.name = name;
+
+  return mesh;
 }
 
 /**
@@ -189,49 +234,4 @@ function computeFaceVertexUVs(geometry, shapeGeometry) {
   }
 
   geometry.uvsNeedUpdate = true;
-}
-
-/**
- * Create a texture containing a canvas.
- *
- * @param {Object} data Data.
- * @returns {Object} Texture containing canvas.
- */
-function createCanvasTexture(data) {
-  const { canvasData, color = '#ffffcc' } = data;
-  const { width, height, offsetX, offsetY, scale } = canvasData;
-
-  const canvasEl = document.createElement('canvas');
-  canvasEl.width = width;
-  canvasEl.height = height;
-
-  const ctx = canvasEl.getContext('2d');
-  ctx.fillStyle = color;
-  ctx.fillRect(0, 0, width, height);
-
-  const texture = new Texture(canvasEl);
-  texture.offset = new Vector2(offsetX / width, offsetY / height);
-  texture.repeat = new Vector2(scale / width, scale / width);
-  texture.needsUpdate = true;
-
-  return texture;
-}
-
-/**
- * Create a mesh with geometry and texture,
- *
- * @param {String} id Set as mesh's name.
- * @param {Object} geometry Geometry.
- * @param {Object} texture Texture.
- * @returns {Object} Mesh.
- */
-function createMesh(id, geometry, texture) {
-  const material = new MeshPhongMaterial({ map: texture, wireframe: false, });
-
-  const mesh = new Mesh(geometry, material);
-  mesh.castShadow = true;
-  mesh.receiveShadow = true;
-  mesh.name = id;
-
-  return mesh;
 }

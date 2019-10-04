@@ -1,5 +1,5 @@
 import { setup as setupPopulation, animate as animatePopulation, } from './population.js';
-import createExtrude, { createExtrudeGeometryOnly, } from './extrude.js';
+import createExtrude, { createCanvasTexture, createExtrudeGeometry, createExtrudeMesh, } from './extrude.js';
 import { createCanvases as createSceneCanvases } from './canvas.js';
 
 const {
@@ -81,7 +81,7 @@ export function loadScene(allData, sceneIndex) {
     return geomData;
   });
 
-  // Create 3D from data and add to scene
+  // ObjectLoader creates 3D objects from data
   const loader = new ObjectLoader();
   loader.parse(sceneData, model => {
     scene.add(model);
@@ -123,22 +123,53 @@ export function loadScene(allData, sceneIndex) {
  * @param {Object} sceneData 
  */
 function addCustomExtrudeMeshes(object3D, sceneData) {
-  const { children, geometry, uuid: Object3dUuid, } = object3D;
 
-  if (geometry) {
-    const { name, uuid: geomUuid, } = geometry;
-    if (name === 'CanvasExtrudeGeometry') {
-      const { canvasId, depth, points, } = sceneData.origGeoms.find(geomData => geomData.uuid === geomUuid);
-      const canvasData = sceneData.canvases[canvasId];
-      const mesh = createExtrude(Object3dUuid, { canvasData, depth, points, position: object3D.position, rotation: object3D.rotation, });
-      mesh.position.add(object3D.position);
-      mesh.rotation.copy(object3D.rotation);
-      object3D.parent.add(mesh);
-      object3D.name = 'placeholder';
+  // create all canvas textures for the scene
+  const textures = Object.keys(sceneData.canvases).reduce((accumulator, canvasId) => {
+    return { 
+      ...accumulator, 
+      [canvasId]: createCanvasTexture(sceneData.canvases[canvasId]),
+    };
+  }, {});
+
+  // create all the CanvasExtrudeGeometry geometries for the scene
+  const geometries = sceneData.origGeoms.reduce((accumulator, geomData) => {
+    if (geomData.type === 'CanvasExtrudeGeometry') {
+      return { 
+        ...accumulator, 
+        [geomData.uuid]: createExtrudeGeometry(geomData),
+      }
     }
-  }
+    return { ...accumulator, };
+  }, {});
 
-  children.forEach(childObject3d => addCustomExtrudeMeshes(childObject3d, sceneData));
+  // create all the CanvasExtrudeMesh meshes
+  createCustomExtrudeMeshesRecursive(object3D, sceneData.object, sceneData, textures, geometries);
+}
+
+/**
+ *
+ *
+ * @param {*} object3D
+ * @param {*} sceneData
+ * @param {*} textures
+ * @param {*} geometries
+ */
+function createCustomExtrudeMeshesRecursive(rootObject3D, objectData, sceneData, textures, geometries) {
+  const { canvasId, children = [], geometry: geometryId, name: object3dName, } = objectData;
+  const object3D = scene.getObjectByName(object3dName);
+
+  if (geometryId && geometries[geometryId]) {
+    const extrudeGeometry = geometries[geometryId];
+    const canvasTexture = textures[canvasId];
+    const mesh = createExtrudeMesh(object3dName, extrudeGeometry, canvasTexture);
+    mesh.position.add(object3D.position);
+    mesh.rotation.copy(object3D.rotation);
+    object3D.parent.add(mesh);
+    object3D.name = 'placeholder';
+  }
+  
+  children.forEach(childObjectData => createCustomExtrudeMeshesRecursive(rootObject3D, childObjectData, sceneData, textures, geometries));
 }
 
 /**
