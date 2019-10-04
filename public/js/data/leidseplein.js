@@ -34,8 +34,8 @@ const data = {
       url: 'frames/leidseplein1/frame_#.png',
       frames: 6303,
       fps: 30,
-      width: 960,
-      height: 540,
+      width: 640,
+      height: 480,
     }
   ],
   score: [

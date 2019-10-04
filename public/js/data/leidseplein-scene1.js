@@ -8,15 +8,15 @@ const canvas = {
   height: 512
 };
 
-// const videoScene1 = {
-//   resourceId: 'leidseplein1',
-//   start: 140,
-//   end: 210,
-//   isLoop: true,
-//   offsetX: 0,
-//   offsetY: 0,
-//   scale: 0.5
-// };
+const videoScene1 = {
+  resourceId: 'leidseplein1',
+  start: 140,
+  end: 210,
+  isLoop: true,
+  offsetX: 0,
+  offsetY: 0,
+  scale: 0.5
+};
 
 const wallMesh = {
   castShadow: true,
@@ -60,6 +60,26 @@ const scene = {
     'scene1wallL1-canvas': {
       ...canvas,
       videoId: 'scene1wallL1-video',
+    },
+    'scene1wallR1-canvas': {
+      ...canvas,
+      videoId: 'scene1wallR1-video',
+    },
+    'scene1wallL2-canvas': {
+      ...canvas,
+      videoId: 'scene1wallL2-video',
+    },
+    'scene1wallR2-canvas': {
+      ...canvas,
+      videoId: 'scene1wallR2-video',
+    },
+    'scene1wallL3-canvas': {
+      ...canvas,
+      videoId: 'scene1wallL3-video',
+    },
+    'scene1wallR3-canvas': {
+      ...canvas,
+      videoId: 'scene1wallR3-video',
     },
   },
   clipId: uuidv4(),
@@ -130,35 +150,35 @@ const scene = {
       },
       {
         ...wallMesh,
-        canvasId: 'scene1wallL1-canvas',
+        canvasId: 'scene1wallR1-canvas',
         geometry: 'wall-1-geom',
         matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 1.8, 0, 3.3, 1],
         name: 'scene1wallR1',
       },
       {
         ...wallMesh,
-        canvasId: 'scene1wallL1-canvas',
+        canvasId: 'scene1wallL2-canvas',
         geometry: 'wall-2-geom',
         matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, -2, 0, 2, 1],
         name: 'scene1wallL2',
       },
       {
         ...wallMesh,
-        canvasId: 'scene1wallL1-canvas',
+        canvasId: 'scene1wallR2-canvas',
         geometry: 'wall-2-geom',
         matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 0.8, 0, 2, 1],
         name: 'scene1wallR2',
       },
       {
         ...wallMesh,
-        canvasId: 'scene1wallL1-canvas',
+        canvasId: 'scene1wallL3-canvas',
         geometry: 'wall-3-geom',
         matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, -2, 0, 0, 1],
         name: 'scene1wallL3',
       },
       {
         ...wallMesh,
-        canvasId: 'scene1wallL1-canvas',
+        canvasId: 'scene1wallR3-canvas',
         geometry: 'wall-3-geom',
         matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 0, 0, 0, 1],
         name: 'scene1wallR3',
@@ -167,13 +187,27 @@ const scene = {
   },
   videos: {
     'scene1wallL1-video': {
-      end: 210,
-      isLoop: true,
-      offsetX: 0,
-      offsetY: 0,
-      resourceId: 'leidseplein1',
-      scale: 0.5,
-      start: 140,
+      ...videoScene1,
+    },
+    'scene1wallR1-video': {
+      ...videoScene1,
+      offsetX: 400,
+    },
+    'scene1wallL2-video': {
+      ...videoScene1,
+      offsetX: 50,
+    },
+    'scene1wallR2-video': {
+      ...videoScene1,
+      offsetX: 320,
+    },
+    'scene1wallL3-video': {
+      ...videoScene1,
+      offsetX: 50,
+    },
+    'scene1wallR3-video': {
+      ...videoScene1,
+      offsetX: 285,
     },
   },
 };
