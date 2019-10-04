@@ -1,4 +1,5 @@
 import { setup } from './player.js';
-import data from '../data/test.js';
+import dataTest from '../data/test.js';
+import dataLeidseplein from '../data/leidseplein.js';
 
-setup(data, false);
+setup(dataLeidseplein, false);

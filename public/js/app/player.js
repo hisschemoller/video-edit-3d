@@ -37,7 +37,7 @@ function setupWithData(dataSource, isCapture) {
   data.score = convertToMilliseconds(data.score);
   console.log(data);
 
-  const { fps = 30, } = data;
+  const { fps = 30, } = data.settings;
   framesPerDraw = 60 / fps;
 
   origin = performance.now();
