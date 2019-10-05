@@ -236,11 +236,11 @@ function createWorld(data) {
 
 // LIGHTS
 function createLights() {
-  const ambient = new AmbientLight(0x999999);
+  const ambient = new AmbientLight(0xffffff, 0.6); // color = 0xffffff, intensity = 1
   scene.add(ambient);
 
-  const light = new THREE.DirectionalLight(0xeeeeee, 1, 100);
-  light.position.set(3, 9, 6);
+  const light = new DirectionalLight(0xffffff, 1); // color = 0xffffff, intensity = 1
+  light.position.set(6, 7, 6);
   light.castShadow = true;
   light.shadow.mapSize.width = 2048;  // default 512
   light.shadow.mapSize.height = 2048; // default 512
