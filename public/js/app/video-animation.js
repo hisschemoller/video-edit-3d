@@ -9,7 +9,7 @@
  */
 export function create(textureCanvas, data, resources, texture, fps) {
   const { canvasData, flipHorizontal = false, videoData, } = data;
-  const { resourceId, offsetX = 0, offsetY = 0, scale = 1, start = 0, end, isLoop = false } = videoData;
+  const { resourceId, offsetX = 0, offsetY = 0, scale = 1, start = 0, end, isLoop = false, repeat = null, } = videoData;
 
   let textureCtx,
     img,
@@ -66,14 +66,20 @@ export function create(textureCanvas, data, resources, texture, fps) {
      * @param {Object} ctx Canvas drawing context.
      */
     draw = function() {
-      if (flipHorizontal) {
-        textureCtx.save();
-        textureCtx.scale(-1, 1);
-        textureCtx.drawImage(img, dx, dy, dWidth, dHeight);
-        textureCtx.restore();
+      if (repeat) {
+        textureCtx.fillStyle = textureCtx.createPattern(img, repeat);
+        textureCtx.fillRect(0, 0, textureCanvas.width, textureCanvas.height);
       } else {
-        textureCtx.drawImage(img, dx, dy, dWidth, dHeight);
+        if (flipHorizontal) {
+          textureCtx.save();
+          textureCtx.scale(-1, 1);
+          textureCtx.drawImage(img, dx, dy, dWidth, dHeight);
+          textureCtx.restore();
+        } else {
+          textureCtx.drawImage(img, dx, dy, dWidth, dHeight);
+        }
       }
+      
       loadImage();
     };
     
