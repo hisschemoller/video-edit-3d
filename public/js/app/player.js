@@ -17,6 +17,7 @@ let position = 0;
 let nextClipTime = 0;
 let nextClipIndex = 0;
 let data;
+let infoTimeEl;
 
 
 export function setup(dataSource, isCapture = false) {
@@ -29,6 +30,8 @@ export function setup(dataSource, isCapture = false) {
   } else {
     setupWithData(dataSource, isCapture);
   }
+
+  infoTimeEl = document.querySelector('.info__time');
 }
 
 function setupWithData(dataSource, isCapture) {
@@ -61,6 +64,7 @@ function run() {
   checkForNextClips(position);
   drawCanvas(frame);
   animateWorld();
+  infoTimeEl.textContent = (position / 1000).toFixed(1);  
   frame += 1;
 }
 
