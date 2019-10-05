@@ -99,7 +99,9 @@ export function loadScene(allData, sceneIndex) {
 
     // start animation
     mixer = new AnimationMixer(model);
-    mixer.clipAction(model.animations[0]).play();
+    const animationAction = mixer.clipAction(model.animations[0]);
+    animationAction.setLoop(sceneData.animations[0].loop);
+    animationAction.play();
 
     // programmed animation:
 

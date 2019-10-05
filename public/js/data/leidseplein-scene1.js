@@ -34,6 +34,7 @@ const scene = {
     {
       name: 'testAnimation',
       fps: 30,
+      loop: THREE.LoopOnce,
       tracks: [
         {
           name: 'scene1wallL1.position',
