@@ -32,10 +32,28 @@ const wallMesh = {
 };
 
 const wall1LPos = [-3.6, 0, 3.3];
+const wall1LPos2 = [-5.1, 0, 3.3];
 const wall1RPos = [1.8, 0, 3.3];
+const wall1RPos2 = [3.3, 0, 3.3];
 
 const wall1start = fps * 1;
 const wall1End = fps * 30;
+
+const wall2LPos = [-4, 0, 2];
+const wall2LPos2 = [-6, 0, 2];
+const wall2RPos = [0.8, 0, 2];
+const wall2RPos2 = [2.8, 0, 2];
+
+const wall2start = fps * 25;
+const wall2End = fps * 55;
+
+const wall3LPos = [-4, 0, 0];
+const wall3LPos2 = [-8, 0, 0];
+const wall3RPos = [0, 0, 0];
+const wall3RPos2 = [4, 0, 0];
+
+const wall3start = fps * 40;
+const wall3End = fps * 80;
 
 const scene = {
   animations: [
@@ -54,12 +72,8 @@ const scene = {
               time: wall1start,
             },
             {
-              value: [-5.6, 0, 3.3],
+              value: wall1LPos2,
               time: wall1End,
-            },
-            {
-              value: [-5, 0, 3.3],
-              time: Number.MAX_SAFE_INTEGER,
             },
           ],
         },
@@ -69,16 +83,72 @@ const scene = {
           type: 'vector3',
           keys: [
             {
-              value: [1.8, 0, 3.3],
+              value: wall1RPos,
               time: wall1start,
             },
             {
-              value: [3.8, 0, 3.3],
+              value: wall1RPos2,
               time: wall1End,
             },
+          ],
+        },
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 'scene1wallL2.position',
+          type: 'vector3',
+          keys: [
             {
-              value: [3.8, 0, 3.3],
-              time: Number.MAX_SAFE_INTEGER,
+              value: wall2LPos,
+              time: wall2start,
+            },
+            {
+              value: wall2LPos2,
+              time: wall2End,
+            },
+          ],
+        },
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 'scene1wallR2.position',
+          type: 'vector3',
+          keys: [
+            {
+              value: wall2RPos,
+              time: wall2start,
+            },
+            {
+              value: wall2RPos2,
+              time: wall2End,
+            },
+          ],
+        },
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 'scene1wallL3.position',
+          type: 'vector3',
+          keys: [
+            {
+              value: wall3LPos,
+              time: wall3start,
+            },
+            {
+              value: wall3LPos2,
+              time: wall3End,
+            },
+          ],
+        },
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 'scene1wallR3.position',
+          type: 'vector3',
+          keys: [
+            {
+              value: wall3RPos,
+              time: wall3start,
+            },
+            {
+              value: wall3RPos2,
+              time: wall3End,
             },
           ],
         },
@@ -132,18 +202,18 @@ const scene = {
     },
     {
       depth: 0.01,
-      points: [ [0, 0], [1.2, 0], [1.2, 4], [0, 4] ],
+      points: [ [0, 0], [3.2, 0], [3.2, 4], [0, 4] ],
       uuid: 'wall-2-geom',
       type: 'CanvasExtrudeGeometry',
     },
     {
       depth: 0.01,
-      points: [ [0, 0], [2, 0], [2, 4], [0, 4] ],
+      points: [ [0, 0], [4, 0], [4, 4], [0, 4] ],
       uuid: 'wall-3-geom',
       type: 'CanvasExtrudeGeometry',
     },
   ],
-  lifespan: [0, Number.POSITIVE_INFINITY],
+  lifespan: [0, 90],
   materials: [
     {
       color: 0xf7f7f7,
@@ -195,28 +265,28 @@ const scene = {
         ...wallMesh,
         canvasId: 'scene1wallL2-canvas',
         geometry: 'wall-2-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, -2, 0, 2, 1],
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...wall2LPos, 1],
         name: 'scene1wallL2',
       },
       {
         ...wallMesh,
         canvasId: 'scene1wallR2-canvas',
         geometry: 'wall-2-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 0.8, 0, 2, 1],
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...wall2RPos, 1],
         name: 'scene1wallR2',
       },
       {
         ...wallMesh,
         canvasId: 'scene1wallL3-canvas',
         geometry: 'wall-3-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, -2, 0, 0, 1],
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...wall3LPos, 1],
         name: 'scene1wallL3',
       },
       {
         ...wallMesh,
         canvasId: 'scene1wallR3-canvas',
         geometry: 'wall-3-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 0, 0, 0, 1],
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...wall3RPos, 1],
         name: 'scene1wallR3',
       },
     ],
@@ -241,7 +311,7 @@ const scene = {
     },
     'scene1wallL2-video': {
       ...videoScene1,
-      offsetX: 50,
+      offsetX: -50,
       // start: videoScene1.start - 2,
     },
     'scene1wallR2-video': {
@@ -251,7 +321,7 @@ const scene = {
     },
     'scene1wallL3-video': {
       ...videoScene1,
-      offsetX: 50,
+      offsetX: -190,
       // start: videoScene1.start + 1,
     },
     'scene1wallR3-video': {
