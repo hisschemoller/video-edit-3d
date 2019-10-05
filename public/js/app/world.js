@@ -28,7 +28,8 @@ const {
   VectorKeyframeTrack,
   WebGLRenderer } = THREE;
 
-let renderer, camera, scene, mixer, clock, stats, actions,
+let renderer, camera, scene, clock, stats, actions,
+  mixers = [],
   cameraSpeed = -0.002 // -0.005;
 
 /**
@@ -99,10 +100,12 @@ export function loadScene(allData, sceneIndex) {
     createSceneCanvases(allData, sceneIndex, model);
 
     // start animation
-    mixer = new AnimationMixer(model);
+    console.log(model);
+    const mixer = new AnimationMixer(model);
     const animationAction = mixer.clipAction(model.animations[0]);
     animationAction.setLoop(sceneData.animations[0].loop);
     animationAction.play();
+    mixers.push(mixer);
 
     // programmed animation:
 
@@ -269,7 +272,7 @@ function createGround(settings) {
 
 // ANIMATION LOOP
 export function animate() {
-  mixer.update(clock.getDelta());;
+  mixers.forEach(mixer => mixer.update(clock.getDelta()));
   camera.translateZ(cameraSpeed);
   stats.update();
   renderer.render(scene, camera);

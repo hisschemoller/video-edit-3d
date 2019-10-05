@@ -1,6 +1,5 @@
 import { musicToTime, uuidv4, } from '../app/util.js';
-
-const fps = 30;
+import { fps, } from './leidseplein-shared.js';
 
 const canvas = {
   offsetX: 256,
@@ -8,6 +7,17 @@ const canvas = {
   scale: 60,
   width: 512,
   height: 512
+};
+
+export const wallMesh = {
+  castShadow: true,
+  geometry: 'wall-1-geom',
+  layers: 1,
+  material: 'wall-1-mat',
+  matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 0, 0, 0, 1],
+  receiveShadow: true,
+  type: 'Mesh',
+  uuid: 'scene1wallR1',
 };
 
 const videoScene1 = {
@@ -18,17 +28,6 @@ const videoScene1 = {
   offsetX: 0,
   offsetY: 0,
   scale: 0.5,
-};
-
-const wallMesh = {
-  castShadow: true,
-  geometry: 'wall-1-geom',
-  layers: 1,
-  material: 'wall-1-mat',
-  matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 0, 0, 0, 1],
-  receiveShadow: true,
-  type: 'Mesh',
-  uuid: 'scene1wallR1',
 };
 
 const wall1LPos = [-3.6, 0, 3.3];

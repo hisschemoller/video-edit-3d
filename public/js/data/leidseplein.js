@@ -1,5 +1,7 @@
 import { musicToTime, setTiming, uuidv4, } from '../app/util.js';
-import scene1 from './leidseplein-scene1.js'
+import { fps, } from './leidseplein-shared.js';
+import scene1 from './leidseplein-scene1.js';
+import scene2 from './leidseplein-scene2.js';
 
 const ppqn = 24; // parts per quarter note
 const bpm = 112; // beats per minute
@@ -15,7 +17,7 @@ const data = {
   settings: {
     width: 16 * 50,
     height: 9 * 50,
-    fps: 30,
+    fps,
     ppqn,
     bpm,
     timesignature: {
@@ -38,6 +40,14 @@ const data = {
       height: 480,
     },
     {
+      id: 'leidseplein2',
+      url: 'frames/leidseplein2/frame_#.png',
+      frames: 7798,
+      fps: 30,
+      width: 640,
+      height: 480,
+    },
+    {
       id: 'stoep',
       url: 'frames/stoep/frame_#.png',
       frames: 426,
@@ -48,6 +58,7 @@ const data = {
   ],
   score: [
     scene1,
+    scene2,
   ],
 };
 
