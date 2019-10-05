@@ -1,5 +1,7 @@
 import { musicToTime, uuidv4, } from '../app/util.js';
 
+const fps = 30;
+
 const canvas = {
   offsetX: 256,
   offsetY: 256,
@@ -15,7 +17,7 @@ const videoScene1 = {
   isLoop: true,
   offsetX: 0,
   offsetY: 0,
-  scale: 0.5
+  scale: 0.5,
 };
 
 const wallMesh = {
@@ -29,31 +31,57 @@ const wallMesh = {
   uuid: 'scene1wallR1',
 };
 
+const wall1LPos = [-3.6, 0, 3.3];
+const wall1RPos = [1.8, 0, 3.3];
+
+const wall1start = fps * 1;
+const wall1End = fps * 30;
+
 const scene = {
   animations: [
     {
-      name: 'testAnimation',
-      fps: 30,
       loop: THREE.LoopOnce,
+      name: 'scene1Animation',
+      fps,
       tracks: [
         {
+          interpolation: THREE.InterpolateSmooth,
           name: 'scene1wallL1.position',
           type: 'vector3',
           keys: [
             {
-              value: [-3.6, 0, 3.3],
-              time: 0.001,
+              value: wall1LPos,
+              time: wall1start,
+            },
+            {
+              value: [-5.6, 0, 3.3],
+              time: wall1End,
             },
             {
               value: [-5, 0, 3.3],
-              time: 100,
-            },
-            {
-              value: [-3.6, 0, 3.3],
-              time: 200,
+              time: Number.MAX_SAFE_INTEGER,
             },
           ],
-        }
+        },
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 'scene1wallR1.position',
+          type: 'vector3',
+          keys: [
+            {
+              value: [1.8, 0, 3.3],
+              time: wall1start,
+            },
+            {
+              value: [3.8, 0, 3.3],
+              time: wall1End,
+            },
+            {
+              value: [3.8, 0, 3.3],
+              time: Number.MAX_SAFE_INTEGER,
+            },
+          ],
+        },
       ],
     },
   ],
@@ -143,7 +171,8 @@ const scene = {
         geometry: 'ground-1-geom',
         layers: 1,
         material: 'ground-1-mat',
-        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, 0,0,0,1],
+     // matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, 0,0,0,1],
+        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -5,0,5,1],
         receiveShadow: true,
         type: 'Mesh',
         name: 'ground-1',
@@ -152,14 +181,14 @@ const scene = {
         ...wallMesh,
         canvasId: 'scene1wallL1-canvas',
         geometry: 'wall-1-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, -3.6, 0, 3.3, 1],
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...wall1LPos, 1],
         name: 'scene1wallL1',
       },
       {
         ...wallMesh,
         canvasId: 'scene1wallR1-canvas',
         geometry: 'wall-1-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 1.8, 0, 3.3, 1],
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...wall1RPos, 1],
         name: 'scene1wallR1',
       },
       {
@@ -213,14 +242,17 @@ const scene = {
     'scene1wallL2-video': {
       ...videoScene1,
       offsetX: 50,
+      // start: videoScene1.start - 2,
     },
     'scene1wallR2-video': {
       ...videoScene1,
       offsetX: 320,
+      // start: videoScene1.start - 1,
     },
     'scene1wallL3-video': {
       ...videoScene1,
       offsetX: 50,
+      // start: videoScene1.start + 1,
     },
     'scene1wallR3-video': {
       ...videoScene1,
