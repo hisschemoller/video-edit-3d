@@ -36,7 +36,15 @@ const data = {
       fps: 30,
       width: 640,
       height: 480,
-    }
+    },
+    {
+      id: 'stoep',
+      url: 'frames/stoep/frame_#.png',
+      frames: 426,
+      fps: 30,
+      width: 291,
+      height: 91,
+    },
   ],
   score: [
     scene1,

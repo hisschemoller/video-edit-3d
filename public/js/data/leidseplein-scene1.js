@@ -57,6 +57,11 @@ const scene = {
     },
   ],
   canvases: {
+    'scene1ground-canvas': {
+      ...canvas,
+      scale: 20,
+      videoId: 'scene1ground-video',
+    },
     'scene1wallL1-canvas': {
       ...canvas,
       videoId: 'scene1wallL1-video',
@@ -85,10 +90,10 @@ const scene = {
   clipId: uuidv4(),
   geometries: [
     {
-      height: 10,
-      type: 'PlaneBufferGeometry',
+      depth: 0.01,
+      points: [ [0, 0], [10, 0], [10, 10], [0, 10] ],
+      type: 'CanvasExtrudeGeometry',
       uuid: 'ground-1-geom',
-      width: 10,
     },
     {
       depth: 0.01,
@@ -132,6 +137,7 @@ const scene = {
     name: 'group-1',
     children: [
       {
+        canvasId: 'scene1ground-canvas',
         castShadow: false,
         geometry: 'ground-1-geom',
         layers: 1,
@@ -186,6 +192,16 @@ const scene = {
     ],
   },
   videos: {
+    'scene1ground-video': {
+      resourceId: 'stoep',
+      start: 0,
+      end: 13,
+      isLoop: true,
+      offsetX: 0,
+      offsetY: 0,
+      repeat: 'repeat',
+      scale: 1, 
+    },
     'scene1wallL1-video': {
       ...videoScene1,
     },
