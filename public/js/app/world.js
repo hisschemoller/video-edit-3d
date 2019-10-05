@@ -28,7 +28,8 @@ const {
   VectorKeyframeTrack,
   WebGLRenderer } = THREE;
 
-let renderer, camera, scene, mixer, clock, stats, actions;
+let renderer, camera, scene, mixer, clock, stats, actions,
+  cameraSpeed = -0.002 // -0.005;
 
 /**
  * Set up an empty 3D world.
@@ -203,6 +204,7 @@ function createWorld(data) {
   camera = new PerspectiveCamera(fieldOfView, width / height, near, far);
   camera.position.set(...camPosition);
   camera.lookAt(cameraTarget);
+  camera.name = 'camera';
 
   // SCENE
   scene = new Scene();
@@ -240,7 +242,7 @@ function createLights() {
   scene.add(ambient);
 
   const light = new DirectionalLight(0xffffff, 1); // color = 0xffffff, intensity = 1
-  light.position.set(6, 7, 6);
+  light.position.set(6, 7, 5);
   light.castShadow = true;
   light.shadow.mapSize.width = 2048;  // default 512
   light.shadow.mapSize.height = 2048; // default 512
@@ -267,8 +269,8 @@ function createGround(settings) {
 
 // ANIMATION LOOP
 export function animate() {
-  mixer.update(clock.getDelta());
-  // camera.translateZ(-0.01);
+  mixer.update(clock.getDelta());;
+  camera.translateZ(cameraSpeed);
   stats.update();
   renderer.render(scene, camera);
 }
