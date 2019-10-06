@@ -44,18 +44,39 @@ export function setup(data) {
   }, 1000);
 }
 
-export function createObject(objectId, data) {
-  switch (data.type) {
-    case 'canvas-extrude':
-      const mesh = createExtrude(objectId, data);
-      scene.add(mesh);
-      break;
-  }
-}
+/**
+ * Delete objects, geometries, materials, sto animations.
+ *
+ * @export
+ * @param {Object} allData
+ * @param {String} sceneId
+ */
+export function destroyScene(allData, sceneId) {
+  const sceneData = allData.score.find(scene => scene.clipId === sceneId);
+  const getObjectNamesInScene = (objData, arr) => {
+    const { children = [], name } = objData;
+    arr.push(name);
+    children.forEach(childObjData => getObjectNamesInScene(childObjData, arr));
+    return arr;
+  };
+  const names = getObjectNamesInScene(sceneData.object, []).reverse();
 
-export function destroyObject(objectId) {
-  const mesh = scene.getObjectByName(objectId);
-  scene.remove(mesh);
+  // end animations
+  const mixer = mixers.find(mixer => mixer[1] === sceneId);
+  mixer[0].stopAllAction();
+  mixers.splice(mixers.indexOf(mixer), 1);
+  
+  // remove and dispose objects, geometries, materials
+  names.forEach(name => {
+    const object = scene.getObjectByName(name);
+    if (object.geometry) {
+      object.geometry.dispose();
+    }
+    if (object.material) {
+      object.material.dispose();
+    }
+    scene.remove(object);
+  });
 }
 
 export function getObjectByName(name) {
@@ -105,7 +126,7 @@ export function loadScene(allData, sceneIndex) {
     const animationAction = mixer.clipAction(model.animations[0]);
     animationAction.setLoop(sceneData.animations[0].loop);
     animationAction.play();
-    mixers.push(mixer);
+    mixers.push([mixer, sceneData.clipId]);
 
     // programmed animation:
 
@@ -272,7 +293,7 @@ function createGround(settings) {
 
 // ANIMATION LOOP
 export function animate() {
-  mixers.forEach(mixer => mixer.update(clock.getDelta()));
+  mixers.forEach(mixer => mixer[0].update(clock.getDelta()));
   camera.translateZ(cameraSpeed);
   stats.update();
   renderer.render(scene, camera);

@@ -1,8 +1,7 @@
 import { 
   setup as setupWorld,
   animate as animateWorld,
-  createObject as createWorldObject,
-  destroyObject as destroyWorldObject,
+  destroyScene as destroyWorldScene,
   loadScene as loadWorldScene } from './world.js';
 import { draw as drawCanvas } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
@@ -109,14 +108,14 @@ function checkForNextClips(position) {
     }
   }
 
-  // check for clips to end
+  // check for scenes to end
   if (clips.length && position >= clips[0].lifespan[1]) {
     while (clips.length && position >= clips[0].lifespan[1]) {
-      const clip = data.score.find(clip => clip.clipId === clips[0].clipId);
+      const scene = data.score.find(scene => scene.clipId === clips[0].clipId);
       clips.splice(0, 1);
 
-      // remove the clip's 3D object
-      destroyWorldObject(clip.objectId)
+      // remove the scene
+      destroyWorldScene(data, scene.clipId);
     }
   }
 }
