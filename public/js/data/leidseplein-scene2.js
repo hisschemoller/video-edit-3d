@@ -30,14 +30,10 @@ const videoScene2 = {
   scale: 0.5,
 };
 
-const wall1LPos = [-2.67, 0, -2];
-const wall1LPos2 = [-8, 0, 0];
-const wall1RPos = [0, 0, -2];
-const wall1RPos2 = [4, 0, 0];
-
 const scene = {
   animations: [
     {
+      duration: 90,
       loop: THREE.LoopOnce,
       name: 'scene2Animation',
       fps,
@@ -85,21 +81,8 @@ const scene = {
   object: {
     type: 'Group',
     name: 'scene2',
+    uuid: 'scene2',
     children: [
-      {
-        ...wallMesh,
-        canvasId: 's2wl1-canvas',
-        geometry: 's2w1-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...wall1LPos, 1],
-        name: 's2w1l',
-      },
-      {
-        ...wallMesh,
-        canvasId: 's2wr1-canvas',
-        geometry: 's2w1-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...wall1RPos, 1],
-        name: 's2w1r',
-      },
     ],
   },
   videos: {
@@ -125,3 +108,67 @@ const scene = {
 };
 
 export default scene;
+
+for( let i = 0; i < 4; i++ ) {
+  const wallLName = `s2w${i}l`;
+  const wallRName = `s2w${i}r`;
+  const wallLPos = [-2.67, 0, -2 + (i * -0.8)];
+  const wallLPos2 = [-5.67, 0, -2 + (i * -0.8)];
+  const wallRPos = [0, 0, -2 + (i * -0.8)];
+  const wallRPos2 = [3, 0, -2 + (i * -0.8)];
+  const wallStart = fps * (1 + 16.67 + (i * 16.67));
+  const wallEnd = fps * (30 + 16.67 + (i * 16.67));
+
+  // use fixed video
+  // use fixed geometries
+  // create objects
+  scene.object.children.push(
+    {
+      ...wallMesh,
+      canvasId: 's2wl1-canvas',
+      geometry: 's2w1-geom',
+      matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...wallLPos, 1],
+      name: wallLName,
+    },
+    {
+      ...wallMesh,
+      canvasId: 's2wr1-canvas',
+      geometry: 's2w1-geom',
+      matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...wallRPos, 1],
+      name: wallRName,
+    });
+    
+  // create animation
+  scene.animations[0].tracks.push(
+    {
+      interpolation: THREE.InterpolateSmooth,
+      name: `${wallLName}.position`,
+      type: 'vector3',
+      keys: [
+        {
+          value: wallLPos,
+          time: wallStart,
+        },
+        {
+          value: wallLPos2,
+          time: wallEnd,
+        },
+      ],
+    },
+    {
+      interpolation: THREE.InterpolateSmooth,
+      name: `${wallRName}.position`,
+      type: 'vector3',
+      keys: [
+        {
+          value: wallRPos,
+          time: wallStart,
+        },
+        {
+          value: wallRPos2,
+          time: wallEnd,
+        },
+      ],
+    },
+  );
+}

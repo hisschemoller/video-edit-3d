@@ -64,7 +64,6 @@ export function convertToMilliseconds(score) {
     //   });
     // }
   });
-  console.log(score);
   return score;
 }
 

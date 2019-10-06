@@ -57,6 +57,7 @@ const wall3End = fps * 80;
 const scene = {
   animations: [
     {
+      duration: 90,
       loop: THREE.LoopOnce,
       name: 'scene1Animation',
       fps,
@@ -232,7 +233,8 @@ const scene = {
   },
   object: {
     type: 'Group',
-    name: 'group-1',
+    name: 'scene1',
+    uuid: 'scene1',
     children: [
       {
         canvasId: 'scene1ground-canvas',

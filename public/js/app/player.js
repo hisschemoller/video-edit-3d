@@ -46,7 +46,7 @@ function setupWithData(dataSource, isCapture) {
   position = 0;
 
   // skip to scene by index
-  skipToScene(1);
+  // skipToScene(1);
 
   setupWorld(data);
 
@@ -102,10 +102,6 @@ function checkForNextClips(position) {
           lifespan,
         });
         clips.sort((a, b) => a.lifespan[1] - b.lifespan[1]);
-
-        // create the clip's 3D object
-        // const objectData = data.objects[objectId];
-        // createWorldObject(objectId, objectData);
 
         // create the clip's objects
         loadWorldScene(data, i);

@@ -120,7 +120,6 @@ export function loadScene(allData, sceneIndex) {
     createSceneCanvases(allData, sceneIndex, model);
 
     // start animation
-    console.log(model);
     const mixer = new AnimationMixer(model);
     const animationAction = mixer.clipAction(model.animations[0]);
     animationAction.setLoop(sceneData.animations[0].loop);
@@ -208,7 +207,6 @@ function createWorld(data) {
   const { fieldOfView = 23, position: camPosition = [0, 2, 16], speed, target: camTarget = [0, 2, 0] } = cam;
   const cameraTarget = new Vector3(...camTarget);
   cameraSpeed = speed;
-  console.log(camPosition);
 
   // RENDERER
   renderer = new WebGLRenderer({antialias: true});
@@ -294,7 +292,8 @@ function createGround(settings) {
 
 // ANIMATION LOOP
 export function animate() {
-  mixers.forEach(mixer => mixer[0].update(clock.getDelta()));
+  const deltaTime = clock.getDelta();
+  mixers.forEach(mixer => mixer[0].update(deltaTime));
   camera.translateZ(cameraSpeed);
   stats.update();
   renderer.render(scene, camera);
