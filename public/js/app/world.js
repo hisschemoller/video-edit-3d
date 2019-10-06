@@ -28,9 +28,8 @@ const {
   VectorKeyframeTrack,
   WebGLRenderer } = THREE;
 
-let renderer, camera, scene, clock, stats, actions,
-  mixers = [],
-  cameraSpeed = -0.002 // -0.005;
+let renderer, camera, cameraSpeed, scene, clock, stats, actions,
+  mixers = [];
 
 /**
  * Set up an empty 3D world.
@@ -206,8 +205,10 @@ function createCustomExtrudeMeshesRecursive(rootObject3D, objectData, sceneData,
 function createWorld(data) {
   const { camera: cam = {}, settings = {}, } = data;
   const { height = 360, width = 640, } = settings;
-  const { fieldOfView = 23, position: camPosition = [0, 2, 16], target: camTarget = [0, 2, 0] } = cam;
+  const { fieldOfView = 23, position: camPosition = [0, 2, 16], speed, target: camTarget = [0, 2, 0] } = cam;
   const cameraTarget = new Vector3(...camTarget);
+  cameraSpeed = speed;
+  console.log(camPosition);
 
   // RENDERER
   renderer = new WebGLRenderer({antialias: true});

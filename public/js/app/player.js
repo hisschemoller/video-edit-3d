@@ -45,10 +45,19 @@ function setupWithData(dataSource, isCapture) {
   origin = performance.now();
   position = 0;
 
+  // skip to scene by index
+  skipToScene(1);
+
   setupWorld(data);
 
   checkForNextClips(position);
   requestAnimationFrame(isCapture ? capture : run);
+}
+
+function skipToScene(sceneIndex) {
+  data.score.splice(0, sceneIndex);
+  position = data.score[0].lifespan[0];
+  data.camera.position[2] = data.camera.position[2] + ((position / 1000) * data.settings.fps * data.camera.speed);
 }
 
 function run() {
