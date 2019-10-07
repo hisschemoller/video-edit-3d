@@ -271,6 +271,10 @@ function createLights() {
   light.shadow.mapSize.height = 2048; // default 512
   light.shadow.camera.near = 0.5;    // default 0.5
   light.shadow.camera.far = 500;     // default 500
+  //light.shadow.camera.bottom = -10; // default 5
+  //light.shadow.camera.left = -10; // default 5
+  light.shadow.camera.right = 10; // default 5
+  light.shadow.camera.top = 10; // default 5
   scene.add(light);
 }
 
