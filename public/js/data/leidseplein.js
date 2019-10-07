@@ -2,6 +2,7 @@ import { musicToTime, setTiming, uuidv4, } from '../app/util.js';
 import { fps, } from './leidseplein-shared.js';
 import scene1 from './leidseplein-scene1.js';
 import scene2 from './leidseplein-scene2.js';
+import scene3 from './leidseplein-scene3.js';
 
 const ppqn = 24; // parts per quarter note
 const bpm = 112; // beats per minute
@@ -49,6 +50,14 @@ const data = {
       height: 480,
     },
     {
+      id: 'leidseplein3a',
+      url: 'frames/leidseplein3a/frame_#.png',
+      frames: 4383,
+      fps: 30,
+      width: 640,
+      height: 480,
+    },
+    {
       id: 'stoep',
       url: 'frames/stoep/frame_#.png',
       frames: 426,
@@ -60,6 +69,7 @@ const data = {
   score: [
     scene1,
     scene2,
+    scene3,
   ],
 };
 

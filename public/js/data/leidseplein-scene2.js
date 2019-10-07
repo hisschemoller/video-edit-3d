@@ -17,13 +17,13 @@ export const wallMesh = {
   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 0, 0, 0, 1],
   receiveShadow: true,
   type: 'Mesh',
-  uuid: 'scene2wall',
+  uuid: 's2w-obj',
 };
 
 const videoScene2 = {
   resourceId: 'leidseplein2',
-  start: 140,
-  end: 210,
+  start: 130,
+  end: 260,
   isLoop: true,
   offsetX: 0,
   offsetY: 0,
@@ -33,25 +33,36 @@ const videoScene2 = {
 const scene = {
   animations: [
     {
-      duration: 90,
+      duration: 110,
       loop: THREE.LoopOnce,
-      name: 'scene2Animation',
+      name: 's2-anim',
       fps,
       tracks: [
       ],
     },
   ],
   canvases: {
+    's2g-canvas': {
+      ...canvas,
+      scale: 20,
+      videoId: 's1g-video',
+    },
     's2wl1-canvas': {
       ...canvas,
-      videoId: 'scene2wallL1-video',
+      videoId: 's2wl1-video',
     },
     's2wr1-canvas': {
       ...canvas,
-      videoId: 'scene2wallR1-video',
+      videoId: 's2wr1-video',
     },
   },
   geometries: [
+    {
+      depth: 0.01,
+      points: [ [0, 0], [10, 0], [10, 10], [0, 10] ],
+      type: 'CanvasExtrudeGeometry',
+      uuid: 's2g-geom',
+    },
     {
       depth: 0.01,
       points: [ [0, 0], [2.67, 0], [2.67, 4], [0, 4] ],
@@ -65,7 +76,7 @@ const scene = {
     {
       color: 0xf7f7f7,
       type: 'MeshPhongMaterial',
-      uuid: 'ground2-mat',
+      uuid: 's2g-mat',
     },
     {
       color: 0xffdd99,
@@ -83,10 +94,21 @@ const scene = {
     name: 'scene2',
     uuid: 'scene2',
     children: [
+      {
+        canvasId: 's2g-canvas',
+        castShadow: false,
+        geometry: 's2g-geom',
+        layers: 1,
+        material: 's2g-mat',
+        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -5,0,3,1],
+        receiveShadow: true,
+        type: 'Mesh',
+        name: 's2g-obj',
+      },
     ],
   },
   videos: {
-    'scene1ground-video': {
+    's1g-video': {
       resourceId: 'stoep',
       start: 0,
       end: 13,
@@ -96,11 +118,11 @@ const scene = {
       repeat: 'repeat',
       scale: 1, 
     },
-    'scene2wallL1-video': {
+    's2wl1-video': {
       ...videoScene2,
       offsetX: 0,
     },
-    'scene2wallR1-video': {
+    's2wr1-video': {
       ...videoScene2,
       offsetX: 320,
     },
@@ -113,9 +135,9 @@ for( let i = 0; i < 4; i++ ) {
   const wallLName = `s2w${i}l`;
   const wallRName = `s2w${i}r`;
   const wallLPos = [-2.67, 0, -2 + (i * -0.8)];
-  const wallLPos2 = [-5.67, 0, -2 + (i * -0.8)];
+  const wallLPos2 = [-5.87, 0, -2 + (i * -0.8)];
   const wallRPos = [0, 0, -2 + (i * -0.8)];
-  const wallRPos2 = [3, 0, -2 + (i * -0.8)];
+  const wallRPos2 = [3.2, 0, -2 + (i * -0.8)];
   const wallStart = fps * (1 + 16.67 + (i * 16.67));
   const wallEnd = fps * (30 + 16.67 + (i * 16.67));
 
