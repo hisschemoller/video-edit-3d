@@ -27,7 +27,7 @@ const videoScene3 = {
   isLoop: true,
   offsetX: 0,
   offsetY: 0,
-  scale: 0.5,
+  scale: 1,
 };
 
 const scene = {
@@ -44,22 +44,38 @@ const scene = {
   canvases: {
     's3g-canvas': {
       ...canvas,
-      scale: 20,
       videoId: 's3g-video',
     },
     's3wl1-canvas': {
       ...canvas,
-      videoId: 's3wl1=video',
+      scale: 60,
+      videoId: 's3wl1-video',
     },
     's3wr1-canvas': {
       ...canvas,
-      videoId: 's3wr1=video',
+      scale: 60,
+      videoId: 's3wr1-video',
+    },
+    's3wl2-canvas': {
+      ...canvas,
+      scale: 45,
+      videoId: 's3wl2-video',
+    },
+    's3wr2-canvas': {
+      ...canvas,
+      scale: 40,
+      videoId: 's3wr2-video',
+    },
+    's3p1-canvas': {
+      ...canvas,
+      scale: 55,
+      videoId: 's3p1-video',
     },
   },
   geometries: [
     {
       depth: 0.01,
-      points: [ [0, 0], [10, 0], [10, 10], [0, 10] ],
+      points: [ [0, 0], [10, 0], [10, 15], [0, 15] ],
       type: 'CanvasExtrudeGeometry',
       uuid: 's3g-geom',
     },
@@ -67,6 +83,18 @@ const scene = {
       depth: 0.01,
       points: [ [0, 0], [2.67, 0], [2.67, 4], [0, 4] ],
       uuid: 's3w1-geom',
+      type: 'CanvasExtrudeGeometry',
+    },
+    {
+      depth: 0.01,
+      points: [ [0, 0], [4, 0], [4, 4], [0, 4] ],
+      uuid: 's3w2-geom',
+      type: 'CanvasExtrudeGeometry',
+    },
+    {
+      depth: 0.01,
+      points: [ [0, 0], [0.3, 0], [0.2, 6.5], [0.1, 6.5] ],
+      uuid: 's3p1-geom',
       type: 'CanvasExtrudeGeometry',
     },
   ],
@@ -100,10 +128,48 @@ const scene = {
         geometry: 's3g-geom',
         layers: 1,
         material: 's3g-mat',
-        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -5,0,1,1],
+        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -5,0,-2,1],
         receiveShadow: true,
         type: 'Mesh',
         name: 's3g-obj',
+      },
+      {
+        ...wallMesh,
+        canvasId: 's3wl1-canvas',
+        geometry: 's3w1-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, -2.67, 0, -12, 1],
+        name: 's3w1l-obj',
+      },
+      {
+        ...wallMesh,
+        canvasId: 's3wr1-canvas',
+        geometry: 's3w1-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 0, 0, -12, 1],
+        name: 's3w1r-obj',
+      },
+      {
+        ...wallMesh,
+        canvasId: 's3wl2-canvas',
+        geometry: 's3w2-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, -5.8, 0, -9.6, 1],
+        rotateY: Math.PI / 5,
+        name: 's3w2l-obj',
+      },
+      {
+        ...wallMesh,
+        canvasId: 's3wr2-canvas',
+        geometry: 's3w2-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 2.5, 0, -12, 1],
+        rotateY: Math.PI / -5,
+        name: 's3w2r-obj',
+      },
+      {
+        ...wallMesh,
+        canvasId: 's3p1-canvas',
+        geometry: 's3p1-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 1, 0, -7, 1],
+        // rotateY: Math.PI / -5,
+        name: 's3p1-obj',
       },
     ],
   },
@@ -118,13 +184,30 @@ const scene = {
       repeat: 'repeat',
       scale: 1, 
     },
-    's3wl1=video': {
+    's3wl1-video': {
       ...videoScene3,
-      offsetX: 0,
+      offsetX: 270,
+      offsetY: 150,
     },
-    's3wr1=video': {
+    's3wr1-video': {
       ...videoScene3,
-      offsetX: 320,
+      offsetX: 350,
+      offsetY: 150,
+    },
+    's3wl2-video': {
+      ...videoScene3,
+      offsetX: 80,
+      offsetY: 165,
+    },
+    's3wr2-video': {
+      ...videoScene3,
+      offsetX: 480,
+      offsetY: 175,
+    },
+    's3p1-video': {
+      ...videoScene3,
+      offsetX: 290,
+      offsetY: 175,
     },
   },
 };

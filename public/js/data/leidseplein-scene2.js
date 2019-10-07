@@ -33,7 +33,7 @@ const videoScene2 = {
 const scene = {
   animations: [
     {
-      duration: 110,
+      duration: 120,
       loop: THREE.LoopOnce,
       name: 's2-anim',
       fps,
@@ -71,7 +71,7 @@ const scene = {
     },
   ],
   clipId: uuidv4(),
-  lifespan: [40, 150],
+  lifespan: [40, 160],
   materials: [
     {
       color: 0xf7f7f7,

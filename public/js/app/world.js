@@ -1,4 +1,3 @@
-import { setup as setupPopulation, animate as animatePopulation, } from './population.js';
 import createExtrude, { createCanvasTexture, createExtrudeGeometry, createExtrudeMesh, } from './extrude.js';
 import { createCanvases as createSceneCanvases } from './canvas.js';
 
@@ -115,6 +114,14 @@ export function loadScene(allData, sceneIndex) {
     while (model.getObjectByName('placeholder')) {
       model.remove(model.getObjectByName('placeholder'));
     }
+
+    // apply custom convenience settings to avoid direct matrix4 settings
+    const recurseObjectTree = (objectData) => {
+      const { children = [], name, rotateY = 0, } = objectData;
+      model.getObjectByName(name).rotateY(rotateY);
+      children.forEach(childObjectData => recurseObjectTree(childObjectData));
+    };
+    recurseObjectTree(sceneData.object);
 
     // prepare texture canvases to be animated 
     createSceneCanvases(allData, sceneIndex, model);
