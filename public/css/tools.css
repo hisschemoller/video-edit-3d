@@ -34,3 +34,9 @@ time, mark, audio, video {
   height: 300px;
   width:  700px;
 }
+.top {
+  display: flex;
+}
+.top > div {
+  margin: 10px;
+}

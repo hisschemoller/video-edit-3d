@@ -48,6 +48,7 @@ dropEl.addEventListener('drop', e => {
           console.log('points', points);
           let boundingBox = getBoundingBox(points);
           points = scale(points, heightEl.value / boundingBox.height);
+          document.getElementById('scale_info').innerHTML = `scaled to ${boundingBox.height / heightEl.value} pixels on 1 3D unit`;
           boundingBox = getBoundingBox(points);
           // points = flipVertical(points, boundingBox);
           console.log(boundingBox);

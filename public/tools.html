@@ -7,10 +7,16 @@
 		<link rel="stylesheet" href="css/tools.css">
   </head>
   <body>
-    <div id="drop_zone" >
-      <p>Drag SVG file here...</p>
+    <div class="top" >
+      <div id="drop_zone" >
+        <p>Drag SVG file here...</p>
+      </div>
+      <div id="settings" >
+        <label for="height">3D destination height</label>
+        <input type="number" value="1" id="height" />
+        <div id="scale_info"></div>
+      </div>
     </div>
-    <input type="number" value="1" id="height" />
     <textarea id="result"></textarea>
     <script src="js/tools/svg.js" type="module"></script>
     <script src="js/lib/snap.js"></script>
