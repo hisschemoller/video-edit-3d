@@ -97,7 +97,7 @@ function flipVertical(points, boundingBox) {
 }
 
 function translateY(points, distance) {
-  return points.map(point => [point[0], point[1] + distance]);
+  return points.map(point => [point[0], point[1] - distance]);
 }
 
 

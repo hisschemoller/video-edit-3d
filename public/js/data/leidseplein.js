@@ -65,6 +65,14 @@ const data = {
       width: 291,
       height: 91,
     },
+    {
+      id: 'tram',
+      url: 'frames/tram/frame_#.png',
+      frames: 213,
+      fps: 30,
+      width: 100,
+      height: 74,
+    },
   ],
   score: [
     scene1,
