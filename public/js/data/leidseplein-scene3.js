@@ -203,7 +203,7 @@ const scene = {
         ...wallMesh,
         canvasId: 'tram-canvas',
         geometry: 'tram-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, -3.5, 0, -8, 1],
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, -3.5, 0, -6, 1],
         name: 'tram-obj',
       },
     ],
