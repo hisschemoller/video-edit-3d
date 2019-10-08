@@ -1,6 +1,7 @@
 
 const dropEl = document.getElementById('drop_zone');
 const resultEl = document.getElementById('result');
+const heightEl = document.getElementById('height');
 
 dropEl.addEventListener('drop', e => {
   e.preventDefault();
@@ -36,6 +37,9 @@ dropEl.addEventListener('drop', e => {
                 return [ ...acc, [ val1 - start.x, prevVal - start.y]];
               case 'V':
                 return [ ...acc, [ absPath[index - 1][1] - start.x, val1 - start.y]];
+              // case 'Z':
+              //   console.log(acc[0]);
+              //   return [ ...acc, [ ...acc[0] ] ];
               default:
                 return acc;
             }
@@ -43,7 +47,7 @@ dropEl.addEventListener('drop', e => {
           points = invertVertical(points);
           console.log('points', points);
           let boundingBox = getBoundingBox(points);
-          points = scale(points, 7 / boundingBox.height);
+          points = scale(points, heightEl.value / boundingBox.height);
           boundingBox = getBoundingBox(points);
           // points = flipVertical(points, boundingBox);
           console.log(boundingBox);
