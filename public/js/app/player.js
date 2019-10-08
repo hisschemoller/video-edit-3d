@@ -57,6 +57,7 @@ function setupWithData(dataSource, isCapture) {
 function skipToScene(sceneIndex) {
   data.score.splice(0, sceneIndex);
   position = data.score[0].lifespan[0];
+  origin = performance.now() - position;
   data.camera.position[2] = data.camera.position[2] + ((position / 1000) * data.settings.fps * data.camera.speed);
 }
 
