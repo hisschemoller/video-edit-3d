@@ -30,6 +30,34 @@ const videoScene3 = {
   scale: 1,
 };
 
+const start = fps * 30;
+
+const wall1LPos = [-2.67, 0, -11];
+const wall1LPos2 = [-2.67 - 5, 0, -11];
+const wall1RPos = [0, 0, -11];
+const wall1RPos2 = [0 + 5, 0, -11];
+
+const wall1Start = start + (fps * 3.5);
+const wall1End = start + (fps * 12);
+
+const wall2LPos = [-5.8, 0, -8.6];
+const wall2LPos2 = [-5.8 - 3, 0, -8.6];
+const wall2RPos = [2.5, 0, -11];
+const wall2RPos2 = [2.5 + 3, 0, -11];
+
+const wall2Start = start + (fps * 3);
+const wall2End = start + (fps * 12);
+
+const paal1Pos = [2.3, 0, -6];
+const paal1Pos2 = [2.3 + 3, 0, -6];
+const paal2Pos = [1.1, 0, -9];
+const paal2Pos2 = [1.1 + 4, 0, -9];
+const tramPos = [-3.5, 0, -5];
+const tramPos2 = [-3.5 - 3, 0, -5];
+
+const paal1Start = start + (fps * 1);
+const paal1End = start + (fps * 11);
+
 const scene = {
   animations: [
     {
@@ -38,6 +66,111 @@ const scene = {
       name: 's3-anim',
       fps,
       tracks: [
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 's3w1l-obj.position',
+          type: 'vector3',
+          keys: [
+            {
+              value: wall1LPos,
+              time: wall1Start,
+            },
+            {
+              value: wall1LPos2,
+              time: wall1End,
+            },
+          ],
+        },
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 's3w1r-obj.position',
+          type: 'vector3',
+          keys: [
+            {
+              value: wall1RPos,
+              time: wall1Start,
+            },
+            {
+              value: wall1RPos2,
+              time: wall1End,
+            },
+          ],
+        },
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 's3w2l-obj.position',
+          type: 'vector3',
+          keys: [
+            {
+              value: wall2LPos,
+              time: wall2Start,
+            },
+            {
+              value: wall2LPos2,
+              time: wall2End,
+            },
+          ],
+        },
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 's3w2r-obj.position',
+          type: 'vector3',
+          keys: [
+            {
+              value: wall2RPos,
+              time: wall2Start,
+            },
+            {
+              value: wall2RPos2,
+              time: wall2End,
+            },
+          ],
+        },
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 'paal1-obj.position',
+          type: 'vector3',
+          keys: [
+            {
+              value: paal1Pos,
+              time: paal1Start,
+            },
+            {
+              value: paal1Pos2,
+              time: paal1End,
+            },
+          ],
+        },
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 'paal2-obj.position',
+          type: 'vector3',
+          keys: [
+            {
+              value: paal2Pos,
+              time: paal1Start,
+            },
+            {
+              value: paal2Pos2,
+              time: paal1End,
+            },
+          ],
+        },
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 'tram-obj.position',
+          type: 'vector3',
+          keys: [
+            {
+              value: tramPos,
+              time: paal1Start,
+            },
+            {
+              value: tramPos2,
+              time: paal1End,
+            },
+          ],
+        },
       ],
     },
   ],
@@ -121,7 +254,7 @@ const scene = {
     },
   ],
   clipId: uuidv4(),
-  lifespan: [105, 200],
+  lifespan: [88, 200],
   materials: [
     {
       color: 0xf7f7f7,
@@ -159,21 +292,21 @@ const scene = {
         ...wallMesh,
         canvasId: 's3wl1-canvas',
         geometry: 's3w1-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, -2.67, 0, -12, 1],
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...wall1LPos, 1],
         name: 's3w1l-obj',
       },
       {
         ...wallMesh,
         canvasId: 's3wr1-canvas',
         geometry: 's3w1-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 0, 0, -12, 1],
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...wall1RPos, 1],
         name: 's3w1r-obj',
       },
       {
         ...wallMesh,
         canvasId: 's3wl2-canvas',
         geometry: 's3w2-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, -5.8, 0, -9.6, 1],
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...wall2LPos, 1],
         rotateY: Math.PI / 5,
         name: 's3w2l-obj',
       },
@@ -181,7 +314,7 @@ const scene = {
         ...wallMesh,
         canvasId: 's3wr2-canvas',
         geometry: 's3w2-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 2.5, 0, -12, 1],
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...wall2RPos, 1],
         rotateY: Math.PI / -5,
         name: 's3w2r-obj',
       },
@@ -189,21 +322,21 @@ const scene = {
         ...wallMesh,
         canvasId: 'paal1-canvas',
         geometry: 'paal1-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 2.3, 0, -7, 1],
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...paal1Pos, 1],
         name: 'paal1-obj',
       },
       {
         ...wallMesh,
         canvasId: 'paal2-canvas',
         geometry: 'paal2-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, 1.1, 0, -10, 1],
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...paal2Pos, 1],
         name: 'paal2-obj',
       },
       {
         ...wallMesh,
         canvasId: 'tram-canvas',
         geometry: 'tram-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, -3.5, 0, -6, 1],
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...tramPos, 1],
         name: 'tram-obj',
       },
     ],

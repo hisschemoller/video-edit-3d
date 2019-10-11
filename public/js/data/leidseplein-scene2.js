@@ -131,7 +131,7 @@ const scene = {
 
 export default scene;
 
-for( let i = 0; i < 4; i++ ) {
+for( let i = 0; i < 3; i++ ) {
   const wallLName = `s2w${i}l`;
   const wallRName = `s2w${i}r`;
   const wallLPos = [-2.67, 0, -2 + (i * -0.8)];
