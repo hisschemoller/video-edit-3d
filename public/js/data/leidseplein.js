@@ -3,6 +3,7 @@ import { fps, } from './leidseplein-shared.js';
 import scene1 from './leidseplein-scene1.js';
 import scene2 from './leidseplein-scene2.js';
 import scene3 from './leidseplein-scene3.js';
+import scene4 from './leidseplein-scene4.js';
 
 const ppqn = 24; // parts per quarter note
 const bpm = 112; // beats per minute
@@ -58,6 +59,14 @@ const data = {
       height: 480,
     },
     {
+      id: 'leidseplein4',
+      url: 'frames/leidseplein4/frame_#.png',
+      frames: 5153,
+      fps: 30,
+      width: 640,
+      height: 480,
+    },
+    {
       id: 'stoep',
       url: 'frames/stoep/frame_#.png',
       frames: 426,
@@ -78,6 +87,7 @@ const data = {
     scene1,
     scene2,
     scene3,
+    scene4,
   ],
 };
 

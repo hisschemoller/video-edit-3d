@@ -217,7 +217,7 @@ function createWorld(data) {
 
   // RENDERER
   renderer = new WebGLRenderer({antialias: true});
-  renderer.setClearColor(0xeeeeee);
+  renderer.setClearColor(0xdeebf9);
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(width, height);
   renderer.autoClear = false;
@@ -238,7 +238,7 @@ function createWorld(data) {
 
   // SCENE
   scene = new Scene();
-  scene.background = new Color(0xeeeeee);
+  scene.background = new Color(0xdeebf9);
   // scene.fog = new Fog( 0x59472b, 1000, FAR );
 
   // CLOCK
