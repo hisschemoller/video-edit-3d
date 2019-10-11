@@ -1,7 +1,15 @@
 
+/**
+ * 
+ * @param {Object} textureCanvas Texture's canvas element.
+ * @param {Object} data 
+ * @param {Object} resources 
+ * @param {Object} texture Mesh's texture.
+ * @param {Number} fps FPS of the app player.
+ */
 export function create(textureCanvas, data, resources, texture, fps) {
-  const { canvas, flipHorizontal = false, video, } = data;
-  const { resourceId, offsetX = 0, offsetY = 0, scale = 1, start = 0, end, isLoop = false } = video;
+  const { canvasData, flipHorizontal = false, videoData, } = data;
+  const { resourceId, offsetX = 0, offsetY = 0, scale = 1, start = 0, end, isLoop = false, repeat = null, } = videoData;
 
   let textureCtx,
     img,
@@ -30,8 +38,8 @@ export function create(textureCanvas, data, resources, texture, fps) {
       imgURLNrLast = end ? Math.floor(end * videoFPS) : frames;
       imgURLNrIncrease = videoFPS / fps;
 
-      dx = canvas.offsetX - (offsetX * scale);
-      dy = canvas.offsetY + ((offsetY - height) * scale);
+      dx = canvasData.offsetX - (offsetX * scale);
+      dy = canvasData.offsetY + ((offsetY - height) * scale);
       dWidth = width * scale;
       dHeight = height * scale;
 
@@ -58,14 +66,20 @@ export function create(textureCanvas, data, resources, texture, fps) {
      * @param {Object} ctx Canvas drawing context.
      */
     draw = function() {
-      if (flipHorizontal) {
-        textureCtx.save();
-        textureCtx.scale(-1, 1);
-        textureCtx.drawImage(img, dx, dy, dWidth, dHeight);
-        textureCtx.restore();
+      if (repeat) {
+        textureCtx.fillStyle = textureCtx.createPattern(img, repeat);
+        textureCtx.fillRect(0, 0, textureCanvas.width, textureCanvas.height);
       } else {
-        textureCtx.drawImage(img, dx, dy, dWidth, dHeight);
+        if (flipHorizontal) {
+          textureCtx.save();
+          textureCtx.scale(-1, 1);
+          textureCtx.drawImage(img, dx, dy, dWidth, dHeight);
+          textureCtx.restore();
+        } else {
+          textureCtx.drawImage(img, dx, dy, dWidth, dHeight);
+        }
       }
+      
       loadImage();
     };
     

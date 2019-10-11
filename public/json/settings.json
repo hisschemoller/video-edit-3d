@@ -15,6 +15,14 @@
       "fps": 30,
       "width": 640,
       "height": 480
+    },
+    {
+      "id": "dublin",
+      "url": "frames/dublin/frame_#.png",
+      "frames": 15829,
+      "fps": 30,
+      "width": 480,
+      "height": 360
     }
   ],
   "score": [

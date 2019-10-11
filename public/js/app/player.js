@@ -1,5 +1,9 @@
-import { setup as setupWorld, animate as animateWorld, createObject as createWorldObject, destroyObject as destroyWorldObject, } from './world.js';
-import { setup as setupCanvas, draw as drawCanvas } from './canvas.js';
+import { 
+  setup as setupWorld,
+  animate as animateWorld,
+  destroyScene as destroyWorldScene,
+  loadScene as loadWorldScene } from './world.js';
+import { draw as drawCanvas } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
 
 const clips = [];
@@ -12,6 +16,7 @@ let position = 0;
 let nextClipTime = 0;
 let nextClipIndex = 0;
 let data;
+let infoTimeEl;
 
 
 export function setup(dataSource, isCapture = false) {
@@ -24,6 +29,8 @@ export function setup(dataSource, isCapture = false) {
   } else {
     setupWithData(dataSource, isCapture);
   }
+
+  infoTimeEl = document.querySelector('.info__time');
 }
 
 function setupWithData(dataSource, isCapture) {
@@ -31,16 +38,27 @@ function setupWithData(dataSource, isCapture) {
   data.score = sortScoreByLifespanStart(data.score);
   data.score = convertToMilliseconds(data.score);
   console.log(data);
-  const { fps = 30, } = data;
+
+  const { fps = 30, } = data.settings;
   framesPerDraw = 60 / fps;
 
   origin = performance.now();
   position = 0;
 
+  // skip to scene by index
+  // skipToScene(1);
+
   setupWorld(data);
-  // setupCanvas(data);
+
   checkForNextClips(position);
   requestAnimationFrame(isCapture ? capture : run);
+}
+
+function skipToScene(sceneIndex) {
+  data.score.splice(0, sceneIndex);
+  position = data.score[0].lifespan[0];
+  origin = performance.now() - position;
+  data.camera.position[2] = data.camera.position[2] + ((position / 1000) * data.settings.fps * data.camera.speed);
 }
 
 function run() {
@@ -53,9 +71,9 @@ function run() {
   
   position = performance.now() - origin;
   checkForNextClips(position);
-  // console.log(position);
-  // drawCanvas(frame);
+  drawCanvas(frame);
   animateWorld();
+  infoTimeEl.textContent = (position / 1000).toFixed(1);  
   frame += 1;
 }
 
@@ -72,7 +90,9 @@ function checkForNextClips(position) {
   // check for clips to start
   if (position >= nextClipTime) {
     for (let i = nextClipIndex, n = data.score.length; i < n; i++) {
-      const { clipId, lifespan, objectId, } = data.score[i];
+      const { canvases, score, } = data;
+      const sceneData = score[i];
+      const { clipId, lifespan, } = sceneData;
       if (lifespan[0] <= position) {
         nextClipIndex++;
         nextClipTime = nextClipIndex < data.score.length ? data.score[nextClipIndex].lifespan[0] : Number.MAX_VALUE;
@@ -84,23 +104,24 @@ function checkForNextClips(position) {
         });
         clips.sort((a, b) => a.lifespan[1] - b.lifespan[1]);
 
-        // create the clip's 3D object
-        const objectData = data.objects[objectId];
-        createWorldObject(objectId, objectData);
+        // create the clip's objects
+        loadWorldScene(data, i);
       } else {
+
+        // nothing
         break;
       }
     }
   }
 
-  // check for clips to end
+  // check for scenes to end
   if (clips.length && position >= clips[0].lifespan[1]) {
     while (clips.length && position >= clips[0].lifespan[1]) {
-      const clip = data.score.find(clip => clip.clipId === clips[0].clipId);
+      const scene = data.score.find(scene => scene.clipId === clips[0].clipId);
       clips.splice(0, 1);
 
-      // remove the clip's 3D object
-      destroyWorldObject(clip.objectId)
+      // remove the scene
+      destroyWorldScene(data, scene.clipId);
     }
   }
 }

@@ -12,26 +12,83 @@ const {
 } = THREE;
 
 /**
- *
- *
+ * Create a mesh with an extruded shape and canvas texture.
+ * 
  * @export
- * @param {*} data
- * @returns
+ * @param {String} id To use as name of the mesh.
+ * @param {Object} data Contains canvasData, color, depth and points properties to construct the geometry.
+ * @returns {Object} Mesh.
  */
 export default function createExtrude(id, data) {
   const shapeGeometry = createFrontShapeGeometry(data);
   const geometry = createCustomGeometry(data, shapeGeometry);
-  const texture = createCanvasTexture(data);
   computeFaceVertexUVs(geometry, shapeGeometry);
-  const mesh = createMesh(id, data, geometry, texture);
+  const texture = createCanvasTexture(data);
+  const mesh = createExtrudeMesh(id, geometry, texture);
+  return mesh;
+}
+
+/**
+ * Create a texture containing a canvas.
+ *
+ * @param {Object} data Data.
+ * @returns {Object} Texture containing canvas.
+ */
+export function createCanvasTexture(data) {
+  const { width, height, offsetX, offsetY, scale } = data;
+
+  const canvasEl = document.createElement('canvas');
+  canvasEl.width = width;
+  canvasEl.height = height;
+
+  const ctx = canvasEl.getContext('2d');
+  ctx.fillStyle = '#ffffcc';
+  ctx.fillRect(0, 0, width, height);
+
+  const texture = new Texture(canvasEl);
+  texture.offset = new Vector2(offsetX / width, offsetY / height);
+  texture.repeat = new Vector2(scale / width, scale / width);
+  texture.needsUpdate = true;
+
+  return texture;
+}
+
+/**
+ * Create a ShapeGeometry on basis of configuration data.
+ * 
+ * @param {Object} data Geometry data of type CanvasExtrudeGeometry.
+ */
+export function createExtrudeGeometry(data) {
+  const shapeGeometry = createFrontShapeGeometry(data);
+  const geometry = createCustomGeometry(data, shapeGeometry);
+  computeFaceVertexUVs(geometry, shapeGeometry);
+  return geometry;
+}
+
+/**
+ * Create a mesh with geometry and texture,
+ *
+ * @param {String} name Set as mesh's name.
+ * @param {Object} geometry Geometry.
+ * @param {Object} texture Texture.
+ * @returns {Object} Mesh.
+ */
+export function createExtrudeMesh(name, geometry, texture) {
+  const material = new MeshPhongMaterial({ map: texture, wireframe: false, });
+
+  const mesh = new Mesh(geometry, material);
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  mesh.name = name;
+
   return mesh;
 }
 
 /**
  * Create a ShapeGeometry from coordinate points.
  *
- * @param {Object} data
- * @returns
+ * @param {Object} data Contains coordinates describing a 2D shape.
+ * @returns {Object} shapeGeometry.
  */
 function createFrontShapeGeometry(data) {
   const { points, } = data;
@@ -50,11 +107,11 @@ function createFrontShapeGeometry(data) {
 }
 
 /**
- *
+ * Create extruded geometry from a 2D shapeGeometry,
  *
  * @param {Object} data
  * @param {Object} shapeGeometry
- * @returns
+ * @returns {Object} Geometry
  */
 function createCustomGeometry(data, shapeGeometry) {
   const { depth, points } = data;
@@ -92,7 +149,7 @@ function createCustomGeometry(data, shapeGeometry) {
 }
 
 /**
- *
+ * Create faceVertexUvs for a geometry.
  *
  * @param {Object} geometry
  * @param {Object} shapeGeometry
@@ -177,54 +234,4 @@ function computeFaceVertexUVs(geometry, shapeGeometry) {
   }
 
   geometry.uvsNeedUpdate = true;
-}
-
-/**
- *
- *
- * @param {*} data
- * @returns
- */
-function createCanvasTexture(data) {
-  const { canvas, color = '#ffffff' } = data;
-  const { width, height, offsetX, offsetY, scale } = canvas;
-
-  const canvasEl = document.createElement('canvas');
-  canvasEl.width = width;
-  canvasEl.height = height;
-
-  const ctx = canvasEl.getContext('2d');
-  ctx.fillStyle = color;
-  ctx.fillRect(0, 0, width, height);
-
-  const texture = new Texture(canvasEl);
-  texture.offset = new Vector2(offsetX / width, offsetY / height);
-  texture.repeat = new Vector2(scale / width, scale / width);
-  texture.needsUpdate = true;
-
-  return texture;
-}
-
-/**
- *
- *
- * @param {*} data
- * @param {*} geometry
- * @param {*} texture
- * @param {*} resolve
- */
-function createMesh(id, data, geometry, texture) {
-  const { position, rotation = {} } = data;
-  const { x: rx = 0, y: ry = 0, z: rz = 0 } = rotation;
-
-  const material = new MeshPhongMaterial({ map: texture, wireframe: false, });
-
-  const mesh = new Mesh(geometry, material);
-  mesh.castShadow = true;
-  mesh.receiveShadow = true;
-  mesh.position.set( ...position );
-  mesh.rotateX(rx);
-  mesh.name = id;
-
-  return mesh;
 }
