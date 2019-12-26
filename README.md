@@ -4,6 +4,39 @@ Video and animation in WebGL using three.js
 
 ## settings JSON
 
+All of the 3D animation is read from one data structure containing four parts:
+
+```javascript
+{
+  settings: {}, // canvas size, framerate and musical timing
+  camera: {}, // the 3D scene's camera
+  resources: [], // video image sequences information
+  score: [ // 3D object hierarchies, their video textures and animations
+    sceneA: {}, // the score contains a series of scenes
+    sceneB: {},
+    // etcetera...
+  ]
+}
+```
+
+A scene:
+
+```javascript
+{
+  animations: [], // animation structure as spefified in three.js
+  canvases: {},
+  geometries: [],
+  clipId: '',
+  lifespan: [0, 1],
+  materials: [],
+  metadata: {},
+  object: {},
+  videos: {}
+}
+```
+
+Object hierarchy:
+
 ```javascript
 {
   "objects": [
