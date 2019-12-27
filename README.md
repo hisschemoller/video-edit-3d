@@ -19,19 +19,25 @@ All of the 3D animation is read from one data structure containing four parts:
 }
 ```
 
-A scene:
+### Scene JSON data 
+
+The properties `animations`, `geometries`, `metadata`, `materials` and `objects` are in the JSON Object Scene 4.3 format.
+
+JSON Object Scene format 4: https://github.com/mrdoob/three.js/wiki/JSON-Object-Scene-format-4
+
+A `geometry` can have custom type `CanvasExtrudeGeometry` which is a extruded SVG path shape with video canvas texture.
 
 ```javascript
 {
   animations: [], // animation structure as spefified in three.js
   canvases: {},
   geometries: [],
-  clipId: '',
-  lifespan: [0, 1],
-  materials: [],
+  clipId: '', 
+  lifespan: [0, 1], // scene start and end time in seconds
+  materials: [], // 
   metadata: {},
-  object: {},
-  videos: {}
+  object: {}, // 3D object hierarchy, usually with Group as root
+  videos: {} // videos used in this scene
 }
 ```
 
@@ -63,6 +69,21 @@ Object hierarchy:
   ]
 }
 ```
+
+## Units
+
+Geometry path is measured in 3D units.
+
+```javascript
+canvas: {
+  width: 512, // width in pixels
+  height: 512, // height in pixels
+  scale: 60, // 60 pixels cover one 3D unit 
+  offsetX: 0, // 
+  offsetY: 0 // 
+}
+```
+
 
 ## Matrix4
 
@@ -148,6 +169,3 @@ Add wav audio to mp4 video
 ffmpeg -i input_vid.mp4 -i input_audio.wav -vcodec copy output.mp4
 ffmpeg -i input_vid.mp4 -i input_audio.wav -vcodec libx264 -acodec libmp3lame output.mp4
 ```
-
-## Data structure
-
