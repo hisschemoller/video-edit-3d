@@ -19,21 +19,23 @@ let data;
 let infoTimeEl;
 
 
-export function setup(dataSource, isCapture = false) {
+export function setup(config) {
+  const { data: dataSource } = config;
   if (typeof dataSource === 'string') {
     fetch(dataSource)
     .then(response => response.json())
     .then(response => {
-      setupWithData(response, isCapture);
+      setupWithData(response, config);
     });
   } else {
-    setupWithData(dataSource, isCapture);
+    setupWithData(dataSource, config);
   }
 
   infoTimeEl = document.querySelector('.info__time');
 }
 
-function setupWithData(dataSource, isCapture) {
+function setupWithData(dataSource, config) {
+  const { isCapture, startScene = 0, } = config;
   data = dataSource;
   data.score = sortScoreByLifespanStart(data.score);
   data.score = convertToMilliseconds(data.score);
@@ -46,7 +48,7 @@ function setupWithData(dataSource, isCapture) {
   position = 0;
 
   // skip to scene by index
-  // skipToScene(1);
+  skipToScene(startScene);
 
   setupWorld(data);
 
@@ -55,10 +57,12 @@ function setupWithData(dataSource, isCapture) {
 }
 
 function skipToScene(sceneIndex) {
-  data.score.splice(0, sceneIndex);
-  position = data.score[0].lifespan[0];
-  origin = performance.now() - position;
-  data.camera.position[2] = data.camera.position[2] + ((position / 1000) * data.settings.fps * data.camera.speed);
+  if (data.score.length) {
+    data.score.splice(0, sceneIndex);
+    position = data.score[0].lifespan[0];
+    origin = performance.now() - position;
+    data.camera.position[2] = data.camera.position[2] + ((position / 1000) * data.settings.fps * data.camera.speed);
+  }
 }
 
 function run() {

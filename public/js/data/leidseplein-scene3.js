@@ -26,7 +26,7 @@ const videoScene3 = {
   end: 146,
   isLoop: true,
   offsetX: 0,
-  offsetY: 0,
+  offsetY: 480,
   scale: 1,
 };
 
@@ -348,46 +348,46 @@ const scene = {
       end: 13,
       isLoop: true,
       offsetX: 0,
-      offsetY: 0,
+      offsetY: 91,
       repeat: 'repeat',
       scale: 1, 
     },
     's3wl1-video': {
       ...videoScene3,
       offsetX: 270,
-      offsetY: 150,
+      offsetY: 480 - 150,
     },
     's3wr1-video': {
       ...videoScene3,
       offsetX: 350,
-      offsetY: 150,
+      offsetY: 480 - 150,
     },
     's3wl2-video': {
       ...videoScene3,
       offsetX: 80,
-      offsetY: 165,
+      offsetY: 480 - 165,
     },
     's3wr2-video': {
       ...videoScene3,
       offsetX: 480,
-      offsetY: 175,
+      offsetY: 480 - 175,
     },
     'paal1-video': {
       ...videoScene3,
       offsetX: 303,
-      offsetY: 138,
+      offsetY: 480 - 138,
     },
     'paal2-video': {
       ...videoScene3,
       offsetX: 458,
-      offsetY: 200,
+      offsetY: 480 - 200,
     },
     'tram-video': {
       resourceId: 'tram',
       start: 0,
       isLoop: true,
       offsetX: 4,
-      offsetY: 4,
+      offsetY: 74 - 4,
     },
   },
 };

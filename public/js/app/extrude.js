@@ -47,7 +47,7 @@ export function createCanvasTexture(data) {
 
   const texture = new Texture(canvasEl);
   texture.offset = new Vector2(offsetX / width, offsetY / height);
-  texture.repeat = new Vector2(scale / width, scale / width);
+  texture.repeat = new Vector2(scale / width, scale / height);
   texture.needsUpdate = true;
 
   return texture;

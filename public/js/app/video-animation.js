@@ -9,7 +9,18 @@
  */
 export function create(textureCanvas, data, resources, texture, fps) {
   const { canvasData, flipHorizontal = false, videoData, } = data;
-  const { resourceId, offsetX = 0, offsetY = 0, scale = 1, start = 0, end, isLoop = false, repeat = null, } = videoData;
+  const { 
+    offsetX: canvasOffsetX, 
+    offsetY: canvasOffsetY,
+    height: canvasHeight,
+    width: canvasWidth,
+  } = canvasData;
+  const {  
+    offsetX: videoOffsetX = 0, 
+    offsetY: videoOffsetY = 0,
+    scale: videoScale = 1,
+    resourceId, start = 0, end, isLoop = false, repeat = null, 
+  } = videoData;
 
   let textureCtx,
     img,
@@ -30,18 +41,22 @@ export function create(textureCanvas, data, resources, texture, fps) {
 
       // video resource
       resource = resources.find(resource => resource.id === resourceId);
-      const { url, width, height, fps: videoFPS = 30, frames, } = resource;
+      const {
+        width: videoWidth, 
+        height: videoHeight, 
+        fps: videoFPS = 30, frames, url, 
+      } = resource;
       imgURLPrefix = url.split('#')[0];
       imgURLSuffix = url.split('#')[1];
       imgURLNr = Math.floor(start * videoFPS) + 1;
       imgURLNrFirst = imgURLNr;
       imgURLNrLast = end ? Math.floor(end * videoFPS) : frames;
       imgURLNrIncrease = videoFPS / fps;
-
-      dx = canvasData.offsetX - (offsetX * scale);
-      dy = canvasData.offsetY + ((offsetY - height) * scale);
-      dWidth = width * scale;
-      dHeight = height * scale;
+      
+      dx = canvasOffsetX - (videoOffsetX * videoScale);
+      dy = canvasHeight - canvasOffsetY - (videoOffsetY * videoScale);
+      dWidth = videoWidth * videoScale;
+      dHeight = videoHeight * videoScale;
 
       img = new Image();
       loadImage();
@@ -51,19 +66,19 @@ export function create(textureCanvas, data, resources, texture, fps) {
      * Load a video frame image based on imgURLNr.
      */
     loadImage = function() {
-      // if (imgURLNr <= imgURLNrLast) {
+      if (imgURLNr <= imgURLNrLast) {
         img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + Math.round(imgURLNr)).slice(-5) : '99999') + imgURLSuffix;
         if (imgURLNr < imgURLNrLast) {
           imgURLNr += imgURLNrIncrease;
         } else {
           imgURLNr = imgURLNrFirst;
         }
-      // }
+      }
     },
 
     /**
-     * Draw the video clip frame on canvas.
-     * @param {Object} ctx Canvas drawing context.
+     * Draw the video clip frame (an Image element) on the texture's canvas.
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
      */
     draw = function() {
       if (repeat) {

@@ -26,7 +26,7 @@ const videoScene2 = {
   end: 260,
   isLoop: true,
   offsetX: 0,
-  offsetY: 0,
+  offsetY: 480,
   scale: 0.5,
 };
 
@@ -114,7 +114,7 @@ const scene = {
       end: 13,
       isLoop: true,
       offsetX: 0,
-      offsetY: 0,
+      offsetY: 91,
       repeat: 'repeat',
       scale: 1, 
     },

@@ -127,11 +127,13 @@ export function loadScene(allData, sceneIndex) {
     createSceneCanvases(allData, sceneIndex, model);
 
     // start animation
-    const mixer = new AnimationMixer(model);
-    const animationAction = mixer.clipAction(model.animations[0]);
-    animationAction.setLoop(sceneData.animations[0].loop);
-    animationAction.play();
-    mixers.push([mixer, sceneData.clipId]);
+    if (model.animations && model.animations.length) {
+      const mixer = new AnimationMixer(model);
+      const animationAction = mixer.clipAction(model.animations[0]);
+      animationAction.setLoop(sceneData.animations[0].loop);
+      animationAction.play();
+      mixers.push([mixer, sceneData.clipId]);
+    }
 
     // programmed animation:
 
@@ -211,7 +213,7 @@ function createCustomExtrudeMeshesRecursive(rootObject3D, objectData, sceneData,
 function createWorld(data) {
   const { camera: cam = {}, settings = {}, } = data;
   const { height = 360, width = 640, } = settings;
-  const { fieldOfView = 23, position: camPosition = [0, 2, 16], speed, target: camTarget = [0, 2, 0] } = cam;
+  const { fieldOfView = 23, position: camPosition = [0, 2, 16], speed = 0, target: camTarget = [0, 2, 0] } = cam;
   const cameraTarget = new Vector3(...camTarget);
   cameraSpeed = speed;
 

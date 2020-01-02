@@ -26,7 +26,7 @@ const videoScene4 = {
   end: 146,
   isLoop: true,
   offsetX: 0,
-  offsetY: 0,
+  offsetY: 480,
   scale: 1,
 };
 
@@ -138,14 +138,14 @@ const scene = {
       end: 13,
       isLoop: true,
       offsetX: 0,
-      offsetY: 0,
+      offsetY: 91,
       repeat: 'repeat',
       scale: 1,
     },
     's4w1-video': {
       ...videoScene4,
       offsetX: 0,
-      offsetY: 0,
+      offsetY: 480 - 150,
       scale: 0.78,
     },
   },
