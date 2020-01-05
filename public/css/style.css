@@ -44,3 +44,7 @@ time, mark, audio, video {
   margin-bottom: 10px;
   width: 100px;
 }
+#canvas-container canvas {
+  background-size: cover;
+  background-image: url('../img/leidseplein-background.jpg');
+}
