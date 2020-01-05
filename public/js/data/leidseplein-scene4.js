@@ -32,10 +32,10 @@ const defaultMesh = {
 
 const start = fps * 30;
 
-const wall1Pos = [-6, 0, -12];
-const concertPos = [-7, 0, -10];
-const modernePos = [4.5, 0, -12];
-const maisonPos = [-1, 0, -15];
+const wall1Pos = [0, 0, 0];
+const concertPos = [-21, 0, -60];
+const modernePos = [19, 0, -90];
+const maisonPos = [1, 0, -110];
 
 const scene = {
   canvases: {
@@ -47,19 +47,17 @@ const scene = {
       ...canvas,
       offsetX: 0,
       offsetY: 310,
-      scale: 30,
+      scale: 9,
       videoId: 's4-concert-video',
     },
     's4-moderne-canvas': {
       ...canvas,
-      // offsetX: 0,
-      // offsetY: 256,
-      scale: 40,
+      scale: 10,
       videoId: 's4-moderne-video',
     },
     's4-maison-canvas': {
       ...canvas,
-      scale: 40,
+      scale: 11,
       videoId: 's4-maison-video',
     },
   },
@@ -71,20 +69,20 @@ const scene = {
       uuid: 's4g-geom',
     },
     {
-      depth: 3,
-      points: [ [0, 0], [5, 0], [5, 6.5], [0, 6.5] ],
+      depth: 20,
+      points: [ [0, 0], [18, 0], [18, 15], [0, 15] ],
       uuid: 's4-concert-geom',
       type: 'CanvasExtrudeGeometry',
     },
     {
-      depth: 3,
-      points: [ [0, 0], [3, 0], [3, 6], [1, 6], [0, 5] ],
+      depth: 10,
+      points: [ [0, 0], [20, 0], [20, 16], [0, 16] ],
       uuid: 's4-moderne-geom',
       type: 'CanvasExtrudeGeometry',
-    },
+    },  
     {
-      depth: 2,
-      points: [ [0, 0], [5, 0], [5, 4], [0.5, 4], [0, 3.5] ],
+      depth: 10,
+      points: [ [0, 0], [19, 0], [19, 16], [0, 16] ],
       uuid: 's4-maison-geom',
       type: 'CanvasExtrudeGeometry',
     },
@@ -131,7 +129,7 @@ const scene = {
         canvasId: 's4-concert-canvas',
         geometry: 's4-concert-geom',
         matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...concertPos, 1],
-        name: 's4-concert-obj',
+        name: 's4-concert-obj', 
       },
       {
         // CAFE MODERNE / HEINEKENHOEK
@@ -166,13 +164,13 @@ const scene = {
       ...videoScene4,
       offsetX: 0,
       offsetY: 480 - 200,
-      scale: 0.70,
+      scale: 0.58,
     },
     's4-moderne-video': {
       ...videoScene4,
-      offsetX: 550,
+      offsetX: 520,
       offsetY: 480 - 210,
-      scale: 1.3,
+      scale: 0.9,
     },
     's4-maison-video': {
       ...videoScene4,
