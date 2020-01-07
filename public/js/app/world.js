@@ -17,6 +17,7 @@ const {
   MeshPhongMaterial,
   ObjectLoader,
   OrbitControls,
+  OrthographicCamera,
   PCFShadowMap,
   PCFSoftShadowMap,
   PerspectiveCamera,
@@ -36,7 +37,7 @@ let renderer, camera, cameraSpeed, scene, clock, stats, actions,
  */
 export function setup(data) {
   createWorld(data);
-  createLights();
+  createLights(data);
   setTimeout(() => {
     console.log('scene', scene.toJSON());
   }, 1000);
@@ -218,8 +219,8 @@ function createWorld(data) {
   cameraSpeed = speed;
 
   // RENDERER
-  renderer = new WebGLRenderer({antialias: true});
-  renderer.setClearColor(0xdeebf9);
+  renderer = new WebGLRenderer({antialias: true, alpha: true});
+  renderer.setClearColor(0xdeebf9, 0);
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(width, height);
   renderer.autoClear = false;
@@ -240,7 +241,7 @@ function createWorld(data) {
 
   // SCENE
   scene = new Scene();
-  scene.background = new Color(0xdeebf9);
+  // scene.background = new Color(0xdeebf9);
   // scene.fog = new Fog( 0x59472b, 1000, FAR );
 
   // CLOCK
@@ -269,7 +270,9 @@ function createWorld(data) {
 }
 
 // LIGHTS
-function createLights() {
+function createLights(data) {
+  const { settings = {}, } = data;
+  const { height = 360, width = 640, } = settings;
   const ambient = new AmbientLight(0xffffff, 0.6); // color = 0xffffff, intensity = 1
   scene.add(ambient);
 
@@ -282,7 +285,7 @@ function createLights() {
   light.shadow.camera.far = 500;     // default 500
   //light.shadow.camera.bottom = -10; // default 5
   //light.shadow.camera.left = -10; // default 5
-  light.shadow.camera.right = 10; // default 5
+  light.shadow.camera.right = 16; // default 5
   light.shadow.camera.top = 10; // default 5
   scene.add(light);
 }

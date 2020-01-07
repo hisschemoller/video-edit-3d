@@ -10,7 +10,7 @@ const clips = [];
 
 let frame = 0;
 let framesPerDraw = 0;
-let frameCounter = 0;
+let frameCounter = -1;
 let origin = 0;
 let position = 0;
 let nextClipTime = 0;
