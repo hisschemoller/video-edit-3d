@@ -33,6 +33,7 @@ const defaultMesh = {
 const start = fps * 30;
 
 const wall1Pos = [0, 0, 0];
+const backdropPos = [-5, 0, -120];
 const concertPos = [-21, 0, -60];
 const modernePos = [19, 0, -90];
 const maisonPos = [1, 0, -110];
@@ -40,8 +41,21 @@ const maisonPos = [1, 0, -110];
 const scene = {
   canvases: {
     's4g-canvas': {
+      // ...canvas,
+      // videoId: 's4g-video',
+      offsetX: 512,
+      offsetY: 512,
+      scale: 10,
+      width: 1024,
+      height: 1024,
+      imageId: 's4-ground-image',
+    },
+    's4-backdrop-canvas': {
       ...canvas,
-      videoId: 's4g-video',
+      offsetX: 0,
+      offsetY: 0,
+      scale: 9,
+      videoId: 's4-backdrop-video',
     },
     's4-concert-canvas': {
       ...canvas,
@@ -64,9 +78,16 @@ const scene = {
   geometries: [
     {
       depth: 0.01,
-      points: [ [0, 0], [10, 0], [10, 15], [0, 15] ],
+      // points: [ [0, 0], [50, 0], [50, 120], [0, 120] ],
+      points: [ [0, 0], [10, 0], [10, 10], [0, 10] ],
       type: 'CanvasExtrudeGeometry',
       uuid: 's4g-geom',
+    },
+    {
+      depth: 0.01,
+      points: [ [0, 0], [30, 0], [30, 8], [0, 8] ],
+      uuid: 's4-backdrop-geom',
+      type: 'CanvasExtrudeGeometry',
     },
     {
       depth: 20,
@@ -82,7 +103,7 @@ const scene = {
     },  
     {
       depth: 10,
-      points: [ [0, 0], [19, 0], [19, 16], [0, 16] ],
+      points: [ [0, 0], [18, 0], [18, 16], [0, 16] ],
       uuid: 's4-maison-geom',
       type: 'CanvasExtrudeGeometry',
     },
@@ -118,10 +139,18 @@ const scene = {
         geometry: 's4g-geom',
         layers: 1,
         material: 's4g-mat',
-        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -5,0,-2,1],
+        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -20,0,-2,1],
         receiveShadow: true,
         type: 'Mesh',
         name: 's4g-obj',
+      },
+      {
+        // ACHTERWAND
+        ...defaultMesh,
+        canvasId: 's4-backdrop-canvas',
+        geometry: 's4-backdrop-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...backdropPos, 1],
+        name: 's4-backdrop-obj', 
       },
       {
         // CONCERTGEBOUW
@@ -159,6 +188,18 @@ const scene = {
       offsetY: 91,
       repeat: 'repeat',
       scale: 1,
+    },
+    's4-ground-image': {
+      file: 'ground.jpg',
+      offsetX: 0,
+      offsetY: 0,
+      scale: 1,
+    },
+    's4-backdrop-video': {
+      ...videoScene4,
+      offsetX: 290,
+      offsetY: 480 - 200,
+      scale: 0.80,
     },
     's4-concert-video': {
       ...videoScene4,
