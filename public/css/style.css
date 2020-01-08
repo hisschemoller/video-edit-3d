@@ -17,7 +17,7 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-  background-color: #333;
+  background-color: #ddd;
   margin: 0;
 	padding: 0;
 	border: 0;
@@ -46,6 +46,7 @@ time, mark, audio, video {
   width: 100px;
 }
 #canvas-container canvas {
+  background-color: #fff;
   background-size: cover;
-  background-image: url('../img/leidseplein-background.jpg');
+  /* background-image: url('../img/leidseplein-background.jpg'); */
 }

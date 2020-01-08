@@ -72,8 +72,6 @@ function recurseObjects(objectData, allData, sceneIndex, rootObject3d) {
         } else if (imageId) {
           const canvasData = canvases[canvasId];
           const imageData = videos[canvasData.imageId];
-          console.log(canvasData);
-          console.log(imageData);
           setupImageCanvas(canvasData, imageData, texture, canvas);
         }
       }
@@ -122,13 +120,11 @@ function setupImageCanvas(canvasData, imageData, texture, canvas) {
     const img = new Image();
     img.src = `img/${file}`;
     img.onload = () => {
-      // console.log(img);
       const { height: imageHeight, width: imageWidth } = img;
       const dx = canvasOffsetX - (imageOffsetX * imageScale);
       const dy = canvasHeight - canvasOffsetY - (imageOffsetY * imageScale);
       const dWidth = imageWidth * imageScale;
       const dHeight = imageHeight * imageScale;
-      console.log(img, dx, dy, dWidth, dHeight);
       ctx.drawImage(img, dx, dy, dWidth, dHeight);
       texture.needsUpdate = true;
     };
