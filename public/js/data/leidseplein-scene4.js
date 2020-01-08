@@ -39,6 +39,14 @@ const modernePos = [19, 0, -90];
 const maisonPos = [1, 0, -110];
 
 const scene = {
+  animations: [
+    {
+      name: 'actor-animation',
+      fps: 30,
+      tracks: [
+      ],
+    },
+  ],
   canvases: {
     's4g-canvas': {
       // ...canvas,
@@ -219,7 +227,78 @@ const scene = {
       offsetY: 480 - 210,
       scale: 1.15,
     },
+    'test3d-image': {
+      file: 'testimage3d.jpg',
+      offsetX: 0,
+      offsetY: 1024,
+      scale: 1,
+    },
   },
 };
+
+
+function createActor(config) {
+  const {
+    i: sceneIndex = 0,
+    x0: fromX = -2,
+    x1: toX = 2.5,
+    z = -2,
+    t0: startTime = 0,
+    t1: endTime = 150,
+    gw: geomWidth = 1,
+    gh: geomHeight = 1.5,
+  } = config;
+  
+  const objId = config.objId || uuidv4();
+  const canvasId = uuidv4();
+  const geomId = uuidv4();
+
+  scene.animations[0].tracks.push({
+    name: `${objId}.position`,
+    type: 'vector3',
+    keys: [
+      {
+        value: [fromX, 0, z],
+        time: startTime,
+      },
+      {
+        value: [toX, 0, z],
+        time: endTime,
+      },
+    ],
+  });
+
+  scene.canvases[canvasId] = {
+    offsetX: 128,
+    offsetY: 128,
+    scale: 64,
+    width: 256,
+    height: 256,
+    imageId: 'test3d-image',
+  };
+
+  scene.geometries.push({
+    depth: 0.01,
+    points: [ [0, 0], [geomWidth, 0], [geomWidth, geomHeight], [0, geomHeight] ],
+    type: 'CanvasExtrudeGeometry',
+    uuid: geomId,
+  });
+
+  scene.object.children.push({
+    canvasId,
+    castShadow: true,
+    geometry: geomId,
+    layers: 1,
+    material: 'default-mat',
+    matrix: [1,0,0,0 ,0,1,0,0 ,0,0,1,0 ,fromX,0,z,1],
+    receiveShadow: true,
+    type: 'Mesh',
+    name: objId,
+  });
+}
+
+createActor({ gw: 0.5, gh: 2, z: -30, x0: -10, x1: 10, t0: 80, t1: 180, });
+createActor({ gw: 0.5, gh: 2, z: -50, });
+createActor({ gh: 3, t0: 150, t1: 300, z: -10, });
 
 export default scene;
