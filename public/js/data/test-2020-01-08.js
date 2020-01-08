@@ -190,4 +190,65 @@ const data = {
   },
 };
 
+
+function createActor(config) {
+  const sceneIndex = 0;
+  const x = -2;
+  const z = -2;
+  const objId = config.objId || uuidv4();
+  const canvasId = uuidv4();
+  const geomId = uuidv4();
+
+  data.score[sceneIndex].animations[0].tracks.push({
+    name: `${objId}.position`,
+    type: 'vector3',
+    keys: [
+      {
+        value: [x, 0, z],
+        time: 0.001,
+      },
+      {
+        value: [2.5, 0, z],
+        time: 125,
+      },
+      {
+        value: [x, 0, z],
+        time: 200,
+      },
+    ],
+  });
+
+  data.score[sceneIndex].canvases[canvasId] = {
+    offsetX: 128,
+    offsetY: 128,
+    scale: 64,
+    width: 256,
+    height: 256,
+    imageId: 'test3d-image',
+  };
+
+  data.score[sceneIndex].geometries.push({
+    depth: 0.01,
+    points: [ [0, 0], [1, 0], [1, 1.5], [0, 1.5] ],
+    type: 'CanvasExtrudeGeometry',
+    uuid: geomId,
+  });
+
+  data.score[sceneIndex].object.children.push({
+    canvasId,
+    castShadow: true,
+    geometry: geomId,
+    layers: 1,
+    material: 'default-mat',
+    matrix: [1,0,0,0 ,0,1,0,0 ,0,0,1,0 ,x,0,z,1],
+    receiveShadow: true,
+    type: 'Mesh',
+    name: objId,
+  });
+}
+
+createActor({
+  objId: 'actor2',
+});
+
 export default data;
