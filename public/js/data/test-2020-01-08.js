@@ -192,9 +192,17 @@ const data = {
 
 
 function createActor(config) {
-  const sceneIndex = 0;
-  const x = -2;
-  const z = -2;
+  const {
+    i: sceneIndex = 0,
+    x0: fromX = -2,
+    x1: toX = 2.5,
+    z = -2,
+    t0: startTime = 0,
+    t1: endTime = 150,
+    gw: geomWidth = 1,
+    gh: geomHeight = 1.5,
+  } = config;
+  
   const objId = config.objId || uuidv4();
   const canvasId = uuidv4();
   const geomId = uuidv4();
@@ -204,16 +212,12 @@ function createActor(config) {
     type: 'vector3',
     keys: [
       {
-        value: [x, 0, z],
-        time: 0.001,
+        value: [fromX, 0, z],
+        time: startTime,
       },
       {
-        value: [2.5, 0, z],
-        time: 125,
-      },
-      {
-        value: [x, 0, z],
-        time: 200,
+        value: [toX, 0, z],
+        time: endTime,
       },
     ],
   });
@@ -229,7 +233,7 @@ function createActor(config) {
 
   data.score[sceneIndex].geometries.push({
     depth: 0.01,
-    points: [ [0, 0], [1, 0], [1, 1.5], [0, 1.5] ],
+    points: [ [0, 0], [geomWidth, 0], [geomWidth, geomHeight], [0, geomHeight] ],
     type: 'CanvasExtrudeGeometry',
     uuid: geomId,
   });
@@ -240,15 +244,14 @@ function createActor(config) {
     geometry: geomId,
     layers: 1,
     material: 'default-mat',
-    matrix: [1,0,0,0 ,0,1,0,0 ,0,0,1,0 ,x,0,z,1],
+    matrix: [1,0,0,0 ,0,1,0,0 ,0,0,1,0 ,fromX,0,z,1],
     receiveShadow: true,
     type: 'Mesh',
     name: objId,
   });
 }
 
-createActor({
-  objId: 'actor2',
-});
+createActor({});
+createActor({ t0: 150, t1: 300});
 
 export default data;
