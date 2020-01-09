@@ -100,6 +100,24 @@ Translate
 [ 1,0,0,0 ,0,1,0,0 ,0,0,1,0 ,x,y,z,1 ]
 ```
 
+## SVG path to extrude shape
+
+- In Adobe XD create a line drawing with the pen tool, using only straight line segments.
+  - Choose File > Export... > All Artboards...
+  - Select SVG as Format.
+  - Save the SVG file.
+- Open tools.html
+  - Enter the desired heihgt of the shape in 3D units.
+  - Drag and drop the SVG file on the indicated area. 
+  - Copy the resulting coordinates string.
+- 
+
+Online SVG editors
+
+- Method Draw: https://editor.method.ac/
+- Draw SVG: https://www.drawsvg.org/drawsvg.htmlhttps://www.drawsvg.org/drawsvg.html
+
+
 ## FFMPEG
 
 Convert AVI to MP4:

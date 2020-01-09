@@ -36,7 +36,7 @@ const data = {
       fps: 30,
       width: 480,
       height: 360,
-    }
+    },
   ],
   score: [
     testScene,
