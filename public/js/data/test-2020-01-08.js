@@ -15,6 +15,14 @@ const data = {
       width: 640,
       height: 480,
     },
+    {
+      id: 'dublin',
+      url: 'frames/dublin/frame_#.png',
+      frames: 15829,
+      fps: 30,
+      width: 480,
+      height: 360,
+    },
   ],
   score: [
     {
@@ -190,7 +198,10 @@ const data = {
   },
 };
 
-
+/**
+ * Add animating object to the scene.
+ * @param {*} config 
+ */
 function createActor(config) {
   const {
     i: sceneIndex = 0,
@@ -201,13 +212,22 @@ function createActor(config) {
     t1: endTime = 150,
     gw: geomWidth = 1,
     gh: geomHeight = 1.5,
+    path,
+    videoResource,
   } = config;
   
+  const scene = data.score[sceneIndex];
   const objId = config.objId || uuidv4();
   const canvasId = uuidv4();
   const geomId = uuidv4();
 
-  data.score[sceneIndex].animations[0].tracks.push({
+  if (videoResource) {
+    const videoId = uuidv4();
+  }
+
+  const points = path ? path : [ [0, 0], [geomWidth, 0], [geomWidth, geomHeight], [0, geomHeight] ];
+
+  scene.animations[0].tracks.push({
     name: `${objId}.position`,
     type: 'vector3',
     keys: [
@@ -222,7 +242,7 @@ function createActor(config) {
     ],
   });
 
-  data.score[sceneIndex].canvases[canvasId] = {
+  scene.canvases[canvasId] = {
     offsetX: 128,
     offsetY: 128,
     scale: 64,
@@ -231,14 +251,26 @@ function createActor(config) {
     imageId: 'test3d-image',
   };
 
-  data.score[sceneIndex].geometries.push({
+  if (videoId) {
+    scene.videos[videoId] = {
+      end: 146,
+          isLoop: true,
+          offsetX: 0,
+          offsetY: 480,
+          resourceId: 'leidseplein1',
+          scale: 1,
+          start: 0,
+    };
+  }
+
+  scene.geometries.push({
     depth: 0.01,
-    points: [ [0, 0], [geomWidth, 0], [geomWidth, geomHeight], [0, geomHeight] ],
+    points,
     type: 'CanvasExtrudeGeometry',
     uuid: geomId,
   });
 
-  data.score[sceneIndex].object.children.push({
+  scene.object.children.push({
     canvasId,
     castShadow: true,
     geometry: geomId,
@@ -251,7 +283,11 @@ function createActor(config) {
   });
 }
 
-createActor({});
-createActor({ t0: 150, t1: 300});
+// createActor({});
+// createActor({ t0: 150, t1: 300});
+// createActor({ t0: 75, t1: 225, 
+//   path: [[1.3045529541704735,0],[1.5390866820295348,1.1103535732304297],[1.0277213412056672,2],[0.07442355154969524,1.2938353082345884]], 
+// });`
+createActor({ videoResource: 'dublin', });
 
 export default data;
