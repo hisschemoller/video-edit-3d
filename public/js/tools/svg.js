@@ -19,7 +19,7 @@ dropEl.addEventListener('drop', e => {
           const start = { x: 0, y: 0 };
           let points = absPath.reduce((acc, item, index) => {
             const [ command, val1, val2, ] = item;
-            if (isNaN(val1)) {
+            if (isNaN(val1) && command !== 'Z') {
               return acc;
             }
             switch (command) {
@@ -28,17 +28,23 @@ dropEl.addEventListener('drop', e => {
                   start.x = val1;
                   start.y = val2;
                 }
-                return acc;
+                console.log(command, val1, val2);
+                return [ ...acc, [val1, val2] ];
               case 'L':
+                console.log(command, val1 - start.x, val2 - start.y);
                 return [ ...acc, [ val1 - start.x, val2 - start.y]];
               case 'H':
-                const prev = absPath[index - 1];
-                const prevVal = prev.length === 3 ? prev[2] : prev[1];
-                return [ ...acc, [ val1 - start.x, prevVal - start.y]];
+                // const prev = absPath[index - 1];
+                // const prevVal = prev.length === 3 ? prev[2] : prev[1];
+                const prevY = acc[acc.length - 1][1];
+                console.log(command, val1 - start.x, prevY);
+                return [ ...acc, [ val1 - start.x, prevY]];
               case 'V':
-                return [ ...acc, [ absPath[index - 1][1] - start.x, val1 - start.y]];
+                const prevX = acc[acc.length - 1][0];
+                console.log(command, prevX, val1 - start.y);
+                return [ ...acc, [prevX, val1 - start.y]];
               // case 'Z':
-              //   console.log(acc[0]);
+              //   console.log(command, acc[0][0], acc[0][1]);
               //   return [ ...acc, [ ...acc[0] ] ];
               default:
                 return acc;
