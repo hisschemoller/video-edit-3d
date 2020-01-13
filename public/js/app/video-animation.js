@@ -10,8 +10,8 @@
 export function create(textureCanvas, data, resources, texture, fps) {
   const { canvasData, flipHorizontal = false, videoData, } = data;
   const { 
-    offsetX: canvasOffsetX, 
-    offsetY: canvasOffsetY,
+    offsetX: canvasOffsetX = 0, 
+    offsetY: canvasOffsetY = 0,
     height: canvasHeight,
     width: canvasWidth,
   } = canvasData;
@@ -42,21 +42,22 @@ export function create(textureCanvas, data, resources, texture, fps) {
       // video resource
       resource = resources.find(resource => resource.id === resourceId);
       const {
-        width: videoWidth, 
-        height: videoHeight, 
-        fps: videoFPS = 30, frames, url, 
+        width: resourceWidth, 
+        height: resourceHeight, 
+        fps: resourceFPS = 30,
+        frames, url, 
       } = resource;
       imgURLPrefix = url.split('#')[0];
       imgURLSuffix = url.split('#')[1];
-      imgURLNr = Math.floor(start * videoFPS) + 1;
+      imgURLNr = Math.floor(start * resourceFPS) + 1;
       imgURLNrFirst = imgURLNr;
-      imgURLNrLast = end ? Math.floor(end * videoFPS) : frames;
-      imgURLNrIncrease = videoFPS / fps;
+      imgURLNrLast = end ? Math.floor(end * resourceFPS) : frames;
+      imgURLNrIncrease = resourceFPS / fps;
       
       dx = canvasOffsetX - (videoOffsetX * videoScale);
       dy = canvasHeight - canvasOffsetY - (videoOffsetY * videoScale);
-      dWidth = videoWidth * videoScale;
-      dHeight = videoHeight * videoScale;
+      dWidth = resourceWidth * videoScale;
+      dHeight = resourceHeight * videoScale;
 
       img = new Image();
       loadImage();

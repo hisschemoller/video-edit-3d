@@ -111,12 +111,15 @@ function setupImageCanvas(canvasData, imageData, texture, canvas) {
       offsetX: canvasOffsetX = 0, 
       offsetY: canvasOffsetY = 0, 
       width: canvasWidth,
-      height: canvasHeight, } = canvasData;
+      height: canvasHeight, 
+    } = canvasData;
     const { 
       offsetX: imageOffsetX = 0, 
       offsetY: imageOffsetY = 0,
       scale: imageScale = 1,
-      file } = imageData;
+      file,
+    } = imageData;
+    
     const img = new Image();
     img.src = `img/${file}`;
     img.onload = () => {
