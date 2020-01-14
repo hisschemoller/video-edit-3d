@@ -187,3 +187,20 @@ Add wav audio to mp4 video
 ffmpeg -i input_vid.mp4 -i input_audio.wav -vcodec copy output.mp4
 ffmpeg -i input_vid.mp4 -i input_audio.wav -vcodec libx264 -acodec libmp3lame output.mp4
 ```
+
+## Werking
+
+Video en afbeelding bestanden
+
+- cropX, cropY, cropWidth, cropHeight
+  - Ik wil in een afbeelding of video een x, y, width en height aangeven. Dat is het 'venster' dat op het canvas afgebeeld moet worden.
+- scale
+  - Hoeveel de afbeelding geschaald wordt. 2 betekent dat 1 afbeelding pixel 2 canvas pixels in beslag neemt, dubbele groote dus.
+- offsetX, offsetY
+  - Positie van de afbeelding op het canvas.
+
+Video specifiek
+
+- start, end
+- resourceId
+- isLoop

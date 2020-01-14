@@ -19,6 +19,8 @@ export function create(textureCanvas, data, resources, texture, fps) {
     offsetX: videoOffsetX = 0, 
     offsetY: videoOffsetY = 0,
     scale: videoScale = 1,
+    cropWidth = 0,
+    cropHeight = 0,
     resourceId, start = 0, end, isLoop = false, repeat = null, 
   } = videoData;
 
@@ -31,6 +33,10 @@ export function create(textureCanvas, data, resources, texture, fps) {
     imgURLPrefix,
     imgURLSuffix,
     resource,
+    sx,
+    sy,
+    sWidth,
+    sHeight,
     dx,
     dy,
     dWidth,
@@ -53,11 +59,15 @@ export function create(textureCanvas, data, resources, texture, fps) {
       imgURLNrFirst = imgURLNr;
       imgURLNrLast = end ? Math.floor(end * resourceFPS) : frames;
       imgURLNrIncrease = resourceFPS / fps;
+
+      if (cropWidth > 0) {
+        
+      }
       
       dx = canvasOffsetX - (videoOffsetX * videoScale);
       dy = canvasHeight - canvasOffsetY - (videoOffsetY * videoScale);
-      dWidth = resourceWidth * videoScale;
-      dHeight = resourceHeight * videoScale;
+      dWidth = (cropWidth > 0 ? cropWidth : resourceWidth) * videoScale;
+      dHeight = (cropHeight > 0 ? cropHeight : resourceHeight) * videoScale;
 
       img = new Image();
       loadImage();

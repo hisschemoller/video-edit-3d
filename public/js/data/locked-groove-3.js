@@ -26,7 +26,19 @@ const data = {
           width: 1024,
           height: 1024,
           // imageId: 'test-frame',
-          videoId: 'test3d-video',
+          // videoId: 'test3d-video',
+          clips: [
+            {
+              id: 'test3d-video',
+              offsetX: 0,
+              offsetY: 0,
+            },
+            {
+              id: 'test3d-video-right',
+              offsetX: 0,
+              offsetY: 0,
+            },
+          ],
         },
       },
       clipId: uuidv4(),
@@ -86,11 +98,19 @@ const data = {
         'test3d-video': {
           end: 146,
           isLoop: true,
-          offsetX: 0,
-          offsetY: 360,
           resourceId: 'dublin',
           scale: 1024 / 480,
           start: 0,
+
+          // how much the video top-left is offset from the shape bottom-left
+          // offsetX: 0,
+          // offsetY: 360,
+
+          // crop x, y, width and height
+          cropX: 0,
+          cropY: 0,
+          cropWidth: 480 / 2,
+          cropHeight: 360,
         },
       },
     }
