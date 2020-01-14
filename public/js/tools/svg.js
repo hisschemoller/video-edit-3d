@@ -12,10 +12,10 @@ dropEl.addEventListener('drop', e => {
         const reader = new FileReader();
         reader.onload = e => {
           const fileContent = e.target.result;
-          console.log('file', e.target.result);
+          console.log('fileContent', e.target.result);
           const parsed = Snap.parse(e.target.result);
           const absPath = Snap.path.toAbsolute(fileContent);
-          console.log('absPath', absPath);
+          console.table(absPath);
           const start = { x: 0, y: 0 };
           let points = absPath.reduce((acc, item, index) => {
             const [ command, val1, val2, ] = item;
@@ -27,40 +27,32 @@ dropEl.addEventListener('drop', e => {
                 if (start.x === 0 && start.y === 0) {
                   start.x = val1;
                   start.y = val2;
+                  return [ ...acc, [val1, val2] ];
                 }
-                console.log(command, val1, val2);
-                return [ ...acc, [val1, val2] ];
+                return [ ...acc ];
               case 'L':
-                console.log(command, val1 - start.x, val2 - start.y);
-                return [ ...acc, [ val1 - start.x, val2 - start.y]];
+                return [ ...acc, [ val1, val2]];
               case 'H':
-                // const prev = absPath[index - 1];
-                // const prevVal = prev.length === 3 ? prev[2] : prev[1];
                 const prevY = acc[acc.length - 1][1];
-                console.log(command, val1 - start.x, prevY);
-                return [ ...acc, [ val1 - start.x, prevY]];
+                return [ ...acc, [ val1, prevY]];
               case 'V':
                 const prevX = acc[acc.length - 1][0];
-                console.log(command, prevX, val1 - start.y);
-                return [ ...acc, [prevX, val1 - start.y]];
+                return [ ...acc, [prevX, val1]];
               // case 'Z':
-              //   console.log(command, acc[0][0], acc[0][1]);
               //   return [ ...acc, [ ...acc[0] ] ];
               default:
                 return acc;
             }
           }, []);
           points = invertVertical(points);
-          console.log('points', points);
           let boundingBox = getBoundingBox(points);
           points = scale(points, heightEl.value / boundingBox.height);
           document.getElementById('scale_info').innerHTML = `scaled to ${boundingBox.height / heightEl.value} pixels on 1 3D unit`;
           boundingBox = getBoundingBox(points);
-          // points = flipVertical(points, boundingBox);
-          console.log(boundingBox);
+          console.log('boundingBox', boundingBox);
           points = translateY(points, boundingBox.bottom);
-
-          console.log('points', points);
+          points = round(points)
+          console.table(points);
           resultEl.innerHTML = JSON.stringify(points);
         };
         reader.readAsText(file);
@@ -106,4 +98,6 @@ function translateY(points, distance) {
   return points.map(point => [point[0], point[1] - distance]);
 }
 
-
+function round(points, precision = 100000) {
+  return points.map(point => [Math.round(point[0] * precision) / precision, Math.round(point[1] * precision) / precision]);
+}
