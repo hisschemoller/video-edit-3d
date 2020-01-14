@@ -41,15 +41,15 @@ const data = {
                 },
                 {
                   value: [0.5, 0, -3.3],
-                  time: 50,
+                  time: 75,
                 },
                 {
-                  value: [2.5, 0, 3.3],
-                  time: 150,
+                  value: [2.0, 0, 3.3],
+                  time: 200,
                 },
                 {
                   value: [-2, 0, 0],
-                  time: 250,
+                  time: 350,
                 },
               ],
             }
@@ -66,21 +66,22 @@ const data = {
           imageId: 's4-ground-image',
         },
         'box1-canvas': {
-          offsetX: 256,
-          offsetY: 256,
-          scale: 128,
+          offsetX: 0,
+          offsetY: 0,
+          scale: 512,
           width: 512,
           height: 512,
-          // videoId: 'leidseplein1-video',
-          imageId: 'test3d-image',
+          // imageId: 'test3d-image',
+          videoId: 'test3d-video',
         },
         'actor-canvas': {
-          offsetX: 128,
-          offsetY: 128,
-          scale: 64,
+          offsetX: 0,
+          offsetY: 0,
+          scale: 128,
           width: 256,
           height: 256,
-          imageId: 'test3d-image',
+          // imageId: 'test3d-image',
+          videoId: 'test3d-video',
         },
       },
       clipId: uuidv4(),
@@ -188,6 +189,15 @@ const data = {
           offsetY: 1024,
           scale: 1,
         },
+        'test3d-video': {
+          end: 146,
+          isLoop: true,
+          offsetX: 0,
+          offsetY: 360,
+          resourceId: 'dublin',
+          scale: 512 / 360,
+          start: 0,
+        },
       }
     },
   ],
@@ -218,15 +228,12 @@ function createActor(config) {
   
   const scene = data.score[sceneIndex];
   const objId = config.objId || uuidv4();
-  const canvasId = uuidv4();
   const geomId = uuidv4();
 
-  if (videoResource) {
-    const videoId = uuidv4();
-  }
-
+  // points are custom path or else rectangle
   const points = path ? path : [ [0, 0], [geomWidth, 0], [geomWidth, geomHeight], [0, geomHeight] ];
 
+  // add the animation
   scene.animations[0].tracks.push({
     name: `${objId}.position`,
     type: 'vector3',
@@ -242,25 +249,34 @@ function createActor(config) {
     ],
   });
 
+  // add canvas
+  const canvasId = uuidv4();
   scene.canvases[canvasId] = {
     offsetX: 128,
     offsetY: 128,
     scale: 64,
     width: 256,
     height: 256,
-    imageId: 'test3d-image',
   };
 
-  if (videoId) {
+  // canvas shows video or image
+  if (videoResource) {
+    const videoId = uuidv4();
+
+    // add video
     scene.videos[videoId] = {
       end: 146,
-          isLoop: true,
-          offsetX: 0,
-          offsetY: 480,
-          resourceId: 'leidseplein1',
-          scale: 1,
-          start: 0,
+      isLoop: true,
+      offsetX: 0,
+      offsetY: 480,
+      resourceId: videoResource,
+      scale: 1,
+      start: 0,
     };
+
+    scene.canvases[canvasId].videoId = videoId;
+  } else {
+    scene.canvases[canvasId].imageId = 'test3d-image';
   }
 
   scene.geometries.push({
@@ -288,6 +304,6 @@ function createActor(config) {
 // createActor({ t0: 75, t1: 225, 
 //   path: [[1.3045529541704735,0],[1.5390866820295348,1.1103535732304297],[1.0277213412056672,2],[0.07442355154969524,1.2938353082345884]], 
 // });`
-createActor({ videoResource: 'dublin', });
+// createActor({ videoResource: 'dublin', t0: 75, t1: 225, });
 
 export default data;
