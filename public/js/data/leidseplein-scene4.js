@@ -1,5 +1,6 @@
 import { musicToTime, uuidv4, } from '../app/util.js';
 import { fps, } from './leidseplein-shared.js';
+import createActor from '../app/actor.js';
 
 const canvas = {
   offsetX: 256,
@@ -236,69 +237,14 @@ const scene = {
   },
 };
 
-
-function createActor(config) {
-  const {
-    i: sceneIndex = 0,
-    x0: fromX = -2,
-    x1: toX = 2.5,
-    z = -2,
-    t0: startTime = 0,
-    t1: endTime = 150,
-    gw: geomWidth = 1,
-    gh: geomHeight = 1.5,
-  } = config;
-  
-  const objId = config.objId || uuidv4();
-  const canvasId = uuidv4();
-  const geomId = uuidv4();
-
-  scene.animations[0].tracks.push({
-    name: `${objId}.position`,
-    type: 'vector3',
-    keys: [
-      {
-        value: [fromX, 0, z],
-        time: startTime,
-      },
-      {
-        value: [toX, 0, z],
-        time: endTime,
-      },
-    ],
-  });
-
-  scene.canvases[canvasId] = {
-    offsetX: 128,
-    offsetY: 128,
-    scale: 64,
-    width: 256,
-    height: 256,
-    imageId: 'test3d-image',
-  };
-
-  scene.geometries.push({
-    depth: 0.01,
-    points: [ [0, 0], [geomWidth, 0], [geomWidth, geomHeight], [0, geomHeight] ],
-    type: 'CanvasExtrudeGeometry',
-    uuid: geomId,
-  });
-
-  scene.object.children.push({
-    canvasId,
-    castShadow: true,
-    geometry: geomId,
-    layers: 1,
-    material: 'default-mat',
-    matrix: [1,0,0,0 ,0,1,0,0 ,0,0,1,0 ,fromX,0,z,1],
-    receiveShadow: true,
-    type: 'Mesh',
-    name: objId,
-  });
-}
-
-createActor({ gw: 0.5, gh: 2, z: -30, x0: -10, x1: 10, t0: 80, t1: 180, });
-createActor({ gw: 0.5, gh: 2, z: -50, });
-createActor({ gh: 3, t0: 150, t1: 300, z: -10, });
+// FIETSER
+createActor(scene, {
+  gw: 5, gh: 4, z: -30, x0: -20, x1: 10, t0: 0, t1: 30 * 5.5,
+  cSc: 50,
+  vOx: 0, vOy: 323, vOx2: 640, vSc: 2, vt0: 17.5, vt1: 17.5 + 5.5,
+  videoResourceId: 'leidseplein4',
+});
+// createActor({ gw: 0.5, gh: 2, z: -50, });
+// createActor({ gh: 3, t0: 150, t1: 300, z: -10, });
 
 export default scene;
