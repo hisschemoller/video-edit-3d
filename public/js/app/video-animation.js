@@ -16,8 +16,9 @@ export function create(textureCanvas, data, resources, texture, fps) {
     width: canvasWidth,
   } = canvasData;
   const {  
-    offsetX: videoOffsetX = 0, 
+    offsetX: videoOffsetStartX = 0, 
     offsetY: videoOffsetY = 0,
+    offsetX2: videoOffsetEndX = videoData.offsetX,
     scale: videoScale = 1,
     resourceId, start = 0, end, isLoop = false, repeat = null, 
   } = videoData;
@@ -35,6 +36,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
     dy,
     dWidth,
     dHeight,
+    isAnimating = videoOffsetStartX !== videoOffsetEndX,
 
     init = function() {
       textureCtx = textureCanvas.getContext('2d');
@@ -54,13 +56,19 @@ export function create(textureCanvas, data, resources, texture, fps) {
       imgURLNrLast = end ? Math.floor(end * resourceFPS) : frames;
       imgURLNrIncrease = resourceFPS / fps;
       
-      dx = canvasOffsetX - (videoOffsetX * videoScale);
+      dx = canvasOffsetX - (videoOffsetStartX * videoScale);
       dy = canvasHeight - canvasOffsetY - (videoOffsetY * videoScale);
       dWidth = resourceWidth * videoScale;
       dHeight = resourceHeight * videoScale;
 
       img = new Image();
       loadImage();
+    },
+
+    updateOffset = function() {
+      const positionNormalized = (imgURLNr - imgURLNrFirst) / (imgURLNrLast - imgURLNrFirst);
+      const videoOffsetX = videoOffsetStartX + ((videoOffsetEndX - videoOffsetStartX) * positionNormalized);
+      dx = canvasOffsetX - (videoOffsetX * videoScale);
     },
 
     /**
@@ -96,6 +104,9 @@ export function create(textureCanvas, data, resources, texture, fps) {
         }
       }
       
+      if (isAnimating) {
+        updateOffset();
+      }
       loadImage();
     };
     
