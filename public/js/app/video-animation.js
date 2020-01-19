@@ -36,7 +36,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
     dy,
     dWidth,
     dHeight,
-    isAnimating = videoOffsetStartX !== videoOffsetEndX,
+    isAnimated = videoOffsetStartX !== videoOffsetEndX,
 
     init = function() {
       textureCtx = textureCanvas.getContext('2d');
@@ -104,7 +104,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
         }
       }
       
-      if (isAnimating) {
+      if (isAnimated) {
         updateOffset();
       }
       loadImage();

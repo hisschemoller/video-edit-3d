@@ -48,5 +48,5 @@ time, mark, audio, video {
 #canvas-container canvas {
   background-color: #fff;
   background-size: cover;
-  /* background-image: url('../img/leidseplein-background.jpg'); */
+  background-image: url('../img/leidseplein-background.jpg');
 }

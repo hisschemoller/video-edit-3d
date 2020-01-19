@@ -107,10 +107,10 @@ Translate
   - Select SVG as Format.
   - Save the SVG file.
 - Open tools.html
-  - Enter the desired heihgt of the shape in 3D units.
+  - Enter the desired height of the shape in 3D units.
   - Drag and drop the SVG file on the indicated area. 
   - Copy the resulting coordinates string.
-- 
+- Paste the coordinates array in the CanvasExtrudeGeometry points property.
 
 Online SVG editors
 

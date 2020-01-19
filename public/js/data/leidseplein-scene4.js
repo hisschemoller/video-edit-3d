@@ -42,8 +42,9 @@ const maisonPos = [1, 0, -110];
 const scene = {
   animations: [
     {
-      name: 'actor-animation',
       fps: 30,
+      loop: false,
+      name: 'actor-animation',
       tracks: [
       ],
     },
@@ -52,9 +53,9 @@ const scene = {
     's4g-canvas': {
       // ...canvas,
       // videoId: 's4g-video',
-      offsetX: 512,
-      offsetY: 512,
-      scale: 10,
+      offsetX: 0,
+      offsetY: 0,
+      scale: 1024 / 40,
       width: 1024,
       height: 1024,
       imageId: 's4-ground-image',
@@ -88,7 +89,7 @@ const scene = {
     {
       depth: 0.01,
       // points: [ [0, 0], [50, 0], [50, 120], [0, 120] ],
-      points: [ [0, 0], [10, 0], [10, 10], [0, 10] ],
+      points: [ [0, 0], [40, 0], [40, 40], [0, 40] ],
       type: 'CanvasExtrudeGeometry',
       uuid: 's4g-geom',
     },
@@ -106,7 +107,7 @@ const scene = {
     },
     {
       depth: 10,
-      points: [ [0, 0], [20, 0], [20, 16], [0, 16] ],
+      points: [ [0, 0], [12, 0], [12, 16], [0, 16] ],
       uuid: 's4-moderne-geom',
       type: 'CanvasExtrudeGeometry',
     },  
@@ -148,7 +149,7 @@ const scene = {
         geometry: 's4g-geom',
         layers: 1,
         material: 's4g-mat',
-        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -20,0,-2,1],
+        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -20,0,-10,1],
         receiveShadow: true,
         type: 'Mesh',
         name: 's4g-obj',
@@ -199,9 +200,9 @@ const scene = {
       scale: 1,
     },
     's4-ground-image': {
-      file: 'ground.jpg',
+      file: 'leidseplein-ground.jpg',
       offsetX: 0,
-      offsetY: 0,
+      offsetY: 1024,
       scale: 1,
     },
     's4-backdrop-video': {
@@ -239,12 +240,13 @@ const scene = {
 
 // FIETSER
 createActor(scene, {
-  gw: 5, gh: 4, z: -30, x0: -20, x1: 10, t0: 0, t1: 30 * 5.5,
+  gw: 5, gh: 4, z: -30, x0: -20, x1: 12, t0: 0 * fps, t1: fps * 5.5, // measures in frames
   cSc: 50,
-  vOx: 0, vOy: 323, vOx2: 640, vSc: 2, vt0: 17.5, vt1: 17.5 + 5.5,
+  vOx: 0, vOy: 313, vOx2: 640, vSc: 2, vt0: 17.5, vt1: 17.5 + 5.5, // measured in seconds
   videoResourceId: 'leidseplein4',
 });
-// createActor({ gw: 0.5, gh: 2, z: -50, });
+
+// createActor(scene, { gw: 0.5, gh: 2, z: -50, t0: 150, t1: 300, });
 // createActor({ gh: 3, t0: 150, t1: 300, z: -10, });
 
 export default scene;

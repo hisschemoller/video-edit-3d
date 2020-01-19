@@ -130,10 +130,14 @@ export function loadScene(allData, sceneIndex) {
     // start animation
     if (model.animations && model.animations.length) {
       const mixer = new AnimationMixer(model);
+      mixer.addEventListener('loop', e => { console.log('loop', e)});
+      mixer.addEventListener('finished', e => { console.log('finished', e)});
       const animationAction = mixer.clipAction(model.animations[0]);
       animationAction.setLoop(sceneData.animations[0].loop);
       animationAction.play();
       mixers.push([mixer, sceneData.clipId]);
+      console.log('AnimationMixer', mixer);
+      // console.log('clipAction', animationAction);
     }
 
     // programmed animation:

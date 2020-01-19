@@ -89,8 +89,8 @@ export default function createActor(scene, config) {
     layers: 1,
     material: 'default-mat',
     matrix: [1,0,0,0 ,0,1,0,0 ,0,0,1,0 ,fromX,0,z,1],
+    name: objId,
     receiveShadow: true,
     type: 'Mesh',
-    name: objId,
   });
 }
