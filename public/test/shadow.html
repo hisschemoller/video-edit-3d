@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>shadow</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<!-- <link rel="stylesheet" href="css/style.css"> -->
+  </head>
+  <body>
+		<div id="canvas-container"></div>
+		<p>This example shows how to move a directional light and its shadow camera, so that only the part of interest in a large scene will render shadows, and these shadows can be of high quality.<br />
+		Example found here:<br />
+		<a href="https://stackoverflow.com/questions/59741501/wandering-shadows-when-directionallight-is-attached-to-player-object">https://stackoverflow.com/questions/59741501/wandering-shadows-when-directionallight-is-attached-to-player-object</a></p>
+    <script src="../js/lib/three.js"></script>
+		<script src="../js/lib/Detector.js"></script>
+		<script src="../js/lib/OrbitControls.js"></script>
+		<script src="../js/lib/SVGLoader.js"></script>
+		<script src="../js/lib/TransformControls.js"></script>
+		<script src="../js/lib/stats.min.js"></script>
+		<script src="shadow.js" type="module"></script>
+	</body>
+</html>
