@@ -281,27 +281,21 @@ function createLights(data) {
   const ambient = new AmbientLight(0xffffff, 0.6); // color = 0xffffff, intensity = 1
   scene.add(ambient);
 
-  const d = 10;
+  const d = 5;
   const light = new DirectionalLight(0xffffff, 1); // color = 0xffffff, intensity = 1
   light.position.set(6, 7, 5);
   light.castShadow = true;
-  // light.shadowCameraVisible = true;
-  light.shadow.mapSize.width = 1024;  // default 512
-  light.shadow.mapSize.height = 1024; // default 512
+  light.shadow.mapSize.width = 512;  // default 512
+  light.shadow.mapSize.height = 512; // default 512
   light.shadow.camera.near = 0.5;    // default 0.5
-  light.shadow.camera.far = 100;     // default 500
+  light.shadow.camera.far = 500;     // default 500
   light.shadow.camera.bottom = -d; // default 5
   light.shadow.camera.left = -d; // default 5
   light.shadow.camera.right = d; // default 5
   light.shadow.camera.top = d; // default 5
-  // light.shadow.camera.position.z = -30;
-  // light.shadow.camera.position.x = -300;
-  // light.shadow.camera.setViewOffset();
-  light.shadow.camera.updateProjectionMatrix();
   scene.add(light);
-  console.log('camera.view', light.shadow.camera.view);
 
-  var helper = new THREE.CameraHelper(light.shadow.camera);
+  const helper = new CameraHelper(light.shadow.camera);
   scene.add(helper);
 }
 
