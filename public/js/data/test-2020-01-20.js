@@ -101,15 +101,11 @@ const data = {
 };
 
 // 30 SECONDS
-const animStart = 2;
-const videoStart = 0;
-const videoDuration = 900 / 30;
-const videoAdjustedStart = videoDuration - (animStart % videoDuration);
-console.log('videoAdjustedStart', videoAdjustedStart);
+// video eerst stilstaand 90 - 150, dan animerend loop 0 - 150
 createActor(data.score[0], {
-  gw: 1.6, gh: 0.9, z: -4, x0: -4, x1: 4, t0: 2 * data.settings.fps, t1: data.settings.fps * 7, // measures in frames
+  gw: 1.6, gh: 0.9, z: -9, x0: -4, x1: 4, t0: 2 * 30, t1: 7 * 30, // measured in frames
   cSc: 320, cOf: 0,
-  vOx: 0, vOy: 360, vOx2: 0, vSc: 0.8, vt0: videoAdjustedStart, vt1: videoDuration, // measured in seconds
+  vOx: 0, vOy: 360, vOx2: 0, vSc: 0.8, vt0: 0, vt1: 5, vt0i: 3, // measured in seconds
   videoResourceId: '30seconds',
 });
 

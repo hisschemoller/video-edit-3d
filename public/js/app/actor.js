@@ -2,7 +2,8 @@ import { musicToTime, uuidv4, } from '../app/util.js';
 
 /**
  * Add animating object to the scene.
- * @param {Object} scene
+ * @param {Object} data
+ * @param {Number} sceneIndex
  * @param {Object} config 
  */
 export default function createActor(scene, config) {
@@ -15,8 +16,8 @@ export default function createActor(scene, config) {
     gw: geomWidth = 1,
     gh: geomHeight = 1.5,
     cSz: canvasSize = 512, cSc: canvasScale = 256, cOf: canvasOffset = 128,
-    vt0: videoStartTime = 0, vt1: videoEndTime = 100, vSc: videoScale = 1, 
-    vOx: videoOffsetX = 0, vOy: videoOffsetY = 0, vOx2: videoOffsetX2 = 0, 
+    vt0: videoStartTime = 0, vt1: videoEndTime, vt0i: videoStartTimeInitial = 0, vSc: videoScale = 1, 
+    vOx: videoOffsetX = 0, vOy: videoOffsetY = 0, vOx2: videoOffsetX2 = 0,
     path,
     videoResourceId,
   } = config;
@@ -68,6 +69,7 @@ export default function createActor(scene, config) {
       resourceId: videoResourceId,
       scale: videoScale,
       start: videoStartTime,
+      startInitial: videoStartTimeInitial,
     };
 
     scene.canvases[canvasId].videoId = videoId;

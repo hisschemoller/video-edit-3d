@@ -8,7 +8,10 @@
  * @param {Number} fps FPS of the app player.
  */
 export function create(textureCanvas, data, resources, texture, fps) {
-  const { canvasData, flipHorizontal = false, videoData, } = data;
+  const {
+    canvasData,
+    flipHorizontal = false,
+    videoData, } = data;
   const { 
     offsetX: canvasOffsetX = 0, 
     offsetY: canvasOffsetY = 0,
@@ -20,7 +23,12 @@ export function create(textureCanvas, data, resources, texture, fps) {
     offsetY: videoOffsetY = 0,
     offsetX2: videoOffsetEndX = videoData.offsetX,
     scale: videoScale = 1,
-    resourceId, start = 0, end, isLoop = false, repeat = null, 
+    resourceId,
+    startInitial = 0,
+    start = 0, 
+    end, 
+    isLoop = false, 
+    repeat = null, 
   } = videoData;
 
   let textureCtx,
@@ -51,8 +59,8 @@ export function create(textureCanvas, data, resources, texture, fps) {
       } = resource;
       imgURLPrefix = url.split('#')[0];
       imgURLSuffix = url.split('#')[1];
-      imgURLNr = Math.floor(start * resourceFPS) + 1;
-      imgURLNrFirst = imgURLNr;
+      imgURLNr = Math.floor(startInitial * resourceFPS) + 1;
+      imgURLNrFirst = Math.floor(start * resourceFPS) + 1;
       imgURLNrLast = end ? Math.floor(end * resourceFPS) : frames;
       imgURLNrIncrease = resourceFPS / fps;
       
