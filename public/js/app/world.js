@@ -16,6 +16,7 @@ const {
   InterpolateLinear,
   Mesh,
   MeshPhongMaterial,
+  Object3D,
   ObjectLoader,
   OrbitControls,
   OrthographicCamera,
@@ -29,7 +30,7 @@ const {
   VectorKeyframeTrack,
   WebGLRenderer } = THREE;
 
-let renderer, camera, cameraSpeed, scene, clock, stats, actions,
+let renderer, camera, directionalLightOffset, light, lightTarget, cameraSpeed, scene, clock, stats, actions,
   mixers = [];
 
 /**
@@ -276,14 +277,22 @@ function createWorld(data) {
 
 // LIGHTS
 function createLights(data) {
-  const { settings = {}, } = data;
-  const { height = 360, width = 640, } = settings;
+  directionalLightOffset = new Vector3(6, 7, 5);
+
+  // AMBIENT
   const ambient = new AmbientLight(0xffffff, 0.6); // color = 0xffffff, intensity = 1
   scene.add(ambient);
 
+  // LIGHT_TARGET
+  lightTarget = new Object3D();
+  lightTarget.position.set(0, 0, -10);
+  scene.add(lightTarget); 
+
+  // DIRECTIONAL
   const d = 5;
-  const light = new DirectionalLight(0xffffff, 1); // color = 0xffffff, intensity = 1
-  light.position.set(6, 7, 5);
+  light = new DirectionalLight(0xffffff, 1); // color = 0xffffff, intensity = 1
+  light.position.copy(directionalLightOffset);
+  light.target = lightTarget;
   light.castShadow = true;
   light.shadow.mapSize.width = 512;  // default 512
   light.shadow.mapSize.height = 512; // default 512
@@ -295,6 +304,7 @@ function createLights(data) {
   light.shadow.camera.top = d; // default 5
   scene.add(light);
 
+  // HELPER
   const helper = new CameraHelper(light.shadow.camera);
   scene.add(helper);
 }
@@ -319,7 +329,14 @@ function createGround(settings) {
 export function animate() {
   const deltaTime = clock.getDelta();
   mixers.forEach(mixer => mixer[0].update(deltaTime));
+  
   camera.translateZ(cameraSpeed);
+  lightTarget.translateZ(cameraSpeed);
+
+  // target.position.z -= 0.01;
+  light.position.copy(lightTarget.position);
+  light.position.add(directionalLightOffset);
+  
   stats.update();
   renderer.render(scene, camera);
 }

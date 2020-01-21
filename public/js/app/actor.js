@@ -2,9 +2,8 @@ import { musicToTime, uuidv4, } from '../app/util.js';
 
 /**
  * Add animating object to the scene.
- * @param {Object} data
- * @param {Number} sceneIndex
- * @param {Object} config 
+ * @param {Object} scene
+ * @param {Object} config
  */
 export default function createActor(scene, config) {
   const {

@@ -76,7 +76,7 @@ light.shadow.camera.right = d; // default 5
 light.shadow.camera.top = d; // default 5
 scene.add(light);
 
-// TARGET
+// LIGHT_TARGET
 const target = new Object3D();
 target.position.set(0, 0, -10);
 scene.add(target); 

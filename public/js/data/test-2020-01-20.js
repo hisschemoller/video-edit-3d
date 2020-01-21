@@ -3,7 +3,7 @@ import createActor from '../app/actor.js';
 
 const data = {
   camera: {
-    speed: 0,
+    speed: -0.01,
     position: [0, 2, 10],
     target: [0, 2, 0],
   },
