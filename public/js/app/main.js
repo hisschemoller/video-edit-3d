@@ -7,7 +7,7 @@ import dataLockedGroove3 from '../data/locked-groove-3.js';
 import dataTestSvg from '../data/test-svg.js';
 
 setup({
-  data: dataTest3,
+  data: dataLeidseplein,
   isCapture: false,
-  startScene: 0,
+  startScene: 3,
 });

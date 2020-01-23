@@ -15,7 +15,7 @@ export default function createActor(scene, config) {
     gw: geomWidth = 1,
     gh: geomHeight = 1.5,
     cSz: canvasSize = 512, cSc: canvasScale = 256, cOf: canvasOffset = 128,
-    vt0: videoStartTime = 0, vt1: videoEndTime, vt0i: videoStartTimeInitial = 0, vSc: videoScale = 1, 
+    vt0: videoStartTime = 0, vt1: videoEndTime, vt0i: videoStartTimeInitial = config.vt0, vSc: videoScale = 1, 
     vOx: videoOffsetX = 0, vOy: videoOffsetY = 0, vOx2: videoOffsetX2 = 0,
     path,
     videoResourceId,
@@ -77,7 +77,7 @@ export default function createActor(scene, config) {
   }
 
   scene.geometries.push({
-    depth: 0.01,
+    depth: 0.5,
     points,
     type: 'CanvasExtrudeGeometry',
     uuid: geomId,

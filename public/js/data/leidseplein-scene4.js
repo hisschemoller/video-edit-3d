@@ -149,7 +149,7 @@ const scene = {
         geometry: 's4g-geom',
         layers: 1,
         material: 's4g-mat',
-        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -20,0,-10,1],
+        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -20,0,-8,1],
         receiveShadow: true,
         type: 'Mesh',
         name: 's4g-obj',
@@ -241,8 +241,24 @@ const scene = {
 // FIETSER
 createActor(scene, {
   gw: 5, gh: 4, z: -30, x0: -20, x1: 12, t0: 0 * fps, t1: fps * 5.5, // measures in frames
-  cSc: 50,
-  vOx: 0, vOy: 313, vOx2: 640, vSc: 2, vt0: 17.5, vt1: 17.5 + 5.5, // measured in seconds
+  cSc: 50, cOf: 0,
+  vOx: 0, vOy: 313, vOx2: 640, vSc: 2, vt0: 17.5, vt1: 17.5 + 5.5, vt0i: 17.5, // measured in seconds
+  videoResourceId: 'leidseplein4',
+});
+
+// VOETGANGER MET WITTE TRUI
+createActor(scene, {
+  gw: 2.5, gh: 2.5, z: -20, x0: -15, x1: 9, t0: 0 * fps, t1: fps * 11,
+  cSc: 80, cOf: 0,
+  vOx: 0, vOy: 340, vOx2: 640, vSc: 2, vt0: 19.5, vt1: 20 + 11,
+  videoResourceId: 'leidseplein4',
+});
+
+// DRIE VROUWEN VAN RECHTS
+createActor(scene, {
+  gw: 1.5, gh: 2.5, z: -8, x0: 6, x1: -7, t0: 0 * fps, t1: fps * 14,
+  cSc: 80, cOf: 0,
+  vOx: 640, vOy: 380, vOx2: 20, vSc: 1.3, vt0: 45, vt1: 44 + 14,
   videoResourceId: 'leidseplein4',
 });
 

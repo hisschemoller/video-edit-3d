@@ -285,7 +285,7 @@ function createLights(data) {
 
   // LIGHT_TARGET
   lightTarget = new Object3D();
-  lightTarget.position.set(0, 0, -10);
+  lightTarget.position.set(0, 0, 0);
   scene.add(lightTarget); 
 
   // DIRECTIONAL
@@ -294,14 +294,14 @@ function createLights(data) {
   light.position.copy(directionalLightOffset);
   light.target = lightTarget;
   light.castShadow = true;
-  light.shadow.mapSize.width = 512;  // default 512
-  light.shadow.mapSize.height = 512; // default 512
+  light.shadow.mapSize.width = 4096;  // default 512
+  light.shadow.mapSize.height = 4096; // default 512
   light.shadow.camera.near = 0.5;    // default 0.5
   light.shadow.camera.far = 500;     // default 500
   light.shadow.camera.bottom = -d; // default 5
   light.shadow.camera.left = -d; // default 5
-  light.shadow.camera.right = d; // default 5
-  light.shadow.camera.top = d; // default 5
+  light.shadow.camera.right = d + 15; // default 5
+  light.shadow.camera.top = d + 15; // default 5
   scene.add(light);
 
   // HELPER
