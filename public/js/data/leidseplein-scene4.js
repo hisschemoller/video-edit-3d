@@ -38,6 +38,8 @@ const backdropPos = [-5, 0, -120];
 const concertPos = [-21, 0, -60];
 const modernePos = [19, 0, -90];
 const maisonPos = [1, 0, -110];
+const treePos = [-4.8, 0, -8];
+const polerightPos = [5.5, 0, -13];
 
 const scene = {
   animations: [
@@ -84,11 +86,20 @@ const scene = {
       scale: 11,
       videoId: 's4-maison-video',
     },
+    's4-tree-canvas': {
+      ...canvas,
+      scale: 256 / 4.8,
+      videoId: 's4-tree-video',
+    },
+    's4-poleright-canvas': {
+      ...canvas,
+      scale: 256 / 6,
+      imageId: 'scene4-image',
+    },
   },
   geometries: [
     {
       depth: 0.01,
-      // points: [ [0, 0], [50, 0], [50, 120], [0, 120] ],
       points: [ [0, 0], [40, 0], [40, 40], [0, 40] ],
       type: 'CanvasExtrudeGeometry',
       uuid: 's4g-geom',
@@ -110,11 +121,23 @@ const scene = {
       points: [ [0, 0], [12, 0], [12, 16], [0, 16] ],
       uuid: 's4-moderne-geom',
       type: 'CanvasExtrudeGeometry',
-    },  
+    },
     {
       depth: 10,
       points: [ [0, 0], [18, 0], [18, 16], [0, 16] ],
       uuid: 's4-maison-geom',
+      type: 'CanvasExtrudeGeometry',
+    },
+    {
+      depth: 0.1,
+      points: [[0.75741,0.02073],[0.71403,2.91116],[0.75741,2.9823],[0.75741,3.98053],[-0.00968,3.98053],[-0.00968,4.8],[3.51128,4.8],[3.51128,3.98053],[0.90997,3.98053],[0.90997,2.9823],[0.95964,2.84337],[1.01923,0.02073],[0.85256,0]],
+      uuid: 's4-tree-geom',
+      type: 'CanvasExtrudeGeometry',
+    },
+    {
+      depth: 0.1,
+      points: [[0.04889,0],[0.04889,2.2421],[0.07449,2.31998],[0.04889,3.78301],[0.04889,3.87636],[0,5.25286],[0.02074,5.29285],[0,6],[0.04889,6],[0.07449,5.29285],[0.09636,5.25286],[0.1446,3.80425],[0.1829,3.69366],[0.1829,2.31998],[0.22207,2.2421],[0.26663,0]],
+      uuid: 's4-poleright-geom',
       type: 'CanvasExtrudeGeometry',
     },
   ],
@@ -186,6 +209,22 @@ const scene = {
         matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...maisonPos, 1],
         name: 's4-maison-obj',
       },
+      {
+        // TREE
+        ...defaultMesh,
+        canvasId: 's4-tree-canvas',
+        geometry: 's4-tree-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...treePos, 1],
+        name: 's4-tree-obj',
+      },
+      {
+        // POLE_RIGHT
+        ...defaultMesh,
+        canvasId: 's4-poleright-canvas',
+        geometry: 's4-poleright-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polerightPos, 1],
+        name: 's4-poleright-obj',
+      },
     ],
   },
   videos: {
@@ -229,6 +268,18 @@ const scene = {
       offsetY: 480 - 210,
       scale: 1.15,
     },
+    's4-tree-video': {
+      ...videoScene4,
+      offsetX: 0,
+      offsetY: 342,
+      scale: 256 / 342, // (256 / 4.8)
+    },
+    'scene4-image': {
+      file: 'leidseplein-scene-4.jpg',
+      offsetX: 0,
+      offsetY: 480,
+      scale: 1,
+    },
     'test3d-image': {
       file: 'testimage3d.jpg',
       offsetX: 0,
@@ -256,13 +307,10 @@ createActor(scene, {
 
 // DRIE VROUWEN VAN RECHTS
 createActor(scene, {
-  gw: 1.5, gh: 2.5, z: -8, x0: 6, x1: -7, t0: 0 * fps, t1: fps * 14,
+  gw: 1.5, gh: 2.5, z: -10, x0: 6, x1: -7, t0: 0 * fps, t1: fps * 14,
   cSc: 80, cOf: 0,
   vOx: 640, vOy: 380, vOx2: 20, vSc: 1.3, vt0: 45, vt1: 44 + 14,
   videoResourceId: 'leidseplein4',
 });
-
-// createActor(scene, { gw: 0.5, gh: 2, z: -50, t0: 150, t1: 300, });
-// createActor({ gh: 3, t0: 150, t1: 300, z: -10, });
 
 export default scene;
