@@ -50,6 +50,7 @@ dropEl.addEventListener('drop', e => {
           document.getElementById('scale_info').innerHTML = `scaled to ${boundingBox.height / heightEl.value} pixels on 1 3D unit`;
           boundingBox = getBoundingBox(points);
           console.log('boundingBox', boundingBox);
+          points = translateX(points, boundingBox.left);
           points = translateY(points, boundingBox.bottom);
           points = round(points)
           console.table(points);
@@ -70,7 +71,7 @@ dropEl.addEventListener('dragover', e => {
 });
 
 function getBoundingBox(points) {
-  const rect = { bottom: 0, height: 0, left: 0, right: 0, top: 0, width: 0, };
+  const rect = { bottom: 0, height: 0, left: 1000, right: 0, top: 0, width: 0, };
   points.forEach(point => {
     rect.left = Math.min(rect.left, point[0]);
     rect.right = Math.max(rect.right, point[0]);
@@ -92,6 +93,10 @@ function scale(points, scale) {
 
 function flipVertical(points, boundingBox) {
   return points.map(point => [point[0], boundingBox.height - point[1] + boundingBox.top]);
+}
+
+function translateX(points, distance) {
+  return points.map(point => [point[0] - distance, point[1]]);
 }
 
 function translateY(points, distance) {
