@@ -176,8 +176,12 @@ const scene = {
   ],
   canvases: {
     's3g-canvas': {
-      ...canvas,
-      videoId: 's3g-video',
+      offsetX: 0,
+      offsetY: 0,
+      scale: 1024 / 10,
+      width: 1024,
+      height: 1024,
+      imageId: 's3-ground-image',
     },
     's3wl1-canvas': {
       ...canvas,
@@ -218,7 +222,7 @@ const scene = {
   geometries: [
     {
       depth: 0.01,
-      points: [ [0, 0], [10, 0], [10, 15], [0, 15] ],
+      points: [ [0, 0], [10, 0], [10, 7], [0, 7] ],
       type: 'CanvasExtrudeGeometry',
       uuid: 's3g-geom',
     },
@@ -283,7 +287,7 @@ const scene = {
         geometry: 's3g-geom',
         layers: 1,
         material: 's3g-mat',
-        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -5,0,-2,1],
+        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -5,0,-4,1],
         receiveShadow: true,
         type: 'Mesh',
         name: 's3g-obj',
@@ -342,15 +346,11 @@ const scene = {
     ],
   },
   videos: {
-    's3g-video': {
-      resourceId: 'stoep',
-      start: 0,
-      end: 13,
-      isLoop: true,
+    's3-ground-image': {
+      file: 'leidseplein-ground.jpg',
       offsetX: 0,
-      offsetY: 91,
-      repeat: 'repeat',
-      scale: 1, 
+      offsetY: 1024,
+      scale: 1,
     },
     's3wl1-video': {
       ...videoScene3,

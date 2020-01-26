@@ -43,9 +43,12 @@ const scene = {
   ],
   canvases: {
     's2g-canvas': {
-      ...canvas,
-      scale: 20,
-      videoId: 's1g-video',
+      offsetX: 0,
+      offsetY: 0,
+      scale: 1024 / 10,
+      width: 1024,
+      height: 1024,
+      imageId: 's2-ground-image',
     },
     's2wl1-canvas': {
       ...canvas,
@@ -59,7 +62,7 @@ const scene = {
   geometries: [
     {
       depth: 0.01,
-      points: [ [0, 0], [10, 0], [10, 10], [0, 10] ],
+      points: [ [0, 0], [10, 0], [10, 4], [0, 4] ],
       type: 'CanvasExtrudeGeometry',
       uuid: 's2g-geom',
     },
@@ -100,7 +103,7 @@ const scene = {
         geometry: 's2g-geom',
         layers: 1,
         material: 's2g-mat',
-        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -5,0,3,1],
+        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -5,0,0,1],
         receiveShadow: true,
         type: 'Mesh',
         name: 's2g-obj',
@@ -108,15 +111,11 @@ const scene = {
     ],
   },
   videos: {
-    's1g-video': {
-      resourceId: 'stoep',
-      start: 0,
-      end: 13,
-      isLoop: true,
+    's2-ground-image': {
+      file: 'leidseplein-ground.jpg',
       offsetX: 0,
-      offsetY: 91,
-      repeat: 'repeat',
-      scale: 1, 
+      offsetY: 1024,
+      scale: 1,
     },
     's2wl1-video': {
       ...videoScene2,

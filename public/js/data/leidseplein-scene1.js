@@ -157,9 +157,12 @@ const scene = {
   ],
   canvases: {
     'scene1ground-canvas': {
-      ...canvas,
-      scale: 20,
-      videoId: 'scene1ground-video',
+      offsetX: 0,
+      offsetY: 0,
+      scale: 1024 / 10,
+      width: 1024,
+      height: 1024,
+      imageId: 's1-ground-image',
     },
     'scene1wallL1-canvas': {
       ...canvas,
@@ -190,7 +193,7 @@ const scene = {
   geometries: [
     {
       depth: 0.01,
-      points: [ [0, 0], [10, 0], [10, 10], [0, 10] ],
+      points: [ [0, 0], [10, 0], [10, 5], [0, 5] ],
       type: 'CanvasExtrudeGeometry',
       uuid: 'ground-1-geom',
     },
@@ -293,15 +296,11 @@ const scene = {
     ],
   },
   videos: {
-    'scene1ground-video': {
-      resourceId: 'stoep',
-      start: 0,
-      end: 13,
-      isLoop: true,
+    's1-ground-image': {
+      file: 'leidseplein-ground.jpg',
       offsetX: 0,
-      offsetY: 91,
-      repeat: 'repeat',
-      scale: 1, 
+      offsetY: 1024,
+      scale: 1,
     },
     'scene1wallL1-video': {
       ...videoScene1,

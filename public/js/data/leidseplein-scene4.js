@@ -53,8 +53,6 @@ const scene = {
   ],
   canvases: {
     's4g-canvas': {
-      // ...canvas,
-      // videoId: 's4g-video',
       offsetX: 0,
       offsetY: 0,
       scale: 1024 / 40,
@@ -172,7 +170,7 @@ const scene = {
         geometry: 's4g-geom',
         layers: 1,
         material: 's4g-mat',
-        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -20,0,-8,1],
+        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -20,0,-11,1],
         receiveShadow: true,
         type: 'Mesh',
         name: 's4g-obj',
@@ -228,16 +226,6 @@ const scene = {
     ],
   },
   videos: {
-    's4g-video': {
-      resourceId: 'stoep',
-      start: 0,
-      end: 13,
-      isLoop: true,
-      offsetX: 0,
-      offsetY: 91,
-      repeat: 'repeat',
-      scale: 1,
-    },
     's4-ground-image': {
       file: 'leidseplein-ground.jpg',
       offsetX: 0,
@@ -274,11 +262,12 @@ const scene = {
       offsetY: 342,
       scale: 256 / 342, // (256 / 4.8)
     },
-    'scene4-image': {
+    's4-poleright-image': {
       file: 'leidseplein-scene-4.jpg',
-      offsetX: 0,
-      offsetY: 480,
-      scale: 1,
+      offsetX: 589,
+      offsetY: 295,
+      scale: 256 / 295,
+    },
     },
     'test3d-image': {
       file: 'testimage3d.jpg',
