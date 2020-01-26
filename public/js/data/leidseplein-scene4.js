@@ -44,10 +44,11 @@ const polerightPos = [5.5, 0, -13];
 const scene = {
   animations: [
     {
-      fps: 30,
+      fps,
       loop: false,
       name: 'actor-animation',
       tracks: [
+        
       ],
     },
   ],

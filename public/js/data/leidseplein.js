@@ -28,7 +28,7 @@ const data = {
     },
   },
   camera: {
-    speed: -0.002,
+    speed: -0.002 * (30 / fps),
     fieldOfView: 18,
     position: [0, 2, 16],
     target: [0, 2, 0],

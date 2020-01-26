@@ -62,9 +62,9 @@ const scene = {
   animations: [
     {
       duration: 110,
+      fps,
       loop: THREE.LoopOnce,
       name: 's3-anim',
-      fps,
       tracks: [
         {
           interpolation: THREE.InterpolateSmooth,

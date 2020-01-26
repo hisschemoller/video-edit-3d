@@ -34,9 +34,9 @@ const scene = {
   animations: [
     {
       duration: 120,
+      fps,
       loop: THREE.LoopOnce,
       name: 's2-anim',
-      fps,
       tracks: [
       ],
     },
