@@ -38,8 +38,10 @@ const backdropPos = [-5, 0, -120];
 const concertPos = [-21, 0, -60];
 const modernePos = [19, 0, -90];
 const maisonPos = [1, 0, -110];
-const treePos = [-4.8, 0, -8];
-const polerightPos = [5.5, 0, -13];
+const treePos = [-4.8, 0, -11.5];
+const polerightPos = [5.5, 0, -15];
+const polemiddlePos = [2, 0, -21];
+const polemidrightPos = [5, 0, -27];
 
 const scene = {
   animations: [
@@ -87,13 +89,23 @@ const scene = {
     },
     's4-tree-canvas': {
       ...canvas,
-      scale: 256 / 4.8,
+      scale: 256 / 5.4,
       videoId: 's4-tree-video',
     },
     's4-poleright-canvas': {
       ...canvas,
-      scale: 256 / 6,
-      imageId: 'scene4-image',
+      scale: 256 / 8,
+      imageId: 's4-poleright-image',
+    },
+    's4-polemiddle-canvas': {
+      ...canvas,
+      scale: 256 / 8,
+      imageId: 's4-polemiddle-image',
+    },
+    's4-polemidright-canvas': {
+      ...canvas,
+      scale: 256 / 9,
+      imageId: 's4-polemidright-image',
     },
   },
   geometries: [
@@ -129,7 +141,7 @@ const scene = {
     },
     {
       depth: 0.1,
-      points: [[0.75741,0.02073],[0.71403,2.91116],[0.75741,2.9823],[0.75741,3.98053],[-0.00968,3.98053],[-0.00968,4.8],[3.51128,4.8],[3.51128,3.98053],[0.90997,3.98053],[0.90997,2.9823],[0.95964,2.84337],[1.01923,0.02073],[0.85256,0]],
+      points: [[0.86298,0.02332],[0.81418,3.27506],[0.86298,3.35509],[0.86298,4.4781],[0,4.4781],[0,5.4],[3.96109,5.4],[3.96109,4.4781],[1.03461,4.4781],[1.03461,3.35509],[1.09049,3.19879],[1.15752,0.02332],[0.97002,0]],
       uuid: 's4-tree-geom',
       type: 'CanvasExtrudeGeometry',
     },
@@ -137,6 +149,18 @@ const scene = {
       depth: 0.1,
       points: [[0.04889,0],[0.04889,2.2421],[0.07449,2.31998],[0.04889,3.78301],[0.04889,3.87636],[0,5.25286],[0.02074,5.29285],[0,6],[0.04889,6],[0.07449,5.29285],[0.09636,5.25286],[0.1446,3.80425],[0.1829,3.69366],[0.1829,2.31998],[0.22207,2.2421],[0.26663,0]],
       uuid: 's4-poleright-geom',
+      type: 'CanvasExtrudeGeometry',
+    },
+    {
+      depth: 0.1,
+      points: [[0.06386,0.00014],[0.10904,2.74676],[0.15328,5.81283],[0,5.81283],[0.06752,6.09602],[0.27474,6.01544],[0.29714,2.74671],[0.29714,0.83086],[0.35994,0.83086],[0.39481,0]],
+      uuid: 's4-polemiddle-geom',
+      type: 'CanvasExtrudeGeometry',
+    },
+    {
+      depth: 0.1,
+      points: [[0.29803,0],[0.25573,6.19846],[0.12383,6.19846],[0,6.59504],[0.25586,6.66195],[0.25586,7.20799],[0.32601,7.20799],[0.32601,6.85526],[0.63045,6.90784],[0.68259,6.82084],[0.35286,6.37607],[0.5868,0]],
+      uuid: 's4-polemidright-geom',
       type: 'CanvasExtrudeGeometry',
     },
   ],
@@ -224,6 +248,22 @@ const scene = {
         matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polerightPos, 1],
         name: 's4-poleright-obj',
       },
+      {
+        // POLE_MIDDLE
+        ...defaultMesh,
+        canvasId: 's4-polemiddle-canvas',
+        geometry: 's4-polemiddle-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polemiddlePos, 1],
+        name: 's4-polemiddle-obj',
+      },
+      {
+        // POLE_MIDRIGHT
+        ...defaultMesh,
+        canvasId: 's4-polemidright-canvas',
+        geometry: 's4-polemidright-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polemidrightPos, 1],
+        name: 's4-polemidright-obj',
+      },
     ],
   },
   videos: {
@@ -269,6 +309,17 @@ const scene = {
       offsetY: 295,
       scale: 256 / 295,
     },
+    's4-polemiddle-image': {
+      file: 'leidseplein-scene-4.jpg',
+      offsetX: 385,
+      offsetY: 288,
+      scale: 256 / 288,
+    },
+    's4-polemidright-image': {
+      file: 'leidseplein-scene-4.jpg',
+      offsetX: 501.5,
+      offsetY: 280,
+      scale: 256 / 280,
     },
     'test3d-image': {
       file: 'testimage3d.jpg',
@@ -297,10 +348,18 @@ createActor(scene, {
 
 // DRIE VROUWEN VAN RECHTS
 createActor(scene, {
-  gw: 1.5, gh: 2.5, z: -10, x0: 6, x1: -7, t0: 0 * fps, t1: fps * 14,
+  gw: 1.5, gh: 2.5, z: -12, x0: 6, x1: -7, t0: 0 * fps, t1: fps * 14,
   cSc: 80, cOf: 0,
   vOx: 640, vOy: 380, vOx2: 20, vSc: 1.3, vt0: 45, vt1: 44 + 14,
   videoResourceId: 'leidseplein4',
 });
+
+// ECHTPAAR MET TASJE
+// createActor(scene, {
+//   gw: 10, gh: 3, z: -8, x0: 6, x1: 0, t0: 0 * fps, t1: fps * 4,
+//   cSc: 80, cOf: 0,
+//   vOx: 640, vOy: 362, vOx2: 320, vSc: 1.3, vt0: 130.5, vt1: 130.5 + 4,
+//   videoResourceId: 'leidseplein3a',
+// });
 
 export default scene;

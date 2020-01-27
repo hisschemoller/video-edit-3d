@@ -24,7 +24,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
     offsetX2: videoOffsetEndX = videoData.offsetX,
     scale: videoScale = 1,
     resourceId,
-    startInitial = 0,
+    startInitial = videoData.start,
     start = 0, 
     end, 
     isLoop = false, 
