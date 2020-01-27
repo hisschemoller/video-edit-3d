@@ -269,7 +269,6 @@ const scene = {
       offsetY: 295,
       scale: 256 / 295,
     },
-    },
     'test3d-image': {
       file: 'testimage3d.jpg',
       offsetX: 0,
