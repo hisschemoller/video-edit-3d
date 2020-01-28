@@ -42,15 +42,39 @@ const treePos = [-4.8, 0, -11.5];
 const polerightPos = [5.5, 0, -15];
 const polemiddlePos = [2, 0, -21];
 const polemidrightPos = [5, 0, -27];
+const couplePos = [0, 0, -5];
 
 const scene = {
   animations: [
     {
+      duration: 90,
       fps,
-      loop: false,
+      loop: THREE.LoopOnce,
       name: 'actor-animation',
       tracks: [
-        
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: `s4-couple-obj.position`,
+          type: 'vector3',
+          keys: [
+            {
+              value: [ ...couplePos ], // in 3d units
+              time: 0 * fps, // in frames
+            },
+            {
+              value: [ ...couplePos ],
+              time: 4 * fps,
+            },
+            {
+              value: [ ...couplePos ],
+              time: 7 * fps,
+            },
+            {
+              value: [ ...couplePos ],
+              time: 17 * fps,
+            },
+          ],
+        },
       ],
     },
   ],
@@ -107,6 +131,11 @@ const scene = {
       scale: 256 / 9,
       imageId: 's4-polemidright-image',
     },
+    's4-couple-canvas': {
+      ...canvas,
+      scale: 256 / 2.2,
+      videoId: 's4-couple-video',
+    },
   },
   geometries: [
     {
@@ -161,6 +190,12 @@ const scene = {
       depth: 0.1,
       points: [[0.29803,0],[0.25573,6.19846],[0.12383,6.19846],[0,6.59504],[0.25586,6.66195],[0.25586,7.20799],[0.32601,7.20799],[0.32601,6.85526],[0.63045,6.90784],[0.68259,6.82084],[0.35286,6.37607],[0.5868,0]],
       uuid: 's4-polemidright-geom',
+      type: 'CanvasExtrudeGeometry',
+    },
+    {
+      depth: 10,
+      points: [ [0, 0], [2, 0], [2, 2.2], [0, 2.2] ],
+      uuid: 's4-couple-geom',
       type: 'CanvasExtrudeGeometry',
     },
   ],
@@ -264,6 +299,14 @@ const scene = {
         matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polemidrightPos, 1],
         name: 's4-polemidright-obj',
       },
+      {
+        // COUPLE WITH BAG
+        ...defaultMesh,
+        canvasId: 's4-couple-canvas',
+        geometry: 's4-couple-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...couplePos, 1],
+        name: 's4-couple-obj',
+      },
     ],
   },
   videos: {
@@ -326,6 +369,30 @@ const scene = {
       offsetX: 0,
       offsetY: 1024,
       scale: 1,
+    },
+    's4-couple-video': {
+      ...videoScene4,
+      resourceId: 'leidseplein3a',
+      start: 130.5,
+      end: 130.5 + 4,
+      offsetX: 640,
+      offsetY: 400,
+      offsetX2: 240,
+      scale: 265 / 180, // (256 / 2.2)
+      keys: [
+        {
+          value: [640, 400],
+          time: 130.5,
+        },
+        {
+          value: [240, 400],
+          time: 130.5 + 4,
+        },
+        {
+          value: [240, 400],
+          time: 130.5 + 40,
+        },
+      ],
     },
   },
 };
