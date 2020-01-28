@@ -52,8 +52,8 @@ const paal1Pos = [2.3, 0, -6];
 const paal1Pos2 = [2.3 + 3, 0, -6];
 const paal2Pos = [1.1, 0, -9];
 const paal2Pos2 = [1.1 + 4, 0, -9];
-const tramPos = [-3.5, 0, -5];
-const tramPos2 = [-3.5 - 3, 0, -5];
+const tramPos = [-3.5, 0, -8];
+const tramPos2 = [-3.5 - 3, 0, -8];
 
 const paal1Start = start + (fps * 1);
 const paal1End = start + (fps * 11);
@@ -355,22 +355,22 @@ const scene = {
     's3wl1-video': {
       ...videoScene3,
       offsetX: 270,
-      offsetY: 480 - 150,
+      offsetY: 480 - 150 + 30,
     },
     's3wr1-video': {
       ...videoScene3,
       offsetX: 350,
-      offsetY: 480 - 150,
+      offsetY: 480 - 150 + 30,
     },
     's3wl2-video': {
       ...videoScene3,
       offsetX: 80,
-      offsetY: 480 - 165,
+      offsetY: 480 - 165 + 30,
     },
     's3wr2-video': {
       ...videoScene3,
       offsetX: 480,
-      offsetY: 480 - 175,
+      offsetY: 480 - 175 + 30,
     },
     'paal1-video': {
       ...videoScene3,
