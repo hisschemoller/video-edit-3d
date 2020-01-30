@@ -16,7 +16,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
   const {
     canvasData,
     flipHorizontal = false,
-    videoData, 
+    videoData,
   } = data;
 
   const { 
@@ -52,7 +52,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
     dy,
     dWidth,
     dHeight,
-    isAnimated = keys.length > 1,
+    isAnimating = keys.length > 1,
     keyCurrentFrame = 0,
     keyEndFrame = 0,
     keyIndex = 0,
@@ -84,7 +84,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
         }
       }
       
-      if (isAnimated) {
+      if (isAnimating) {
         updateOffset();
       }
       loadImage();
@@ -93,7 +93,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
     /**
      * Initialise the video animation.
      */
-    init = function() {
+    init = () => {
       textureCtx = textureCanvas.getContext('2d');
       img = new Image();
 
@@ -123,7 +123,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
     /**
      * Load a video frame image based on imgURLNr.
      */
-    loadImage = function() {
+    loadImage = () => {
       if (imgURLNr <= imgURLNrLast) {
         img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + Math.round(imgURLNr)).slice(-5) : '99999') + imgURLSuffix;
         if (imgURLNr < imgURLNrLast) {
@@ -139,10 +139,11 @@ export function create(textureCanvas, data, resources, texture, fps) {
      * The position 
      */
     updateKeys = () => {
-      if (keyIndex === keys.length) {
-        isAnimated = false;
+      if (keyIndex === keys.length - 1) {
+        isAnimating = false;
         return;
       }
+
       const isLastKey = keyIndex + 1 === keys.length;
       const nextKeyIndex = isLastKey ? keyIndex : keyIndex + 1;
 
@@ -154,7 +155,6 @@ export function create(textureCanvas, data, resources, texture, fps) {
       videoOffsetEndX = keys[nextKeyIndex].value[0];
       // videoOffsetCurrentX = videoOffsetStartX;
       videoOffsetY = keys[keyIndex].value[1];
-      console.log('start end ', videoOffsetStartX, videoOffsetEndX);
 
       keyIndex = nextKeyIndex;
       
@@ -168,18 +168,20 @@ export function create(textureCanvas, data, resources, texture, fps) {
      * 
      */
     updateOffset = () => {
-      const keyPositionNormalized = (keyCurrentFrame - keyStartFrame) / (keyEndFrame - keyStartFrame);
-      keyCurrentFrame += imgURLNrIncrease;
-      // console.log(keyPositionNormalized);
+      let keyPositionNormalized = (keyCurrentFrame - keyStartFrame) / (keyEndFrame - keyStartFrame);
 
-      if (isAnimated && keyPositionNormalized >= 1) {
+      if (isAnimating && keyPositionNormalized >= 1) {
         updateKeys();
+
+        // keyPositionNormalized must be recalculated
+        keyPositionNormalized = (keyCurrentFrame - keyStartFrame) / (keyEndFrame - keyStartFrame);
       }
 
-      const positionNormalized = (imgURLNr - imgURLNrFirst) / (imgURLNrLast - imgURLNrFirst);
+      keyCurrentFrame += imgURLNrIncrease;
+
+      // const positionNormalized = (imgURLNr - imgURLNrFirst) / (imgURLNrLast - imgURLNrFirst);
       const videoOffsetCurrentX = videoOffsetStartX + ((videoOffsetEndX - videoOffsetStartX) * keyPositionNormalized);
       dx = canvasOffsetX - (videoOffsetCurrentX * videoScale);
-      console.log(keyCurrentFrame, keyStartFrame, keyEndFrame);
     };
     
   init();

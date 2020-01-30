@@ -144,15 +144,15 @@ const data = {
               value: [0, 360],
             },
             {
-              time: 2,
+              time: 1,
               value: [240, 360],
             },
             {
-              time: 4,
+              time: 2,
               value: [0, 360],
             },
             {
-              time: 6,
+              time: 3,
               value: [120, 360],
             },
           ],
