@@ -116,7 +116,16 @@ export function create(textureCanvas, data, resources, texture, fps) {
       imgURLNrLast = end ? Math.floor(end * resourceFPS) : resourceFrames;
       imgURLNrIncrease = resourceFPS / fps;
 
-      updateKeys();
+      if (keys.length > 1) {
+        updateKeys();
+      } else {
+        const [offsetX, offsetY] = keys[0].value;
+        dx = canvasOffsetX - (offsetX * videoScale);
+        dy = canvasHeight - canvasOffsetY - (offsetY * videoScale);
+        dWidth = resourceWidth * videoScale;
+        dHeight = resourceHeight * videoScale;
+      }
+      
       loadImage();
     },
 
