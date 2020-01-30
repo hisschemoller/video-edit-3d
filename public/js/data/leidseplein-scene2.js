@@ -25,8 +25,12 @@ const videoScene2 = {
   start: 130,
   end: 260,
   isLoop: true,
-  offsetX: 0,
-  offsetY: 480,
+  keys: [
+    {
+      time: 0,
+      value: [0, 480],
+    },
+  ],
   scale: 0.5,
 };
 
@@ -119,11 +123,13 @@ const scene = {
     },
     's2wl1-video': {
       ...videoScene2,
-      offsetX: 0,
+      keys: [ { ...videoScene2.keys[0], value: [ 0, videoScene2.keys[0].value[1] ] } ],
+      // offsetX: 0,
     },
     's2wr1-video': {
       ...videoScene2,
-      offsetX: 320,
+      keys: [ { ...videoScene2.keys[0], value: [ 320, videoScene2.keys[0].value[1] ] } ],
+      // offsetX: 320,
     },
   },
 };

@@ -25,8 +25,12 @@ const videoScene3 = {
   start: 0,
   end: 146,
   isLoop: true,
-  offsetX: 0,
-  offsetY: 480,
+  keys: [
+    {
+      time: 0,
+      value: [0, 480],
+    },
+  ],
   scale: 1,
 };
 
@@ -354,31 +358,29 @@ const scene = {
     },
     's3wl1-video': {
       ...videoScene3,
-      offsetX: 270,
-      offsetY: 480 - 150 + 30,
+      keys: [ { ...videoScene3.keys[0], value: [ 270, 480 - 150 + 30 ] } ],
     },
     's3wr1-video': {
       ...videoScene3,
-      offsetX: 350,
-      offsetY: 480 - 150 + 30,
+      keys: [ { ...videoScene3.keys[0], value: [ 350, 480 - 150 + 30 ] } ],
     },
     's3wl2-video': {
       ...videoScene3,
-      offsetX: 80,
-      offsetY: 480 - 165 + 30,
+      keys: [ { ...videoScene3.keys[0], value: [ 80, 480 - 165 + 30 ] } ],
     },
     's3wr2-video': {
       ...videoScene3,
-      offsetX: 480,
-      offsetY: 480 - 175 + 30,
+      keys: [ { ...videoScene3.keys[0], value: [ 480, 480 - 175 + 30 ] } ],
     },
     'paal1-video': {
       ...videoScene3,
+      keys: [ { ...videoScene3.keys[0], value: [ 303, 480 - 138 ] } ],
       offsetX: 303,
       offsetY: 480 - 138,
     },
     'paal2-video': {
       ...videoScene3,
+      keys: [ { ...videoScene3.keys[0], value: [ 458, 480 - 200 ] } ],
       offsetX: 458,
       offsetY: 480 - 200,
     },
@@ -386,6 +388,7 @@ const scene = {
       resourceId: 'tram',
       start: 0,
       isLoop: true,
+      keys: [ { ...videoScene3.keys[0], value: [ 4, 74 - 4 ] } ],
       offsetX: 4,
       offsetY: 74 - 4,
     },

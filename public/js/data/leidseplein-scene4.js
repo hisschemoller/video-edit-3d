@@ -15,8 +15,12 @@ const videoScene4 = {
   start: 20,
   end: 146,
   isLoop: true,
-  offsetX: 0,
-  offsetY: 480,
+  keys: [
+    {
+      time: 0,
+      value: [0, 480],
+    },
+  ],
   scale: 1,
 };
 
@@ -318,32 +322,27 @@ const scene = {
     },
     's4-backdrop-video': {
       ...videoScene4,
-      offsetX: 290,
-      offsetY: 480 - 200,
+      keys: [ { ...videoScene4.keys[0], value: [ 290, 480 - 200 ] } ],
       scale: 0.80,
     },
     's4-concert-video': {
       ...videoScene4,
-      offsetX: 0,
-      offsetY: 480 - 200,
+      keys: [ { ...videoScene4.keys[0], value: [ 0, 480 - 200 ] } ],
       scale: 0.58,
     },
     's4-moderne-video': {
       ...videoScene4,
-      offsetX: 520,
-      offsetY: 480 - 210,
+      keys: [ { ...videoScene4.keys[0], value: [ 520, 480 - 210 ] } ],
       scale: 0.9,
     },
     's4-maison-video': {
       ...videoScene4,
-      offsetX: 330,
-      offsetY: 480 - 210,
+      keys: [ { ...videoScene4.keys[0], value: [ 330, 480 - 210 ] } ],
       scale: 1.15,
     },
     's4-tree-video': {
       ...videoScene4,
-      offsetX: 0,
-      offsetY: 342,
+      keys: [ { ...videoScene4.keys[0], value: [ 0, 342 ] } ],
       scale: 256 / 342, // (256 / 4.8)
     },
     's4-poleright-image': {
@@ -375,9 +374,9 @@ const scene = {
       resourceId: 'leidseplein3a',
       start: 130.5,
       end: 130.5 + 4,
-      offsetX: 640,
-      offsetY: 400,
-      offsetX2: 240,
+      // offsetX: 640,
+      // offsetY: 400,
+      // offsetX2: 240,
       scale: 265 / 180, // (256 / 2.2)
       keys: [
         {

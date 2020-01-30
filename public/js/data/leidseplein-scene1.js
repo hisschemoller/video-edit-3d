@@ -21,13 +21,17 @@ export const wallMesh = {
 };
 
 const videoScene1 = {
-  resourceId: 'leidseplein1',
-  start: 140,
   end: 210,
   isLoop: true,
-  offsetX: 0,
-  offsetY: 480,
+  keys: [
+    {
+      time: 0,
+      value: [0, 480],
+    },
+  ],
+  resourceId: 'leidseplein1',
   scale: 0.5,
+  start: 140,
 };
 
 const wall1LPos = [-3.6, 0, 3.3];
@@ -307,26 +311,27 @@ const scene = {
     },
     'scene1wallR1-video': {
       ...videoScene1,
-      offsetX: 400,
+      keys: [ { ...videoScene1.keys[0], value: [ 400, videoScene1.keys[0].value[1] ] } ],
+      // offsetX: 400,
     },
     'scene1wallL2-video': {
       ...videoScene1,
-      offsetX: -50,
+      keys: [ { ...videoScene1.keys[0], value: [ -50, videoScene1.keys[0].value[1] ] } ],
       // start: videoScene1.start - 2,
     },
     'scene1wallR2-video': {
       ...videoScene1,
-      offsetX: 320,
+      keys: [ { ...videoScene1.keys[0], value: [ 320, videoScene1.keys[0].value[1] ] } ],
       // start: videoScene1.start - 1,
     },
     'scene1wallL3-video': {
       ...videoScene1,
-      offsetX: -190,
+      keys: [ { ...videoScene1.keys[0], value: [ -190, videoScene1.keys[0].value[1] ] } ],
       // start: videoScene1.start + 1,
     },
     'scene1wallR3-video': {
       ...videoScene1,
-      offsetX: 285,
+      keys: [ { ...videoScene1.keys[0], value: [ 285, videoScene1.keys[0].value[1] ] } ],
     },
   },
 };
