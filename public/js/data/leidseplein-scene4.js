@@ -56,29 +56,29 @@ const scene = {
       loop: THREE.LoopOnce,
       name: 'actor-animation',
       tracks: [
-        {
-          interpolation: THREE.InterpolateSmooth,
-          name: `s4-couple-obj.position`,
-          type: 'vector3',
-          keys: [
-            {
-              value: [ ...couplePos ], // in 3d units
-              time: 0 * fps, // in frames
-            },
-            {
-              value: [ ...couplePos ],
-              time: 4 * fps,
-            },
-            {
-              value: [ ...couplePos ],
-              time: 7 * fps,
-            },
-            {
-              value: [ ...couplePos ],
-              time: 17 * fps,
-            },
-          ],
-        },
+        // {
+        //   interpolation: THREE.InterpolateSmooth,
+        //   name: `s4-couple-obj.position`,
+        //   type: 'vector3',
+        //   keys: [
+        //     {
+        //       value: [ ...couplePos ], // in 3d units
+        //       time: 0 * fps, // in frames
+        //     },
+        //     {
+        //       value: [ ...couplePos ],
+        //       time: 4 * fps,
+        //     },
+        //     {
+        //       value: [ ...couplePos ],
+        //       time: 7 * fps,
+        //     },
+        //     {
+        //       value: [ ...couplePos ],
+        //       time: 17 * fps,
+        //     },
+        //   ],
+        // },
       ],
     },
   ],
@@ -227,90 +227,90 @@ const scene = {
     name: 'scene4',
     uuid: 'scene4',
     children: [
-      {
-        // GROUND
-        canvasId: 's4g-canvas',
-        castShadow: false,
-        geometry: 's4g-geom',
-        layers: 1,
-        material: 's4g-mat',
-        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -20,0,-11,1],
-        receiveShadow: true,
-        type: 'Mesh',
-        name: 's4g-obj',
-      },
-      {
-        // ACHTERWAND
-        ...defaultMesh,
-        canvasId: 's4-backdrop-canvas',
-        geometry: 's4-backdrop-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...backdropPos, 1],
-        name: 's4-backdrop-obj', 
-      },
-      {
-        // CONCERTGEBOUW
-        ...defaultMesh,
-        canvasId: 's4-concert-canvas',
-        geometry: 's4-concert-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...concertPos, 1],
-        name: 's4-concert-obj', 
-      },
-      {
-        // CAFE MODERNE / HEINEKENHOEK
-        ...defaultMesh,
-        canvasId: 's4-moderne-canvas',
-        geometry: 's4-moderne-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...modernePos, 1],
-        name: 's4-moderne-obj',
-      },
-      {
-        // MAISON DE VRIES
-        ...defaultMesh,
-        canvasId: 's4-maison-canvas',
-        geometry: 's4-maison-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...maisonPos, 1],
-        name: 's4-maison-obj',
-      },
-      {
-        // TREE
-        ...defaultMesh,
-        canvasId: 's4-tree-canvas',
-        geometry: 's4-tree-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...treePos, 1],
-        name: 's4-tree-obj',
-      },
-      {
-        // POLE_RIGHT
-        ...defaultMesh,
-        canvasId: 's4-poleright-canvas',
-        geometry: 's4-poleright-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polerightPos, 1],
-        name: 's4-poleright-obj',
-      },
-      {
-        // POLE_MIDDLE
-        ...defaultMesh,
-        canvasId: 's4-polemiddle-canvas',
-        geometry: 's4-polemiddle-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polemiddlePos, 1],
-        name: 's4-polemiddle-obj',
-      },
-      {
-        // POLE_MIDRIGHT
-        ...defaultMesh,
-        canvasId: 's4-polemidright-canvas',
-        geometry: 's4-polemidright-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polemidrightPos, 1],
-        name: 's4-polemidright-obj',
-      },
-      {
-        // COUPLE WITH BAG
-        ...defaultMesh,
-        canvasId: 's4-couple-canvas',
-        geometry: 's4-couple-geom',
-        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...couplePos, 1],
-        name: 's4-couple-obj',
-      },
+      // {
+      //   // GROUND
+      //   canvasId: 's4g-canvas',
+      //   castShadow: false,
+      //   geometry: 's4g-geom',
+      //   layers: 1,
+      //   material: 's4g-mat',
+      //   matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -20,0,-11,1],
+      //   receiveShadow: true,
+      //   type: 'Mesh',
+      //   name: 's4g-obj',
+      // },
+      // {
+      //   // ACHTERWAND
+      //   ...defaultMesh,
+      //   canvasId: 's4-backdrop-canvas',
+      //   geometry: 's4-backdrop-geom',
+      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...backdropPos, 1],
+      //   name: 's4-backdrop-obj', 
+      // },
+      // {
+      //   // CONCERTGEBOUW
+      //   ...defaultMesh,
+      //   canvasId: 's4-concert-canvas',
+      //   geometry: 's4-concert-geom',
+      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...concertPos, 1],
+      //   name: 's4-concert-obj', 
+      // },
+      // {
+      //   // CAFE MODERNE / HEINEKENHOEK
+      //   ...defaultMesh,
+      //   canvasId: 's4-moderne-canvas',
+      //   geometry: 's4-moderne-geom',
+      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...modernePos, 1],
+      //   name: 's4-moderne-obj',
+      // },
+      // {
+      //   // MAISON DE VRIES
+      //   ...defaultMesh,
+      //   canvasId: 's4-maison-canvas',
+      //   geometry: 's4-maison-geom',
+      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...maisonPos, 1],
+      //   name: 's4-maison-obj',
+      // },
+      // {
+      //   // TREE
+      //   ...defaultMesh,
+      //   canvasId: 's4-tree-canvas',
+      //   geometry: 's4-tree-geom',
+      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...treePos, 1],
+      //   name: 's4-tree-obj',
+      // },
+      // {
+      //   // POLE_RIGHT
+      //   ...defaultMesh,
+      //   canvasId: 's4-poleright-canvas',
+      //   geometry: 's4-poleright-geom',
+      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polerightPos, 1],
+      //   name: 's4-poleright-obj',
+      // },
+      // {
+      //   // POLE_MIDDLE
+      //   ...defaultMesh,
+      //   canvasId: 's4-polemiddle-canvas',
+      //   geometry: 's4-polemiddle-geom',
+      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polemiddlePos, 1],
+      //   name: 's4-polemiddle-obj',
+      // },
+      // {
+      //   // POLE_MIDRIGHT
+      //   ...defaultMesh,
+      //   canvasId: 's4-polemidright-canvas',
+      //   geometry: 's4-polemidright-geom',
+      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polemidrightPos, 1],
+      //   name: 's4-polemidright-obj',
+      // },
+      // {
+      //   // COUPLE WITH BAG
+      //   ...defaultMesh,
+      //   canvasId: 's4-couple-canvas',
+      //   geometry: 's4-couple-geom',
+      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...couplePos, 1],
+      //   name: 's4-couple-obj',
+      // },
     ],
   },
   videos: {
@@ -397,28 +397,33 @@ const scene = {
 };
 
 // FIETSER
-createActor(scene, {
-  gw: 5, gh: 4, z: -30, x0: -20, x1: 12, t0: 0 * fps, t1: fps * 5.5, // measures in frames
+createActor(scene, fps, {
+  gw: 5, gh: 4, z: -30, x0: -20, x1: 12, t0: 0, t1: 5.5, // measures in seconds
   cSc: 50, cOf: 0,
-  vOx: 0, vOy: 313, vOx2: 640, vSc: 2, vt0: 17.5, vt1: 17.5 + 5.5, vt0i: 17.5, // measured in seconds
+  vSc: 2, 
+  vt0: 17.5, vt1: 17.5 + 5.5, vt0i: 17.5, // measured in seconds
+  vKeys: [
+    { t: 17.5,       v: [  0, 313]}, // measured in seconds
+    { t: 17.5 + 5.5, v: [640, 313]}, // measured in seconds
+  ],
   videoResourceId: 'leidseplein4',
 });
 
 // VOETGANGER MET WITTE TRUI
-createActor(scene, {
-  gw: 2.5, gh: 2.5, z: -20, x0: -15, x1: 9, t0: 0 * fps, t1: fps * 11,
-  cSc: 80, cOf: 0,
-  vOx: 0, vOy: 340, vOx2: 640, vSc: 2, vt0: 19.5, vt1: 20 + 11,
-  videoResourceId: 'leidseplein4',
-});
+// createActor(scene, {
+//   gw: 2.5, gh: 2.5, z: -20, x0: -15, x1: 9, t0: 0 * fps, t1: fps * 11,
+//   cSc: 80, cOf: 0,
+//   vOx: 0, vOy: 340, vOx2: 640, vSc: 2, vt0: 19.5, vt1: 20 + 11,
+//   videoResourceId: 'leidseplein4',
+// });
 
 // DRIE VROUWEN VAN RECHTS
-createActor(scene, {
-  gw: 1.5, gh: 2.5, z: -12, x0: 6, x1: -7, t0: 0 * fps, t1: fps * 14,
-  cSc: 80, cOf: 0,
-  vOx: 640, vOy: 380, vOx2: 20, vSc: 1.3, vt0: 45, vt1: 44 + 14,
-  videoResourceId: 'leidseplein4',
-});
+// createActor(scene, {
+//   gw: 1.5, gh: 2.5, z: -12, x0: 6, x1: -7, t0: 0 * fps, t1: fps * 14,
+//   cSc: 80, cOf: 0,
+//   vOx: 640, vOy: 380, vOx2: 20, vSc: 1.3, vt0: 45, vt1: 44 + 14,
+//   videoResourceId: 'leidseplein4',
+// });
 
 // ECHTPAAR MET TASJE
 // createActor(scene, {

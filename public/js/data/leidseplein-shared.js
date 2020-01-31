@@ -1,2 +1,2 @@
 
-export const fps = 10;
+export const fps = 30;

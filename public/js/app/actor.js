@@ -3,22 +3,34 @@ import { musicToTime, uuidv4, } from '../app/util.js';
 /**
  * Add animating object to the scene.
  * @param {Object} scene
+ * @param {Number} fps
  * @param {Object} config
  */
-export default function createActor(scene, config) {
+export default function createActor(scene, fps, config) {
+  console.log('A', scene, fps, config);
   const {
+
+    // object position and animation
     x0: fromX = -2,
     x1: toX = 2.5,
     z = -2,
-    t0: startTime = 0,
-    t1: endTime = 150,
-    gw: geomWidth = 1,
-    gh: geomHeight = 1.5,
-    cSz: canvasSize = 512, cSc: canvasScale = 256, cOf: canvasOffset = 128,
-    vt0: videoStartTime = 0, vt1: videoEndTime, vt0i: videoStartTimeInitial = config.vt0, vSc: videoScale = 1, 
-    vOx: videoOffsetX = 0, vOy: videoOffsetY = 0, vOx2: videoOffsetX2 = 0,
+    t0: startTime = 0, // in seconds
+    t1: endTime = 10, // in seconds
+
+    // geometry
+    gw: geomWidth = 1, gh: geomHeight = 1.5,
     path,
+
+    // canvas
+    cSz: canvasSize = 512, cSc: canvasScale = 256, cOf: canvasOffset = 128,
+
+    // video
     videoResourceId,
+    vSc: videoScale = 1,
+    vKeys = [{t: 0, v: [  0, 0]}],
+    vt0: videoStartTime = 0, vt1: videoEndTime, vt0i: videoStartTimeInitial = config.vt0,
+    // vOx: videoOffsetX = 0, vOy: videoOffsetY = 0, vOx2: videoOffsetX2 = 0,
+    
   } = config;
   
   // const scene = data.score[sceneIndex];
@@ -35,11 +47,11 @@ export default function createActor(scene, config) {
     keys: [
       {
         value: [fromX, 0, z],
-        time: startTime,
+        time: startTime * fps,
       },
       {
         value: [toX, 0, z],
-        time: endTime,
+        time: endTime * fps,
       },
     ],
   });
@@ -62,14 +74,26 @@ export default function createActor(scene, config) {
     scene.videos[videoId] = {
       end: videoEndTime,
       isLoop: true,
-      offsetX: videoOffsetX,
-      offsetY: videoOffsetY,
-      offsetX2: videoOffsetX2,
+      keys: vKeys.map(key => ({ time: key.t, value: [ ...key.v ]})),
+      // keys: [
+      //   {
+      //     time: startTime,
+      //     value: [videoOffsetX, videoOffsetY],
+      //   },
+      //   {
+      //     time: endTime,
+      //     value: [videoOffsetX2, videoOffsetY],
+      //   },
+      // ],
+      // offsetX: videoOffsetX,
+      // offsetY: videoOffsetY,
+      // offsetX2: videoOffsetX2,
       resourceId: videoResourceId,
       scale: videoScale,
       start: videoStartTime,
       startInitial: videoStartTimeInitial,
     };
+    console.log(scene.videos[videoId]);
 
     scene.canvases[canvasId].videoId = videoId;
   } else {
