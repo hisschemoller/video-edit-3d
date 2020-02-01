@@ -57,8 +57,9 @@ export function create(textureCanvas, data, resources, texture, fps) {
     keyEndFrame = 0,
     keyIndex = 0,
     keyStartFrame = 0,
-    resourceWidth = 0,
+    resourceFPS = 0,
     resourceHeight = 0,
+    resourceWidth = 0,
     // videoOffsetCurrentX,
     videoOffsetEndX,
     videoOffsetStartX,
@@ -98,16 +99,17 @@ export function create(textureCanvas, data, resources, texture, fps) {
       img = new Image();
 
       // video resource data
+      const resourceData = resources.find(resource => resource.id === resourceId);
       const {
-        width, 
-        height, 
-        fps: resourceFPS = 30,
         frames: resourceFrames = 0, 
         url: resourceURL = '#', 
-      } = resources.find(resource => resource.id === resourceId);
+      } = resourceData;
 
-      resourceWidth = width,
-      resourceHeight = height;
+      ({
+        fps: resourceFPS,
+        height: resourceHeight,
+        width: resourceWidth,
+      } = resourceData);
 
       imgURLPrefix = resourceURL.split('#')[0];
       imgURLSuffix = resourceURL.split('#')[1];
@@ -156,8 +158,8 @@ export function create(textureCanvas, data, resources, texture, fps) {
       const isLastKey = keyIndex + 1 === keys.length;
       const nextKeyIndex = isLastKey ? keyIndex : keyIndex + 1;
 
-      keyStartFrame = keys[keyIndex].time * fps;
-      keyEndFrame = keys[nextKeyIndex].time * fps;
+      keyStartFrame = keys[keyIndex].time * resourceFPS;
+      keyEndFrame = keys[nextKeyIndex].time * resourceFPS;
       keyCurrentFrame = keyStartFrame;
 
       videoOffsetStartX = keys[keyIndex].value[0];

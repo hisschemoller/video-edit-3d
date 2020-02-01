@@ -227,82 +227,82 @@ const scene = {
     name: 'scene4',
     uuid: 'scene4',
     children: [
-      // {
-      //   // GROUND
-      //   canvasId: 's4g-canvas',
-      //   castShadow: false,
-      //   geometry: 's4g-geom',
-      //   layers: 1,
-      //   material: 's4g-mat',
-      //   matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -20,0,-11,1],
-      //   receiveShadow: true,
-      //   type: 'Mesh',
-      //   name: 's4g-obj',
-      // },
-      // {
-      //   // ACHTERWAND
-      //   ...defaultMesh,
-      //   canvasId: 's4-backdrop-canvas',
-      //   geometry: 's4-backdrop-geom',
-      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...backdropPos, 1],
-      //   name: 's4-backdrop-obj', 
-      // },
-      // {
-      //   // CONCERTGEBOUW
-      //   ...defaultMesh,
-      //   canvasId: 's4-concert-canvas',
-      //   geometry: 's4-concert-geom',
-      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...concertPos, 1],
-      //   name: 's4-concert-obj', 
-      // },
-      // {
-      //   // CAFE MODERNE / HEINEKENHOEK
-      //   ...defaultMesh,
-      //   canvasId: 's4-moderne-canvas',
-      //   geometry: 's4-moderne-geom',
-      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...modernePos, 1],
-      //   name: 's4-moderne-obj',
-      // },
-      // {
-      //   // MAISON DE VRIES
-      //   ...defaultMesh,
-      //   canvasId: 's4-maison-canvas',
-      //   geometry: 's4-maison-geom',
-      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...maisonPos, 1],
-      //   name: 's4-maison-obj',
-      // },
-      // {
-      //   // TREE
-      //   ...defaultMesh,
-      //   canvasId: 's4-tree-canvas',
-      //   geometry: 's4-tree-geom',
-      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...treePos, 1],
-      //   name: 's4-tree-obj',
-      // },
-      // {
-      //   // POLE_RIGHT
-      //   ...defaultMesh,
-      //   canvasId: 's4-poleright-canvas',
-      //   geometry: 's4-poleright-geom',
-      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polerightPos, 1],
-      //   name: 's4-poleright-obj',
-      // },
-      // {
-      //   // POLE_MIDDLE
-      //   ...defaultMesh,
-      //   canvasId: 's4-polemiddle-canvas',
-      //   geometry: 's4-polemiddle-geom',
-      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polemiddlePos, 1],
-      //   name: 's4-polemiddle-obj',
-      // },
-      // {
-      //   // POLE_MIDRIGHT
-      //   ...defaultMesh,
-      //   canvasId: 's4-polemidright-canvas',
-      //   geometry: 's4-polemidright-geom',
-      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polemidrightPos, 1],
-      //   name: 's4-polemidright-obj',
-      // },
+      {
+        // GROUND
+        canvasId: 's4g-canvas',
+        castShadow: false,
+        geometry: 's4g-geom',
+        layers: 1,
+        material: 's4g-mat',
+        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -20,0,-11,1],
+        receiveShadow: true,
+        type: 'Mesh',
+        name: 's4g-obj',
+      },
+      {
+        // ACHTERWAND
+        ...defaultMesh,
+        canvasId: 's4-backdrop-canvas',
+        geometry: 's4-backdrop-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...backdropPos, 1],
+        name: 's4-backdrop-obj', 
+      },
+      {
+        // CONCERTGEBOUW
+        ...defaultMesh,
+        canvasId: 's4-concert-canvas',
+        geometry: 's4-concert-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...concertPos, 1],
+        name: 's4-concert-obj', 
+      },
+      {
+        // CAFE MODERNE / HEINEKENHOEK
+        ...defaultMesh,
+        canvasId: 's4-moderne-canvas',
+        geometry: 's4-moderne-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...modernePos, 1],
+        name: 's4-moderne-obj',
+      },
+      {
+        // MAISON DE VRIES
+        ...defaultMesh,
+        canvasId: 's4-maison-canvas',
+        geometry: 's4-maison-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...maisonPos, 1],
+        name: 's4-maison-obj',
+      },
+      {
+        // TREE
+        ...defaultMesh,
+        canvasId: 's4-tree-canvas',
+        geometry: 's4-tree-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...treePos, 1],
+        name: 's4-tree-obj',
+      },
+      {
+        // POLE_RIGHT
+        ...defaultMesh,
+        canvasId: 's4-poleright-canvas',
+        geometry: 's4-poleright-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polerightPos, 1],
+        name: 's4-poleright-obj',
+      },
+      {
+        // POLE_MIDDLE
+        ...defaultMesh,
+        canvasId: 's4-polemiddle-canvas',
+        geometry: 's4-polemiddle-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polemiddlePos, 1],
+        name: 's4-polemiddle-obj',
+      },
+      {
+        // POLE_MIDRIGHT
+        ...defaultMesh,
+        canvasId: 's4-polemidright-canvas',
+        geometry: 's4-polemidright-geom',
+        matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polemidrightPos, 1],
+        name: 's4-polemidright-obj',
+      },
       // {
       //   // COUPLE WITH BAG
       //   ...defaultMesh,

@@ -7,7 +7,6 @@ import { musicToTime, uuidv4, } from '../app/util.js';
  * @param {Object} config
  */
 export default function createActor(scene, fps, config) {
-  console.log('A', scene, fps, config);
   const {
 
     // object position and animation
@@ -75,25 +74,11 @@ export default function createActor(scene, fps, config) {
       end: videoEndTime,
       isLoop: true,
       keys: vKeys.map(key => ({ time: key.t, value: [ ...key.v ]})),
-      // keys: [
-      //   {
-      //     time: startTime,
-      //     value: [videoOffsetX, videoOffsetY],
-      //   },
-      //   {
-      //     time: endTime,
-      //     value: [videoOffsetX2, videoOffsetY],
-      //   },
-      // ],
-      // offsetX: videoOffsetX,
-      // offsetY: videoOffsetY,
-      // offsetX2: videoOffsetX2,
       resourceId: videoResourceId,
       scale: videoScale,
       start: videoStartTime,
       startInitial: videoStartTimeInitial,
     };
-    console.log(scene.videos[videoId]);
 
     scene.canvases[canvasId].videoId = videoId;
   } else {
