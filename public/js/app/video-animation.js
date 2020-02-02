@@ -27,9 +27,6 @@ export function create(textureCanvas, data, resources, texture, fps) {
   } = canvasData;
   
   const {
-    // offsetX: videoOffsetStartX = 0, 
-    // offsetY: videoOffsetY = 0,
-    // offsetX2: videoOffsetEndX = videoData.offsetX,
     end,
     isLoop = false,
     keys = [],

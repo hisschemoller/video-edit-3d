@@ -20,7 +20,7 @@ export default function createActor(scene, fps, config) {
     cSz: canvasSize = 512, cSc: canvasScale = 256, cOf: canvasOffset = 256,
 
     // video
-    videoResourceId,
+    vrid: videoResourceId,
     vSc: videoScale = 1,
     vKeys = [{t: 0, v: [  0, 0]}],
     vt0: videoStartTime = 0, vt1: videoEndTime, vt0i: videoStartTimeInitial = config.vt0,

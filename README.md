@@ -120,9 +120,11 @@ Online SVG editors
 
 ## FFMPEG
 
-Convert AVI to MP4:
+Convert AVI to MP4.
+The first works best in Quicktime on Mac.
 
 ```bash
+ffmpeg -i input.avi -f mp4 -vcodec libx264 -pix_fmt yuv420p output.mp4
 ffmpeg -i input.avi -c:v libx264 -crf 19 -preset slow -c:a aac -b:a 192k -ac 2 output.mp4
 ```
 
@@ -173,6 +175,12 @@ Timestamps are in HH:MM:SS.xxx format or in seconds (s.msec).
 ```
 ffmpeg -ss 00:00:30.0 -i input.avi -c copy -t 00:00:10.0 output.avi
 ffmpeg -ss 30 -i input.avi -c copy -t 10 output.avi
+```
+
+Concatenate media files with the same codecs
+
+```
+ffmpeg -i "concat:input1.avi|input2.avi|input3.avi" -c copy output.avi
 ```
 
 Extract sound from video to wav.
