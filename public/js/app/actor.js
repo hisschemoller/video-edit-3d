@@ -13,11 +13,11 @@ export default function createActor(scene, fps, config) {
     keys = [{t: 0, v: [  0, 0]}],
 
     // geometry
-    gw: geomWidth = 1, gh: geomHeight = 1.5,
+    gw: geomWidth = 1, gh: geomHeight = 1, gd: geomDepth = 1,
     path,
 
     // canvas
-    cSz: canvasSize = 512, cSc: canvasScale = 256, cOf: canvasOffset = 128,
+    cSz: canvasSize = 512, cSc: canvasScale = 256, cOf: canvasOffset = 256,
 
     // video
     videoResourceId,
@@ -71,7 +71,7 @@ export default function createActor(scene, fps, config) {
   }
 
   scene.geometries.push({
-    depth: 0.5,
+    depth: geomDepth,
     points,
     type: 'CanvasExtrudeGeometry',
     uuid: geomId,

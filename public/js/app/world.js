@@ -86,7 +86,8 @@ export function getObjectByName(name) {
 
 /**
  * Create all 3D objects and populate the scene.
- * @param {Object} sceneData 
+ * @param {Object} allData 
+ * @param {Number} sceneIndex 
  */
 export function loadScene(allData, sceneIndex) {
 
@@ -138,7 +139,7 @@ export function loadScene(allData, sceneIndex) {
       animationAction.setLoop(sceneData.animations[0].loop);
       animationAction.play();
       mixers.push([mixer, sceneData.clipId]);
-      console.log('AnimationMixer', mixer);
+      // console.log('AnimationMixer', mixer);
       // console.log('clipAction', animationAction);
     }
 

@@ -6,15 +6,15 @@ import {
 import { draw as drawCanvas } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
 
-const clips = [];
+const scenes = [];
 
 let frame = 0;
 let framesPerDraw = 0;
 let frameCounter = -1;
 let origin = 0;
 let position = 0;
-let nextClipTime = 0;
-let nextClipIndex = 0;
+let nextSceneTime = 0;
+let nextSceneIndex = 0;
 let data;
 let infoTimeEl;
 
@@ -52,7 +52,7 @@ function setupWithData(dataSource, config) {
 
   setupWorld(data);
 
-  checkForNextClips(position);
+  checkForNextScene(position);
   requestAnimationFrame(isCapture ? capture : run);
 }
 
@@ -74,7 +74,7 @@ function run() {
   requestAnimationFrame(run);
   
   position = performance.now() - origin;
-  checkForNextClips(position);
+  checkForNextScene(position);
   drawCanvas(frame);
   animateWorld();
   infoTimeEl.textContent = (position / 1000).toFixed(1);  
@@ -86,29 +86,29 @@ function capture() {
 }
 
 /**
- * Check for score clips to start or end.
+ * Check for score scenes to start or end.
  * @param {Number} position Time position within the main time.line
  */
-function checkForNextClips(position) {
+function checkForNextScene(position) {
 
-  // check for clips to start
-  if (position >= nextClipTime) {
-    for (let i = nextClipIndex, n = data.score.length; i < n; i++) {
-      const { canvases, score, } = data;
+  // check for scenes to start
+  if (position >= nextSceneTime) {
+    const { canvases, score, } = data;
+    for (let i = nextSceneIndex, n = data.score.length; i < n; i++) {
       const sceneData = score[i];
       const { clipId, lifespan, } = sceneData;
       if (lifespan[0] <= position) {
-        nextClipIndex++;
-        nextClipTime = nextClipIndex < data.score.length ? data.score[nextClipIndex].lifespan[0] : Number.MAX_VALUE;
+        nextSceneIndex++;
+        nextSceneTime = nextSceneIndex < data.score.length ? data.score[nextSceneIndex].lifespan[0] : Number.MAX_VALUE;
 
-        // store the clip end time
-        clips.push({
+        // store the scene end time
+        scenes.push({
           clipId,
           lifespan,
         });
-        clips.sort((a, b) => a.lifespan[1] - b.lifespan[1]);
+        scenes.sort((a, b) => a.lifespan[1] - b.lifespan[1]);
 
-        // create the clip's objects
+        // create the scene's objects
         loadWorldScene(data, i);
       } else {
 
@@ -119,10 +119,10 @@ function checkForNextClips(position) {
   }
 
   // check for scenes to end
-  if (clips.length && position >= clips[0].lifespan[1]) {
-    while (clips.length && position >= clips[0].lifespan[1]) {
-      const scene = data.score.find(scene => scene.clipId === clips[0].clipId);
-      clips.splice(0, 1);
+  if (scenes.length && position >= scenes[0].lifespan[1]) {
+    while (scenes.length && position >= scenes[0].lifespan[1]) {
+      const scene = data.score.find(scene => scene.clipId === scenes[0].clipId);
+      scenes.splice(0, 1);
 
       // remove the scene
       destroyWorldScene(data, scene.clipId);
