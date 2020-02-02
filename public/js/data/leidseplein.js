@@ -82,6 +82,22 @@ const data = {
       width: 100,
       height: 74,
     },
+    {
+      id: 'couple',
+      url: 'frames/couple/frame_#.png',
+      frames: 1802,
+      fps: 30,
+      width: 540,
+      height: 280,
+    },
+    {
+      id: '30seconds',
+      url: 'frames/30seconds/frame_#.png',
+      frames: 900,
+      fps,
+      width: 640,
+      height: 360,
+    },
   ],
   score: [
     scene1,

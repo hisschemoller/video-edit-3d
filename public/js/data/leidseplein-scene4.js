@@ -51,34 +51,11 @@ const couplePos = [0, 0, -5];
 const scene = {
   animations: [
     {
-      duration: 90,
+      duration: 80 * fps,
       fps,
       loop: THREE.LoopOnce,
       name: 'actor-animation',
       tracks: [
-        // {
-        //   interpolation: THREE.InterpolateSmooth,
-        //   name: `s4-couple-obj.position`,
-        //   type: 'vector3',
-        //   keys: [
-        //     {
-        //       value: [ ...couplePos ], // in 3d units
-        //       time: 0 * fps, // in frames
-        //     },
-        //     {
-        //       value: [ ...couplePos ],
-        //       time: 4 * fps,
-        //     },
-        //     {
-        //       value: [ ...couplePos ],
-        //       time: 7 * fps,
-        //     },
-        //     {
-        //       value: [ ...couplePos ],
-        //       time: 17 * fps,
-        //     },
-        //   ],
-        // },
       ],
     },
   ],
@@ -135,11 +112,6 @@ const scene = {
       scale: 256 / 9,
       imageId: 's4-polemidright-image',
     },
-    's4-couple-canvas': {
-      ...canvas,
-      scale: 256 / 2.2,
-      videoId: 's4-couple-video',
-    },
   },
   geometries: [
     {
@@ -194,12 +166,6 @@ const scene = {
       depth: 0.1,
       points: [[0.29803,0],[0.25573,6.19846],[0.12383,6.19846],[0,6.59504],[0.25586,6.66195],[0.25586,7.20799],[0.32601,7.20799],[0.32601,6.85526],[0.63045,6.90784],[0.68259,6.82084],[0.35286,6.37607],[0.5868,0]],
       uuid: 's4-polemidright-geom',
-      type: 'CanvasExtrudeGeometry',
-    },
-    {
-      depth: 10,
-      points: [ [0, 0], [2, 0], [2, 2.2], [0, 2.2] ],
-      uuid: 's4-couple-geom',
       type: 'CanvasExtrudeGeometry',
     },
   ],
@@ -303,14 +269,6 @@ const scene = {
         matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...polemidrightPos, 1],
         name: 's4-polemidright-obj',
       },
-      // {
-      //   // COUPLE WITH BAG
-      //   ...defaultMesh,
-      //   canvasId: 's4-couple-canvas',
-      //   geometry: 's4-couple-geom',
-      //   matrix: [1,0,0,0, 0,1,0,0 ,0,0,1,0, ...couplePos, 1],
-      //   name: 's4-couple-obj',
-      // },
     ],
   },
   videos: {
@@ -369,64 +327,82 @@ const scene = {
       offsetY: 1024,
       scale: 1,
     },
-    's4-couple-video': {
-      ...videoScene4,
-      resourceId: 'leidseplein3a',
-      start: 130.5,
-      end: 130.5 + 4,
-      // offsetX: 640,
-      // offsetY: 400,
-      // offsetX2: 240,
-      scale: 265 / 180, // (256 / 2.2)
-      keys: [
-        {
-          time: 130.5,
-          value: [640, 400],
-        },
-        {
-          time: 130.5 + 4,
-          value: [240, 400],
-        },
-        {
-          time: 130.5 + 40,
-          value: [240, 400],
-        },
-      ],
-    },
   },
 };
 
+// TIMER
+// createActor(scene, fps, {
+//   gw: 640 / 360,
+//   keys: [
+//     { t: 2, v: [  -3, 0, -11]},
+//     { t: 3, v: [ -4, 0, -11]},
+//   ],
+//   cSc: 256 / (640 / 360),
+//   vKeys: [
+//     { t: 0, v: [  0, 360]},
+//   ],
+//   vSc: 256 / 640, vt0: 0, vrid: '30seconds',
+// });
+
+// ECHTPAAR MET TAS
+createActor(scene, fps, {
+  gh: 2.5, gw: 3,
+  keys: [
+    { t:  0, v: [ 6, 0, -11]},
+    { t:  5, v: [ 0, 0, -11]},
+    { t: 24, v: [ 0, 0, -11]},
+    { t: 34, v: [-5, 0, -15]},
+  ],
+  cSc: 256 / 3,
+  vKeys: [
+    { t:  0, v: [ 540, 200]},
+    { t:  5, v: [ 140, 200]},
+    { t: 24, v: [ 140, 200]},
+    { t: 34, v: [   0, 180]},
+  ],
+  vSc: 265 / 200, vt0: 0, vrid: 'couple',
+});
+
 // FIETSER
 createActor(scene, fps, {
-  gw: 5, gh: 4, 
+  gw: 5, gh: 4,
   keys: [
     { t:   0, v: [-20, 0, -30]}, // time measures in seconds
     { t: 5.5, v: [ 12, 0, -30]},
   ],
   cSc: 50, cOf: 0,
-  vSc: 2, 
+  vSc: 2,
   vt0: 17.5, vt1: 17.5 + 5.5, vt0i: 17.5, // measured in seconds
   vKeys: [
     { t: 17.5,       v: [  0, 313]}, // measured in seconds
     { t: 17.5 + 5.5, v: [640, 313]}, // measured in seconds
   ],
-  videoResourceId: 'leidseplein4',
+  vrid: 'leidseplein4',
 });
 
 // VOETGANGER MET WITTE TRUI
-// createActor(scene, {
-//   gw: 2.5, gh: 2.5, z: -20, x0: -15, x1: 9, t0: 0 * fps, t1: fps * 11,
-//   cSc: 80, cOf: 0,
-//   vOx: 0, vOy: 340, vOx2: 640, vSc: 2, vt0: 19.5, vt1: 20 + 11,
-//   videoResourceId: 'leidseplein4',
-// });
+createActor(scene, fps, {
+  gw: 2.5, gh: 2.5,
+  keys: [
+    { t:  0, v: [-15, 0, -20]},
+    { t: 11, v: [  9, 0, -20]},
+  ],
+  cSc: 80, cOf: 0,
+  vSc: 2, 
+  vt0: 19.5, vt1: 20 + 11,
+  vKeys: [
+    { t: 17.5,      v: [  0, 340]},
+    { t: 17.5 + 11, v: [640, 340]},
+  ],
+  vrid: 'leidseplein4',
+});
 
 // DRIE VROUWEN VAN RECHTS
 // createActor(scene, {
 //   gw: 1.5, gh: 2.5, z: -12, x0: 6, x1: -7, t0: 0 * fps, t1: fps * 14,
 //   cSc: 80, cOf: 0,
 //   vOx: 640, vOy: 380, vOx2: 20, vSc: 1.3, vt0: 45, vt1: 44 + 14,
-//   videoResourceId: 'leidseplein4',
+//   vrid: 'leidseplein4',
 // });
 
 // ECHTPAAR MET TASJE
