@@ -10,11 +10,7 @@ export default function createActor(scene, fps, config) {
   const {
 
     // object position and animation
-    x0: fromX = -2,
-    x1: toX = 2.5,
-    z = -2,
-    t0: startTime = 0, // in seconds
-    t1: endTime = 10, // in seconds
+    keys = [{t: 0, v: [  0, 0]}],
 
     // geometry
     gw: geomWidth = 1, gh: geomHeight = 1.5,
@@ -28,11 +24,9 @@ export default function createActor(scene, fps, config) {
     vSc: videoScale = 1,
     vKeys = [{t: 0, v: [  0, 0]}],
     vt0: videoStartTime = 0, vt1: videoEndTime, vt0i: videoStartTimeInitial = config.vt0,
-    // vOx: videoOffsetX = 0, vOy: videoOffsetY = 0, vOx2: videoOffsetX2 = 0,
     
   } = config;
   
-  // const scene = data.score[sceneIndex];
   const objId = config.objId || uuidv4();
   const geomId = uuidv4();
 
@@ -43,16 +37,7 @@ export default function createActor(scene, fps, config) {
   scene.animations[0].tracks.push({
     name: `${objId}.position`,
     type: 'vector3',
-    keys: [
-      {
-        value: [fromX, 0, z],
-        time: startTime * fps,
-      },
-      {
-        value: [toX, 0, z],
-        time: endTime * fps,
-      },
-    ],
+    keys: keys.map(key => ({ time: key.t * fps, value: [ ...key.v ]})),
   });
 
   // add canvas
@@ -98,7 +83,7 @@ export default function createActor(scene, fps, config) {
     geometry: geomId,
     layers: 1,
     material: 'default-mat',
-    matrix: [1,0,0,0 ,0,1,0,0 ,0,0,1,0 ,fromX,0,z,1],
+    matrix: [1,0,0,0 ,0,1,0,0 ,0,0,1,0 , ...keys[0].v ,1],
     name: objId,
     receiveShadow: true,
     type: 'Mesh',

@@ -380,16 +380,16 @@ const scene = {
       scale: 265 / 180, // (256 / 2.2)
       keys: [
         {
-          value: [640, 400],
           time: 130.5,
+          value: [640, 400],
         },
         {
-          value: [240, 400],
           time: 130.5 + 4,
+          value: [240, 400],
         },
         {
-          value: [240, 400],
           time: 130.5 + 40,
+          value: [240, 400],
         },
       ],
     },
@@ -398,7 +398,11 @@ const scene = {
 
 // FIETSER
 createActor(scene, fps, {
-  gw: 5, gh: 4, z: -30, x0: -20, x1: 12, t0: 0, t1: 5.5, // measures in seconds
+  gw: 5, gh: 4, 
+  keys: [
+    { t:   0, v: [-20, 0, -30]}, // time measures in seconds
+    { t: 5.5, v: [ 12, 0, -30]},
+  ],
   cSc: 50, cOf: 0,
   vSc: 2, 
   vt0: 17.5, vt1: 17.5 + 5.5, vt0i: 17.5, // measured in seconds
