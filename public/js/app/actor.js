@@ -6,7 +6,7 @@ import { musicToTime, uuidv4, } from '../app/util.js';
  * @param {Number} fps
  * @param {Object} config
  */
-export default function createActor(scene, fps, config) {
+export default function createActor(scene, fps = 30, config = {}) {
   const {
 
     // object position and animation

@@ -60,8 +60,11 @@ export function create(textureCanvas, data, resources, texture, fps) {
     // videoOffsetCurrentX,
     videoOffsetEndX,
     videoOffsetStartX,
-    videoOffsetX,
-    videoOffsetY,
+    videoOffsetEndY,
+    videoOffsetStartY,
+
+    // videoOffsetX,
+    // videoOffsetY,
 
     /**
      * Draw the video clip frame (an Image element) on the texture's canvas.
@@ -160,14 +163,14 @@ export function create(textureCanvas, data, resources, texture, fps) {
       keyCurrentFrame = keyStartFrame;
 
       videoOffsetStartX = keys[keyIndex].value[0];
+      videoOffsetStartY = keys[keyIndex].value[1];
       videoOffsetEndX = keys[nextKeyIndex].value[0];
-      // videoOffsetCurrentX = videoOffsetStartX;
-      videoOffsetY = keys[keyIndex].value[1];
+      videoOffsetEndY = keys[nextKeyIndex].value[1];
 
       keyIndex = nextKeyIndex;
       
       dx = canvasOffsetX - (videoOffsetStartX * videoScale);
-      dy = canvasHeight - canvasOffsetY - (videoOffsetY * videoScale);
+      dy = canvasHeight - canvasOffsetY - (videoOffsetStartY * videoScale);
       dWidth = resourceWidth * videoScale;
       dHeight = resourceHeight * videoScale;
     },
@@ -189,7 +192,9 @@ export function create(textureCanvas, data, resources, texture, fps) {
 
       // const positionNormalized = (imgURLNr - imgURLNrFirst) / (imgURLNrLast - imgURLNrFirst);
       const videoOffsetCurrentX = videoOffsetStartX + ((videoOffsetEndX - videoOffsetStartX) * keyPositionNormalized);
+      const videoOffsetCurrentY = videoOffsetStartY + ((videoOffsetEndY - videoOffsetStartY) * keyPositionNormalized);
       dx = canvasOffsetX - (videoOffsetCurrentX * videoScale);
+      dy = canvasHeight - canvasOffsetY - (videoOffsetCurrentY * videoScale);
     };
     
   init();
