@@ -14,7 +14,7 @@ const data = {
       id: '30seconds',
       url: 'frames/30seconds/frame_#.png',
       frames: 900,
-      fps,
+      fps: 30,
       width: 640,
       height: 360,
     },
@@ -115,8 +115,8 @@ const data = {
 // 30 SECONDS
 createActor(data.score[0], fps, {
   vKeys: [
-    { t: 0, v: [  0, 360] }, 
-    { t: 2, v: [640 - 360, 200] },
+    { t: 2, v: [        0, 360] }, 
+    { t: 4, v: [640 - 360, 360] },
   ],
   vSc: 256 / 360,
   // vt0: 0, vt1: 30,

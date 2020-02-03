@@ -26,7 +26,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
     width: canvasWidth,
   } = canvasData;
   
-  const {
+  let {
     end,
     isLoop = false,
     keys = [],
@@ -49,7 +49,9 @@ export function create(textureCanvas, data, resources, texture, fps) {
     dy,
     dWidth,
     dHeight,
-    isAnimating = keys.length > 1,
+    isAnimating = false,
+    isDeferredStart = false,
+    isWaitingToStart = false,
     keyCurrentFrame = 0,
     keyEndFrame = 0,
     keyIndex = 0,
@@ -57,37 +59,36 @@ export function create(textureCanvas, data, resources, texture, fps) {
     resourceFPS = 0,
     resourceHeight = 0,
     resourceWidth = 0,
-    // videoOffsetCurrentX,
     videoOffsetEndX,
     videoOffsetStartX,
     videoOffsetEndY,
     videoOffsetStartY,
-
-    // videoOffsetX,
-    // videoOffsetY,
 
     /**
      * Draw the video clip frame (an Image element) on the texture's canvas.
      * @see https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
      */
     draw = () => {
-      if (repeat) {
-        textureCtx.fillStyle = textureCtx.createPattern(img, repeat);
-        textureCtx.fillRect(0, 0, textureCanvas.width, textureCanvas.height);
-      } else {
-        if (flipHorizontal) {
-          textureCtx.save();
-          textureCtx.scale(-1, 1);
-          textureCtx.drawImage(img, dx, dy, dWidth, dHeight);
-          textureCtx.restore();
+      if (!isWaitingToStart) {
+        if (repeat) {
+          textureCtx.fillStyle = textureCtx.createPattern(img, repeat);
+          textureCtx.fillRect(0, 0, textureCanvas.width, textureCanvas.height);
         } else {
-          textureCtx.drawImage(img, dx, dy, dWidth, dHeight);
+          if (flipHorizontal) {
+            textureCtx.save();
+            textureCtx.scale(-1, 1);
+            textureCtx.drawImage(img, dx, dy, dWidth, dHeight);
+            textureCtx.restore();
+          } else {
+            textureCtx.drawImage(img, dx, dy, dWidth, dHeight);
+          }
         }
       }
       
       if (isAnimating) {
         updateOffset();
       }
+
       loadImage();
     },
 
@@ -117,17 +118,8 @@ export function create(textureCanvas, data, resources, texture, fps) {
       imgURLNrFirst = Math.floor(start * resourceFPS) + 1;
       imgURLNrLast = end ? Math.floor(end * resourceFPS) : resourceFrames;
       imgURLNrIncrease = resourceFPS / fps;
-
-      if (keys.length > 1) {
-        updateKeys();
-      } else {
-        const [offsetX, offsetY] = keys[0].value;
-        dx = canvasOffsetX - (offsetX * videoScale);
-        dy = canvasHeight - canvasOffsetY - (offsetY * videoScale);
-        dWidth = resourceWidth * videoScale;
-        dHeight = resourceHeight * videoScale;
-      }
       
+      updateKeys();
       loadImage();
     },
 
@@ -135,7 +127,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
      * Load a video frame image based on imgURLNr.
      */
     loadImage = () => {
-      if (imgURLNr <= imgURLNrLast) {
+      if (imgURLNr <= imgURLNrLast && !isWaitingToStart) {
         img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + Math.round(imgURLNr)).slice(-5) : '99999') + imgURLSuffix;
         if (imgURLNr < imgURLNrLast) {
           imgURLNr += imgURLNrIncrease;
@@ -150,9 +142,12 @@ export function create(textureCanvas, data, resources, texture, fps) {
      * The position 
      */
     updateKeys = () => {
-      if (keyIndex === keys.length - 1) {
-        isAnimating = false;
-        return;
+      isAnimating = keys.length > 1 && keyIndex < keys.length - 1;
+      isDeferredStart = keys[0].time > 0;
+      isWaitingToStart = isDeferredStart && keyIndex === 0;
+
+      if (keyIndex === 0 && isDeferredStart) {
+        keys = [ { ...keys[0], time: 0, }, ...keys, ];
       }
 
       const isLastKey = keyIndex + 1 === keys.length;
@@ -168,7 +163,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
       videoOffsetEndY = keys[nextKeyIndex].value[1];
 
       keyIndex = nextKeyIndex;
-      
+
       dx = canvasOffsetX - (videoOffsetStartX * videoScale);
       dy = canvasHeight - canvasOffsetY - (videoOffsetStartY * videoScale);
       dWidth = resourceWidth * videoScale;
@@ -185,12 +180,13 @@ export function create(textureCanvas, data, resources, texture, fps) {
         updateKeys();
 
         // keyPositionNormalized must be recalculated
-        keyPositionNormalized = (keyCurrentFrame - keyStartFrame) / (keyEndFrame - keyStartFrame);
+        if (isAnimating) {
+          keyPositionNormalized = (keyCurrentFrame - keyStartFrame) / (keyEndFrame - keyStartFrame);
+        }
       }
 
       keyCurrentFrame += imgURLNrIncrease;
 
-      // const positionNormalized = (imgURLNr - imgURLNrFirst) / (imgURLNrLast - imgURLNrFirst);
       const videoOffsetCurrentX = videoOffsetStartX + ((videoOffsetEndX - videoOffsetStartX) * keyPositionNormalized);
       const videoOffsetCurrentY = videoOffsetStartY + ((videoOffsetEndY - videoOffsetStartY) * keyPositionNormalized);
       dx = canvasOffsetX - (videoOffsetCurrentX * videoScale);
@@ -198,7 +194,6 @@ export function create(textureCanvas, data, resources, texture, fps) {
     };
     
   init();
-
   
   return {
     draw,
