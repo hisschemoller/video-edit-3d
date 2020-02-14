@@ -59,6 +59,14 @@ const data = {
       height: 480,
     },
     {
+      id: 'leidseplein3b',
+      url: 'frames/leidseplein3b/frame_#.png',
+      frames: 3298,
+      fps: 30,
+      width: 640,
+      height: 480,
+    },
+    {
       id: 'leidseplein4',
       url: 'frames/leidseplein4/frame_#.png',
       frames: 5153,

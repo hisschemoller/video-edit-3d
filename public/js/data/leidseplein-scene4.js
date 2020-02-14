@@ -423,37 +423,74 @@ const scene = {
 // });
 
 // POLITIE
-createActor(scene, fps, {
-  gw: 5, gh: 2.5,
-  keys: [
-    { t: 0, v: [-15, 0, -25]},
-    { t: 4, v: [  8, 0, -5]},
-  ],
-  cSc: 80, cOf: 0,
-  vSc: 2, 
-  vt: [7.7, null],
-  vKeys: [
-    { t: 0, v: [  -150, 340]},
-    { t: 4, v: [740, 340]},
-  ],
-  vrid: 'leidseplein4',
-});
+// createActor(scene, fps, {
+//   gw: 5, gh: 2.5,
+//   keys: [
+//     { t: 0, v: [-15, 0, -25]},
+//     { t: 4, v: [  8, 0, -5]},
+//   ],
+//   cSc: 80, cOf: 0,
+//   vSc: 2, 
+//   vt: [7.7, null],
+//   vKeys: [
+//     { t: 0, v: [  -150, 340]},
+//     { t: 4, v: [740, 340]},
+//   ],
+//   vrid: 'leidseplein4',
+// });
 
 // WIT BUSJE
+// createActor(scene, fps, {
+//   gw: 7, gh: 3.3,
+//   keys: [
+//     { t:  0, v: [ 20, 0, -30]},
+//     { t: 12, v: [-23, 0, -45]},
+//   ],
+//   cSc: 70, cOf: 0,
+//   vSc: 2.5,
+//   vt: [21, null],
+//   vKeys: [
+//     { t: 0,  v: [ 640, 310]},
+//     { t: 12, v: [   0, 310]},
+//   ],
+//   vrid: 'leidseplein4',
+// });
+
+// POLITIE
+// createActor(scene, fps, {
+//   gw: 5, gh: 2.5,
+//   keys: [
+//     { t: 0, v: [-15, 0, -25]},
+//     { t: 4, v: [  8, 0, -5]},
+//   ],
+//   cSc: 80, cOf: 0,
+//   vSc: 2, 
+//   vt: [7.7, null],
+//   vKeys: [
+//     { t: 0, v: [  -150, 340]},
+//     { t: 4, v: [740, 340]},
+//   ],
+//   vrid: 'leidseplein4',
+// });
+
+// VROUW VAN VER WEG
 createActor(scene, fps, {
-  gw: 7, gh: 3.3,
+  gw: 2, gh: 2.2,
   keys: [
-    { t:  0, v: [ 20, 0, -30]},
-    { t: 12, v: [-23, 0, -45]},
+    { t:  0, v: [  0, 0, -110]},
+    { t: 46, v: [  -1, 0,  -5]},
+    { t: 49, v: [ -5, 0,  -3]},
   ],
-  cSc: 70, cOf: 0,
-  vSc: 2.5,
-  vt: [21, null],
+  cSc: 80, cOf: 0,
+  vSc: 1, 
+  vt: [60, null],
   vKeys: [
-    { t: 0,  v: [ 640, 310]},
-    { t: 12, v: [   0, 310]},
+    { t:  0, v: [ 240, 380]},
+    { t: 46, v: [ 240, 400]},
+    { t: 49, v: [   0, 400]},
   ],
-  vrid: 'leidseplein4',
+  vrid: 'leidseplein3b',
 });
+
 
 export default scene;
