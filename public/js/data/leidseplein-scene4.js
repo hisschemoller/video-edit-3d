@@ -170,7 +170,7 @@ const scene = {
     },
   ],
   clipId: uuidv4(),
-  lifespan: [120, 200],
+  lifespan: [120, 220],
   materials: [
     {
       color: 0xf7f7f7,
@@ -330,6 +330,8 @@ const scene = {
   },
 };
 
+let actorStart;
+
 // TIMER
 // createActor(scene, fps, {
 //   gw: 640 / 360,
@@ -342,135 +344,6 @@ const scene = {
 //     { t: 0, v: [  0, 360]},
 //   ],
 //   vSc: 256 / 640, vt: [0, null], vrid: '30seconds',
-// });
-
-// ECHTPAAR MET TASJE
-// createActor(scene, fps, {
-//   gh: 2.5, gw: 3,
-//   keys: [
-//     { t:  0, v: [ 6, 0, -11]},
-//     { t:  5, v: [ 0, 0, -11]},
-//     { t: 24, v: [ 0, 0, -11]},
-//     { t: 34, v: [-5, 0, -15]},
-//     { t: 55, v: [-5, 0, -15]},
-//     { t: 60, v: [-10, 0, -15]},
-//   ],
-//   cSc: 256 / 3,
-//   vKeys: [
-//     { t:  0, v: [ 540, 200]},
-//     { t:  5, v: [ 140, 200]},
-//     { t: 24, v: [ 140, 200]},
-//     { t: 34, v: [   0, 180]},
-//     { t: 55, v: [   0, 180]},
-//     { t: 60, v: [ -30, 180]},
-//   ],
-//   vSc: 265 / 200, vt: [0, null], vrid: 'couple',
-// });
-
-// FIETSER
-// createActor(scene, fps, {
-//   gw: 5, gh: 4,
-//   keys: [
-//     { t: 30.0, v: [-20, 0, -30]}, // time measures in seconds
-//     { t: 35.5, v: [ 12, 0, -30]},
-//   ],
-//   cSc: 50, cOf: 0,
-//   vSc: 2,
-//   vt: [17.5, 17.5 + 5.5], vt0i: 17.5, // measured in seconds
-//   vKeys: [
-//     { t: 30.0, v: [  0, 313]}, // measured in seconds
-//     { t: 35.5, v: [640, 313]}, // measured in seconds
-//   ],
-//   vrid: 'leidseplein4',
-// });
-
-// VOETGANGER MET WITTE TRUI
-// createActor(scene, fps, {
-//   gw: 2.5, gh: 2.5,
-//   keys: [
-//     { t: 10, v: [-15, 0, -20]},
-//     { t: 21, v: [  9, 0, -20]},
-//   ],
-//   cSc: 80, cOf: 0,
-//   vSc: 2, 
-//   vt: [19.5, 20 + 11],
-//   vKeys: [
-//     { t: 10, v: [  0, 340]},
-//     { t: 21, v: [640, 340]},
-//   ],
-//   vrid: 'leidseplein4',
-// });
-
-// DRIE VROUWEN VAN RECHTS
-// createActor(scene, fps, {
-//   gw: 1.5, gh: 2.5,
-//   keys: [
-//     { t:  0, v: [  6.5, 0, -12]},
-//     { t:  8, v: [    0, 0, -12]},
-//     { t: 14, v: [   -3, 0, -15]},
-//     { t: 20, v: [   -3, 0, -15]},
-//     { t: 50, v: [   -3, 0, -80]},
-//   ],
-//   cSc: 80, cOf: 0,
-//   vt: [45.5, null], vSc: 1.3,
-//   vKeys: [
-//     { t:  0, v: [640, 380]},
-//     { t:  8, v: [200, 380]},
-//     { t: 14, v: [ 60, 380]},
-//     { t: 20, v: [ 60, 380]},
-//   ],
-//   vrid: 'leidseplein4',
-// });
-
-// POLITIE
-// createActor(scene, fps, {
-//   gw: 5, gh: 2.5,
-//   keys: [
-//     { t: 0, v: [-15, 0, -25]},
-//     { t: 4, v: [  8, 0, -5]},
-//   ],
-//   cSc: 80, cOf: 0,
-//   vSc: 2, 
-//   vt: [7.7, null],
-//   vKeys: [
-//     { t: 0, v: [  -150, 340]},
-//     { t: 4, v: [740, 340]},
-//   ],
-//   vrid: 'leidseplein4',
-// });
-
-// WIT BUSJE
-// createActor(scene, fps, {
-//   gw: 7, gh: 3.3,
-//   keys: [
-//     { t:  0, v: [ 20, 0, -30]},
-//     { t: 12, v: [-23, 0, -45]},
-//   ],
-//   cSc: 70, cOf: 0,
-//   vSc: 2.5,
-//   vt: [21, null],
-//   vKeys: [
-//     { t: 0,  v: [ 640, 310]},
-//     { t: 12, v: [   0, 310]},
-//   ],
-//   vrid: 'leidseplein4',
-// });
-
-// POLITIE
-// createActor(scene, fps, {
-//   gw: 5, gh: 2.5,
-//   keys: [
-//     { t: 0, v: [-15, 0, -25]},
-//     { t: 4, v: [  8, 0, -5]},
-//   ],
-//   cSc: 80, cOf: 0,
-//   vSc: 2, 
-//   vt: [7.7, null],
-//   vKeys: [
-//     { t: 0, v: [  -150, 340]},
-//     { t: 4, v: [740, 340]},
-//   ],
-//   vrid: 'leidseplein4',
 // });
 
 // VROUW VAN VER WEG
@@ -492,6 +365,23 @@ createActor(scene, fps, {
   vrid: 'leidseplein3b',
 });
 
+// FIETSER
+actorStart = 10;
+createActor(scene, fps, {
+  gw: 5, gh: 4,
+  keys: [
+    { t:   0 + actorStart, v: [-20, 0, -30]}, // time measures in seconds
+    { t: 5.5 + actorStart, v: [ 12, 0, -30]},
+  ],
+  cSc: 50, cOf: 0,
+  vSc: 2,
+  vt: [17.5, 17.5 + 5.5], vt0i: 17.5, // measured in seconds
+  vKeys: [
+    { t:   0 + actorStart, v: [  0, 313]}, // measured in seconds
+    { t: 5.5 + actorStart, v: [640, 313]}, // measured in seconds
+  ],
+  vrid: 'leidseplein4',
+});
 
 // INVALIDENWAGENTJE
 actorStart = 15;
@@ -512,5 +402,126 @@ createActor(scene, fps, {
   ],
   vrid: 'leidseplein3b',
 });
+
+// DRIE VROUWEN VAN RECHTS
+actorStart = 20;
+createActor(scene, fps, {
+  gw: 1.5, gh: 2.5,
+  keys: [
+    { t:  0 + actorStart, v: [  6.5, 0,  -12]},
+    { t:  8 + actorStart, v: [    0, 0,  -12]},
+    { t: 14 + actorStart, v: [   -3, 0,  -15]},
+    { t: 20 + actorStart, v: [   -3, 0,  -15]},
+    { t: 50 + actorStart, v: [   -3, 0, -120]},
+  ],
+  cSc: 80, cOf: 0,
+  vt: [45.5, null], vSc: 1.3,
+  vKeys: [
+    { t:  0 + actorStart, v: [640, 380]},
+    { t:  8 + actorStart, v: [200, 380]},
+    { t: 14 + actorStart, v: [ 60, 380]},
+    { t: 20 + actorStart, v: [ 60, 380]},
+  ],
+  vrid: 'leidseplein4',
+});
+
+// VOETGANGER MET WITTE TRUI
+actorStart = 30;
+createActor(scene, fps, {
+  gw: 2.5, gh: 2.5,
+  keys: [
+    { t:  0 + actorStart, v: [-15, 0, -20]},
+    { t: 11 + actorStart, v: [  9, 0, -20]},
+  ],
+  cSc: 80, cOf: 0,
+  vSc: 2, 
+  vt: [19.5, 20 + 11],
+  vKeys: [
+    { t:  0 + actorStart, v: [  0, 340]},
+    { t: 11 + actorStart, v: [640, 340]},
+  ],
+  vrid: 'leidseplein4',
+});
+
+// ECHTPAAR MET TASJE
+actorStart = 48;
+createActor(scene, fps, {
+  gh: 2.5, gw: 3,
+  keys: [
+    { t:  0 + actorStart, v: [ 6, 0, -11]},
+    { t:  5 + actorStart, v: [ 0, 0, -11]},
+    { t: 24 + actorStart, v: [ 0, 0, -11]},
+    { t: 34 + actorStart, v: [-5, 0, -15]},
+    { t: 55 + actorStart, v: [-5, 0, -15]},
+    { t: 60 + actorStart, v: [-10, 0, -15]},
+  ],
+  cSc: 256 / 3,
+  vKeys: [
+    { t:  0 + actorStart, v: [ 540, 200]},
+    { t:  5 + actorStart, v: [ 140, 200]},
+    { t: 24 + actorStart, v: [ 140, 200]},
+    { t: 34 + actorStart, v: [   0, 180]},
+    { t: 55 + actorStart, v: [   0, 180]},
+    { t: 60 + actorStart, v: [ -30, 180]},
+  ],
+  vSc: 265 / 200, vt: [0, null], vrid: 'couple',
+});
+
+// POLITIE
+actorStart = 55;
+createActor(scene, fps, {
+  gw: 5, gh: 2.5,
+  keys: [
+    { t: 0 + actorStart, v: [-15, 0, -25]},
+    { t: 4 + actorStart, v: [  8, 0, -5]},
+  ],
+  cSc: 80, cOf: 0,
+  vSc: 2, 
+  vt: [7.7, null],
+  vKeys: [
+    { t: 0 + actorStart, v: [  -150, 340]},
+    { t: 4 + actorStart, v: [740, 340]},
+  ],
+  vrid: 'leidseplein4',
+});
+
+// WIT BUSJE
+actorStart = 60;
+createActor(scene, fps, {
+  gw: 7, gh: 3.3,
+  keys: [
+    { t:  0 + actorStart, v: [ 20, 0, -30]},
+    { t: 12 + actorStart, v: [-23, 0, -45]},
+  ],
+  cSc: 70, cOf: 0,
+  vSc: 2.5,
+  vt: [21, null],
+  vKeys: [
+    { t:  0 + actorStart,  v: [ 640, 310]},
+    { t: 12 + actorStart, v: [   0, 310]},
+  ],
+  vrid: 'leidseplein4',
+});
+
+
+// VROUW MET KRUK
+// createActor(scene, fps, {
+//   gw: 1.5, gh: 2.2,
+//   keys: [
+//     { t:  0, v: [ -12, 0, -40]},
+//     { t: 38, v: [  -5, 0,  -8]},
+//     { t: 46, v: [   6, 0,  -8]},
+//   ],
+//   cSc: 80, cOf: 0,
+//   vSc: 1, 
+//   vt: [20],
+//   vKeys: [
+//     { t:  0, v: [ 10, 400]},
+//     { t: 38, v: [ 10, 400]},
+//     { t: 46, v: [   0, 400]},
+//   ],
+//   vrid: 'leidseplein3b',
+// });
+
 
 export default scene;
