@@ -22,8 +22,10 @@ export default function createActor(scene, fps = 30, config = {}) {
     // video
     vrid: videoResourceId,
     vSc: videoScale = 1,
-    vKeys = [{t: 0, v: [  0, 0]}],
-    vt0: videoStartTime = 0, vt1: videoEndTime, vt0i: videoStartTimeInitial = config.vt0,
+    vKeys = [{t: 0, v: [0, 0]}],
+
+    vt: videoTime = [0, null],
+    vt0i: videoStartTimeInitial = config.vt[0],
     
   } = config;
   
@@ -56,12 +58,12 @@ export default function createActor(scene, fps = 30, config = {}) {
 
     // add video
     scene.videos[videoId] = {
-      end: videoEndTime,
+      end: videoTime[1],
       isLoop: true,
       keys: vKeys.map(key => ({ time: key.t, value: [ ...key.v ]})),
       resourceId: videoResourceId,
       scale: videoScale,
-      start: videoStartTime,
+      start: videoTime[0],
       startInitial: videoStartTimeInitial,
     };
 

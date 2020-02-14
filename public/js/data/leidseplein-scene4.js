@@ -341,7 +341,7 @@ const scene = {
 //   vKeys: [
 //     { t: 0, v: [  0, 360]},
 //   ],
-//   vSc: 256 / 640, vt0: 0, vrid: '30seconds',
+//   vSc: 256 / 640, vt: [0, null], vrid: '30seconds',
 // });
 
 // ECHTPAAR MET TASJE
@@ -364,7 +364,7 @@ const scene = {
 //     { t: 55, v: [   0, 180]},
 //     { t: 60, v: [ -30, 180]},
 //   ],
-//   vSc: 265 / 200, vt0: 0, vrid: 'couple',
+//   vSc: 265 / 200, vt: [0, null], vrid: 'couple',
 // });
 
 // FIETSER
@@ -376,7 +376,7 @@ const scene = {
 //   ],
 //   cSc: 50, cOf: 0,
 //   vSc: 2,
-//   vt0: 17.5, vt1: 17.5 + 5.5, vt0i: 17.5, // measured in seconds
+//   vt: [17.5, 17.5 + 5.5], vt0i: 17.5, // measured in seconds
 //   vKeys: [
 //     { t: 30.0, v: [  0, 313]}, // measured in seconds
 //     { t: 35.5, v: [640, 313]}, // measured in seconds
@@ -393,7 +393,7 @@ createActor(scene, fps, {
   ],
   cSc: 80, cOf: 0,
   vSc: 2, 
-  vt0: 19.5, vt1: 20 + 11,
+  vt: [19.5, 20 + 11],
   vKeys: [
     { t: 10, v: [  0, 340]},
     { t: 21, v: [640, 340]},
@@ -412,7 +412,7 @@ createActor(scene, fps, {
     { t: 50, v: [   -3, 0, -80]},
   ],
   cSc: 80, cOf: 0,
-  vt0: 45.5, vt1: null, vSc: 1.3,
+  vt: [45.5, null], vSc: 1.3,
   vKeys: [
     { t:  0, v: [640, 380]},
     { t:  8, v: [200, 380]},
