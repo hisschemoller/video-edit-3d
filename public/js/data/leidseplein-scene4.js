@@ -439,4 +439,21 @@ createActor(scene, fps, {
   vrid: 'leidseplein4',
 });
 
+// WIT BUSJE
+createActor(scene, fps, {
+  gw: 7, gh: 3.3,
+  keys: [
+    { t:  0, v: [ 20, 0, -30]},
+    { t: 12, v: [-23, 0, -45]},
+  ],
+  cSc: 70, cOf: 0,
+  vSc: 2.5,
+  vt: [21, null],
+  vKeys: [
+    { t: 0,  v: [ 640, 310]},
+    { t: 12, v: [   0, 310]},
+  ],
+  vrid: 'leidseplein4',
+});
+
 export default scene;
