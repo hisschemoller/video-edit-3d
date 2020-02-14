@@ -344,73 +344,82 @@ const scene = {
 //   vSc: 256 / 640, vt0: 0, vrid: '30seconds',
 // });
 
-// ECHTPAAR MET TAS
-createActor(scene, fps, {
-  gh: 2.5, gw: 3,
-  keys: [
-    { t:  0, v: [ 6, 0, -11]},
-    { t:  5, v: [ 0, 0, -11]},
-    { t: 24, v: [ 0, 0, -11]},
-    { t: 34, v: [-5, 0, -15]},
-  ],
-  cSc: 256 / 3,
-  vKeys: [
-    { t:  0, v: [ 540, 200]},
-    { t:  5, v: [ 140, 200]},
-    { t: 24, v: [ 140, 200]},
-    { t: 34, v: [   0, 180]},
-  ],
-  vSc: 265 / 200, vt0: 0, vrid: 'couple',
-});
+// ECHTPAAR MET TASJE
+// createActor(scene, fps, {
+//   gh: 2.5, gw: 3,
+//   keys: [
+//     { t:  0, v: [ 6, 0, -11]},
+//     { t:  5, v: [ 0, 0, -11]},
+//     { t: 24, v: [ 0, 0, -11]},
+//     { t: 34, v: [-5, 0, -15]},
+//     { t: 55, v: [-5, 0, -15]},
+//     { t: 60, v: [-10, 0, -15]},
+//   ],
+//   cSc: 256 / 3,
+//   vKeys: [
+//     { t:  0, v: [ 540, 200]},
+//     { t:  5, v: [ 140, 200]},
+//     { t: 24, v: [ 140, 200]},
+//     { t: 34, v: [   0, 180]},
+//     { t: 55, v: [   0, 180]},
+//     { t: 60, v: [ -30, 180]},
+//   ],
+//   vSc: 265 / 200, vt0: 0, vrid: 'couple',
+// });
 
 // FIETSER
-createActor(scene, fps, {
-  gw: 5, gh: 4,
-  keys: [
-    { t:   0, v: [-20, 0, -30]}, // time measures in seconds
-    { t: 5.5, v: [ 12, 0, -30]},
-  ],
-  cSc: 50, cOf: 0,
-  vSc: 2,
-  vt0: 17.5, vt1: 17.5 + 5.5, vt0i: 17.5, // measured in seconds
-  vKeys: [
-    { t: 17.5,       v: [  0, 313]}, // measured in seconds
-    { t: 17.5 + 5.5, v: [640, 313]}, // measured in seconds
-  ],
-  vrid: 'leidseplein4',
-});
+// createActor(scene, fps, {
+//   gw: 5, gh: 4,
+//   keys: [
+//     { t: 30.0, v: [-20, 0, -30]}, // time measures in seconds
+//     { t: 35.5, v: [ 12, 0, -30]},
+//   ],
+//   cSc: 50, cOf: 0,
+//   vSc: 2,
+//   vt0: 17.5, vt1: 17.5 + 5.5, vt0i: 17.5, // measured in seconds
+//   vKeys: [
+//     { t: 30.0, v: [  0, 313]}, // measured in seconds
+//     { t: 35.5, v: [640, 313]}, // measured in seconds
+//   ],
+//   vrid: 'leidseplein4',
+// });
 
 // VOETGANGER MET WITTE TRUI
 createActor(scene, fps, {
   gw: 2.5, gh: 2.5,
   keys: [
-    { t:  0, v: [-15, 0, -20]},
-    { t: 11, v: [  9, 0, -20]},
+    { t: 10, v: [-15, 0, -20]},
+    { t: 21, v: [  9, 0, -20]},
   ],
   cSc: 80, cOf: 0,
   vSc: 2, 
   vt0: 19.5, vt1: 20 + 11,
   vKeys: [
-    { t: 17.5,      v: [  0, 340]},
-    { t: 17.5 + 11, v: [640, 340]},
+    { t: 10, v: [  0, 340]},
+    { t: 21, v: [640, 340]},
   ],
   vrid: 'leidseplein4',
 });
 
 // DRIE VROUWEN VAN RECHTS
-// createActor(scene, {
-//   gw: 1.5, gh: 2.5, z: -12, x0: 6, x1: -7, t0: 0 * fps, t1: fps * 14,
-//   cSc: 80, cOf: 0,
-//   vOx: 640, vOy: 380, vOx2: 20, vSc: 1.3, vt0: 45, vt1: 44 + 14,
-//   vrid: 'leidseplein4',
-// });
-
-// ECHTPAAR MET TASJE
-// createActor(scene, {
-//   gw: 10, gh: 3, z: -8, x0: 6, x1: 0, t0: 0 * fps, t1: fps * 4,
-//   cSc: 80, cOf: 0,
-//   vOx: 640, vOy: 362, vOx2: 320, vSc: 1.3, vt0: 130.5, vt1: 130.5 + 4,
-//   videoResourceId: 'leidseplein3a',
-// });
+createActor(scene, fps, {
+  gw: 1.5, gh: 2.5,
+  keys: [
+    { t:  0, v: [  6.5, 0, -12]},
+    { t:  8, v: [    0, 0, -12]},
+    { t: 14, v: [   -3, 0, -15]},
+    { t: 20, v: [   -3, 0, -15]},
+    { t: 50, v: [   -3, 0, -80]},
+  ],
+  cSc: 80, cOf: 0,
+  vt0: 45.5, vt1: null, vSc: 1.3,
+  vKeys: [
+    { t:  0, v: [640, 380]},
+    { t:  8, v: [200, 380]},
+    { t: 14, v: [ 60, 380]},
+    { t: 20, v: [ 60, 380]},
+  ],
+  vrid: 'leidseplein4',
+});
 
 export default scene;
