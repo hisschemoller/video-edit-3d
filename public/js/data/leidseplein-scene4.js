@@ -493,4 +493,24 @@ createActor(scene, fps, {
 });
 
 
+// INVALIDENWAGENTJE
+actorStart = 15;
+createActor(scene, fps, {
+  gw: 4, gh: 3,
+  keys: [
+    { t:   0 + actorStart, v: [ -16, 0, -30]},
+    { t: 5.5 + actorStart, v: [ 4, 0, -30]},
+    { t:  11 + actorStart, v: [ 12, 0, -30]},
+  ],
+  cSc: 80, cOf: 0,
+  vSc: 4, 
+  vt: [68.4, null],
+  vKeys: [
+    { t:   0 + actorStart, v: [  0, 290]},
+    { t: 5.0 + actorStart, v: [480, 290]},
+    { t:  11 + actorStart, v: [700, 290]},
+  ],
+  vrid: 'leidseplein3b',
+});
+
 export default scene;
