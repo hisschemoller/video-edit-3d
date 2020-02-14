@@ -385,39 +385,56 @@ const scene = {
 // });
 
 // VOETGANGER MET WITTE TRUI
+// createActor(scene, fps, {
+//   gw: 2.5, gh: 2.5,
+//   keys: [
+//     { t: 10, v: [-15, 0, -20]},
+//     { t: 21, v: [  9, 0, -20]},
+//   ],
+//   cSc: 80, cOf: 0,
+//   vSc: 2, 
+//   vt: [19.5, 20 + 11],
+//   vKeys: [
+//     { t: 10, v: [  0, 340]},
+//     { t: 21, v: [640, 340]},
+//   ],
+//   vrid: 'leidseplein4',
+// });
+
+// DRIE VROUWEN VAN RECHTS
+// createActor(scene, fps, {
+//   gw: 1.5, gh: 2.5,
+//   keys: [
+//     { t:  0, v: [  6.5, 0, -12]},
+//     { t:  8, v: [    0, 0, -12]},
+//     { t: 14, v: [   -3, 0, -15]},
+//     { t: 20, v: [   -3, 0, -15]},
+//     { t: 50, v: [   -3, 0, -80]},
+//   ],
+//   cSc: 80, cOf: 0,
+//   vt: [45.5, null], vSc: 1.3,
+//   vKeys: [
+//     { t:  0, v: [640, 380]},
+//     { t:  8, v: [200, 380]},
+//     { t: 14, v: [ 60, 380]},
+//     { t: 20, v: [ 60, 380]},
+//   ],
+//   vrid: 'leidseplein4',
+// });
+
+// POLITIE
 createActor(scene, fps, {
-  gw: 2.5, gh: 2.5,
+  gw: 5, gh: 2.5,
   keys: [
-    { t: 10, v: [-15, 0, -20]},
-    { t: 21, v: [  9, 0, -20]},
+    { t: 0, v: [-15, 0, -25]},
+    { t: 4, v: [  8, 0, -5]},
   ],
   cSc: 80, cOf: 0,
   vSc: 2, 
-  vt: [19.5, 20 + 11],
+  vt: [7.7, null],
   vKeys: [
-    { t: 10, v: [  0, 340]},
-    { t: 21, v: [640, 340]},
-  ],
-  vrid: 'leidseplein4',
-});
-
-// DRIE VROUWEN VAN RECHTS
-createActor(scene, fps, {
-  gw: 1.5, gh: 2.5,
-  keys: [
-    { t:  0, v: [  6.5, 0, -12]},
-    { t:  8, v: [    0, 0, -12]},
-    { t: 14, v: [   -3, 0, -15]},
-    { t: 20, v: [   -3, 0, -15]},
-    { t: 50, v: [   -3, 0, -80]},
-  ],
-  cSc: 80, cOf: 0,
-  vt: [45.5, null], vSc: 1.3,
-  vKeys: [
-    { t:  0, v: [640, 380]},
-    { t:  8, v: [200, 380]},
-    { t: 14, v: [ 60, 380]},
-    { t: 20, v: [ 60, 380]},
+    { t: 0, v: [  -150, 340]},
+    { t: 4, v: [740, 340]},
   ],
   vrid: 'leidseplein4',
 });
