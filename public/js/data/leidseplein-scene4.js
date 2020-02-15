@@ -365,22 +365,40 @@ createActor(scene, fps, {
   vrid: 'leidseplein3b',
 });
 
-// FIETSER
-actorStart = 10;
+// VOETGANGER MET WITTE TRUI
+actorStart = 5;
 createActor(scene, fps, {
-  gw: 5, gh: 4,
+  gw: 2.5, gh: 2.5,
   keys: [
-    { t:   0 + actorStart, v: [-20, 0, -30]}, // time measures in seconds
-    { t: 5.5 + actorStart, v: [ 12, 0, -30]},
+    { t:  0 + actorStart, v: [-11, 0, -20]},
+    { t: 11 + actorStart, v: [  9, 0, -20]},
   ],
-  cSc: 50, cOf: 0,
-  vSc: 2,
-  vt: [17.5, 17.5 + 5.5], vt0i: 17.5, // measured in seconds
+  cSc: 80, cOf: 0,
+  vSc: 2, 
+  vt: [19.5, 20 + 11],
   vKeys: [
-    { t:   0 + actorStart, v: [  0, 313]}, // measured in seconds
-    { t: 5.5 + actorStart, v: [640, 313]}, // measured in seconds
+    { t:  0 + actorStart, v: [  0, 340]},
+    { t: 11 + actorStart, v: [640, 340]},
   ],
   vrid: 'leidseplein4',
+});
+
+// SCOOTER
+actorStart = 10;
+createActor(scene, fps, {
+  gw: 2, gh: 2,
+  keys: [
+    { t:   0 + actorStart, v: [  8, 0, -18]},
+    { t: 7.2 + actorStart, v: [-10, 0, -18]},
+  ],
+  cSc: 70, cOf: 0,
+  vSc: 2,
+  vt: [ 6 ],
+  vKeys: [
+    { t:   0 + actorStart, v: [ 640, 300]},
+    { t: 7.2 + actorStart, v: [   0, 300]},
+  ],
+  vrid: 'leidseplein3b',
 });
 
 // INVALIDENWAGENTJE
@@ -425,20 +443,20 @@ createActor(scene, fps, {
   vrid: 'leidseplein4',
 });
 
-// VOETGANGER MET WITTE TRUI
+// FIETSER
 actorStart = 30;
 createActor(scene, fps, {
-  gw: 2.5, gh: 2.5,
+  gw: 5, gh: 4,
   keys: [
-    { t:  0 + actorStart, v: [-15, 0, -20]},
-    { t: 11 + actorStart, v: [  9, 0, -20]},
+    { t:   0 + actorStart, v: [-20, 0, -30]}, // time measures in seconds
+    { t: 5.5 + actorStart, v: [ 12, 0, -30]},
   ],
-  cSc: 80, cOf: 0,
-  vSc: 2, 
-  vt: [19.5, 20 + 11],
+  cSc: 50, cOf: 0,
+  vSc: 2,
+  vt: [17.5, 17.5 + 5.5], vt0i: 17.5, // measured in seconds
   vKeys: [
-    { t:  0 + actorStart, v: [  0, 340]},
-    { t: 11 + actorStart, v: [640, 340]},
+    { t:   0 + actorStart, v: [  0, 313]}, // measured in seconds
+    { t: 5.5 + actorStart, v: [640, 313]}, // measured in seconds
   ],
   vrid: 'leidseplein4',
 });
@@ -467,24 +485,6 @@ createActor(scene, fps, {
   vSc: 265 / 200, vt: [0, null], vrid: 'couple',
 });
 
-// POLITIE
-actorStart = 55;
-createActor(scene, fps, {
-  gw: 5, gh: 2.5,
-  keys: [
-    { t: 0 + actorStart, v: [-15, 0, -25]},
-    { t: 4 + actorStart, v: [  8, 0, -5]},
-  ],
-  cSc: 80, cOf: 0,
-  vSc: 2, 
-  vt: [7.7, null],
-  vKeys: [
-    { t: 0 + actorStart, v: [  -150, 340]},
-    { t: 4 + actorStart, v: [740, 340]},
-  ],
-  vrid: 'leidseplein4',
-});
-
 // WIT BUSJE
 actorStart = 60;
 createActor(scene, fps, {
@@ -499,6 +499,24 @@ createActor(scene, fps, {
   vKeys: [
     { t:  0 + actorStart,  v: [ 640, 310]},
     { t: 12 + actorStart, v: [   0, 310]},
+  ],
+  vrid: 'leidseplein4',
+});
+
+// POLITIE
+actorStart = 75;
+createActor(scene, fps, {
+  gw: 5, gh: 2.5,
+  keys: [
+    { t: 0 + actorStart, v: [-15, 0, -25]},
+    { t: 4 + actorStart, v: [  8, 0, -5]},
+  ],
+  cSc: 80, cOf: 0,
+  vSc: 2, 
+  vt: [7.7, null],
+  vKeys: [
+    { t: 0 + actorStart, v: [  -150, 340]},
+    { t: 4 + actorStart, v: [740, 340]},
   ],
   vrid: 'leidseplein4',
 });
