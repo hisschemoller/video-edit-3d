@@ -471,7 +471,7 @@ createActor(scene, fps, {
     { t: 24 + actorStart, v: [ 0, 0, -11]},
     { t: 34 + actorStart, v: [-5, 0, -15]},
     { t: 55 + actorStart, v: [-5, 0, -15]},
-    { t: 60 + actorStart, v: [-10, 0, -15]},
+    { t: 60 + actorStart, v: [-10, 0, -35]},
   ],
   cSc: 256 / 3,
   vKeys: [
@@ -485,8 +485,26 @@ createActor(scene, fps, {
   vSc: 265 / 200, vt: [0, null], vrid: 'couple',
 });
 
+// MAN BLAUW T-SHIRT
+actorStart = 58;
+createActor(scene, fps, {
+  gw: 2, gh: 2,
+  keys: [
+    { t:   0 + actorStart, v: [  6.5, 0, -12]},
+    { t: 14 + actorStart, v: [-9, 0, -16]},
+  ],
+  cSc: 80, cOf: 0,
+  vSc: 2,
+  vt: [ 79.5 ],
+  vKeys: [
+    { t:   0 + actorStart, v: [ 640, 315]},
+    { t: 14 + actorStart, v: [   0, 315]},
+  ],
+  vrid: 'leidseplein3b',
+});
+
 // WIT BUSJE
-actorStart = 60;
+actorStart = 62;
 createActor(scene, fps, {
   gw: 7, gh: 3.3,
   keys: [
@@ -504,7 +522,7 @@ createActor(scene, fps, {
 });
 
 // POLITIE
-actorStart = 75;
+actorStart = 85;
 createActor(scene, fps, {
   gw: 5, gh: 2.5,
   keys: [
