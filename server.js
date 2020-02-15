@@ -34,15 +34,17 @@ app.use(express.static('public'));
 
 io.sockets.on('connection', function (socket) {
   socket.on('render-frame', function (data) {
+
     // pad frame number with zreos so it's four characters in length
     data.frame = (data.frame <= 99999) ? ('0000' + data.frame).slice(-5) : '99999';
+
     // get rid of the data:image/png;base64 at the beginning of the file data
     data.file = data.file.split(',')[1];
     var buffer = new Buffer(data.file, 'base64');
-    fs.writeFile(__dirname + '/tmp/frame_' + data.frame + '.png',
+    fs.writeFile(__dirname + '/rendered/frame_' + data.frame + '.png',
       buffer.toString('binary'),
       'binary',
-      (err) => {
+      err => {
         if (err) {
           console.log('An error occurred: ', err);
           throw err;
