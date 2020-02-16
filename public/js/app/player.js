@@ -50,7 +50,7 @@ function setupWithData(dataSource, config) {
   position = 0;
 
   if (isCapture) {
-    socket = io.connect('http://localhost:3000');
+    socket = io.connect('http://localhost:30');
     frameCounter = 0;
   }
 
@@ -94,16 +94,23 @@ function capture() {
     requestAnimationFrame(capture);
     return;
   }
+  
+  position = performance.now() - origin;
+  checkForNextScene(position);
+  drawCanvas(frame);
+  animateWorld();
+  infoTimeEl.textContent = (position / 1000).toFixed(1);  
+  frame += 1;
 
   // clips.draw(position, ctx);
   // position += 1000 / data.get().settings.framerate;
   // addNewClips(position);
 
   // send canvas to node app
-  socket.emit('render-frame', {
-    frame: frameCounter,
-    file: canvas.toDataURL()
-  });
+  // socket.emit('render-frame', {
+  //   frame: frameCounter,
+  //   file: canvas.toDataURL()
+  // });
 
   frameCounter++;
 
@@ -119,7 +126,7 @@ function capture() {
 
 /**
  * Check for score scenes to start or end.
- * @param {Number} position Time position within the main time.line
+ * @param {Number} position Time position within the main timeline, in seconds.
  */
 function checkForNextScene(position) {
 

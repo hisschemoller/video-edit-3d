@@ -115,7 +115,7 @@ const data = {
 // 30 SECONDS
 createActor(data.score[0], fps, {
   vKeys: [
-    { t: 2, v: [        0, 360] }, 
+    { t: 2, v: [        0, 360] },
     { t: 4, v: [640 - 360, 360] },
   ],
   vSc: 256 / 360,

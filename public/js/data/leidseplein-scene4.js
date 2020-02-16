@@ -479,7 +479,7 @@ createActor(scene, fps, {
   vrid: 'leidseplein4',
 });
 
-// MAN BLAUW T-SHIRT NUMMER 2
+// MAN BLAUW T-SHIRT NUMMER
 actorStart = 40;
 createActor(scene, fps, {
   gw: 2, gh: 2,
@@ -521,24 +521,6 @@ createActor(scene, fps, {
   vSc: 265 / 200, vt: [0, null], vrid: 'couple',
 });
 
-// MAN BLAUW T-SHIRT
-actorStart = 58;
-createActor(scene, fps, {
-  gw: 2, gh: 2,
-  keys: [
-    { t:   0 + actorStart, v: [  6.5, 0, -12]},
-    { t: 14 + actorStart, v: [-9, 0, -16]},
-  ],
-  cSc: 80, cOf: 0,
-  vSc: 2,
-  vt: [ 79.5 ],
-  vKeys: [
-    { t:   0 + actorStart, v: [ 640, 315]},
-    { t: 14 + actorStart, v: [   0, 315]},
-  ],
-  vrid: 'leidseplein3b',
-});
-
 // WIT BUSJE
 actorStart = 62;
 createActor(scene, fps, {
@@ -557,8 +539,26 @@ createActor(scene, fps, {
   vrid: 'leidseplein4',
 });
 
+// MAN BELLEND ROOD T-SHIRT
+actorStart = 71;
+createActor(scene, fps, {
+  gw: 2.2, gh: 2.2,
+  keys: [
+    { t:  0 + actorStart, v: [-9, 0, -14]},
+    { t: 16 + actorStart, v: [ 8, 0, -15]},
+  ],
+  cSc: 80, cOf: 0,
+  vSc: 2, 
+  vt: [ 76.8 ],
+  vKeys: [
+    { t:  0 + actorStart, v: [  0, 320]},
+    { t: 16 + actorStart, v: [640, 320]},
+  ],
+  vrid: 'leidseplein3b',
+});
+
 // POLITIE
-actorStart = 90;
+actorStart = 93;
 createActor(scene, fps, {
   gw: 5, gh: 2.5,
   keys: [
@@ -575,23 +575,6 @@ createActor(scene, fps, {
   vrid: 'leidseplein4',
 });
 
-// MAN BELLEND ROOD T-SHIRT
-actorStart = 0;
-createActor(scene, fps, {
-  gw: 2.2, gh: 2.2,
-  keys: [
-    { t:  0 + actorStart, v: [-9, 0, -14]},
-    { t: 16 + actorStart, v: [ 8, 0, -15]},
-  ],
-  cSc: 80, cOf: 0,
-  vSc: 2, 
-  vt: [ 76.8 ],
-  vKeys: [
-    { t:  0 + actorStart, v: [  0, 320]},
-    { t: 16 + actorStart, v: [640, 320]},
-  ],
-  vrid: 'leidseplein3b',
-});
 // TRAM
 // actorStart = 0;
 // createActor(scene, fps, {

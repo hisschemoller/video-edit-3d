@@ -272,8 +272,8 @@ function createWorld(data) {
   // const control = new TransformControls(camera, renderer.domElement);
   
   // STATS
-  stats = new Stats();
-  container.appendChild(stats.dom);
+  // stats = new Stats();
+  // container.appendChild(stats.dom);
 }
 
 // LIGHTS
@@ -338,6 +338,6 @@ export function animate() {
   light.position.copy(lightTarget.position);
   light.position.add(directionalLightOffset);
   
-  stats.update();
+  // stats.update();
   renderer.render(scene, camera);
 }
