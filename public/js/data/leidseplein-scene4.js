@@ -574,6 +574,25 @@ createActor(scene, fps, {
   ],
   vrid: 'leidseplein3b',
 });
+// TRAM
+// actorStart = 0;
+// createActor(scene, fps, {
+//   gw: 16, gh: 4,
+//   keys: [
+//     { t:  0 + actorStart, v: [ 20, 0, -61]},
+//     { t: 17 + actorStart, v: [-4, 0, -61]},
+//     { t: 26 + actorStart, v: [-40, 0, -61]},
+//   ],
+//   cSc: 30, cOf: 0,
+//   vSc: 0.9,
+//   vt: [ 35, 34 + 17 ],
+//   vKeys: [
+//     { t:  0 + actorStart,  v: [ 640, 300]},
+//     { t: 17 + actorStart, v: [   -200, 300]},
+//     { t: 26 + actorStart, v: [   -200, 300]},
+//   ],
+//   vrid: 'leidseplein3b',
+// });
 
 
 // VROUW MET KRUK
