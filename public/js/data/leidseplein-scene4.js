@@ -443,6 +443,24 @@ createActor(scene, fps, {
   vrid: 'leidseplein4',
 });
 
+// VROUW WIJDE BROEK
+actorStart = 25;
+createActor(scene, fps, {
+  gw: 2.2, gh: 2.2,
+  keys: [
+    { t:  0 + actorStart, v: [ -9, 0, -13]},
+    { t: 16 + actorStart, v: [ 8, 0, -13]},
+  ],
+  cSc: 80, cOf: 0,
+  vSc: 2, 
+  vt: [ 44, 62 ],
+  vKeys: [
+    { t:  0 + actorStart, v: [  0, 320]},
+    { t: 16 + actorStart, v: [640, 320]},
+  ],
+  vrid: 'leidseplein3b',
+});
+
 // FIETSER
 actorStart = 30;
 createActor(scene, fps, {
