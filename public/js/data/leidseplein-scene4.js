@@ -557,6 +557,26 @@ createActor(scene, fps, {
   vrid: 'leidseplein3b',
 });
 
+// GELE BAKFIETS
+actorStart = 78;
+createActor(scene, fps, {
+  gw: 2.2, gh: 2.2,
+  keys: [
+    { t:  0 + actorStart, v: [-12, 0, -21]},
+    { t: 14 + actorStart, v: [ 12, 0, -21]},
+  ],
+  cSc: 80, cOf: 0,
+  vSc: 2.5, 
+  vt: [ 89 ],
+  vKeys: [
+    { t:  0   + actorStart, v: [   0, 300]},
+    { t:  4.5 + actorStart, v: [ 350, 300]},
+    { t:  9   + actorStart, v: [ 550, 300]},
+    { t: 14   + actorStart, v: [ 640, 300]},
+  ],
+  vrid: 'leidseplein3a',
+});
+
 // POLITIE
 actorStart = 93;
 createActor(scene, fps, {
