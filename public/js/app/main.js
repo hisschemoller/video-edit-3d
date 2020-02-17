@@ -6,11 +6,12 @@ import dataLeidseplein from '../data/leidseplein.js';
 // import dataTest4 from '../data/test-2020-01-27.js'; // complex animation
 // import dataTest5 from '../data/test-2020-01-29.js'; // keyframe video animation
 // import dataTest6 from '../data/test-2020-02-03.js'; // start object at later time
+import dataTest7 from '../data/test-2020-02-17.js'; // repair capture
 // import dataLockedGroove3 from '../data/locked-groove-3.js';
 // import dataTestSvg from '../data/test-svg.js';
 
 setup({
-  data: dataLeidseplein,
-  isCapture: false,
-  startScene: 3,
+  data: dataTest7,
+  isCapture: true,
+  startScene: 0,
 });

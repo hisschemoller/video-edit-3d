@@ -41,6 +41,17 @@ export function createCanvases(allData, sceneIndex, rootObject3d) {
 }
 
 /**
+ * 
+ * @param {*} frame 
+ */
+export function draw(frame) {
+  animations.forEach(animation => {
+    animation.animation.draw(frame);
+    animation.texture.needsUpdate = true;
+  });
+}
+
+/**
  * Find all object data recursively.
  * @param {Object} objectData 
  * @param {Object} allData
@@ -146,16 +157,5 @@ function setupVideoCanvas(data, texture, canvas, resources, fps) {
   animations.push({
     animation: createVideoAnimation(canvas, data, resources, texture, fps),
     texture,
-  });
-}
-
-/**
- * 
- * @param {*} frame 
- */
-export function draw(frame) {
-  animations.forEach(animation => {
-    animation.animation.draw(frame);
-    animation.texture.needsUpdate = true;
   });
 }

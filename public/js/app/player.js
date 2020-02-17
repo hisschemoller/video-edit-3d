@@ -2,11 +2,14 @@ import {
   setup as setupWorld,
   animate as animateWorld,
   destroyScene as destroyWorldScene,
-  loadScene as loadWorldScene } from './world.js';
-import { draw as drawCanvas } from './canvas.js';
+  loadScene as loadWorldScene,
+  getCanvas,
+} from './world.js';
+import { draw as drawCanvas, } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
 
 const scenes = [];
+const captureThrottle = 30;
 
 let captureCounter = 0;
 let data;
@@ -41,7 +44,7 @@ function setupWithData(dataSource, config) {
   data = dataSource;
   data.score = sortScoreByLifespanStart(data.score);
   data.score = convertToMilliseconds(data.score);
-  console.log(data);
+  console.log('data', data);
 
   const { fps = 30, } = data.settings;
   framesPerDraw = 60 / fps;
@@ -50,7 +53,7 @@ function setupWithData(dataSource, config) {
   position = 0;
 
   if (isCapture) {
-    socket = io.connect('http://localhost:30');
+    socket = io.connect('http://localhost:3012');
     frameCounter = 0;
   }
 
@@ -90,34 +93,36 @@ function run() {
 
 function capture() {
   captureCounter++;
-  if (captureCounter % 20 !== 0) {
+  if (captureCounter % captureThrottle !== 0) {
     requestAnimationFrame(capture);
     return;
   }
   
-  position = performance.now() - origin;
+  // TEN TIMES AS SLOW: captureThrottle = 10
+  position = (performance.now() - origin) / captureThrottle;
   checkForNextScene(position);
   drawCanvas(frame);
-  animateWorld();
+  animateWorld(captureThrottle);
   infoTimeEl.textContent = (position / 1000).toFixed(1);  
   frame += 1;
 
+  // VROEGERE CAPTURE METHODE
   // clips.draw(position, ctx);
   // position += 1000 / data.get().settings.framerate;
   // addNewClips(position);
 
   // send canvas to node app
-  // socket.emit('render-frame', {
-  //   frame: frameCounter,
-  //   file: canvas.toDataURL()
-  // });
+  socket.emit('render-frame', {
+    frame: frameCounter,
+    file: getCanvas().toDataURL(),
+  });
 
   frameCounter++;
 
   infoTimeEl.textContent = (position / 1000).toFixed(1);  
 
   // end if this was the last frame
-  if (position < data.get().endTime) {
+  if (position < data.score[data.score.length - 1].lifespan[1]) {
       requestAnimationFrame(capture);
   } else {
     console.log('done');

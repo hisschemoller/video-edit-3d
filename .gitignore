@@ -1,4 +1,5 @@
 node_modules
 tmp
 public/frames
+rendered
 *.mp4

@@ -327,8 +327,8 @@ function createGround(settings) {
 }
 
 // ANIMATION LOOP
-export function animate() {
-  const deltaTime = clock.getDelta();
+export function animate(captureThrottle = 1) {
+  const deltaTime = clock.getDelta() / captureThrottle;
   mixers.forEach(mixer => mixer[0].update(deltaTime));
   
   camera.translateZ(cameraSpeed);
@@ -340,4 +340,8 @@ export function animate() {
   
   // stats.update();
   renderer.render(scene, camera);
+}
+
+export function getCanvas() {
+  return renderer.domElement;
 }
