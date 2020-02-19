@@ -366,7 +366,7 @@ createActor(scene, fps, {
 });
 
 // VOETGANGER MET WITTE TRUI
-actorStart = 5;
+actorStart = 2;
 createActor(scene, fps, {
   gw: 2.5, gh: 2.5,
   keys: [
@@ -521,6 +521,25 @@ createActor(scene, fps, {
   vSc: 265 / 200, vt: [0, null], vrid: 'couple',
 });
 
+// FIETSER MET WITTE TAS
+actorStart = 55;
+createActor(scene, fps, {
+  gw: 4, gh: 3.3,
+  keys: [
+    { t: 0 + actorStart, v: [-15, 0, -29]}, // time measures in seconds
+    { t: 7 + actorStart, v: [ 13, 0, -34]},
+  ],
+  cSc: 50, cOf: 0,
+  vSc: 2,
+  vt: [33.9, 34 + 8], // measured in seconds
+  vKeys: [
+    { t: 0 + actorStart, v: [  0, 313]}, // measured in seconds
+    { t: 3 + actorStart, v: [400, 313]}, // measured in seconds
+    { t: 6.5 + actorStart, v: [640, 313]}, // measured in seconds
+  ],
+  vrid: 'leidseplein4',
+});
+
 // WIT BUSJE
 actorStart = 62;
 createActor(scene, fps, {
@@ -558,7 +577,7 @@ createActor(scene, fps, {
 });
 
 // GELE BAKFIETS
-actorStart = 78;
+actorStart = 83;
 createActor(scene, fps, {
   gw: 2.2, gh: 2.2,
   keys: [
@@ -593,6 +612,27 @@ createActor(scene, fps, {
     { t: 4 + actorStart, v: [740, 340]},
   ],
   vrid: 'leidseplein4',
+});
+
+// GROEPJE
+actorStart = 0;
+createActor(scene, fps, {
+  gw: 3, gh: 2.5,
+  keys: [
+    { t:  0 + actorStart, v: [ 8, 0, -15]},
+    { t: 14 + actorStart, v: [-5, 0, -9]},
+    { t: 17 + actorStart, v: [-8, 0, -9]},
+  ],
+  cSc: 70, cOf: 0,
+  vSc: 2.0,
+  vt: [2, 19],
+  vKeys: [
+    { t:  0 + actorStart,  v: [ 640, 320]},
+    { t: 9 + actorStart, v: [   200, 320]},
+    { t: 14 + actorStart, v: [   0, 320]},
+    { t: 17 + actorStart, v: [   -100, 320]},
+  ],
+  vrid: 'leidseplein3a',
 });
 
 // TRAM
