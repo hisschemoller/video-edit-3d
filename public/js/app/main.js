@@ -12,6 +12,6 @@ import dataTest7 from '../data/test-2020-02-17.js'; // repair capture
 
 setup({
   data: dataTest7,
-  isCapture: true,
+  isCapture: false,
   startScene: 0,
 });

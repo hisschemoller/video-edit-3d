@@ -7,14 +7,17 @@ const {
   AnimationMixer,
   AxesHelper,
   BoxGeometry,
+  Camera,
   CameraHelper,
   Clock,
   Color,
   DirectionalLight,
   Fog,
   GridHelper,
+  ImageUtils,
   InterpolateLinear,
   Mesh,
+  MeshBasicMaterial,
   MeshPhongMaterial,
   Object3D,
   ObjectLoader,
@@ -24,13 +27,26 @@ const {
   PCFSoftShadowMap,
   PerspectiveCamera,
   PlaneBufferGeometry,
+  PlaneGeometry,
   Scene,
   TransformControls,
   Vector3,
   VectorKeyframeTrack,
   WebGLRenderer } = THREE;
 
-let renderer, camera, directionalLightOffset, light, lightTarget, cameraSpeed, scene, clock, stats, actions,
+let 
+  backgroundCamera, 
+  backgroundScene,
+  hasBackgroundImage = false,
+  renderer, 
+  camera, 
+  directionalLightOffset, 
+  light, lightTarget, 
+  cameraSpeed, 
+  scene, 
+  clock, 
+  stats,
+  actions,
   mixers = [];
 
 /**
@@ -39,7 +55,8 @@ let renderer, camera, directionalLightOffset, light, lightTarget, cameraSpeed, s
  */
 export function setup(data) {
   createWorld(data);
-  createLights(data);
+  addBackgroundImage(data);
+  addLights(data);
   setTimeout(() => {
     console.log('scene', scene.toJSON());
   }, 1000);
@@ -276,8 +293,31 @@ function createWorld(data) {
   // container.appendChild(stats.dom);
 }
 
+/**
+ * BACKGROUND IMAGE
+ */
+function addBackgroundImage(data) {
+  const { backgroundImage, } = data.settings;
+  hasBackgroundImage = !!backgroundImage;
+
+  if (hasBackgroundImage) {
+    const texture = ImageUtils.loadTexture(`../img/${backgroundImage}`);
+    const geometry = new PlaneGeometry(2, 2, 0);
+    const material = new MeshBasicMaterial({ map: texture, });
+    const mesh = new Mesh(geometry, material);
+    mesh.material.depthTest = false;
+    mesh.material.depthWrite = false;
+  
+    // background scene
+    backgroundCamera = new Camera();
+    backgroundScene = new Scene();
+    backgroundScene.add(backgroundCamera);
+    backgroundScene.add(mesh);
+  }
+}
+
 // LIGHTS
-function createLights(data) {
+function addLights(data) {
   directionalLightOffset = new Vector3(6, 7, 5);
 
   // AMBIENT
@@ -339,6 +379,11 @@ export function animate(captureThrottle = 1) {
   light.position.add(directionalLightOffset);
   
   // stats.update();
+
+  if (hasBackgroundImage) {
+    renderer.render(backgroundScene , backgroundCamera);
+  }
+
   renderer.render(scene, camera);
 }
 
