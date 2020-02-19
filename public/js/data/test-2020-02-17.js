@@ -106,6 +106,7 @@ const data = {
     },
   ],
   settings: {
+    backgroundImage: 'testimage3d.jpg',
     width: 480,
     height: 360,
     fps: 30,
