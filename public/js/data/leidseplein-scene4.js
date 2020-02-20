@@ -576,6 +576,46 @@ createActor(scene, fps, {
   vrid: 'leidseplein3b',
 });
 
+// SCOOTER ROOD SHIRT
+actorStart = 75;
+createActor(scene, fps, {
+  gw: 2.5, gh: 2.5,
+  keys: [
+    { t: 0 + actorStart, v: [-11, 0, -18]},
+    { t: 6 + actorStart, v: [ 10, 0, -15]},
+  ],
+  cSc: 80, cOf: 0,
+  vSc: 2.2,
+  vt: [ 20.8 ],
+  vKeys: [
+    { t:  0 + actorStart, v: [   0, 320]},
+    { t:  3.1 + actorStart, v: [ 360, 320]},
+    { t:  6.0 + actorStart, v: [ 840, 320]},
+  ],
+  vrid: 'leidseplein4',
+});
+
+// GROEPJE
+actorStart = 80;
+createActor(scene, fps, {
+  gw: 3, gh: 2.5,
+  keys: [
+    { t:  0 + actorStart, v: [ 8, 0, -15]},
+    { t: 14 + actorStart, v: [-5, 0, -9]},
+    { t: 17 + actorStart, v: [-8, 0, -9]},
+  ],
+  cSc: 70, cOf: 0,
+  vSc: 2.0,
+  vt: [2, 19],
+  vKeys: [
+    { t:  0 + actorStart,  v: [ 640, 320]},
+    { t: 9 + actorStart, v: [   200, 320]},
+    { t: 14 + actorStart, v: [   0, 320]},
+    { t: 17 + actorStart, v: [   -100, 320]},
+  ],
+  vrid: 'leidseplein3a',
+});
+
 // GELE BAKFIETS
 actorStart = 83;
 createActor(scene, fps, {
@@ -612,27 +652,6 @@ createActor(scene, fps, {
     { t: 4 + actorStart, v: [740, 340]},
   ],
   vrid: 'leidseplein4',
-});
-
-// GROEPJE
-actorStart = 0;
-createActor(scene, fps, {
-  gw: 3, gh: 2.5,
-  keys: [
-    { t:  0 + actorStart, v: [ 8, 0, -15]},
-    { t: 14 + actorStart, v: [-5, 0, -9]},
-    { t: 17 + actorStart, v: [-8, 0, -9]},
-  ],
-  cSc: 70, cOf: 0,
-  vSc: 2.0,
-  vt: [2, 19],
-  vKeys: [
-    { t:  0 + actorStart,  v: [ 640, 320]},
-    { t: 9 + actorStart, v: [   200, 320]},
-    { t: 14 + actorStart, v: [   0, 320]},
-    { t: 17 + actorStart, v: [   -100, 320]},
-  ],
-  vrid: 'leidseplein3a',
 });
 
 // TRAM
