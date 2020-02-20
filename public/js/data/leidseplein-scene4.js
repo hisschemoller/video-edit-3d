@@ -356,7 +356,7 @@ createActor(scene, fps, {
   ],
   cSc: 80, cOf: 0,
   vSc: 1, 
-  vt: [60, null],
+  vt: [60, 60 + 50],
   vKeys: [
     { t:  0, v: [ 240, 380]},
     { t: 46, v: [ 240, 400]},
@@ -393,7 +393,7 @@ createActor(scene, fps, {
   ],
   cSc: 70, cOf: 0,
   vSc: 2,
-  vt: [ 6 ],
+  vt: [ 6, 6 + 8 ],
   vKeys: [
     { t:   0 + actorStart, v: [ 640, 300]},
     { t: 7.2 + actorStart, v: [   0, 300]},
@@ -412,7 +412,7 @@ createActor(scene, fps, {
   ],
   cSc: 80, cOf: 0,
   vSc: 4, 
-  vt: [68.4, null],
+  vt: [68.4, 68 + 12],
   vKeys: [
     { t:   0 + actorStart, v: [  0, 290]},
     { t: 5.0 + actorStart, v: [480, 290]},
@@ -433,7 +433,7 @@ createActor(scene, fps, {
     { t: 50 + actorStart, v: [   -3, 0, -120]},
   ],
   cSc: 80, cOf: 0,
-  vt: [45.5, null], vSc: 1.3,
+  vt: [45.5, 45 + 50], vSc: 1.3,
   vKeys: [
     { t:  0 + actorStart, v: [640, 380]},
     { t:  8 + actorStart, v: [200, 380]},
@@ -453,7 +453,7 @@ createActor(scene, fps, {
   ],
   cSc: 80, cOf: 0,
   vSc: 2, 
-  vt: [ 44, 62 ],
+  vt: [ 44, 44 + 17 ],
   vKeys: [
     { t:  0 + actorStart, v: [  0, 320]},
     { t: 16 + actorStart, v: [640, 320]},
@@ -484,14 +484,14 @@ actorStart = 40;
 createActor(scene, fps, {
   gw: 2, gh: 2,
   keys: [
-    { t:   0 + actorStart, v: [  6.5, 0, -12]},
-    { t: 14 + actorStart, v: [-9, 0, -16]},
+    { t:  0 + actorStart, v: [  6.5, 0, -12]},
+    { t: 14 + actorStart, v: [ -9,   0, -16]},
   ],
   cSc: 80, cOf: 0,
   vSc: 2,
-  vt: [ 79.5 ],
+  vt: [ 79.5, 80 + 14 ],
   vKeys: [
-    { t:   0 + actorStart, v: [ 640, 315]},
+    { t:  0 + actorStart, v: [ 640, 315]},
     { t: 14 + actorStart, v: [   0, 315]},
   ],
   vrid: 'leidseplein3b',
@@ -518,7 +518,7 @@ createActor(scene, fps, {
     { t: 40 + actorStart, v: [   0, 180]},
     { t: 60 + actorStart, v: [ -30, 180]},
   ],
-  vSc: 265 / 200, vt: [0, null], vrid: 'couple',
+  vSc: 265 / 200, vt: [0, 60], vrid: 'couple',
 });
 
 // FIETSER MET WITTE TAS
@@ -550,7 +550,7 @@ createActor(scene, fps, {
   ],
   cSc: 70, cOf: 0,
   vSc: 2.5,
-  vt: [21, null],
+  vt: [21, 21 + 12],
   vKeys: [
     { t:  0 + actorStart,  v: [ 640, 310]},
     { t: 12 + actorStart, v: [   0, 310]},
@@ -568,7 +568,7 @@ createActor(scene, fps, {
   ],
   cSc: 80, cOf: 0,
   vSc: 2.3, 
-  vt: [ 47.7 ],
+  vt: [ 47.7, 48 + 9 ],
   vKeys: [
     { t:  0   + actorStart, v: [   0, 320]},
     { t: 4.2   + actorStart, v: [   400, 320]},
@@ -587,7 +587,7 @@ createActor(scene, fps, {
   ],
   cSc: 80, cOf: 0,
   vSc: 2, 
-  vt: [ 76.8 ],
+  vt: [ 76.8, 77 + 16 ],
   vKeys: [
     { t:  0 + actorStart, v: [  0, 320]},
     { t: 16 + actorStart, v: [640, 320]},
@@ -605,7 +605,7 @@ createActor(scene, fps, {
   ],
   cSc: 80, cOf: 0,
   vSc: 2.2,
-  vt: [ 20.8 ],
+  vt: [ 20.8, 21 + 6 ],
   vKeys: [
     { t:  0 + actorStart, v: [   0, 320]},
     { t:  3.1 + actorStart, v: [ 360, 320]},
@@ -645,7 +645,7 @@ createActor(scene, fps, {
   ],
   cSc: 80, cOf: 0,
   vSc: 2.5, 
-  vt: [ 89 ],
+  vt: [ 89, 89 + 14 ],
   vKeys: [
     { t:  0   + actorStart, v: [   0, 300]},
     { t:  4.5 + actorStart, v: [ 350, 300]},
@@ -665,7 +665,7 @@ createActor(scene, fps, {
   ],
   cSc: 80, cOf: 0,
   vSc: 2, 
-  vt: [7.7, null],
+  vt: [7.7, 8 + 4],
   vKeys: [
     { t: 0 + actorStart, v: [  -150, 340]},
     { t: 4 + actorStart, v: [740, 340]},
