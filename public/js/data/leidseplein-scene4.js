@@ -558,13 +558,32 @@ createActor(scene, fps, {
   vrid: 'leidseplein4',
 });
 
+// TOERISTENFIETS
+actorStart = 66;
+createActor(scene, fps, {
+  gw: 3.5, gh: 3,
+  keys: [
+    { t:  0 + actorStart, v: [-14, 0, -25]},
+    { t: 8.8 + actorStart, v: [ 10, 0, -25]},
+  ],
+  cSc: 80, cOf: 0,
+  vSc: 2.3, 
+  vt: [ 47.7 ],
+  vKeys: [
+    { t:  0   + actorStart, v: [   0, 320]},
+    { t: 4.2   + actorStart, v: [   400, 320]},
+    { t: 8.8   + actorStart, v: [ 640, 320]},
+  ],
+  vrid: 'leidseplein4',
+});
+
 // MAN BELLEND ROOD T-SHIRT
 actorStart = 71;
 createActor(scene, fps, {
   gw: 2.2, gh: 2.2,
   keys: [
-    { t:  0 + actorStart, v: [-9, 0, -14]},
-    { t: 16 + actorStart, v: [ 8, 0, -15]},
+    { t:  0 + actorStart, v: [-12, 0, -24]},
+    { t: 16 + actorStart, v: [ 12, 0, -18]},
   ],
   cSc: 80, cOf: 0,
   vSc: 2, 
