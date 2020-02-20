@@ -17,6 +17,7 @@ setTiming(bpm, ppqn, timeSignatureNumerator, timeSignatureDenominator);
  */
 const data = {
   settings: {
+    backgroundImage: 'leidseplein-background.jpg',
     width: 16 * 50,
     height: 9 * 50,
     fps,
