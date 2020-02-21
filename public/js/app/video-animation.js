@@ -69,7 +69,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
      * @see https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
      */
     draw = () => {
-      if (!isWaitingToStart) {
+      if (!isWaitingToStart && img) {
         if (repeat) {
           textureCtx.fillStyle = textureCtx.createPattern(img, repeat);
           textureCtx.fillRect(0, 0, textureCanvas.width, textureCanvas.height);
@@ -116,7 +116,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
       imgURLSuffix = resourceURL.split('#')[1];
       imgURLNr = Math.floor(startInitial * resourceFPS) + 1;
       imgURLNrFirst = Math.floor(start * resourceFPS) + 1;
-      imgURLNrLast = end ? Math.floor(end * resourceFPS) : resourceFrames;
+      imgURLNrLast = end ? Math.min(resourceFrames, Math.floor(end * resourceFPS)) : resourceFrames;
       imgURLNrIncrease = resourceFPS / fps;
       
       updateKeys();

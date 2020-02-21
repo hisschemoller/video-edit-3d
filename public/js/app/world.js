@@ -367,14 +367,12 @@ function createGround(settings) {
 }
 
 // ANIMATION LOOP
-export function animate(captureThrottle = 1) {
-  const deltaTime = clock.getDelta() / captureThrottle;
+export function animate(deltaTime) {
   mixers.forEach(mixer => mixer[0].update(deltaTime));
   
   camera.translateZ(cameraSpeed);
   lightTarget.translateZ(cameraSpeed);
 
-  // target.position.z -= 0.01;
   light.position.copy(lightTarget.position);
   light.position.add(directionalLightOffset);
   

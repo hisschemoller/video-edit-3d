@@ -9,10 +9,11 @@ import { draw as drawCanvas, } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
 
 const scenes = [];
-const captureThrottle = 30;
 
+let captureThrottle;
 let captureCounter = 0;
 let data;
+let deltaTime;
 let frame = 0;
 let framesPerDraw = 0;
 let frameCounter = -1;
@@ -51,10 +52,11 @@ function setupWithData(dataSource, config) {
 
   origin = performance.now();
   position = 0;
+  deltaTime = 1 / fps;
 
   if (isCapture) {
     socket = io.connect('http://localhost:3012');
-    frameCounter = 0;
+    captureThrottle = config.captureThrottle || 1;
   }
 
   // skip to scene by index
@@ -92,32 +94,30 @@ function run() {
 }
 
 function capture() {
+  frameCounter++;
+  if (frameCounter % framesPerDraw !== 0) {
+    requestAnimationFrame(capture);
+    return;
+  }
+
   captureCounter++;
   if (captureCounter % captureThrottle !== 0) {
     requestAnimationFrame(capture);
     return;
   }
   
-  // TEN TIMES AS SLOW: captureThrottle = 10
-  position = (performance.now() - origin) / captureThrottle;
+  position += (deltaTime * 1000);
   checkForNextScene(position);
   drawCanvas(frame);
-  animateWorld(captureThrottle);
+  animateWorld(deltaTime);
   infoTimeEl.textContent = (position / 1000).toFixed(1);  
   frame += 1;
 
-  // VROEGERE CAPTURE METHODE
-  // clips.draw(position, ctx);
-  // position += 1000 / data.get().settings.framerate;
-  // addNewClips(position);
-
   // send canvas to node app
   socket.emit('render-frame', {
-    frame: frameCounter,
+    frame,
     file: getCanvas().toDataURL(),
   });
-
-  frameCounter++;
 
   infoTimeEl.textContent = (position / 1000).toFixed(1);  
 
