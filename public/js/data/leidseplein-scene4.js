@@ -375,7 +375,7 @@ createActor(scene, fps, {
   ],
   cSc: 80, cOf: 0,
   vSc: 2, 
-  vt: [19.5, 20 + 11],
+  vt: [19.9, 20 + 11],
   vKeys: [
     { t:  0 + actorStart, v: [  0, 340]},
     { t: 11 + actorStart, v: [640, 340]},
@@ -464,7 +464,7 @@ createActor(scene, fps, {
 // FIETSER
 actorStart = 30;
 createActor(scene, fps, {
-  gw: 5, gh: 4,
+  gw: 5, gh: 3,
   keys: [
     { t:   0 + actorStart, v: [-20, 0, -30]}, // time measures in seconds
     { t: 5.5 + actorStart, v: [ 12, 0, -30]},
@@ -479,20 +479,21 @@ createActor(scene, fps, {
   vrid: 'leidseplein4',
 });
 
-// MAN BLAUW T-SHIRT NUMMER
+// MAN BLAUW T-SHIRT
 actorStart = 40;
 createActor(scene, fps, {
-  gw: 2, gh: 2,
+  gw: 1.2, gh: 2,
   keys: [
     { t:  0 + actorStart, v: [  6.5, 0, -12]},
     { t: 14 + actorStart, v: [ -9,   0, -16]},
   ],
   cSc: 80, cOf: 0,
   vSc: 2,
-  vt: [ 79.5, 80 + 14 ],
+  vt: [ 80.5, 80 + 18 ],
   vKeys: [
     { t:  0 + actorStart, v: [ 640, 315]},
-    { t: 14 + actorStart, v: [   0, 315]},
+    { t:  9 + actorStart, v: [ 160, 315]},
+    { t: 18 + actorStart, v: [ -80, 315]},
   ],
   vrid: 'leidseplein3b',
 });
@@ -504,7 +505,7 @@ createActor(scene, fps, {
   keys: [
     { t:  0 + actorStart, v: [ 6, 0, -11]},
     { t:  5 + actorStart, v: [ 0, 0, -11]},
-    { t: 24 + actorStart, v: [ 0, 0, -11]},
+    { t: 24.5 + actorStart, v: [ 0, 0, -11]},
     { t: 34 + actorStart, v: [-5, 0, -15]},
     { t: 40 + actorStart, v: [-5, 0, -15]},
     { t: 60 + actorStart, v: [-10, 0, -85]},
@@ -513,7 +514,7 @@ createActor(scene, fps, {
   vKeys: [
     { t:  0 + actorStart, v: [ 540, 200]},
     { t:  5 + actorStart, v: [ 140, 200]},
-    { t: 24 + actorStart, v: [ 140, 200]},
+    { t: 24.5 + actorStart, v: [ 140, 200]},
     { t: 34 + actorStart, v: [   0, 180]},
     { t: 40 + actorStart, v: [   0, 180]},
     { t: 60 + actorStart, v: [ -30, 180]},
