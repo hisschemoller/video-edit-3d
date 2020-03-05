@@ -13,7 +13,7 @@ const canvas = {
 const videoScene4 = {
   resourceId: 'leidseplein4',
   start: 20,
-  end: 146,
+  end: 156,
   isLoop: true,
   keys: [
     {
@@ -170,7 +170,7 @@ const scene = {
     },
   ],
   clipId: uuidv4(),
-  lifespan: [120, 220],
+  lifespan: [120, 230],
   materials: [
     {
       color: 0xf7f7f7,
@@ -347,12 +347,13 @@ let actorStart;
 // });
 
 // VROUW VAN VER WEG
+actorStart = 10;
 createActor(scene, fps, {
   gw: 2, gh: 2.2,
   keys: [
-    { t:  0, v: [  0, 0, -110]},
-    { t: 46, v: [  -1, 0,  -5]},
-    { t: 49, v: [ -5, 0,  -3]},
+    { t:  0 + actorStart, v: [  0, 0, -110]},
+    { t: 46 + actorStart, v: [  -1, 0,  -5]},
+    { t: 49 + actorStart, v: [ -5, 0,  -3]},
   ],
   cSc: 80, cOf: 0,
   vSc: 1, 
@@ -366,7 +367,7 @@ createActor(scene, fps, {
 });
 
 // VOETGANGER MET WITTE TRUI
-actorStart = 2;
+actorStart = 12;
 createActor(scene, fps, {
   gw: 2.5, gh: 2.5,
   keys: [
@@ -384,7 +385,7 @@ createActor(scene, fps, {
 });
 
 // SCOOTER
-actorStart = 10;
+actorStart = 20;
 createActor(scene, fps, {
   gw: 2, gh: 2,
   keys: [
@@ -402,7 +403,7 @@ createActor(scene, fps, {
 });
 
 // INVALIDENWAGENTJE
-actorStart = 15;
+actorStart = 25;
 createActor(scene, fps, {
   gw: 4, gh: 3,
   keys: [
@@ -422,7 +423,7 @@ createActor(scene, fps, {
 });
 
 // DRIE VROUWEN VAN RECHTS
-actorStart = 20;
+actorStart = 30;
 createActor(scene, fps, {
   gw: 1.5, gh: 2.5,
   keys: [
@@ -444,7 +445,7 @@ createActor(scene, fps, {
 });
 
 // VROUW WIJDE BROEK
-actorStart = 25;
+actorStart = 35;
 createActor(scene, fps, {
   gw: 2.2, gh: 2.2,
   keys: [
@@ -462,7 +463,7 @@ createActor(scene, fps, {
 });
 
 // FIETSER
-actorStart = 30;
+actorStart = 40;
 createActor(scene, fps, {
   gw: 5, gh: 3,
   keys: [
@@ -480,7 +481,7 @@ createActor(scene, fps, {
 });
 
 // MAN BLAUW T-SHIRT
-actorStart = 40;
+actorStart = 50;
 createActor(scene, fps, {
   gw: 1.2, gh: 2,
   keys: [
@@ -499,7 +500,7 @@ createActor(scene, fps, {
 });
 
 // ECHTPAAR MET TASJE
-actorStart = 48;
+actorStart = 58;
 createActor(scene, fps, {
   gh: 2.5, gw: 3,
   keys: [
@@ -523,7 +524,7 @@ createActor(scene, fps, {
 });
 
 // FIETSER MET WITTE TAS
-actorStart = 55;
+actorStart = 65;
 createActor(scene, fps, {
   gw: 4, gh: 3.3,
   keys: [
@@ -542,7 +543,7 @@ createActor(scene, fps, {
 });
 
 // WIT BUSJE
-actorStart = 62;
+actorStart = 72;
 createActor(scene, fps, {
   gw: 7, gh: 3.3,
   keys: [
@@ -560,7 +561,7 @@ createActor(scene, fps, {
 });
 
 // TOERISTENFIETS
-actorStart = 66;
+actorStart = 76;
 createActor(scene, fps, {
   gw: 3.5, gh: 3,
   keys: [
@@ -579,7 +580,7 @@ createActor(scene, fps, {
 });
 
 // MAN BELLEND ROOD T-SHIRT
-actorStart = 71;
+actorStart = 81;
 createActor(scene, fps, {
   gw: 2.2, gh: 2.2,
   keys: [
@@ -597,7 +598,7 @@ createActor(scene, fps, {
 });
 
 // SCOOTER ROOD SHIRT
-actorStart = 75;
+actorStart = 85;
 createActor(scene, fps, {
   gw: 2.5, gh: 2.5,
   keys: [
@@ -616,7 +617,7 @@ createActor(scene, fps, {
 });
 
 // GROEPJE
-actorStart = 80;
+actorStart = 90;
 createActor(scene, fps, {
   gw: 3, gh: 2.5,
   keys: [
@@ -637,7 +638,7 @@ createActor(scene, fps, {
 });
 
 // GELE BAKFIETS
-actorStart = 83;
+actorStart = 93;
 createActor(scene, fps, {
   gw: 2.2, gh: 2.2,
   keys: [
@@ -657,7 +658,7 @@ createActor(scene, fps, {
 });
 
 // POLITIE
-actorStart = 93;
+actorStart = 103;
 createActor(scene, fps, {
   gw: 5, gh: 2.5,
   keys: [
