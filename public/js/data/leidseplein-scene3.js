@@ -36,10 +36,10 @@ const videoScene3 = {
 
 const start = fps * 30;
 
-const wall1LPos = [-2.67, 0, -11];
-const wall1LPos2 = [-2.67 - 5, 0, -11];
-const wall1RPos = [0, 0, -11];
-const wall1RPos2 = [0 + 5, 0, -11];
+const wall1LPos =  [-2.67      , 0, -11];
+const wall1LPos2 = [-2.67 - 5.5, 0, -11];
+const wall1RPos =  [0      , 0, -11];
+const wall1RPos2 = [0 + 5.5, 0, -11];
 
 const wall1Start = start + (fps * 3.5);
 const wall1End = start + (fps * 12);
@@ -56,8 +56,8 @@ const paal1Pos = [2.3, 0, -6];
 const paal1Pos2 = [2.3 + 3, 0, -6];
 const paal2Pos = [1.1, 0, -9];
 const paal2Pos2 = [1.1 + 4, 0, -9];
-const tramPos = [-3.5, 0, -8];
-const tramPos2 = [-3.5 - 3, 0, -8];
+const tramPos =  [-3.5      , 0, -8];
+const tramPos2 = [-3.5 - 3.6, 0, -8];
 
 const paal1Start = start + (fps * 1);
 const paal1End = start + (fps * 11);
