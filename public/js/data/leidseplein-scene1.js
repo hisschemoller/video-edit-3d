@@ -21,6 +21,7 @@ export const wallMesh = {
 };
 
 const videoScene1 = {
+  start: 0,
   end: 210,
   isLoop: true,
   keys: [
@@ -317,17 +318,17 @@ const scene = {
     'scene1wallL2-video': {
       ...videoScene1,
       keys: [ { ...videoScene1.keys[0], value: [ -50, videoScene1.keys[0].value[1] ] } ],
-      // start: videoScene1.start - 2,
+      start: videoScene1.start - 2,
     },
     'scene1wallR2-video': {
       ...videoScene1,
       keys: [ { ...videoScene1.keys[0], value: [ 320, videoScene1.keys[0].value[1] ] } ],
-      // start: videoScene1.start - 1,
+      start: videoScene1.start - 1,
     },
     'scene1wallL3-video': {
       ...videoScene1,
       keys: [ { ...videoScene1.keys[0], value: [ -190, videoScene1.keys[0].value[1] ] } ],
-      // start: videoScene1.start + 1,
+      start: videoScene1.start + 1,
     },
     'scene1wallR3-video': {
       ...videoScene1,
