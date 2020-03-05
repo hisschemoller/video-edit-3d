@@ -65,7 +65,7 @@ const paal1End = start + (fps * 11);
 const scene = {
   animations: [
     {
-      duration: 110,
+      duration: 112,
       fps,
       loop: THREE.LoopOnce,
       name: 's3-anim',
