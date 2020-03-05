@@ -85,10 +85,10 @@ function run() {
   }
   requestAnimationFrame(run);
   
-  position = performance.now() - origin;
+  position += (deltaTime * 1000);
   checkForNextScene(position);
   drawCanvas(frame);
-  animateWorld();
+  animateWorld(deltaTime);
   infoTimeEl.textContent = (position / 1000).toFixed(1);  
   frame += 1;
 }
