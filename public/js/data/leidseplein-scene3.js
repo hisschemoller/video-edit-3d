@@ -22,7 +22,7 @@ export const wallMesh = {
 
 const videoScene3 = {
   resourceId: 'leidseplein3a',
-  start: 0,
+  start: 1,
   end: 146,
   isLoop: true,
   keys: [
@@ -57,7 +57,7 @@ const paal1Pos2 = [2.3 + 3, 0, -6];
 const paal2Pos = [1.1, 0, -9];
 const paal2Pos2 = [1.1 + 4, 0, -9];
 const tramPos =  [-3.5      , 0, -8];
-const tramPos2 = [-3.5 - 3.6, 0, -8];
+const tramPos2 = [-3.5 - 3.7, 0, -8];
 
 const paal1Start = start + (fps * 1);
 const paal1End = start + (fps * 11);
@@ -363,6 +363,7 @@ const scene = {
     's3wr1-video': {
       ...videoScene3,
       keys: [ { ...videoScene3.keys[0], value: [ 350, 480 - 150 + 30 ] } ],
+      start: videoScene3.start + 1,
     },
     's3wl2-video': {
       ...videoScene3,
