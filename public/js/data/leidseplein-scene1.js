@@ -47,8 +47,8 @@ const wall2LPos2 = [-6, 0, 2];
 const wall2RPos = [0.8, 0, 2];
 const wall2RPos2 = [2.8, 0, 2];
 
-const wall2start = fps * 25;
-const wall2End = fps * 55;
+const wall2start = fps * 26;
+const wall2End = fps * 56;
 
 const wall3LPos = [-4, 0, 0];
 const wall3LPos2 = [-8, 0, 0];
