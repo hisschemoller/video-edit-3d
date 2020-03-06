@@ -130,7 +130,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
       if (imgURLNr <= imgURLNrLast && !isWaitingToStart) {
         img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + Math.round(imgURLNr)).slice(-5) : '99999') + imgURLSuffix;
         if (imgURLNr < imgURLNrLast) {
-          imgURLNr += imgURLNrIncrease;
+          imgURLNr = Math.min(imgURLNr + imgURLNrIncrease, imgURLNrLast);
         } else {
           imgURLNr = imgURLNrFirst;
         }
