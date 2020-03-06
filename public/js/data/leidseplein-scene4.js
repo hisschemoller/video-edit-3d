@@ -351,14 +351,16 @@ actorStart = 10;
 createActor(scene, fps, {
   gw: 2, gh: 2.2,
   keys: [
+    { t:  0             , v: [  0, 0, -140]},
     { t:  0 + actorStart, v: [  0, 0, -110]},
     { t: 46 + actorStart, v: [  -1, 0,  -5]},
     { t: 49 + actorStart, v: [ -5, 0,  -3]},
   ],
   cSc: 80, cOf: 0,
   vSc: 1, 
-  vt: [60, 60 + 50],
+  vt: [50, 50 + 60],
   vKeys: [
+    { t:  0             , v: [ 240, 380]},
     { t:  0 + actorStart, v: [ 240, 380]},
     { t: 46 + actorStart, v: [ 240, 400]},
     { t: 49 + actorStart, v: [   0, 400]},
