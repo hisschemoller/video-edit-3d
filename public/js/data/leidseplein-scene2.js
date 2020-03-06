@@ -139,10 +139,10 @@ export default scene;
 for( let i = 0; i < 3; i++ ) {
   const wallLName = `s2w${i}l`;
   const wallRName = `s2w${i}r`;
-  const wallLPos = [-2.67, 0, -2 + (i * -0.8)];
-  const wallLPos2 = [-5.87, 0, -2 + (i * -0.8)];
-  const wallRPos = [0, 0, -2 + (i * -0.8)];
-  const wallRPos2 = [3.2, 0, -2 + (i * -0.8)];
+  const wallLPos =  [-2.67, 0, -2 + (i * -0.8)];
+  const wallLPos2 = [-6.07, 0, -2 + (i * -0.8)];
+  const wallRPos =  [  0, 0, -2 + (i * -0.8)];
+  const wallRPos2 = [3.4, 0, -2 + (i * -0.8)];
   const wallStart = fps * (1 + 16.67 + (i * 16.67));
   const wallEnd = fps * (30 + 16.67 + (i * 16.67));
 
