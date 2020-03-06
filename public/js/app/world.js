@@ -269,16 +269,16 @@ function createWorld(data) {
   // scene.fog = new Fog( 0x59472b, 1000, FAR );
 
   // CLOCK
-  clock = new Clock();
+  // clock = new Clock();
 
   // GRID
-  const grid = new GridHelper(20, 20, 0xcccccc, 0xcccccc);
-  grid.position.set(0, 0, 0);
-  scene.add(grid);
+  // const grid = new GridHelper(20, 20, 0xcccccc, 0xcccccc);
+  // grid.position.set(0, 0, 0);
+  // scene.add(grid);
   
   // AXES
-  const axesHelper = new AxesHelper(10);
-  scene.add(axesHelper);
+  // const axesHelper = new AxesHelper(10);
+  // scene.add(axesHelper);
   
   // ORBIT CONTROL
   const orbit = new OrbitControls(camera, renderer.domElement);
@@ -346,8 +346,8 @@ function addLights(data) {
   scene.add(light);
 
   // HELPER
-  const helper = new CameraHelper(light.shadow.camera);
-  scene.add(helper);
+  // const helper = new CameraHelper(light.shadow.camera);
+  // scene.add(helper);
 }
 
 // GROUND
