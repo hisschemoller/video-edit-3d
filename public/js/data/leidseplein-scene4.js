@@ -359,9 +359,9 @@ createActor(scene, fps, {
   vSc: 1, 
   vt: [60, 60 + 50],
   vKeys: [
-    { t:  0, v: [ 240, 380]},
-    { t: 46, v: [ 240, 400]},
-    { t: 49, v: [   0, 400]},
+    { t:  0 + actorStart, v: [ 240, 380]},
+    { t: 46 + actorStart, v: [ 240, 400]},
+    { t: 49 + actorStart, v: [   0, 400]},
   ],
   vrid: 'leidseplein3b',
 });
@@ -509,7 +509,7 @@ createActor(scene, fps, {
     { t: 24.5 + actorStart, v: [ 0, 0, -11]},
     { t: 34 + actorStart, v: [-5, 0, -15]},
     { t: 40 + actorStart, v: [-5, 0, -15]},
-    { t: 60 + actorStart, v: [-10, 0, -85]},
+    { t: 60 + actorStart, v: [ 0, 0, -85]},
   ],
   cSc: 256 / 3,
   vKeys: [
