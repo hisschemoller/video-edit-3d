@@ -40,7 +40,7 @@ io.sockets.on('connection', function (socket) {
 
     // get rid of the data:image/png;base64 at the beginning of the file data
     data.file = data.file.split(',')[1];
-    var buffer = new Buffer(data.file, 'base64');
+    var buffer = Buffer.from(data.file, 'base64');
     fs.writeFile(__dirname + '/rendered/frame_' + data.frame + '.png',
       buffer.toString('binary'),
       'binary',
