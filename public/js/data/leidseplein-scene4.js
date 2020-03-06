@@ -12,8 +12,8 @@ const canvas = {
 
 const videoScene4 = {
   resourceId: 'leidseplein4',
-  start: 20,
-  end: 156,
+  start: 10,
+  end: 146,
   isLoop: true,
   keys: [
     {
