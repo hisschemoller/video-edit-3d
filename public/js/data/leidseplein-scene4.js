@@ -56,6 +56,42 @@ const scene = {
       loop: THREE.LoopOnce,
       name: 'actor-animation',
       tracks: [
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 's4-concert-obj.position',
+          type: 'vector3',
+          keys: [
+            { value: [-21, 0 - 10, -60], time: 0, },
+            { value: concertPos, time: 40, },
+          ],
+        },
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 's4-maison-obj.position',
+          type: 'vector3',
+          keys: [
+            { value: [1, 0 - 10, -110], time: 0, },
+            { value: maisonPos, time: 40, },
+          ],
+        },
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 's4-moderne-obj.position',
+          type: 'vector3',
+          keys: [
+            { value: [19, 0 - 10, -90], time: 0, },
+            { value: modernePos, time: 40, },
+          ],
+        },
+        {
+          interpolation: THREE.InterpolateSmooth,
+          name: 's4-tree-obj.position',
+          type: 'vector3',
+          keys: [
+            { value: [-4.8, 0 - 4, -11.5], time: 0, },
+            { value: treePos, time: 40, },
+          ],
+        },
       ],
     },
   ],
