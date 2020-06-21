@@ -327,12 +327,12 @@ const scene = {
     },
     'scene1wallL3-video': {
       ...videoScene1,
-      keys: [ { ...videoScene1.keys[0], value: [ -190, videoScene1.keys[0].value[1] ] } ],
+      keys: [ { ...videoScene1.keys[0], value: [ -160, videoScene1.keys[0].value[1] ] } ],
       start: videoScene1.start + 0,
     },
     'scene1wallR3-video': {
       ...videoScene1,
-      keys: [ { ...videoScene1.keys[0], value: [ 285, videoScene1.keys[0].value[1] ] } ],
+      keys: [ { ...videoScene1.keys[0], value: [ 320, videoScene1.keys[0].value[1] ] } ],
       start: videoScene1.start + 0,
     },
   },
