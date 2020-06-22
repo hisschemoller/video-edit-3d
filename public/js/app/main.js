@@ -12,6 +12,7 @@ import dataLeidseplein from '../data/leidseplein.js';
 
 setup({
   data: dataLeidseplein,
-  isCapture: false,
-  startScene: 3,
+  isCapture: true,
+  startScene: 0,
+  captureThrottle: 15,
 });

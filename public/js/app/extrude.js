@@ -136,6 +136,9 @@ function createCustomGeometry(data, shapeGeometry) {
 
   // sides
   const n = points.length;
+  // TODO: add geometry.vertices texture coordinates
+  // @see https://stackoverflow.com/questions/51625397/three-js-undefined-vertexuv
+
   for (let i = 0; i < n; i++) {
     // order is bottom, right, top, left
     const j = (i + 1) % n;
@@ -228,6 +231,8 @@ function computeFaceVertexUVs(geometry, shapeGeometry) {
         new Vector2(-v2.x + v2.z, v2.y),
         new Vector2(-v3.x + v3.z, v3.y),
       ]);
+    } else {
+      console.log('sideIndex ', sideIndex);
     }
 
     count++;
