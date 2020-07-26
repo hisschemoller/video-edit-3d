@@ -370,12 +370,14 @@ function createGround(settings) {
 export function animate(deltaTime) {
   mixers.forEach(mixer => mixer[0].update(deltaTime));
   
-  camera.translateZ(cameraSpeed);
-  lightTarget.translateZ(cameraSpeed);
+  if (cameraSpeed) {
+    camera.translateZ(cameraSpeed);
+    lightTarget.translateZ(cameraSpeed);
 
-  light.position.copy(lightTarget.position);
-  light.position.add(directionalLightOffset);
-  
+    light.position.copy(lightTarget.position);
+    light.position.add(directionalLightOffset);
+  }
+
   // stats.update();
 
   if (hasBackgroundImage) {
