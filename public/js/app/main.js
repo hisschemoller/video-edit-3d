@@ -1,4 +1,5 @@
 import { setup } from './player.js';
+import { setup as setupControls } from './controls.js';
 import dataSpui from '../data/spui.js';
 // import dataTest from '../data/test.js';
 // import dataTest2 from '../data/test-2020-01-08.js';
@@ -10,6 +11,7 @@ import dataSpui from '../data/spui.js';
 // import dataLockedGroove3 from '../data/locked-groove-3.js';
 // import dataTestSvg from '../data/test-svg.js';
 
+setupControls();
 setup({
   data: dataSpui,
   isCapture: false,

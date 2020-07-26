@@ -243,11 +243,11 @@ function createWorld(data) {
   cameraSpeed = speed;
 
   // RENDERER
-  renderer = new WebGLRenderer({antialias: true, alpha: true});
+  renderer = new WebGLRenderer({ antialias: true, alpha: false, premultipliedAlpha: false, preserveDrawingBuffer: true });
   renderer.setClearColor(0xdeebf9, 0);
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(width, height);
-  renderer.autoClear = false;
+  renderer.autoClear = true;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = PCFShadowMap; // PCFSoftShadowMap
 
