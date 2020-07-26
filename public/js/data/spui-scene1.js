@@ -1,5 +1,6 @@
 import { musicToTime, uuidv4, } from '../app/util.js';
 import { fps, } from './spui-shared.js';
+import createActor from '../app/actor.js';
 
 const canvas = {
   offsetX: 256,
@@ -70,5 +71,7 @@ const scene = {
     },
   },
 };
+
+createActor(scene);
 
 export default scene;

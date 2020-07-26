@@ -12,7 +12,7 @@ import dataSpui from '../data/spui.js';
 
 setup({
   data: dataSpui,
-  isCapture: true,
+  isCapture: false,
   startScene: 0,
   captureThrottle: 15,
 });

@@ -24,8 +24,14 @@ export default function createActor(scene, fps = 30, config = {}) {
     vSc: videoScale = 1,
     vKeys = [{t: 0, v: [0, 0]}],
 
+    // image
+    file: imageFile = 'testimage3d.jpg',
+    iOffx: imageOffsetX = 256,
+    iOffy: imageOffsetY = 256,
+    iSc: imageScale = 1,
+
     vt: videoTime = [0, null],
-    vt0i: videoStartTimeInitial = config.vt[0],
+    vt0i: videoStartTimeInitial = config.vt ? config.vt[0] : 0,
     
   } = config;
   
@@ -35,12 +41,15 @@ export default function createActor(scene, fps = 30, config = {}) {
   // points are custom path or else rectangle
   const points = path ? path : [ [0, 0], [geomWidth, 0], [geomWidth, geomHeight], [0, geomHeight] ];
 
-  // add the animation
-  scene.animations[0].tracks.push({
-    name: `${objId}.position`,
-    type: 'vector3',
-    keys: keys.map(key => ({ time: key.t * fps, value: [ ...key.v ]})),
-  });
+  // add the animation,
+  // only if an animation is defined or the object starts later in the scene
+  if (keys.length > 1 || keys[0].t > 0) {
+    scene.animations[0].tracks.push({
+      name: `${objId}.position`,
+      type: 'vector3',
+      keys: keys.map(key => ({ time: key.t * fps, value: [ ...key.v ]})),
+    });
+  }
 
   // add canvas
   const canvasId = uuidv4();
@@ -57,7 +66,7 @@ export default function createActor(scene, fps = 30, config = {}) {
     const videoId = uuidv4();
 
     // add video
-    scene.videos[videoId] = {
+    scene.media[videoId] = {
       end: videoTime[1],
       isLoop: true,
       keys: vKeys.map(key => ({ time: key.t, value: [ ...key.v ]})),
@@ -69,7 +78,17 @@ export default function createActor(scene, fps = 30, config = {}) {
 
     scene.canvases[canvasId].videoId = videoId;
   } else {
-    scene.canvases[canvasId].imageId = 'test3d-image';
+    const imageId = uuidv4();
+
+    // add image
+    scene.media[imageId] = {
+      file: imageFile,
+      offsetX: imageOffsetX,
+      offsetY: imageOffsetY,
+      scale: imageScale,
+    };
+
+    scene.canvases[canvasId].imageId = imageId;
   }
 
   scene.geometries.push({
