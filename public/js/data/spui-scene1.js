@@ -12,31 +12,17 @@ const canvas = {
 
 const scene = {
   animations: [],
-  canvases: {
-    's1-ground-canvas': {
-      offsetX: 0,
-      offsetY: 0,
-      scale: 1024 / 10,
-      width: 1024,
-      height: 1024,
-      imageId: 's1-ground-image',
-    },
-  },
+  canvases: {},
   clipId: uuidv4(),
-  geometries: [
-    {
-      depth: 0.01,
-      points: [ [0, 0], [10, 0], [10, 10], [0, 10] ],
-      type: 'CanvasExtrudeGeometry',
-      uuid: 's1-ground-geom',
-    },
-  ],
+  geometries: [],
   lifespan: [0,9999],
   materials: [
     {
-      color: 0xf7f7f7,
+      color: 0xffdd99,
+      shininess: 0,
+      specular: 0x050505,
       type: 'MeshPhongMaterial',
-      uuid: 's1-ground-mat',
+      uuid: 'default-mat',
     },
   ],
   metadata: {
@@ -48,29 +34,19 @@ const scene = {
     type: 'Group',
     name: 'scene1',
     uuid: 'scene1',
-    children: [
-      {
-        canvasId: 's1-ground-canvas',
-        castShadow: false,
-        geometry: 's1-ground-geom',
-        layers: 1,
-        material: 's1-ground-mat',
-        matrix: [1,0,0,0, 0,0,-1,0 ,0,1,0,0, -5,0,5,1],
-        receiveShadow: true,
-        type: 'Mesh',
-        name: 's1-ground-obj',
-      },
-    ],
+    children: [],
   },
-  media: {
-    's1-ground-image': {
-      file: 'spui/spui-ground.jpg',
-      offsetX: 0,
-      offsetY: 1024,
-      scale: 1,
-    },
-  },
+  media: {},
 };
+
+// GROUND
+createActor(scene, fps, {
+  canvas: { offset: 0, scale: 1024 / 10, size: 1024 },
+  geom: { w: 10, h: 10, d: 0.01 },
+  image: { file: 'spui/spui-ground.jpg', offx: 0, offy: 1024, scale: 1 },
+  keys: [{ t: 0, v: [-5, 0, 5] }],
+  rotate: [1,0,0,0, 0,0,-1,0 ,0,1,0,0],
+});
 
 createActor(scene);
 

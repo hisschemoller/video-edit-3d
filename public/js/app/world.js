@@ -321,7 +321,7 @@ function addLights(data) {
   directionalLightOffset = new Vector3(6, 7, 5);
 
   // AMBIENT
-  const ambient = new AmbientLight(0xffffff, 0.6); // color = 0xffffff, intensity = 1
+  const ambient = new AmbientLight(0xffffff, 0.4); // color = 0xffffff, intensity = 1
   scene.add(ambient);
 
   // LIGHT_TARGET

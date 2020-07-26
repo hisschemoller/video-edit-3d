@@ -11,13 +11,22 @@ export default function createActor(scene, fps = 30, config = {}) {
 
     // object position and animation
     keys = [{t: 0, v: [  0, 0]}],
-
-    // geometry
-    gw: geomWidth = 1, gh: geomHeight = 1, gd: geomDepth = 1,
-    path,
+    rotate = [1,0,0,0 ,0,1,0,0 ,0,0,1,0],
 
     // canvas
-    cSz: canvasSize = 512, cSc: canvasScale = 256, cOf: canvasOffset = 256,
+    canvas: {
+      offset: canvasOffset = 256,
+      scale: canvasScale = 256,
+      size: canvasSize = 512,
+    } = {},
+
+    // geometry
+    geom: {
+      w: geomWidth = 1,
+      h: geomHeight = 1,
+      d: geomDepth = 1,
+      path,
+    } = {},
 
     // video
     vrid: videoResourceId,
@@ -25,10 +34,13 @@ export default function createActor(scene, fps = 30, config = {}) {
     vKeys = [{t: 0, v: [0, 0]}],
 
     // image
-    file: imageFile = 'testimage3d.jpg',
-    iOffx: imageOffsetX = 256,
-    iOffy: imageOffsetY = 256,
-    iSc: imageScale = 1,
+    image: {
+      file: imageFile = 'testimage3d.jpg',
+      offx: imageOffsetX = 256,
+      offy: imageOffsetY = 256,
+      scale: imageScale = 1,
+    } = {},
+    
 
     vt: videoTime = [0, null],
     vt0i: videoStartTimeInitial = config.vt ? config.vt[0] : 0,
@@ -104,7 +116,7 @@ export default function createActor(scene, fps = 30, config = {}) {
     geometry: geomId,
     layers: 1,
     material: 'default-mat',
-    matrix: [1,0,0,0 ,0,1,0,0 ,0,0,1,0 , ...keys[0].v ,1],
+    matrix: [ ...rotate , ...keys[0].v , 1 ],
     name: objId,
     receiveShadow: true,
     type: 'Mesh',
