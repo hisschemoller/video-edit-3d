@@ -16,7 +16,7 @@ const data = {
   settings: {
     backgroundImage: null,
     width: 16 * 50,
-    height: 9 * 50,
+    height: 12 * 50,
     fps,
     ppqn,
     bpm,
@@ -28,19 +28,10 @@ const data = {
   camera: {
     speed: 0,
     fieldOfView: 18,
-    position: [0, 2, 16],
-    target: [0, 2, 0],
+    position: [-0.7, 1.7, 12],
+    target: [-0.7, 2, 0],
   },
-  resources: [
-    {
-      id: 'mkp_dame',
-      url: 'frames/mkp_dame/frame_#.png',
-      frames: 540,
-      fps: 30,
-      width: 1920,
-      height: 1080,
-    },
-  ],
+  resources: [],
   score: [
     scene1,
   ],

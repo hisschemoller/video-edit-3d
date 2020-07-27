@@ -12,6 +12,7 @@ export default function createActor(scene, fps = 30, config = {}) {
     // object position and animation
     keys = [{t: 0, v: [  0, 0]}],
     rotate = [1,0,0,0 ,0,1,0,0 ,0,0,1,0],
+    rotateY = 0,
 
     // canvas
     canvas: {
@@ -119,6 +120,7 @@ export default function createActor(scene, fps = 30, config = {}) {
     matrix: [ ...rotate , ...keys[0].v , 1 ],
     name: objId,
     receiveShadow: true,
+    rotateY,
     type: 'Mesh',
   });
 }
