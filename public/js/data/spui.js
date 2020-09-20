@@ -28,8 +28,8 @@ const data = {
   camera: {
     speed: 0,
     fieldOfView: 18,
-    position: [-0.7, 1.7, 12],
-    target: [-0.7, 2, 0],
+    position: [-1.2, 1.6, 12],
+    target: [-1.2, 2, 0],
   },
   resources: [],
   score: [
