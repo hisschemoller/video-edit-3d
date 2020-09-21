@@ -1,5 +1,6 @@
 import { musicToTime, uuidv4, } from '../app/util.js';
 import { fps, } from './matthaikirchplatz-shared.js';
+import createActor from '../app/actor.js';
 
 const canvas = {
   offsetX: 256,
@@ -17,7 +18,7 @@ const scene = {
   lifespan: [0, 90],
   materials: [],
   metadata: {
-    generator: 'Wouter Hisschemöller',
+    generator: 'video-edit-3d',
     type: 'Object',
     version: 4.3,
   },
@@ -29,5 +30,16 @@ const scene = {
   },
   videos: {},
 };
+
+// GROUND
+createActor(scene, fps, {
+  keys: [{t: 0, v: [-2, -0.01, 2]}],
+  gw: 4, gh: 0.01, gd: 4,
+});
+
+// CUBE
+createActor(scene, fps, {
+  gw: 1, gh: 2, gd: 1,
+});
 
 export default scene;
