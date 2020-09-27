@@ -19,6 +19,9 @@ export default function createActor(scene, fps = 30, config = {}) {
     // canvas
     cSz: canvasSize = 512, cSc: canvasScale = 256, cOf: canvasOffset = 256,
 
+    // image
+    img: imageFileName, iOfX: imageOffsetX = 0, iOfY: imageOffsetY = 0, iSc: imageScale = 1,
+
     // video
     vrid: videoResourceId,
     vSc: videoScale = 1,
@@ -60,7 +63,7 @@ export default function createActor(scene, fps = 30, config = {}) {
     const videoId = uuidv4();
 
     // add video
-    scene.videos[videoId] = {
+    scene.assets[videoId] = {
       end: videoTime[1],
       isLoop: true,
       keys: vKeys.map(key => ({ time: key.t, value: [ ...key.v ]})),
@@ -71,8 +74,18 @@ export default function createActor(scene, fps = 30, config = {}) {
     };
 
     scene.canvases[canvasId].videoId = videoId;
-  } else {
-    // scene.canvases[canvasId].imageId = 'test3d-image';
+  } else if (imageFileName) {
+    const imageId = uuidv4();
+
+    // add image
+    scene.assets[imageId] = {
+      file: imageFileName,
+      offsetX: imageOffsetX,
+      offsetY: imageOffsetY,
+      scale: imageScale,
+    }
+
+    scene.canvases[canvasId].imageId = imageId;
   }
 
   scene.geometries.push({
