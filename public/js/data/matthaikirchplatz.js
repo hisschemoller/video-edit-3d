@@ -54,10 +54,18 @@ const data = {
     {
       id: 'mkp_dame',
       url: 'frames/mkp_dame/frame_#.png',
-      frames: 540,
+      frames: 450,
       fps: 30,
       width: 1920,
-      height: 1080,
+      height: 305,
+    },
+    {
+      id: 'mkp_dame_preview',
+      url: 'frames/mkp_dame_preview/frame_#.png',
+      frames: 450,
+      fps: 30,
+      width: 480,
+      height: 76,
     },
   ],
   score: [
