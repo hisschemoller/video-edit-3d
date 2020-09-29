@@ -37,7 +37,7 @@ A `geometry` can have custom type `CanvasExtrudeGeometry` which is a extruded SV
   materials: [], // 
   metadata: {},
   object: {}, // 3D object hierarchy, usually with Group as root
-  videos: {} // videos used in this scene
+  assets: {} // videos and images used in this scene
 }
 ```
 
@@ -146,6 +146,12 @@ Convert PNG image sequence to MP4. This one works in Quicktime.
 ffmpeg -framerate 30 -i tmp/frame_%05d.png -f mp4 -vcodec libx264 -pix_fmt yuv420p output.mp4
 ```
 
+Convert MOV to MP4, lossless.
+
+```
+ffmpeg -i input.mov -vcodec copy -acodec copy output.mp4
+```
+
 Convert MP4 to MOV.
 
 ```
@@ -165,6 +171,22 @@ Scale video to a specific size. -1 to keep aspect ratio.
 ```
 ffmpeg -i input.avi -vf scale=320:240 output.avi
 ffmpeg -i input.jpg -vf scale=320:-1 output_320.png
+```
+
+Rotate video<br>
+Works with MP4 files, didn't with MOV.<br>
+Example rotates 1.3 degrees clockwise.
+
+```
+ffmpeg -i input.mp4 -vf "rotate=1.3*PI/180" output.mp4
+```
+
+Rotate video, highest quality.<br>
+(Doesn't play in Quicktime but does in VLC)<br>
+H.264 Video Encoding Guide: https://trac.ffmpeg.org/wiki/Encode/H.264
+
+```
+ffmpeg -i input.mp4 -vf "rotate=0.8*PI/180" -vcodec libx264 -crf 0 -preset medium output.mp4
 ```
 
 Extract a time slice of an original video.
@@ -194,4 +216,10 @@ Add wav audio to mp4 video
 ```
 ffmpeg -i input_vid.mp4 -i input_audio.wav -vcodec copy output.mp4
 ffmpeg -i input_vid.mp4 -i input_audio.wav -vcodec libx264 -acodec libmp3lame output.mp4
+```
+
+Remove audio from a video file.
+
+```
+ffmpeg -i input.mov -vcodec copy -an input.mov
 ```
