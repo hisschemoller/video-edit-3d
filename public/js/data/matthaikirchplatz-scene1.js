@@ -11,7 +11,15 @@ const canvas = {
 };
 
 const scene = {
-  animations: [],
+  animations: [
+    {
+      duration: 90,
+      fps,
+      loop: THREE.LoopOnce,
+      name: 'actor-animation',
+      tracks: [],
+    },
+  ],
   canvases: {},
   clipId: uuidv4(),
   geometries: [],
@@ -40,14 +48,49 @@ createActor(scene, fps, {
   iOfX: 0, iOfY: 880, iSc: 1,
 });
 
-// TEST
+// GROUND FAR
 createActor(scene, fps, {
-  keys: [{t: 0, v: [-2, 0, -2]}],
-  gw: 1, gh: 1, gd: 1,
-  cSz: 1024, cSc: 1024, cOf: 0,
-  img: 'testimage3d.jpg', // 'mkp-ground.jpg',
-  iOfX: 0, iOfY: 1024, iSc: 1,
+  keys: [{t: 0, v: [-9, -0.02, -8]}],
+  gw: 18, gh: 0.01, gd: 8,
+  cSz: 1024, cSc: 1024 / 18, cOf: 0,
+  img: 'mkp-ground.jpg',
+  iOfX: 0, iOfY: 500, iSc: 1,
 });
+
+// 30 SECONDS
+// createActor(scene, fps, {
+//   keys: [
+//     { t: 0, v: [-1, 0, 0] },
+//     // { t: 4, v: [ 1, 0, 0] },
+//   ],
+//   vKeys: [
+//     { t: 0, v: [        0, 360] },
+//     { t: 4, v: [640 - 360, 360] },
+//   ],
+//   vSc: 256 / 360,
+//   vt: [0, 30],
+//   vrid: '30seconds',
+// });
+
+// VIDEOTEST
+// createActor(scene, fps, {
+//   keys: [{t: 0, v: [2, 0, -2]}],
+//   gw: 16 / 9, gh: 1, gd: 1,
+//   cSz: 512, cSc: 256, cOf: 0,
+//   vrid: '30seconds',
+//   vSc: 256 / 360,
+//   vKeys: [{t: 0, v: [0, 360]}],
+//   vt: [0, 30],
+// });
+
+// TEST
+// createActor(scene, fps, {
+//   keys: [{t: 0, v: [-2, 0, -2]}],
+//   gw: 1, gh: 1, gd: 1,
+//   cSz: 1024, cSc: 1024, cOf: 0,
+//   img: 'testimage3d.jpg', // 'mkp-ground.jpg',
+//   iOfX: 0, iOfY: 1024, iSc: 1,
+// });
 
 // CUBE
 // createActor(scene, fps, {

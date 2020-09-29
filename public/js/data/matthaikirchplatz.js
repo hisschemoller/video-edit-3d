@@ -14,7 +14,10 @@ setTiming(bpm, ppqn, timeSignatureNumerator, timeSignatureDenominator);
  */
 const data = {
   settings: {
-    backgroundImage: null,
+    backgroundImage: null, // 'mkp-background.jpg',
+    backgroundVideoResourceId: 'mkp_preview', // '30seconds',
+    backgroundVideoStartTime: 5,
+    backgroundVideoEndTime: 300,
     width: 16 * 50,
     height: 9 * 50,
     fps,
@@ -32,6 +35,22 @@ const data = {
     target: [0, 2, 0],
   },
   resources: [
+    {
+      id: '30seconds',
+      url: 'frames/30seconds/frame_#.png',
+      frames: 900,
+      fps: 30,
+      width: 640,
+      height: 360,
+    },
+    {
+      id: 'mkp_preview',
+      url: 'frames/mkp_preview/frame_#.png',
+      frames: 16906,
+      fps: 30,
+      width: 480,
+      height: 270,
+    },
     {
       id: 'mkp_dame',
       url: 'frames/mkp_dame/frame_#.png',
