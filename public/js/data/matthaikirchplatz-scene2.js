@@ -4,9 +4,9 @@ import createActor from '../app/actor.js';
 
 let actorStart;
 
-const scene = getDefaultScene([0, 25], 2, true);
+const scene = getDefaultScene([0, 40], 2, true);
 
-// DAME
+// WOMAN
 actorStart = 5;
 createActor(scene, fps, {
   gw: 2.0, gh: 2.3,
@@ -21,7 +21,25 @@ createActor(scene, fps, {
     { t:  0 + actorStart, v: [ -90, 73]},
     { t: 15 + actorStart, v: [480, 73]},
   ],
-  vrid: 'mkp_dame_preview',
+  vrid: 'mkp_woman_preview',
+});
+
+// COUPLE
+actorStart = 22;
+createActor(scene, fps, {
+  gw: 2, gh: 2.5,
+  keys: [
+    { t:  0 + actorStart, v: [ -9.4, -0.5, -3]},
+    { t: 11 + actorStart, v: [   8.6, -0.5, -3]},
+  ],
+  cSz: 512, cSc: 512/2.5, cOf: 0,
+  vSc: 512/134, 
+  vt: [0, 11],
+  vKeys: [
+    { t:  0 + actorStart, v: [-160, 134]},
+    { t: 11 + actorStart, v: [ 610, 134]},
+  ],
+  vrid: 'mkp_couple_preview',
 });
 
 export default scene;
