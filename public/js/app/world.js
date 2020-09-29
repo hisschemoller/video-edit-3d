@@ -1,5 +1,6 @@
 import createExtrude, { createCanvasTexture, createExtrudeGeometry, createExtrudeMesh, } from './extrude.js';
 import { createCanvases as createSceneCanvases } from './canvas.js';
+import { renderBackground, setupBackground } from './world-background.js';
 
 const {
   AmbientLight,
@@ -14,10 +15,8 @@ const {
   DirectionalLight,
   Fog,
   GridHelper,
-  ImageUtils,
   InterpolateLinear,
   Mesh,
-  MeshBasicMaterial,
   MeshPhongMaterial,
   Object3D,
   ObjectLoader,
@@ -26,8 +25,6 @@ const {
   PCFShadowMap,
   PCFSoftShadowMap,
   PerspectiveCamera,
-  PlaneBufferGeometry,
-  PlaneGeometry,
   Scene,
   TransformControls,
   Vector3,
@@ -35,9 +32,6 @@ const {
   WebGLRenderer } = THREE;
 
 let 
-  backgroundCamera, 
-  backgroundScene,
-  hasBackgroundImage = false,
   renderer, 
   camera, 
   directionalLightOffset, 
@@ -55,7 +49,7 @@ let
  */
 export function setup(data) {
   createWorld(data);
-  addBackgroundImage(data);
+  setupBackground(data);
   addLights(data);
   setTimeout(() => {
     console.log('scene', scene.toJSON());
@@ -81,8 +75,10 @@ export function destroyScene(allData, sceneId) {
 
   // end animations
   const mixer = mixers.find(mixer => mixer[1] === sceneId);
-  mixer[0].stopAllAction();
-  mixers.splice(mixers.indexOf(mixer), 1);
+  if (mixer) {
+    mixer[0].stopAllAction();
+    mixers.splice(mixers.indexOf(mixer), 1);
+  }
   
   // remove and dispose objects, geometries, materials
   names.forEach(name => {
@@ -195,7 +191,7 @@ function addCustomExtrudeMeshes(object3D, sceneData) {
   const geometries = sceneData.origGeoms.reduce((accumulator, geomData) => {
     if (geomData.type === 'CanvasExtrudeGeometry') {
       return { 
-        ...accumulator, 
+        ...accumulator,
         [geomData.uuid]: createExtrudeGeometry(geomData),
       }
     }
@@ -243,7 +239,7 @@ function createWorld(data) {
   cameraSpeed = speed;
 
   // RENDERER
-  renderer = new WebGLRenderer({antialias: true, alpha: true});
+  renderer = new WebGLRenderer({antialias: true, alpha: false});
   renderer.setClearColor(0xdeebf9, 0);
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(width, height);
@@ -293,29 +289,6 @@ function createWorld(data) {
   // container.appendChild(stats.dom);
 }
 
-/**
- * BACKGROUND IMAGE
- */
-function addBackgroundImage(data) {
-  const { backgroundImage, } = data.settings;
-  hasBackgroundImage = !!backgroundImage;
-
-  if (hasBackgroundImage) {
-    const texture = ImageUtils.loadTexture(`../img/${backgroundImage}`);
-    const geometry = new PlaneGeometry(2, 2, 0);
-    const material = new MeshBasicMaterial({ map: texture, });
-    const mesh = new Mesh(geometry, material);
-    mesh.material.depthTest = false;
-    mesh.material.depthWrite = false;
-  
-    // background scene
-    backgroundCamera = new Camera();
-    backgroundScene = new Scene();
-    backgroundScene.add(backgroundCamera);
-    backgroundScene.add(mesh);
-  }
-}
-
 // LIGHTS
 function addLights(data) {
   directionalLightOffset = new Vector3(6, 7, 5);
@@ -348,23 +321,26 @@ function addLights(data) {
   // HELPER
   // const helper = new CameraHelper(light.shadow.camera);
   // scene.add(helper);
+
+  // CASCADING SHADOW MAPS
+  // https://github.com/vHawk/three-csm
 }
 
 // GROUND
-function createGround(settings) {
-  const { size = {}, } = settings;
-  const { width = 10, depth = 10, } = size;
-  const geometry = new PlaneBufferGeometry(width, depth);
-  const material = new MeshPhongMaterial({color: 0xf7f7f7});
+// function createGround(settings) {
+//   const { size = {}, } = settings;
+//   const { width = 10, depth = 10, } = size;
+//   const geometry = new PlaneBufferGeometry(width, depth);
+//   const material = new MeshPhongMaterial({color: 0xf7f7f7});
 
-  const ground = new Mesh(geometry, material);
-  ground.position.set(0, 0, 0);
-  ground.rotation.x = - Math.PI / 2;
-  ground.scale.set(1, 1, 1);
-  ground.castShadow = false;
-  ground.receiveShadow = true;
-  scene.add(ground);
-}
+//   const ground = new Mesh(geometry, material);
+//   ground.position.set(0, 0, 0);
+//   ground.rotation.x = - Math.PI / 2;
+//   ground.scale.set(1, 1, 1);
+//   ground.castShadow = false;
+//   ground.receiveShadow = true;
+//   scene.add(ground);
+// }
 
 // ANIMATION LOOP
 export function animate(deltaTime) {
@@ -378,13 +354,15 @@ export function animate(deltaTime) {
   
   // stats.update();
 
-  if (hasBackgroundImage) {
-    renderer.render(backgroundScene , backgroundCamera);
-  }
+  renderBackground(renderer);
 
   renderer.render(scene, camera);
 }
 
+/**
+ * The canvas is required by Player to send its image data to the server.
+ * @returns {Object} Canvas DOM element.
+ */
 export function getCanvas() {
   return renderer.domElement;
 }
