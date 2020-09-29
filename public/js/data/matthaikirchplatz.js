@@ -1,6 +1,8 @@
 import { musicToTime, setTiming, uuidv4, } from '../app/util.js';
 import { fps, } from './matthaikirchplatz-shared.js';
 import scene1 from './matthaikirchplatz-scene1.js';
+import scene2 from './matthaikirchplatz-scene2.js';
+import scene3 from './matthaikirchplatz-scene3.js';
 
 const ppqn = 24; // parts per quarter note
 const bpm = 112; // beats per minute
@@ -70,6 +72,8 @@ const data = {
   ],
   score: [
     scene1,
+    scene2,
+    scene3,
   ],
 };
 
