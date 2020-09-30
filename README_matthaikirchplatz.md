@@ -27,6 +27,7 @@ Previews zijn altijd 25% van het origineel.
 * mkp_couple
   * start 7:41, eind 3:52, duur 0:11
   * uitsnede x:0, y:460, y2:996, w:1920, h:996-460=536
+  * frames:329
   * ffmpeg -ss 00:07:44.0 -i matthaikirchplatz_lossless_noaudio_rotated_08.mp4 -c copy -t 00:00:01.0 tempframes.mp4
   * ffmpeg -i tempframes.mp4 tempframes/frame_%05d.png
   * ffmpeg -ss 00:07:41.0 -i matthaikirchplatz_lossless_noaudio_rotated_08.mp4 -c copy -t 00:00:11.0 mkp_couple_sliced.mp4
@@ -34,6 +35,18 @@ Previews zijn altijd 25% van het origineel.
   * ffmpeg -i mkp_couple_sliced_cropped.mp4 mkp_couple/frame_%05d.png
   * ffmpeg -i mkp_couple_sliced_cropped.mp4 -vf scale=480:-1 mkp_couple_sliced_cropped_preview.mp4
   * ffmpeg -i mkp_couple_sliced_cropped_preview.mp4 mkp_couple_preview/frame_%05d.png
+* mkp_couple_preview
+  * w:480, h:134
+* mkp_men
+  * start 8:31, eind 8:45, duur 0:14
+  * uitsnede x:0, y:490, y2:922, w:1920, h:922-490=432
+  * ffmpeg -ss 00:08:37.0 -i matthaikirchplatz_lossless_noaudio_rotated_08.mp4 -c copy -t 00:00:01.0 tempframes.mp4
+  * ffmpeg -i tempframes.mp4 tempframes/frame_%05d.png
+  * ffmpeg -ss 00:08:31.0 -i matthaikirchplatz_lossless_noaudio_rotated_08.mp4 -c copy -t 00:00:14.0 mkp_men_sliced.mp4
+  * ffmpeg -i mkp_men_sliced.mp4 -filter:v "crop=1920:432:0:490" mkp_men_sliced_cropped.mp4
+  * ffmpeg -i mkp_men_sliced_cropped.mp4 mkp_men/frame_%05d.png
+  * ffmpeg -i mkp_men_sliced_cropped.mp4 -vf scale=480:-1 mkp_men_sliced_cropped_preview.mp4
+  * ffmpeg -i mkp_men_sliced_cropped_preview.mp4 mkp_men_preview/frame_%05d.png
 
 
 ## FFMPEG

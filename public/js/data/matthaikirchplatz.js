@@ -85,6 +85,22 @@ const data = {
       width: 480,
       height: 134,
     },
+    {
+      id: 'mkp_men',
+      url: 'frames/mkp_men/frame_#.png',
+      frames: 420,
+      fps: 30,
+      width: 1920,
+      height: 432,
+    },
+    {
+      id: 'mkp_men_preview',
+      url: 'frames/mkp_men_preview/frame_#.png',
+      frames: 420,
+      fps: 30,
+      width: 480,
+      height: 108,
+    },
   ],
   score: [
     scene1,

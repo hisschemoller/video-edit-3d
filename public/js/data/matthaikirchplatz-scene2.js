@@ -42,4 +42,22 @@ createActor(scene, fps, {
   vrid: 'mkp_couple_preview',
 });
 
+// MEN
+actorStart = 0;
+createActor(scene, fps, {
+  gw: 2.5, gh: 2.5,
+  keys: [
+    { t:  0 + actorStart, v: [ -14, -0.5, -7]},
+    { t: 11 + actorStart, v: [  9.5, -0.5, -7]},
+  ],
+  cSz: 512, cSc: 512/2.5, cOf: 0,
+  vSc: 512/108, 
+  vt: [0, 14],
+  vKeys: [
+    { t:  0 + actorStart, v: [-190, 108]},
+    { t: 14 + actorStart, v: [ 620, 108]},
+  ],
+  vrid: 'mkp_men_preview',
+});
+
 export default scene;
