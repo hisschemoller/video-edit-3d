@@ -43,12 +43,12 @@ createActor(scene, fps, {
 });
 
 // MEN
-actorStart = 0;
+actorStart = 30;
 createActor(scene, fps, {
   gw: 2.5, gh: 2.5,
   keys: [
-    { t:  0 + actorStart, v: [ -14, -0.5, -7]},
-    { t: 11 + actorStart, v: [  9.5, -0.5, -7]},
+    { t:  0 + actorStart, v: [ -11, -0.5, -2]},
+    { t: 11 + actorStart, v: [  8, -0.5, -2]},
   ],
   cSz: 512, cSc: 512/2.5, cOf: 0,
   vSc: 512/108, 
@@ -58,6 +58,24 @@ createActor(scene, fps, {
     { t: 14 + actorStart, v: [ 620, 108]},
   ],
   vrid: 'mkp_men_preview',
+});
+
+// MAN
+actorStart = 0;
+createActor(scene, fps, {
+  gw: 1.5, gh: 2.5,
+  keys: [
+    { t:  0 + actorStart, v: [ -1, -0.5, -8]},
+    { t: 24 + actorStart, v: [  1, -0.5, -8]},
+  ],
+  cSz: 512, cSc: 512/2.5, cOf: 0,
+  vSc: 512/78,
+  vt: [0, 24],
+  vKeys: [
+    { t:  0 + actorStart, v: [ -75, 78]},
+    { t: 24 + actorStart, v: [ 580, 78]},
+  ],
+  vrid: 'mkp_man_preview',
 });
 
 export default scene;
