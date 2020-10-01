@@ -1,4 +1,5 @@
 import { setup } from './player.js';
+import convertPreviewToHiRes from './hi-res.js';
 import dataMatthaikirchplatz from '../data/matthaikirchplatz.js';
 // import dataLeidseplein from '../data/leidseplein.js';
 // import dataTest from '../data/test.js';
@@ -11,8 +12,10 @@ import dataMatthaikirchplatz from '../data/matthaikirchplatz.js';
 // import dataLockedGroove3 from '../data/locked-groove-3.js';
 // import dataTestSvg from '../data/test-svg.js';
 
+const hiResData = convertPreviewToHiRes(dataMatthaikirchplatz);
+
 setup({
-  data: dataMatthaikirchplatz,
+  data: hiResData,
   isCapture: false,
   startScene: 0,
   captureThrottle: 15,
