@@ -1,4 +1,8 @@
-
+/**
+ * Convert preview to hi-res video data.
+ * @param {Object} data
+ * @returns {Object} Converted data.
+ */
 export default function convertPreviewToHiRes(data) {
   convertBackground(data);
   data.score.forEach(scene => {
@@ -7,6 +11,10 @@ export default function convertPreviewToHiRes(data) {
   return data;
 }
 
+/**
+ * Convert the background video.
+ * @param {Object} data
+ */
 function convertBackground(data) {
   if (data.settings.backgroundVideoResourceId) {
 
@@ -22,9 +30,9 @@ function convertBackground(data) {
 }
 
 /**
- * All 
- * @param {*} scene 
- * @param {*} data 
+ * Convert the video assets of each scene.
+ * @param {Object} scene 
+ * @param {Object} data 
  */
 function convertVideoAssets(scene, data) {
 

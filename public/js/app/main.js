@@ -12,10 +12,10 @@ import dataMatthaikirchplatz from '../data/matthaikirchplatz.js';
 // import dataLockedGroove3 from '../data/locked-groove-3.js';
 // import dataTestSvg from '../data/test-svg.js';
 
-const hiResData = convertPreviewToHiRes(dataMatthaikirchplatz);
+// const hiResData = convertPreviewToHiRes(dataMatthaikirchplatz);
 
 setup({
-  data: hiResData,
+  data: dataMatthaikirchplatz,
   isCapture: false,
   startScene: 0,
   captureThrottle: 15,

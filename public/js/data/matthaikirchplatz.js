@@ -16,7 +16,7 @@ setTiming(bpm, ppqn, timeSignatureNumerator, timeSignatureDenominator);
  */
 const data = {
   settings: {
-    backgroundImage: null, // 'mkp-background.jpg',
+    backgroundImage: null, // 'matthaikirchplatz/mkp-background.jpg',
     backgroundVideoResourceId: 'mkp_preview', // '30seconds',
     backgroundVideoStartTime: 5,
     backgroundVideoEndTime: 300,

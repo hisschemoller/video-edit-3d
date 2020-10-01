@@ -146,6 +146,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
       isDeferredStart = keys[0].time > 0;
       isWaitingToStart = isDeferredStart && keyIndex === 0;
 
+      // for delayed animation start, copy first key to time zero
       if (keyIndex === 0 && isDeferredStart) {
         keys = [ { ...keys[0], time: 0, }, ...keys, ];
       }
@@ -186,7 +187,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
       }
 
       keyCurrentFrame += imgURLNrIncrease;
-
+      
       const videoOffsetCurrentX = videoOffsetStartX + ((videoOffsetEndX - videoOffsetStartX) * keyPositionNormalized);
       const videoOffsetCurrentY = videoOffsetStartY + ((videoOffsetEndY - videoOffsetStartY) * keyPositionNormalized);
       dx = canvasOffsetX - (videoOffsetCurrentX * videoScale);
