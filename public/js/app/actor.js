@@ -25,7 +25,7 @@ export default function createActor(scene, fps = 30, config = {}) {
     // video
     vrid: videoResourceId,
     vSc: videoScale = 1,
-    vKeys = [{t: 0, v: [0, 0]}],
+    vKeys = [{t: 0, v: [0, 0], a: 0}],
 
     // videoTime, videoStartTimeInitial ???
     vt: videoTime = [0, null],
@@ -66,7 +66,7 @@ export default function createActor(scene, fps = 30, config = {}) {
     scene.assets[videoId] = {
       end: videoTime[1],
       isLoop: true,
-      keys: vKeys.map(key => ({ time: key.t, value: [ ...key.v ]})),
+      keys: vKeys.map(key => ({ time: key.t, value: [ ...key.v ], acceleration: key.a ? key.a : 0 })),
       resourceId: videoResourceId,
       scale: videoScale,
       start: videoTime[0],

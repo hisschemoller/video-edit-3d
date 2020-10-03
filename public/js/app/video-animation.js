@@ -52,6 +52,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
     isAnimating = false,
     isDeferredStart = false,
     isWaitingToStart = false,
+    keyAcceleration = 0,
     keyCurrentFrame = 0,
     keyEndFrame = 0,
     keyIndex = 0,
@@ -63,6 +64,8 @@ export function create(textureCanvas, data, resources, texture, fps) {
     videoOffsetStartX,
     videoOffsetEndY,
     videoOffsetStartY,
+    videoOffsetStepDistanceX,
+    videoOffsetCurrentDistanceX,
 
     /**
      * Draw the video clip frame (an Image element) on the texture's canvas.
@@ -145,6 +148,7 @@ export function create(textureCanvas, data, resources, texture, fps) {
       isAnimating = keys.length > 1 && keyIndex < keys.length - 1;
       isDeferredStart = keys[0].time > 0;
       isWaitingToStart = isDeferredStart && keyIndex === 0;
+      videoOffsetCurrentDistanceX = 0;
 
       // for delayed animation start, copy first key to time zero
       if (keyIndex === 0 && isDeferredStart) {
@@ -157,11 +161,15 @@ export function create(textureCanvas, data, resources, texture, fps) {
       keyStartFrame = keys[keyIndex].time * resourceFPS;
       keyEndFrame = keys[nextKeyIndex].time * resourceFPS;
       keyCurrentFrame = keyStartFrame;
+      keyAcceleration = keys[keyIndex].acceleration;
+
+      const numSteps = (keyEndFrame - keyStartFrame) / imgURLNrIncrease;
 
       videoOffsetStartX = keys[keyIndex].value[0];
       videoOffsetStartY = keys[keyIndex].value[1];
       videoOffsetEndX = keys[nextKeyIndex].value[0];
       videoOffsetEndY = keys[nextKeyIndex].value[1];
+      videoOffsetStepDistanceX = (videoOffsetEndX -  videoOffsetStartX) / numSteps;
 
       keyIndex = nextKeyIndex;
 
@@ -187,8 +195,16 @@ export function create(textureCanvas, data, resources, texture, fps) {
       }
 
       keyCurrentFrame += imgURLNrIncrease;
+
+      if (keyAcceleration != 0) {
+        const currentStepMultiplier = (0.5 - keyPositionNormalized) * 2; // (1 -> 0 -> -1);
+        const acceleratedStepMultiplier = 1 + (keyAcceleration * currentStepMultiplier);  // (1.2 -> 0 -> 0.8);
+        videoOffsetCurrentDistanceX += (videoOffsetStepDistanceX * acceleratedStepMultiplier);
+      } else {
+        videoOffsetCurrentDistanceX += videoOffsetStepDistanceX;
+      }
       
-      const videoOffsetCurrentX = videoOffsetStartX + ((videoOffsetEndX - videoOffsetStartX) * keyPositionNormalized);
+      const videoOffsetCurrentX = videoOffsetStartX + videoOffsetCurrentDistanceX;
       const videoOffsetCurrentY = videoOffsetStartY + ((videoOffsetEndY - videoOffsetStartY) * keyPositionNormalized);
       dx = canvasOffsetX - (videoOffsetCurrentX * videoScale);
       dy = canvasHeight - canvasOffsetY - (videoOffsetCurrentY * videoScale);
