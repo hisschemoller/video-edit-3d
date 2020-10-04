@@ -1,8 +1,7 @@
 import createExtrude, { createCanvasTexture, createExtrudeGeometry, createExtrudeMesh, } from './extrude.js';
 import { createCanvases as createSceneCanvases } from './canvas.js';
 import { renderBackground, setupBackground } from './world-background.js';
-
-const {
+import {
   AmbientLight,
   AnimationClip,
   AnimationMixer,
@@ -20,16 +19,16 @@ const {
   MeshPhongMaterial,
   Object3D,
   ObjectLoader,
-  OrbitControls,
   OrthographicCamera,
   PCFShadowMap,
   PCFSoftShadowMap,
   PerspectiveCamera,
   Scene,
-  TransformControls,
   Vector3,
   VectorKeyframeTrack,
-  WebGLRenderer } = THREE;
+  WebGLRenderer } from '../lib/three/build/three.module.js';
+import { OrbitControls } from '../lib/three/examples/jsm/controls/OrbitControls.js';
+import { TransformControls } from '../lib/three/examples/jsm/controls/TransformControls.js';
 
 let 
   renderer, 
@@ -98,14 +97,29 @@ export function getObjectByName(name) {
 }
 
 /**
+ * Load external model files into the scene.
+ * @param {Object} allData 
+ * @param {Number} sceneIndex 
+ */
+function loadExternalModelFiles(allData, sceneIndex) {
+  const { external3DModels } = allData.score[sceneIndex];
+  external3DModels.forEach(modelData => {
+    console.log(modelData);
+  });
+}
+
+/**
  * Create all 3D objects and populate the scene.
  * @param {Object} allData 
  * @param {Number} sceneIndex 
  */
 export function loadScene(allData, sceneIndex) {
+  const sceneData = allData.score[sceneIndex];
+
+  // load external model files
+  loadExternalModelFiles(allData, sceneIndex);
 
   // preprocess: replace the custom extrude geometry data with regular data
-  const sceneData = allData.score[sceneIndex];
   sceneData.origGeoms = [ ...sceneData.geometries ];
   sceneData.geometries = sceneData.geometries.map(geomData => {
     if (geomData.type === 'CanvasExtrudeGeometry') {

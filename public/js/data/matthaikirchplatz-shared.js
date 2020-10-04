@@ -1,3 +1,4 @@
+import { LoopOnce } from '../lib/three/build/three.module.js';
 import { uuidv4, } from '../app/util.js';
 
 export const fps = 15;
@@ -28,7 +29,7 @@ export function getDefaultScene(lifespan, sceneNumber, hasAnimations) {
     scene.animations = [{
       duration: 90,
       fps,
-      loop: THREE.LoopOnce,
+      loop: LoopOnce,
       name: 'actor-animation',
       tracks: [],
     }];

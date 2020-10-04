@@ -1,4 +1,4 @@
-const {
+import {
   Camera,
   ImageUtils,
   Mesh,
@@ -6,7 +6,7 @@ const {
   PlaneBufferGeometry,
   Scene,
   Texture,
-} = THREE;
+} from '../lib/three/build/three.module.js';
 
 const
   canvasOffsetX = 0,
