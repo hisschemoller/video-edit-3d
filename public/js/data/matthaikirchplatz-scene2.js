@@ -78,4 +78,15 @@ createActor(scene, fps, {
   vrid: 'mkp_man_preview',
 });
 
+// CLOUD 0
+const id = 'testcloud'; // uuidv4();
+scene.external3DModels.push({
+  id,
+  keys: [
+    { time:  0, value: [0, 4, -10]},
+  ],
+  modelFile: 'matthaikirchplatz4.glb',
+  modelName: 'cloud0',
+});
+
 export default scene;

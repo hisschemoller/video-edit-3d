@@ -14,8 +14,11 @@ import {
   DirectionalLight,
   Fog,
   GridHelper,
+  ImageUtils,
   InterpolateLinear,
+  Matrix4,
   Mesh,
+  MeshBasicMaterial,
   MeshPhongMaterial,
   Object3D,
   ObjectLoader,
@@ -29,6 +32,7 @@ import {
   WebGLRenderer } from '../lib/three/build/three.module.js';
 import { OrbitControls } from '../lib/three/examples/jsm/controls/OrbitControls.js';
 import { TransformControls } from '../lib/three/examples/jsm/controls/TransformControls.js';
+import { GLTFLoader } from '../lib/three/examples/jsm/loaders/GLTFLoader.js';
 
 let 
   renderer, 
@@ -105,6 +109,34 @@ function loadExternalModelFiles(allData, sceneIndex) {
   const { external3DModels } = allData.score[sceneIndex];
   external3DModels.forEach(modelData => {
     console.log(modelData);
+    const { id, keys, modelFile, modelName } = modelData;
+    const gltfLoader = new GLTFLoader();
+    console.log('gltfLoader', gltfLoader);
+    gltfLoader.load(`3d/${modelFile}`, gltf => {
+      console.log('gltf', gltf);
+      const mesh = gltf.scene.getObjectByName(modelName);
+      mesh.uuid = id;
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+
+      // set position
+      const matrix4 = new Matrix4();
+      matrix4.setPosition(new Vector3( ...keys[0].value ));
+      mesh.position.applyMatrix4(matrix4);
+
+      // use phong material
+      // const originalBasicMaterial = mesh.material;
+      const texture = ImageUtils.loadTexture(`../img/matthaikirchplatz/sky.png`);
+      mesh.material = new MeshPhongMaterial({ map: texture });
+      // MeshBasicMaterial.prototype.copy.call(mesh.material, originalBasicMaterial);
+      console.log('gltf material', mesh.material);
+
+      console.log('gltf mesh', mesh);
+      scene.add(mesh);
+      console.log('scene', scene);
+    }, undefined, error => {
+      console.error(error);
+    } );
   });
 }
 

@@ -8,6 +8,7 @@ export function getDefaultScene(lifespan, sceneNumber, hasAnimations) {
     animations: [],
     canvases: {},
     clipId: uuidv4(),
+    external3DModels: [],
     geometries: [],
     lifespan: [ ...lifespan ],
     materials: [],
