@@ -11,7 +11,13 @@ export function getDefaultScene(lifespan, sceneNumber, hasAnimations) {
     external3DModels: [],
     geometries: [],
     lifespan: [ ...lifespan ],
-    materials: [],
+    materials: [
+      {
+        color: 0xf7f7f7,
+        type: 'MeshPhongMaterial',
+        uuid: 'default-mat',
+      },
+    ],
     metadata: {
       generator: 'video-edit-3d',
       type: 'Object',

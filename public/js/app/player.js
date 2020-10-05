@@ -40,7 +40,7 @@ export function setup(config) {
   infoTimeEl = document.querySelector('.info__time');
 }
 
-function setupWithData(dataSource, config) {
+async function setupWithData(dataSource, config) {
   const { isCapture, startScene = 0, } = config;
   data = dataSource;
   data.score = sortScoreByLifespanStart(data.score);
@@ -62,7 +62,7 @@ function setupWithData(dataSource, config) {
   // skip to scene by index
   skipToScene(startScene);
 
-  setupWorld(data);
+  await setupWorld(data);
 
   checkForNextScene(position);
   requestAnimationFrame(isCapture ? capture : run);

@@ -1,13 +1,14 @@
 import { musicToTime, uuidv4, } from '../app/util.js';
 import { getDefaultScene, fps, } from './matthaikirchplatz-shared.js';
 import createActor from '../app/actor.js';
+import { LoopOnce } from '../lib/three/build/three.module.js';
 
 let actorStart;
 
 const scene = getDefaultScene([0, 40], 2, true);
 
 // WOMAN PREVIEW
-actorStart = 0; // 5
+actorStart = 5;
 createActor(scene, fps, {
   gw: 2.0, gh: 2.3,
   keys: [
@@ -25,22 +26,22 @@ createActor(scene, fps, {
 });
 
 // COUPLE
-actorStart = 22;
-createActor(scene, fps, {
-  gw: 2, gh: 2.5,
-  keys: [
-    { t:  0 + actorStart, v: [ -9.4, -0.5, -3]},
-    { t: 11 + actorStart, v: [   8.6, -0.5, -3]},
-  ],
-  cSz: 512, cSc: 512/2.5, cOf: 0,
-  vSc: 512/134, 
-  vt: [0, 11],
-  vKeys: [
-    { t:  0 + actorStart, v: [-160, 134]},
-    { t: 11 + actorStart, v: [ 610, 134]},
-  ],
-  vrid: 'mkp_couple_preview',
-});
+// actorStart = 22;
+// createActor(scene, fps, {
+//   gw: 2, gh: 2.5,
+//   keys: [
+//     { t:  0 + actorStart, v: [ -9.4, -0.5, -3]},
+//     { t: 11 + actorStart, v: [   8.6, -0.5, -3]},
+//   ],
+//   cSz: 512, cSc: 512/2.5, cOf: 0,
+//   vSc: 512/134, 
+//   vt: [0, 11],
+//   vKeys: [
+//     { t:  0 + actorStart, v: [-160, 134]},
+//     { t: 11 + actorStart, v: [ 610, 134]},
+//   ],
+//   vrid: 'mkp_couple_preview',
+// });
 
 // MEN
 // actorStart = 30;
@@ -80,13 +81,38 @@ createActor(scene, fps, {
 
 // CLOUD 0
 const id = 'testcloud'; // uuidv4();
-scene.external3DModels.push({
+const cloudData = {
   id,
   keys: [
     { time:  0, value: [0, 4, -10]},
+    { time:  10, value: [4, 4, -10]},
   ],
-  modelFile: 'matthaikirchplatz4.glb',
+  modelFile: 'matthaikirchplatz6.glb',
   modelName: 'cloud0',
-});
+  imageFile: 'matthaikirchplatz/sky.png',
+};
+scene.external3DModels.push(cloudData);
+// add the animation (only if there are multiple keys)
+// if (cloudData.keys.length > 1) {
+//   scene.animations.push({
+//     duration: 90,
+//     fps,
+//     loop: LoopOnce,
+//     name: `animation-${id}`,
+//     tracks: [
+//       {
+//         name: `${id}.position`,
+//         type: 'vector3',
+//         keys: cloudData.keys.map(key => ({ time: key.time * fps, value: [ ...key.value ]})),
+//       }
+//     ],
+//   });
+
+  // scene.animations[0].tracks.push({
+  //   name: `${id}.position`,
+  //   type: 'vector3',
+  //   keys: cloudData.keys.map(key => ({ time: key.time * fps, value: [ ...key.value ]})),
+  // });
+// }
 
 export default scene;

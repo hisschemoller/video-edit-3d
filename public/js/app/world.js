@@ -1,6 +1,7 @@
 import createExtrude, { createCanvasTexture, createExtrudeGeometry, createExtrudeMesh, } from './extrude.js';
 import { createCanvases as createSceneCanvases } from './canvas.js';
 import { renderBackground, setupBackground } from './world-background.js';
+import { addGLTFModelsToScene, loadGLTFFiles } from './gltf.js';
 import {
   AmbientLight,
   AnimationClip,
@@ -9,6 +10,7 @@ import {
   BoxGeometry,
   Camera,
   CameraHelper,
+  CanvasTexture,
   Clock,
   Color,
   DirectionalLight,
@@ -16,7 +18,6 @@ import {
   GridHelper,
   ImageUtils,
   InterpolateLinear,
-  Matrix4,
   Mesh,
   MeshBasicMaterial,
   MeshPhongMaterial,
@@ -32,7 +33,6 @@ import {
   WebGLRenderer } from '../lib/three/build/three.module.js';
 import { OrbitControls } from '../lib/three/examples/jsm/controls/OrbitControls.js';
 import { TransformControls } from '../lib/three/examples/jsm/controls/TransformControls.js';
-import { GLTFLoader } from '../lib/three/examples/jsm/loaders/GLTFLoader.js';
 
 let 
   renderer, 
@@ -50,13 +50,11 @@ let
  * Set up an empty 3D world.
  * @param {Object} data 
  */
-export function setup(data) {
+export async function setup(data) {
+  await loadGLTFFiles(data);
   createWorld(data);
   setupBackground(data);
   addLights(data);
-  setTimeout(() => {
-    console.log('scene', scene.toJSON());
-  }, 1000);
 }
 
 /**
@@ -101,46 +99,6 @@ export function getObjectByName(name) {
 }
 
 /**
- * Load external model files into the scene.
- * @param {Object} allData 
- * @param {Number} sceneIndex 
- */
-function loadExternalModelFiles(allData, sceneIndex) {
-  const { external3DModels } = allData.score[sceneIndex];
-  external3DModels.forEach(modelData => {
-    console.log(modelData);
-    const { id, keys, modelFile, modelName } = modelData;
-    const gltfLoader = new GLTFLoader();
-    console.log('gltfLoader', gltfLoader);
-    gltfLoader.load(`3d/${modelFile}`, gltf => {
-      console.log('gltf', gltf);
-      const mesh = gltf.scene.getObjectByName(modelName);
-      mesh.uuid = id;
-      mesh.castShadow = true;
-      mesh.receiveShadow = true;
-
-      // set position
-      const matrix4 = new Matrix4();
-      matrix4.setPosition(new Vector3( ...keys[0].value ));
-      mesh.position.applyMatrix4(matrix4);
-
-      // use phong material
-      // const originalBasicMaterial = mesh.material;
-      const texture = ImageUtils.loadTexture(`../img/matthaikirchplatz/sky.png`);
-      mesh.material = new MeshPhongMaterial({ map: texture });
-      // MeshBasicMaterial.prototype.copy.call(mesh.material, originalBasicMaterial);
-      console.log('gltf material', mesh.material);
-
-      console.log('gltf mesh', mesh);
-      scene.add(mesh);
-      console.log('scene', scene);
-    }, undefined, error => {
-      console.error(error);
-    } );
-  });
-}
-
-/**
  * Create all 3D objects and populate the scene.
  * @param {Object} allData 
  * @param {Number} sceneIndex 
@@ -148,8 +106,8 @@ function loadExternalModelFiles(allData, sceneIndex) {
 export function loadScene(allData, sceneIndex) {
   const sceneData = allData.score[sceneIndex];
 
-  // load external model files
-  loadExternalModelFiles(allData, sceneIndex);
+  // add externally loaded models
+  addGLTFModelsToScene(scene, allData, sceneIndex);
 
   // preprocess: replace the custom extrude geometry data with regular data
   sceneData.origGeoms = [ ...sceneData.geometries ];
@@ -191,15 +149,19 @@ export function loadScene(allData, sceneIndex) {
 
     // start animation
     if (model.animations && model.animations.length) {
+      console.log('model.animations', model.animations);
       const mixer = new AnimationMixer(model);
       mixer.addEventListener('loop', e => { console.log('loop', e)});
       mixer.addEventListener('finished', e => { console.log('finished', e)});
-      const animationAction = mixer.clipAction(model.animations[0]);
-      animationAction.setLoop(sceneData.animations[0].loop);
-      animationAction.play();
+      for (let i = 0, n = model.animations.length; i < n; i++) {
+        const animationAction = mixer.clipAction(model.animations[i]);
+        animationAction.setLoop(sceneData.animations[i].loop);
+        animationAction.play();
+        console.log('clipAction', animationAction);
+      }
+      
       mixers.push([mixer, sceneData.clipId]);
-      // console.log('AnimationMixer', mixer);
-      // console.log('clipAction', animationAction);
+      console.log('AnimationMixer', mixer);
     }
 
     // programmed animation:
