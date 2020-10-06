@@ -1,7 +1,6 @@
 import { musicToTime, uuidv4, } from '../app/util.js';
 import { getDefaultScene, fps, } from './matthaikirchplatz-shared.js';
 import createActor from '../app/actor.js';
-import { Euler, LoopOnce, LoopRepeat, Quaternion, QuaternionKeyframeTrack, Vector3, VectorKeyframeTrack } from '../lib/three/build/three.module.js';
 
 let actorStart;
 
@@ -78,63 +77,5 @@ createActor(scene, fps, {
   ],
   vrid: 'mkp_man_preview',
 });
-
-// CLOUD 0
-const id = 'testcloud'; // uuidv4();
-const cloudData = {
-  id,
-  keys: [
-    { time:  0, value: [-6, 4, -10]},
-    { time:  60, value: [8, 4, -10]},
-  ],
-  modelFile: 'matthaikirchplatz9.glb',
-  modelName: 'cloud0',
-  imageFile: 'matthaikirchplatz/sky.png',
-};
-scene.external3DModels.push(cloudData);
-
- // add the main animation (only if there are multiple keys)
- if (cloudData.keys.length > 1) {
-  scene.animations[0].tracks.push({
-    name: `${id}.position`,
-    type: 'vector3',
-    keys: cloudData.keys.map(key => ({ time: key.time * fps, value: [ ...key.value ]})),
-  });
-}
-
-const startTime = 0;
-const endTime = 16 * fps;
-const numSteps = 6;
-const totalAngle = Math.PI * 2;
-let keys = [];
-for (let i = 0; i <= numSteps; i++) {
-  const normal = i / numSteps;
-  const quaternion = new Quaternion().setFromEuler(new Euler(normal * totalAngle, 0, 0)).normalize();
-  keys.push({
-    time: startTime + (normal * (endTime - startTime)),
-    value: [ quaternion.x, quaternion.y, quaternion.z, quaternion.w ],
-  });
-}
-
-scene.animations.push({
-  duration: 16,
-  fps,
-  loop: LoopRepeat,
-  name: `animation-${id}`,
-  tracks: [
-    {
-      name: `${id}.quaternion`,
-      type: 'quaternion',
-      keys,
-    }
-  ],
-});
-
-  // scene.animations[0].tracks.push({
-  //   name: `${id}.position`,
-  //   type: 'vector3',
-  //   keys: cloudData.keys.map(key => ({ time: key.time * fps, value: [ ...key.value ]})),
-  // });
-// }
 
 export default scene;

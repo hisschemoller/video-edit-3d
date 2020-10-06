@@ -1,5 +1,6 @@
 import { musicToTime, setTiming, uuidv4, } from '../app/util.js';
 import { fps, } from './matthaikirchplatz-shared.js';
+import sceneClouds from './matthaikirchplatz-scene-clouds.js';
 import scene1 from './matthaikirchplatz-scene1.js';
 import scene2 from './matthaikirchplatz-scene2.js';
 import scene3 from './matthaikirchplatz-scene3.js';
@@ -121,6 +122,7 @@ const data = {
   ],
   score: [
     scene1,
+    sceneClouds,
     scene2,
     // scene3,
   ],
