@@ -24,14 +24,15 @@ createCloud(19, {
   ],
   modelName: 'cloud0',
   imageFile: 'matthaikirchplatz/sky.png',
-});
+}, false);
 
 /**
  * Create a cloud.
  * @param {Number} rotationDuration Rotation duration in seconds.
  * @param {Object} data External model data.
+ * @param {Boolean} isForward Rotation direction.
  */
-function createCloud(rotationDuration, data) {
+function createCloud(rotationDuration, data, isForward) {
   const id = uuidv4();
   data.id = id;
   data.modelFile = 'matthaikirchplatz9.glb';
@@ -46,20 +47,21 @@ function createCloud(rotationDuration, data) {
   }
 
   scene.external3DModels.push(data);
-  scene.animations.push(createQuaternionAnimation(id, rotationDuration));
+  scene.animations.push(createQuaternionAnimation(id, rotationDuration, isForward));
 }
 
 /**
  * Create quaternion rotation data for a cloud.
  * @param {String} id Mesh object ID.
  * @param {Number} duration Rotation duration in seconds.
+ * @param {Boolean} isForward Rotation direction.
  * @returns {Object} Animation data.
  */
-function createQuaternionAnimation(id, duration) {
+function createQuaternionAnimation(id, duration, isForward = true) {
   const startTime = 0;
   const endTime = (startTime + duration) * fps;
   const numSteps = 6;
-  const totalAngle = Math.PI * 2;
+  const totalAngle = Math.PI * 2 * (isForward ? 1 : -1);
   const keys = [];
   for (let i = 0; i <= numSteps; i++) {
     const normal = i / numSteps;
