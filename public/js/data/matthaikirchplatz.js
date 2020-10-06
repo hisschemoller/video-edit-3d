@@ -36,7 +36,7 @@ const data = {
     position: [0, 2, 16],
     target: [0, 2, 0],
   },
-  gltfFiles: [ 'matthaikirchplatz6.glb' ],
+  gltfFiles: [ 'matthaikirchplatz9.glb' ],
   resources: [
     {
       id: '30seconds',

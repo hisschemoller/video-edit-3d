@@ -1,7 +1,7 @@
 import createExtrude, { createCanvasTexture, createExtrudeGeometry, createExtrudeMesh, } from './extrude.js';
 import { createCanvases as createSceneCanvases } from './canvas.js';
 import { renderBackground, setupBackground } from './world-background.js';
-import { addGLTFModelsToScene, loadGLTFFiles } from './gltf.js';
+import { addGLTFModelsToData, loadGLTFFiles } from './gltf.js';
 import {
   AmbientLight,
   AnimationClip,
@@ -107,7 +107,7 @@ export function loadScene(allData, sceneIndex) {
   const sceneData = allData.score[sceneIndex];
 
   // add externally loaded models
-  addGLTFModelsToScene(scene, allData, sceneIndex);
+  addGLTFModelsToData(allData, sceneIndex);
 
   // preprocess: replace the custom extrude geometry data with regular data
   sceneData.origGeoms = [ ...sceneData.geometries ];
@@ -149,7 +149,7 @@ export function loadScene(allData, sceneIndex) {
 
     // start animation
     if (model.animations && model.animations.length) {
-      console.log('model.animations', model.animations);
+      // console.log('model.animations', model.animations);
       const mixer = new AnimationMixer(model);
       mixer.addEventListener('loop', e => { console.log('loop', e)});
       mixer.addEventListener('finished', e => { console.log('finished', e)});
@@ -157,13 +157,13 @@ export function loadScene(allData, sceneIndex) {
         const animationAction = mixer.clipAction(model.animations[i]);
         animationAction.setLoop(sceneData.animations[i].loop);
         animationAction.play();
-        console.log('clipAction', animationAction);
+        // console.log('clipAction', animationAction);
       }
       
       mixers.push([mixer, sceneData.clipId]);
-      console.log('AnimationMixer', mixer);
+      // console.log('AnimationMixer', mixer);
     }
-
+    
     // programmed animation:
 
     // const mesh = model.getObjectByName('scene1wallR1');

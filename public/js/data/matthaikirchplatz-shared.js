@@ -6,10 +6,12 @@ export const fps = 15;
 export function getDefaultScene(lifespan, sceneNumber, hasAnimations) {
   const scene = {
     animations: [],
+    assets: {},
     canvases: {},
     clipId: uuidv4(),
     external3DModels: [],
     geometries: [],
+    images: [],
     lifespan: [ ...lifespan ],
     materials: [
       {
@@ -29,7 +31,7 @@ export function getDefaultScene(lifespan, sceneNumber, hasAnimations) {
       uuid: `scene${sceneNumber}`,
       children: [],
     },
-    assets: {},
+    textures: [],
   };
 
   if (hasAnimations) {
@@ -37,7 +39,7 @@ export function getDefaultScene(lifespan, sceneNumber, hasAnimations) {
       duration: 90,
       fps,
       loop: LoopOnce,
-      name: 'actor-animation',
+      name: 'scene-animation',
       tracks: [],
     }];
   }
