@@ -2,14 +2,21 @@
 
 Video and animation in WebGL using three.js
 
-## settings JSON
+An app to create a 3D world and project video sequences on the surface of 3D objects. The 3D objects can animate.
 
-All of the 3D animation is read from one data structure containing four parts:
+## Structure of the app data
+
+All of the 3D world, its animations, texture images and videos and all variable settings are read from one big data object.
+
+The data object is based on the JSON Object Scene format 4: https://github.com/mrdoob/three.js/wiki/JSON-Object-Scene-format-4
+
+The base data structure contains these parts:
 
 ```javascript
 {
-  settings: {}, // canvas size, framerate and musical timing
-  camera: {}, // the 3D scene's camera
+  settings: {}, // main canvas size, framerate and musical timing, background image etc.
+  camera: {}, // the 3D scene's camera settings
+  gltfFiles: [], // Names of GLTF files to preload. Contain meshes modelled in Blender, in my case.
   resources: [], // video image sequences information
   score: [ // 3D object hierarchies, their video textures and animations
     sceneA: {}, // the score contains a series of scenes
@@ -30,14 +37,17 @@ A `geometry` can have custom type `CanvasExtrudeGeometry` which is a extruded SV
 ```javascript
 {
   animations: [], // animation structure as spefified in three.js
-  canvases: {},
-  geometries: [],
-  clipId: '', 
+  assets: {}, // Image and video references to be used as 3D canvas textures.
+  canvases: {}, // Canvas data to be used as textures, to paint images and video on.
+  clipId: '', // Unique ID for the scene.
+  external3DModels: [], // Externally modelled objects to be copied from GLTF files to the scene.
+  geometries: [], // 3D geometries.
+  images: [], // Images to be used as texture.
   lifespan: [0, 1], // scene start and end time in seconds
-  materials: [], // 
-  metadata: {},
+  materials: [], // 3D materials.
+  metadata: {}, // Scene 4.3 format metadata.
   object: {}, // 3D object hierarchy, usually with Group as root
-  assets: {} // videos and images used in this scene
+  textures: {} // 3D textures.
 }
 ```
 
