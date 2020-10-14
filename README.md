@@ -4,7 +4,7 @@ Video and animation in WebGL using three.js
 
 An app to create a 3D world and project video sequences on the surface of 3D objects. The 3D objects can animate.
 
-## Structure of the app data
+## Structure of the main app data
 
 All of the 3D world, its animations, texture images and videos and all variable settings are read from one big data object.
 
@@ -26,7 +26,7 @@ The base data structure contains these parts:
 }
 ```
 
-### Scene JSON data 
+### Scene data
 
 The properties `animations`, `geometries`, `metadata`, `materials` and `objects` are in the JSON Object Scene 4.3 format.
 
@@ -109,6 +109,35 @@ Translate
 ```javascript
 [ 1,0,0,0 ,0,1,0,0 ,0,0,1,0 ,x,y,z,1 ]
 ```
+
+## Preview
+
+If video image sequences are too heavy to load in time for the app to run smooth, a preview option exists.
+
+1. For each image sequence folder create another folder with the same sequence scaled down. I used 25%.
+2. Name that folder the same, but with a '_preview' suffix.
+
+```bash
+  /public/frames/my-image-sequence
+  /public/frames/my-image-sequence_preview
+```
+
+3. Only reference the preview folders in the data, so that while working only the fast small images are used.
+4. When it's time to render, convert the data to use the full files. 
+5. This is done within main.js just before the app initialises.
+
+```javascript
+import convertPreviewToHiRes from './hi-res.js';
+import appData from '../data/app-data.js';
+
+const hiResData = convertPreviewToHiRes(appData);
+
+setup({
+  data: hiResData,
+  isCapture: true,
+});
+```
+
 
 ## SVG path to extrude shape
 
