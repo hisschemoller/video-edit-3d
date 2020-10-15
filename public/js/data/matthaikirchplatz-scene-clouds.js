@@ -7,24 +7,44 @@ let actorStart;
 const scene = getDefaultScene([0, 180], 3, true);
 
 // CLOUD 0
-createCloud(16, {
+createCloud(120, {
   keys: [
-    { time:  0, value: [-6, 5, -20]},
-    { time:  60, value: [8, 5, -20]},
+    { time:  0, value: [0, 5, -30]},
+    { time:  60, value: [8, 5, -30]},
   ],
   modelName: 'cloud0',
   imageFile: 'matthaikirchplatz/sky.png',
 });
 
 // CLOUD 1
-createCloud(19, {
+// createCloud(19, {
+//   keys: [
+//     { time:  0, value: [0, 8, -60]},
+//     { time:  70, value: [8, 8, -60]},
+//   ],
+//   modelName: 'cloud0',
+//   imageFile: 'matthaikirchplatz/sky.png',
+// }, false);
+
+// CLOUD 2
+// createCloud(21, {
+//   keys: [
+//     { time:  0, value: [0, 6.5, -6]},
+//     { time: 70, value: [8, 6.5, -6]},
+//   ],
+//   modelName: 'cloud0',
+//   imageFile: 'matthaikirchplatz/sky.png',
+// }, false);
+
+// CLOUD 3
+createCloud(100, {
   keys: [
-    { time:  0, value: [0, 10, -60]},
-    { time:  70, value: [8, 10, -60]},
+    { time:  0, value: [-6, 5, -18]},
+    { time:  60, value: [3, 5, -18]},
   ],
-  modelName: 'cloud0',
+  modelName: 'cloud1',
   imageFile: 'matthaikirchplatz/sky.png',
-}, false);
+});
 
 /**
  * Create a cloud.
@@ -35,7 +55,7 @@ createCloud(19, {
 function createCloud(rotationDuration, data, isForward) {
   const id = uuidv4();
   data.id = id;
-  data.modelFile = 'matthaikirchplatz9.glb';
+  data.modelFile = 'matthaikirchplatz17.glb';
 
   // add the main animation (only if there are multiple keys)
   if (data.keys.length > 1) {
