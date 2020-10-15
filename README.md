@@ -32,8 +32,6 @@ The properties `animations`, `geometries`, `metadata`, `materials` and `objects`
 
 JSON Object Scene format 4: https://github.com/mrdoob/three.js/wiki/JSON-Object-Scene-format-4
 
-A `geometry` can have custom type `CanvasExtrudeGeometry` which is a extruded SVG path shape with video canvas texture.
-
 ```javascript
 {
   animations: [], // animation structure as spefified in three.js
@@ -50,6 +48,8 @@ A `geometry` can have custom type `CanvasExtrudeGeometry` which is a extruded SV
   textures: {} // 3D textures.
 }
 ```
+
+A `geometry` can have custom type `CanvasExtrudeGeometry` which is a extruded SVG path shape with video canvas texture.
 
 Object hierarchy:
 
@@ -185,6 +185,29 @@ When a scene loads, the model is taken from the preloaded file and added to the 
 
 <b>Note:</b> An image texture exported from blender shows too dark in three.js. I read this has something to do with a conversion between sRGB and linear colours, but I didn't really understand. To fix it the texture is created in three.js.
 
+
+## Animated video position acceleration
+
+When a video - an image sequence actually - is used as the texture of a mesh, the position of the video can be animated. This is used to keep a walking person positioned at the center of a 3D cube, while the person walks from left to right through the video.
+
+The position of the video on the canvas texture is changed over time. Sometimes a simple linear animation velocity won't do, so an acceleration option exists.
+
+```javascript
+  scene: {
+    assets: {
+      videoUUID: {
+        keys: [
+          { time:  0, value: [0, 0, 0], acceleration: 0.2}, // at least one key for the position
+          { time: 60, value: [1, 0, 0]}, // more keys for animation
+        ],
+      }
+    }
+  }
+```
+
+At acceleration: 0 the animation is linear. When acceleration is a positive number the animation starts fast and ends slow. When it's 0.2 for example, it will start at 1.2 times the speed and ends at 0.8 times the speed. The objective is to always keep the total animated distance the same amount of time. So the animation starts as much faster as it ends slower, and the break even point of original speed is halfway.
+
+The code that generates the acceleration is in `video-animation.js`.
 
 ## SVG path to extrude shape
 
