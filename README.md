@@ -138,6 +138,53 @@ setup({
 });
 ```
 
+## External 3D model file import
+
+Three.js documentation recommends glTF (GL Transmission Format) files. Blender exports this type.
+
+https://threejs.org/docs/#manual/en/introduction/Loading-3D-models
+
+How to add external models to the 3D world in the app:
+
+1. Add the file to the `public/3d/` folder.
+2. Add the file's name to the data object.
+
+```javascript
+const data = {
+  // ...
+  gltfFiles: [ 'blender-export-gltf-file.glb' ],
+};
+```
+
+The file will now be preloaded before the 3D world initialises.
+
+To add a model from the file to a scene, add it to the scene's data:
+
+```javascript
+const data = {
+  score: [
+    {
+      external3DModels: [
+        {
+          id: 'any-unique-id',
+          imageFile: 'image-to-use-as-texture.png',
+          keys: [
+            { time:  0, value: [0, 0, 0]}, // at least one key for the position
+            { time: 60, value: [1, 0, 0]}, // more keys for animation
+          ],
+          modelFile: 'blender-export-gltf-file.glb',
+          modelName: 'model-in-the-blender-file',
+        },
+      ],
+    }
+  ],
+};
+```
+
+When a scene loads, the model is taken from the preloaded file and added to the scene. This happens in the `loadScene()` function in `world.js` by calling `addGLTFModelsToData()` in `gltf.js`. This only adds to the data object. Later, `ObjectLoader`'s `parse()` creates a 3D scene from the data.
+
+<b>Note:</b> An image texture exported from blender shows too dark in three.js. I read this has something to do with a conversion between sRGB and linear colours, but I didn't really understand. To fix it the texture is created in three.js.
+
 
 ## SVG path to extrude shape
 
