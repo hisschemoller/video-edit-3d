@@ -4,7 +4,7 @@ import createActor from '../app/actor.js';
 
 let actorStart;
 
-const scene = getDefaultScene([0, 60], 3, true);
+const scene = getDefaultScene([35, 95], 3, true);
 
 addLady(0, -10.7, 11, -0.5, -11);
 addLady(3, -9.0,  10, -0.5,  -8);

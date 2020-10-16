@@ -9,10 +9,20 @@ const scene = getDefaultScene([0, 180], 3, true);
 // CLOUD 0
 createCloud(120, {
   keys: [
-    { time:  0, value: [0, 5, -30]},
-    { time:  60, value: [8, 5, -30]},
+    { time:  0, value: [-20, 10, -60]},
+    { time:  200, value: [20, 10, -60]},
   ],
-  modelName: 'cloud0',
+  modelName: 'cloud2',
+  imageFile: 'matthaikirchplatz/sky.png',
+});
+
+// CLOUD 1
+createCloud(100, {
+  keys: [
+    { time:  35, value: [-13.2, 5, -18]},
+    { time:  145, value: [10, 5, -18]},
+  ],
+  modelName: 'cloud1',
   imageFile: 'matthaikirchplatz/sky.png',
 });
 
@@ -36,16 +46,6 @@ createCloud(120, {
 //   imageFile: 'matthaikirchplatz/sky.png',
 // }, false);
 
-// CLOUD 3
-createCloud(100, {
-  keys: [
-    { time:  0, value: [-6, 5, -18]},
-    { time:  60, value: [3, 5, -18]},
-  ],
-  modelName: 'cloud1',
-  imageFile: 'matthaikirchplatz/sky.png',
-});
-
 /**
  * Create a cloud.
  * @param {Number} rotationDuration Rotation duration in seconds.
@@ -55,7 +55,7 @@ createCloud(100, {
 function createCloud(rotationDuration, data, isForward) {
   const id = uuidv4();
   data.id = id;
-  data.modelFile = 'matthaikirchplatz17.glb';
+  data.modelFile = 'matthaikirchplatz18.glb';
 
   // add the main animation (only if there are multiple keys)
   if (data.keys.length > 1) {
