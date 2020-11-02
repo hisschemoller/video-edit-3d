@@ -8,6 +8,10 @@ Previews zijn altijd 25% van het origineel.
   * matthaikirchplatz_lossless_noaudio_rotated_08.mp4
   * w:1920, h:1080
   * frames:16906
+  * Vooralsnog alleen de eerste 3 minuten:
+    * ffmpeg -ss 00:00:00.0 -i matthaikirchplatz_lossless_noaudio_rotated_08.mp4 -c copy -t 00:03:00.0 mkp_180sec_sliced.mp4
+    * ffmpeg -i mkp_180sec_sliced.mp4 mkp/frame_%05d.png
+    * frames: 5395
 * mkp_preview
   * matthaikirchplatz_lossless_noaudio_rotated_08_preview.mp4
   * w:480, h:270
@@ -74,3 +78,14 @@ Previews zijn altijd 25% van het origineel.
 * Convert preview to PNG sequence
   * `ffmpeg -i matthaikirchplatz_lossless_noaudio_rotated_08_preview.mp4 mkp_preview/output_%05d.png`
   * 16906 frames, last file `output_16906.png`
+
+
+## Wolken
+
+* ffmpeg -framerate 30 -i rendered/frame_%05d.png -f mp4 -vcodec libx264 -pix_fmt yuv420p matthaikirchplatz-clouds-video-only.mp4
+* 2160 - 27 = 2133 hoogte, (3840 / 2160) * 2133 = 3792 breedte, 3840 - 3792 = 48 er af in de breedte
+* ffmpeg -i matthaikirchplatz-clouds-video-only.mp4 -filter:v "crop=3792:2133:16:27" matthaikirchplatz-clouds-video-only-cropped.mp4
+* ffmpeg -i matthaikirchplatz-clouds-video-only-cropped.mp4 -i master.wav -vcodec copy matthaikirchplatz-clouds.mp4
+* ffmpeg -ss 00:00:25.0 -i wouter_hisschemoller_-_matthaikirchplatz_clouds_-_2020.mp4 -c copy -t 00:00:59.0 wouter_hisschemoller_-_matthaikirchplatz_clouds_-_2020_59sec.mp4
+* ffmpeg -i wouter_hisschemoller_-_matthaikirchplatz_clouds_-_2020_59sec.mp4 -vf scale=1920:1080 wouter_hisschemoller_-_matthaikirchplatz_clouds_-_2020_59sec_1920x1080.mp4
+* ffmpeg -i wouter_hisschemoller_-_matthaikirchplatz_clouds_-_2020.mp4 -vf scale=1920:1080 wouter_hisschemoller_-_matthaikirchplatz_clouds_-_2020_1920x1080.mp4

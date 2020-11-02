@@ -4,6 +4,7 @@ import sceneClouds from './matthaikirchplatz-scene-clouds.js';
 import scene1 from './matthaikirchplatz-scene1.js';
 import scene2 from './matthaikirchplatz-scene2.js';
 import scene3 from './matthaikirchplatz-scene3.js';
+import scene4 from './matthaikirchplatz-scene4.js';
 
 const ppqn = 24; // parts per quarter note
 const bpm = 112; // beats per minute
@@ -21,8 +22,8 @@ const data = {
     backgroundVideoResourceId: 'mkp_preview', // '30seconds',
     backgroundVideoStartTime: 5,
     backgroundVideoEndTime: 300,
-    width: 16 * 50,
-    height: 9 * 50,
+    width: 1920,
+    height: 1080,
     fps,
     ppqn,
     bpm,
@@ -46,6 +47,14 @@ const data = {
       fps: 30,
       width: 640,
       height: 360,
+    },
+    {
+      id: 'mkp',
+      url: 'frames/mkp/frame_#.png',
+      frames: 5395,
+      fps: 30,
+      width: 1920,
+      height: 1080,
     },
     {
       id: 'mkp_preview',
@@ -123,8 +132,9 @@ const data = {
   score: [
     scene1,
     sceneClouds,
-    scene2,
-    scene3,
+    // scene2,
+    // scene3,
+    // scene4,
   ],
 };
 
