@@ -4,13 +4,20 @@ import createActor from '../app/actor.js';
 
 let actorStart;
 
-const scene = getDefaultScene([35, 95], 3, true);
+const scene = getDefaultScene([ 0 /* 35 */, 95], 3, true);
 
-addLady(0, -10.7, 11, -0.5, -11);
-addLady(3, -9.0,  10, -0.5,  -8);
-addLady(6, -14.0, 20, -0.8, -20);
-addLady(8, -11, 11.8, -0.6, -13);
-addLady(9,  -8,    8, -0.5,  -5);
+addLady( 0.0, -10.7, 11.0, -0.5, -11.0);
+addLady( 3.0,  -9.0, 10.0, -0.5,  -8.0);
+addLady( 6.0, -14.0, 20.0, -0.8, -20.0);
+addLady( 8.0, -11.0, 11.8, -0.6, -13.0);
+addLady( 9.2,  -8.0,  8.6, -0.5,  -5.0);
+addLady(10.0, -10.7, 11.0, -0.5, -11.0);
+addLady(11.0, -12.0, 12.8, -0.6, -15.0);
+addLady(11.5, -11.0, 11.8, -0.6, -13.0);
+addLady(13.0,  -7.0,  7.5, -0.5,  -2.0);
+addLady(15.0, -16.0, 25.0, -0.9, -25.0);
+addLady(15.5, -10.7, 11.0, -0.5, -11.0);
+addLady(17.0,  -6.5,  6.5, -0.2,   2.0);
 
 
 function addLady(actorStart, x0, x1, y, z) {

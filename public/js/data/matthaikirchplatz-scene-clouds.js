@@ -4,47 +4,77 @@ import { Euler, LoopOnce, LoopRepeat, Quaternion } from '../lib/three/build/thre
 
 let actorStart;
 
-const scene = getDefaultScene([0, 180], 3, true);
+const scene = getDefaultScene([0, 90], 3, true);
 
 // CLOUD 0
-createCloud(120, {
+createCloud(19, {
   keys: [
-    { time:  0, value: [-20, 10, -60]},
-    { time:  200, value: [20, 10, -60]},
+    { time:  0, value: [0, 8, -60]},
+    { time:  70, value: [8, 8, -60]},
   ],
-  modelName: 'cloud2',
+  modelName: 'cloud0',
   imageFile: 'matthaikirchplatz/sky.png',
-});
+}, false);
+
+// CLOUD 0a
+createCloud(50, {
+  keys: [
+    { time:  0, value: [-4, 6.2, -6]},
+    { time: 70, value: [ 8, 6.2, -6]},
+  ],
+  modelName: 'cloud0',
+  imageFile: 'matthaikirchplatz/sky.png',
+}, false);
 
 // CLOUD 1
 createCloud(100, {
   keys: [
     { time:  35, value: [-13.2, 5, -18]},
-    { time:  145, value: [10, 5, -18]},
+    { time: 145, value: [ 10.0, 5, -18]},
   ],
   modelName: 'cloud1',
   imageFile: 'matthaikirchplatz/sky.png',
 });
 
-// CLOUD 1
-// createCloud(19, {
-//   keys: [
-//     { time:  0, value: [0, 8, -60]},
-//     { time:  70, value: [8, 8, -60]},
-//   ],
-//   modelName: 'cloud0',
-//   imageFile: 'matthaikirchplatz/sky.png',
-// }, false);
-
 // CLOUD 2
-// createCloud(21, {
-//   keys: [
-//     { time:  0, value: [0, 6.5, -6]},
-//     { time: 70, value: [8, 6.5, -6]},
-//   ],
-//   modelName: 'cloud0',
-//   imageFile: 'matthaikirchplatz/sky.png',
-// }, false);
+createCloud(120, {
+  keys: [
+    { time:   0, value: [-10, 5, -15]},
+    { time: 200, value: [10, 5, -15]},
+  ],
+  modelName: 'cloud2',
+  imageFile: 'matthaikirchplatz/sky.png',
+});
+
+// CLOUD 3
+createCloud(80, {
+  keys: [
+    { time:   0, value: [ 4, 4, -10]},
+    { time: 200, value: [10, 4, -10]},
+  ],
+  modelName: 'cloud3',
+  imageFile: 'matthaikirchplatz/sky.png',
+});
+
+// CLOUD 4
+createCloud(30, {
+  keys: [
+    { time:   0, value: [-4, 4, -20]},
+    { time: 200, value: [10, 4, -20]},
+  ],
+  modelName: 'cloud4',
+  imageFile: 'matthaikirchplatz/sky.png',
+});
+
+// CLOUD 5
+createCloud(30, {
+  keys: [
+    { time:   0, value: [3, 3, -40]},
+    { time: 200, value: [10, 3, -40]},
+  ],
+  modelName: 'cloud1',
+  imageFile: 'matthaikirchplatz/sky.png',
+});
 
 /**
  * Create a cloud.
