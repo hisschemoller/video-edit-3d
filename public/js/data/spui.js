@@ -1,6 +1,11 @@
 import { musicToTime, setTiming, uuidv4, } from '../app/util.js';
 import { fps, } from './spui-shared.js';
-import scene1 from './spui-scene1.js';
+import sceneFirstTry from './spui-scene-first-try.js';
+import sceneGround from './spui-scene-ground.js';
+import sceneNieuwezijds from './spui-scene-nieuwezijds.js';
+import sceneABC from './spui-scene-abc.js';
+import sceneAthenaeum from './spui-scene-athenaeum.js';
+import sceneHotdogs from './spui-scene-hotdogs.js';
 
 const ppqn = 24; // parts per quarter note
 const bpm = 112; // beats per minute
@@ -15,8 +20,8 @@ setTiming(bpm, ppqn, timeSignatureNumerator, timeSignatureDenominator);
 const data = {
   settings: {
     backgroundImage: null,
-    width: 16 * 50,
-    height: 12 * 50,
+    width: 45 * 10,
+    height: 55 * 10,
     fps,
     ppqn,
     bpm,
@@ -33,7 +38,12 @@ const data = {
   },
   resources: [],
   score: [
-    scene1,
+    // sceneFirstTry,
+    sceneGround,
+    sceneNieuwezijds,
+    sceneABC,
+    sceneAthenaeum,
+    sceneHotdogs,
   ],
 };
 
