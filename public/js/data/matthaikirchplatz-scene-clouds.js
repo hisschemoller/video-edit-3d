@@ -85,7 +85,7 @@ createCloud(30, {
 function createCloud(rotationDuration, data, isForward) {
   const id = uuidv4();
   data.id = id;
-  data.modelFile = 'matthaikirchplatz18.glb';
+  data.modelFile = 'matthaikirchplatz.glb';
 
   // add the main animation (only if there are multiple keys)
   if (data.keys.length > 1) {

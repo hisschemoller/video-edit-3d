@@ -22,8 +22,8 @@ const data = {
     backgroundVideoResourceId: 'mkp_preview', // '30seconds',
     backgroundVideoStartTime: 5,
     backgroundVideoEndTime: 300,
-    width: 1920,
-    height: 1080,
+    width: 16 * 50,
+    height: 9 * 50,
     fps,
     ppqn,
     bpm,
@@ -38,7 +38,7 @@ const data = {
     position: [0, 2, 16],
     target: [0, 2, 0],
   },
-  gltfFiles: [ 'matthaikirchplatz18.glb' ],
+  gltfFiles: [ 'matthaikirchplatz.glb' ],
   resources: [
     {
       id: '30seconds',
@@ -131,10 +131,10 @@ const data = {
   ],
   score: [
     scene1,
-    sceneClouds,
+    // sceneClouds,
     // scene2,
     // scene3,
-    // scene4,
+    scene4,
   ],
 };
 
