@@ -9,7 +9,7 @@ const scene = getDefaultScene([ 0 /* 35 */, 95], 4, true);
 // hoeveel video pixels per 3d unit?
 // 512/2.5 = 204.8 canvas pixels per unit
 // 512/76 = 6.7368421052631575 canvas pixels tonen 1 video pixel
-// 204.8 / 6.7368421052631575 = 204.8 / 30.400000000000002 video pixels per 3d unit
+// 204.8 / 6.7368421052631575 = 30.400000000000002 video pixels per 3d unit
 
 {
   const actorStart = 0.0, x0 = -10.7, x1 = 11.0, y = -0.5, z = -11.0, h = 1.15, vy = 73;
