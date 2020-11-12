@@ -1,6 +1,6 @@
 import { setup } from './player.js';
 import { setup as setupControls } from './controls.js';
-import dataSpui from '../data/spui.js';
+import dataSpui from '../data/spui-painting.js';
 // import dataTest from '../data/test.js';
 // import dataTest2 from '../data/test-2020-01-08.js';
 // import dataTest3 from '../data/test-2020-01-20.js';

@@ -20,8 +20,8 @@ setTiming(bpm, ppqn, timeSignatureNumerator, timeSignatureDenominator);
 const data = {
   settings: {
     backgroundImage: null,
-    width: 45 * 10,
-    height: 55 * 10,
+    width: 45 * 15,
+    height: 55 * 15,
     fps,
     ppqn,
     bpm,
@@ -38,12 +38,12 @@ const data = {
   },
   resources: [],
   score: [
-    // sceneFirstTry,
-    sceneGround,
-    sceneNieuwezijds,
-    sceneABC,
-    sceneAthenaeum,
-    sceneHotdogs,
+    sceneFirstTry,
+    // sceneGround,
+    // sceneNieuwezijds,
+    // sceneABC,
+    // sceneAthenaeum,
+    // sceneHotdogs,
   ],
 };
 
