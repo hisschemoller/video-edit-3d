@@ -10,9 +10,14 @@ export default function createActor(scene, fps = 30, config = {}) {
   const {
 
     // object position and animation
-    keys = [{t: 0, v: [  0, 0]}],
     rotate = [1,0,0,0 ,0,1,0,0 ,0,0,1,0],
     rotateY = 0,
+
+    keys = [{t: 0, v: [0, 0]}],
+
+    // geometry
+    // gw: geomWidth = 1, gh: geomHeight = 1, gd: geomDepth = 1,
+    // path,
 
     // canvas
     canvas: {
@@ -29,10 +34,8 @@ export default function createActor(scene, fps = 30, config = {}) {
       path,
     } = {},
 
-    // video
-    vrid: videoResourceId,
-    vSc: videoScale = 1,
-    vKeys = [{t: 0, v: [0, 0]}],
+    // image
+    // img: imageFileName, iOfX: imageOffsetX = 0, iOfY: imageOffsetY = 0, iSc: imageScale = 1,
 
     // image
     image: {
@@ -41,8 +44,13 @@ export default function createActor(scene, fps = 30, config = {}) {
       offy: imageOffsetY = 256,
       scale: imageScale = 1,
     } = {},
-    
 
+    // video
+    vrid: videoResourceId,
+    vSc: videoScale = 1,
+    vKeys = [{t: 0, v: [0, 0], a: 0}],
+
+    // videoTime, videoStartTimeInitial ???
     vt: videoTime = [0, null],
     vt0i: videoStartTimeInitial = config.vt ? config.vt[0] : 0,
     
@@ -54,9 +62,8 @@ export default function createActor(scene, fps = 30, config = {}) {
   // points are custom path or else rectangle
   const points = path ? path : [ [0, 0], [geomWidth, 0], [geomWidth, geomHeight], [0, geomHeight] ];
 
-  // add the animation,
-  // only if an animation is defined or the object starts later in the scene
-  if (keys.length > 1 || keys[0].t > 0) {
+  // add the animation (only if there are multiple keys)
+  if (keys.length > 1) {
     scene.animations[0].tracks.push({
       name: `${objId}.position`,
       type: 'vector3',
@@ -79,10 +86,10 @@ export default function createActor(scene, fps = 30, config = {}) {
     const videoId = uuidv4();
 
     // add video
-    scene.media[videoId] = {
+    scene.assets[videoId] = {
       end: videoTime[1],
       isLoop: true,
-      keys: vKeys.map(key => ({ time: key.t, value: [ ...key.v ]})),
+      keys: vKeys.map(key => ({ time: key.t, value: [ ...key.v ], acceleration: key.a ? key.a : 0 })),
       resourceId: videoResourceId,
       scale: videoScale,
       start: videoTime[0],
@@ -94,12 +101,12 @@ export default function createActor(scene, fps = 30, config = {}) {
     const imageId = uuidv4();
 
     // add image
-    scene.media[imageId] = {
+    scene.assets[imageId] = {
       file: imageFile,
       offsetX: imageOffsetX,
       offsetY: imageOffsetY,
       scale: imageScale,
-    };
+    }
 
     scene.canvases[canvasId].imageId = imageId;
   }

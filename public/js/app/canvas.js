@@ -60,7 +60,7 @@ function recurseObjects(objectData, allData, sceneIndex, rootObject3d) {
   const { canvasId, children = [], geometry: geometryId, name, } = objectData;
   
   if (geometryId) {
-    const { canvases, images, media, } = allData.score[sceneIndex];
+    const { canvases, images, assets, } = allData.score[sceneIndex];
     if (canvasId) {
   
       // get the mesh texture canvas
@@ -77,12 +77,12 @@ function recurseObjects(objectData, allData, sceneIndex, rootObject3d) {
           const data = {
             canvasData: canvases[canvasId],
             flipHorizontal: false,
-            videoData: media[videoId],
+            videoData: assets[videoId],
           };
           setupVideoCanvas(data, texture, canvas, resources, fps);
         } else if (imageId) {
           const canvasData = canvases[canvasId];
-          const imageData = media[canvasData.imageId];
+          const imageData = assets[canvasData.imageId];
           setupImageCanvas(canvasData, imageData, texture, canvas);
         }
       }

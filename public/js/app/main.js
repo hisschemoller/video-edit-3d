@@ -1,6 +1,8 @@
 import { setup } from './player.js';
-import { setup as setupControls } from './controls.js';
-import dataSpui from '../data/spui-painting.js';
+import convertPreviewToHiRes from './hi-res.js';
+import dataSpuiPainting from '../data/spui-painting.js';
+// import dataMatthaikirchplatz from '../data/matthaikirchplatz.js';
+// import dataLeidseplein from '../data/leidseplein.js';
 // import dataTest from '../data/test.js';
 // import dataTest2 from '../data/test-2020-01-08.js';
 // import dataTest3 from '../data/test-2020-01-20.js';
@@ -11,9 +13,10 @@ import dataSpui from '../data/spui-painting.js';
 // import dataLockedGroove3 from '../data/locked-groove-3.js';
 // import dataTestSvg from '../data/test-svg.js';
 
-setupControls();
+// const hiResData = convertPreviewToHiRes(dataMatthaikirchplatz);
+
 setup({
-  data: dataSpui,
+  data: dataSpuiPainting,
   isCapture: false,
   startScene: 0,
   captureThrottle: 15,

@@ -57,11 +57,11 @@ export function setInfo(msg) {
 /**
  * Module setup.
  */
-export function setup() {
+// export function setup() {
   const rootel = document.querySelector('#controls');
   infoTimeEl = rootel.querySelector('#info__time');
 
   rootel.querySelector('#save-image').addEventListener('click', e => {
     saveAsImage();
   });
-}
+// }

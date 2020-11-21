@@ -1,4 +1,4 @@
-const {
+import {
   Face3,
   Geometry,
   Mesh,
@@ -9,7 +9,7 @@ const {
   TextureLoader,
   Vector2,
   Vector3,
-} = THREE;
+} from '../lib/three/build/three.module.js';
 
 /**
  * Create a mesh with an extruded shape and canvas texture.
