@@ -251,7 +251,7 @@ function createWorld(data) {
   renderer.setClearColor(0xdeebf9, 0);
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(width, height);
-  renderer.autoClear = true;
+  renderer.autoClear = false;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = PCFShadowMap; // PCFSoftShadowMap
 

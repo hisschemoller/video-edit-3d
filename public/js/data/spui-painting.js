@@ -142,8 +142,8 @@ createActor(scene, fps, {
  */
 const data = {
   settings: {
-    backgroundImage: null, // 'spui/nz-vbwal2-1024.jpg',
-    backgroundVideoResourceId: 'mkp_preview', // '30seconds',
+    backgroundImage: 'spui/nz-vbwal2-1024.jpg',
+    backgroundVideoResourceId: null, // 'mkp_preview', // '30seconds',
     backgroundVideoStartTime: 5,
     backgroundVideoEndTime: 300,
     width: 45 * 15,
