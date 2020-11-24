@@ -11,9 +11,12 @@ setTiming(bpm, ppqn, timeSignatureNumerator, timeSignatureDenominator);
 
 const scene = {
   animations: [],
+  assets: {},
   canvases: {},
   clipId: uuidv4(),
+  external3DModels: [],
   geometries: [],
+  images: [],
   lifespan: [0,9999],
   materials: [
     {
@@ -35,7 +38,7 @@ const scene = {
     uuid: 'scene1',
     children: [],
   },
-  assets: {},
+  textures: [],
 };
 
 // GROUND
@@ -136,13 +139,22 @@ createActor(scene, fps, {
   keys: [{ t: 0, v: [2.5, 0, -12] }],
 });
 
+// 3D
+// scene.external3DModels.push({
+//   id: uuidv4(),
+//   imageFile: 'testimage3d.jpg',
+//   keys: [{ time: 0, value: [0, 0, 0]}],
+//   modelFile: 'spui.glb',
+//   modelName: 'mesh0',
+// });
+
 
 /**
  * All data.
  */
 const data = {
   settings: {
-    backgroundImage: 'spui/nz-vbwal2-1024.jpg',
+    backgroundImage: 'spui/spui_background.jpg',
     backgroundVideoResourceId: null, // 'mkp_preview', // '30seconds',
     backgroundVideoStartTime: 5,
     backgroundVideoEndTime: 300,
@@ -162,7 +174,7 @@ const data = {
     position: [0, 1, 12],
     target: [0, 1, 0],
   },
-  gltfFiles: [],
+  gltfFiles: ['spui.glb'],
   resources: [
     {
       id: 'mkp_preview',
