@@ -80,6 +80,34 @@ Object hierarchy:
 }
 ```
 
+## Animation data
+
+Three.js documentation Animation system: https://threejs.org/docs/index.html#manual/en/introduction/Animation-system
+
+```javascript
+{ // all data
+  score: [
+    { // a scene in the score
+      animations: [
+        { // an AnimationClip
+          blendMode: NormalAnimationBlendMode=2500|AdditiveAnimationBlendMode=2501, // ???
+          duration: 60, // measured in frames
+          loop: LoopOnce=2200|LoopRepeat=2201|LoopPingPong=2202,
+          name: 'animation-clip-name',
+          tracks: [
+            { // a KeyframeTrack
+
+            },
+          ],
+          uuid: 'any-unique-id',
+        }
+      ],
+    },
+  ],
+},
+```
+
+
 ## Units
 
 Geometry path is measured in 3D units.
