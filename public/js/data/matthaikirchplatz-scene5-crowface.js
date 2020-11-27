@@ -1,6 +1,6 @@
 import { uuidv4, } from '../app/util.js';
 import { getDefaultScene, fps, } from './matthaikirchplatz-shared.js';
-import { Euler, LoopOnce, LoopRepeat, Quaternion } from '../lib/three/build/three.module.js';
+import { AdditiveAnimationBlendMode, Euler, InterpolateSmooth, LoopOnce, LoopRepeat, Quaternion } from '../lib/three/build/three.module.js';
 
 const scene = getDefaultScene([ 0 /* 35 */, 600], 5, true);
 
@@ -8,11 +8,13 @@ export default scene;
 
 // CYLINDER
 createCylinder({x1: -9.0, x2: 11, y: 4, z: -5, time1: 0, time2: 30, 
-  rotateDuration: 2});
+  rotateDuration: 2, modelName: 'cylinder'});
 createCylinder({x1: -11.0, x2: 13, y: 1, z: -15, time1: 2, time2: 32, 
-  rotateDuration: 0.8});
+  rotateDuration: 0.8, modelName: 'cylinder'});
 createCylinder({x1: -10, x2: 10, y: 0.2, z: 0, time1: 10, time2: 20, 
-  rotateDuration: 4});
+  rotateDuration: 4, modelName: 'cylinder'});
+createCylinder({x1: -9.0, x2: 11, y: 3, z: -6, time1: 7, time2: 35, 
+  rotateDuration: 3, modelName: 'sphere', zMove: 0.5});
 
 /**
  * Create an animating cylinder.
@@ -20,7 +22,7 @@ createCylinder({x1: -10, x2: 10, y: 0.2, z: 0, time1: 10, time2: 20,
  * @param {Object} conf Configuration data.
  */
 function createCylinder(conf) {
-  const { x1, x2, y, z, time1, time2, rotateDuration } = conf;
+  const { x1, x2, y, z, time1, time2, rotateDuration, modelName, zMove = 0 } = conf;
   const id = uuidv4();
   const data = {
     id,
@@ -30,7 +32,7 @@ function createCylinder(conf) {
       { time: time2, value: [x2, y, z]},
     ],
     modelFile: 'matthaikirchplatz.glb',
-    modelName: 'cylinder',
+    modelName,
   }
   scene.external3DModels.push(data);
   
@@ -43,8 +45,9 @@ function createCylinder(conf) {
     });
   }
   
+  // left-right rotation
   const rotateKeys = [];
-  const angles = [-0.75, 0.75, -0.77];
+  const angles = [-0.75, 0.75, -0.745];
   for (let i = 0, n = angles.length; i < n; i++) {
     const normal = i / (n - 1);
     const angle = angles[i] * Math.PI;
@@ -69,4 +72,30 @@ function createCylinder(conf) {
   };
   scene.animations.push(animationClip);
   
+  // up-down movement
+  if (zMove) {
+    const moveDuration = 2;
+    const moveKeys = [];
+    const positions = [zMove, -zMove, zMove];
+    for (let i = 0, n = positions.length; i < n; i++) {
+      const normal = i / (n - 1);
+      moveKeys.push({ time: normal * moveDuration * fps, value: [0, positions[i], 0] });
+    }
+    const animationClip = {
+      blendMode: AdditiveAnimationBlendMode,
+      duration: moveDuration,
+      fps,
+      interpolation: InterpolateSmooth,
+      loop: LoopRepeat,
+      name: `animation-pos-${id}`,
+      tracks: [
+        {
+          name: `${id}.position`,
+          keys: moveKeys,
+          type: 'vector3',
+        }
+      ],
+    };
+    scene.animations.push(animationClip);
+  }
 }
