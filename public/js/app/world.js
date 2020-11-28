@@ -151,8 +151,8 @@ export function loadScene(allData, sceneIndex) {
     if (model.animations && model.animations.length) {
       // console.log('model.animations', model.animations);
       const mixer = new AnimationMixer(model);
-      mixer.addEventListener('loop', e => { console.log('loop', e)});
-      mixer.addEventListener('finished', e => { console.log('finished', e)});
+      // mixer.addEventListener('loop', e => { console.log('loop', e)});
+      // mixer.addEventListener('finished', e => { console.log('finished', e)});
       for (let i = 0, n = model.animations.length; i < n; i++) {
         const animationAction = mixer.clipAction(model.animations[i]);
         animationAction.setLoop(sceneData.animations[i].loop);

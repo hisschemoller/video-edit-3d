@@ -4,6 +4,10 @@ import { uuidv4 } from './util.js';
 
 const gltfObjects = {};
 
+function addGLTFModelAnimationsToData() {
+  // find the AnimationClip for the model
+}
+
 /**
  *
  *
@@ -58,10 +62,13 @@ export function addGLTFModelsToData(allData, sceneIndex) {
       type: 'Mesh',
     };
     sceneData.object.children.push(obj);
+
+    addGLTFModelAnimationsToData();
   });
 }
 
 /**
+ * NOT USED!
  * Load external model files into the scene.
  * @param {Object} scene Three.js Scene.
  * @param {Object} allData 
@@ -101,6 +108,7 @@ export function addGLTFModelsToScene(scene, allData, sceneIndex) {
 function loadGLTFFile(gltfFile) {
   return new Promise((resolve, reject) => {
     new GLTFLoader().load(`3d/${gltfFile}`, gltf => {
+      console.log('gltf', gltf);
       gltfObjects[gltfFile] = gltf;
       resolve();
     });

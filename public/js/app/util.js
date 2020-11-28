@@ -1,3 +1,4 @@
+import { Linear, Power1, Power2, TweenLite } from '../lib/gsap/esm/gsap-core.js';
 
 let bpm,
   ppqn,
@@ -88,4 +89,62 @@ export function uuidv4() {
     var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
   });
+}
+
+/**
+ * Get the tweened values between two numbers.
+ * @export
+ * @param {Number} from
+ * @param {Number} to
+ * @param {Number} steps
+ * @param {String} easing 
+ * @returns {Array} Tween values.
+ */
+export function getTweenValues(from, to, steps, easing) {
+  let ease;
+  switch(easing) {
+    case 'easeInOut': ease = Power1.easeInOut; break;
+    default: ease = Linear.easeNone;
+  }
+  const fps = 60;
+  const tween = TweenLite.to({ value: from }, steps / fps, { value: to, ease, });
+  const result = summarizeTweenValues(tween);
+  const values = [...result.value];
+  values.pop();
+  return values;
+}
+
+/**
+ * Get array of resulting values from a tween.
+ * @see https://greensock.com/forums/topic/16782-get-array-of-resulting-values/
+ * @param {Object} tween
+ * @param {Number} fps
+ * @returns {Object} results
+ */
+function summarizeTweenValues(tween, fps) {
+  fps = fps || 60;
+  var modifiers = {}, // we're piggy-backing on the ModifiersPlugin functionality to make it simple to record values on each render
+    results = {}, // stores the results in an array for each property of the tween, like results.x = [0, 100, ...]
+    l = tween.duration() * fps,
+    getModifier = function(a) {
+      return function(value) {
+        a.push(value);
+        return a[0]; // always return the initial value so that the DOM doesn't change at all - we're only recording the changed value in the results array.
+      };
+    },
+    vars = tween.vars.css || tween.vars,
+    p, i;
+  for (p in vars) {
+    results[p] = [];
+    modifiers[p] = getModifier(results[p]);
+  }
+  vars.modifiers = modifiers;
+  vars.immediateRender = true;
+  tween.invalidate();
+  for (i = 0; i <= l; i++) {
+    tween.seek(i / fps);
+  }
+  delete tween.vars.modifiers;
+  tween.invalidate().seek(0);
+  return results;
 }

@@ -1,4 +1,4 @@
-import { uuidv4, } from '../app/util.js';
+import { getTweenValues, uuidv4, } from '../app/util.js';
 import { getDefaultScene, fps, } from './matthaikirchplatz-shared.js';
 import { AdditiveAnimationBlendMode, Euler, InterpolateSmooth, LoopOnce, LoopRepeat, Quaternion } from '../lib/three/build/three.module.js';
 
@@ -75,11 +75,18 @@ function createCylinder(conf) {
   // up-down movement
   if (zMove) {
     const moveDuration = 2;
-    const moveKeys = [];
+    const numTweenSteps = 6;
     const positions = [zMove, -zMove, zMove];
-    for (let i = 0, n = positions.length; i < n; i++) {
-      const normal = i / (n - 1);
-      moveKeys.push({ time: normal * moveDuration * fps, value: [0, positions[i], 0] });
+    const moveKeys = [];
+    for (let i = 0, n = positions.length - 1; i < n; i++) {
+      const tweenValues = getTweenValues(positions[i], positions[i + 1], numTweenSteps, 'easeInOut');
+      for (let j = 0, m = tweenValues.length; j < m; j++) {
+        const normal = (i / n) + ((j / m) / n);
+        moveKeys.push({ time: normal * moveDuration * fps, value: [0, tweenValues[j], 0] });
+      }
+
+      // const normal = i / (n - 1);
+      // moveKeys.push({ time: normal * moveDuration * fps, value: [0, positions[i], 0] });
     }
     const animationClip = {
       blendMode: AdditiveAnimationBlendMode,
