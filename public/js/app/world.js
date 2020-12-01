@@ -1,7 +1,7 @@
 import createExtrude, { createCanvasTexture, createExtrudeGeometry, createExtrudeMesh, } from './extrude.js';
 import { createCanvases as createSceneCanvases } from './canvas.js';
 import { renderBackground, setupBackground } from './world-background.js';
-import { addGLTFModelsToData, loadGLTFFiles } from './gltf.js';
+import { loadGLTFFiles, replaceGLTFModelData } from './gltf.js';
 import {
   AmbientLight,
   AnimationClip,
@@ -106,9 +106,6 @@ export function getObjectByName(name) {
 export function loadScene(allData, sceneIndex) {
   const sceneData = allData.score[sceneIndex];
 
-  // add externally loaded models
-  addGLTFModelsToData(allData, sceneIndex);
-
   // preprocess: replace the custom extrude geometry data with regular data
   sceneData.origGeoms = [ ...sceneData.geometries ];
   sceneData.geometries = sceneData.geometries.map(geomData => {
@@ -123,6 +120,14 @@ export function loadScene(allData, sceneIndex) {
     return geomData;
   });
 
+  // preprocess: recurse the scene data object tree to process external model data
+  const recurseObjectTree1 = (objectData) => {
+    const { children = [], } = objectData;
+    replaceGLTFModelData(objectData, sceneData);
+    children.forEach(childObjectData => recurseObjectTree1(childObjectData));
+  };
+  recurseObjectTree1(sceneData.object);
+
   // ObjectLoader creates 3D objects from data
   const loader = new ObjectLoader();
   loader.parse(sceneData, model => {
@@ -136,10 +141,13 @@ export function loadScene(allData, sceneIndex) {
       model.remove(model.getObjectByName('placeholder'));
     }
 
-    // apply custom convenience settings to avoid direct matrix4 settings
+    // recurse the whole object tree
     const recurseObjectTree = (objectData) => {
+
+      // apply custom convenience settings to avoid direct matrix4 settings
       const { children = [], name, rotateY = 0, } = objectData;
       model.getObjectByName(name).rotateY(rotateY);
+
       children.forEach(childObjectData => recurseObjectTree(childObjectData));
     };
     recurseObjectTree(sceneData.object);
