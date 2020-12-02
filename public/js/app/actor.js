@@ -105,5 +105,6 @@ export default function createActor(scene, fps = 30, config = {}) {
     name: objId,
     receiveShadow: true,
     type: 'Mesh',
+    uuid: objId,
   });
 }
