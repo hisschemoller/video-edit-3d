@@ -21,10 +21,10 @@ export default scene;
 //   rotateDuration: 2, type: 'Group'});
 
 // CYLINDER 0
-const { id: cyl1Id } = createExternalModel({ x1: -9.0, x2: 11, y: 4, z: -5, time1: 0, time2: 30, 
-  modelName: 'cylinder' });
-addLeftRightAnimation(cyl1Id, 2);
-addUpDownAnimation(cyl1Id, 3, 0.5);
+// const { id: cyl1Id } = createExternalModel({ x1: -9.0, x2: 11, y: 4, z: -5, time1: 0, time2: 30, 
+//   modelName: 'cylinder' });
+// addLeftRightAnimation(cyl1Id, 2);
+// addUpDownAnimation(cyl1Id, 3, 0.5);
 
 // const { id: cyl2Id } = createExternalModel({ x1: 0, x2: 10, y: -3, z: 5, time1: 0, time2: 30, 
 //   modelName: 'sphere',
@@ -32,19 +32,14 @@ addUpDownAnimation(cyl1Id, 3, 0.5);
 // });
 
 // SNAVEL
-const { uuid: beakId } = createGroup({ x1: -2.0, x2: 2, y: 1.5, z: 2, time1: 0, time2: 30 });
+const { uuid: beakId } = createGroup({ x1: -5, x2: 5, y: 1.5, z: 2, time1: 0, time2: 30 });
+const beakData = scene.object.children.find(child => child.uuid === beakId);
 const { id: beakTopId } = createExternalModel({ x1: 0, y: 0, z: 0, time1: 0,  
-  modelName: 'beakTop',
-  parentObj: scene.object.children.find(child => child.id === beakId),
-  rotateX: Math.PI * 2,
-});
+  modelName: 'beakTop', parentObj: beakData, rotateX: Math.PI * 2, });
 const { id: beakBtmId } = createExternalModel({ x1: 0, y: 0, z: 0, time1: 0,  
-  modelName: 'beakBottom',
-  parentObj: scene.object.children.find(child => child.id === beakId),
-  rotateX: Math.PI * 2,
-});
-addLeftRightAnimation(beakId, 4);
-addUpDownAnimation(beakId, 4, 0.5);
+  modelName: 'beakBottom', parentObj: beakData, rotateX: Math.PI * 2, });
+addLeftRightAnimation(beakId, 2);
+addUpDownAnimation(beakId, 5, 0.5);
 addBeakOpenCloseAnimation(beakId, beakTopId, beakBtmId, 0.9);
 
 
@@ -88,7 +83,7 @@ function addBeakOpenCloseAnimation(beakId, topId, btmId, duration) {
  */
 function addLeftRightAnimation(id, duration) {
   const keys = [];
-  const angles = [-0.75, 0.75, -0.745];
+  const angles = [1.75, -1.75, 1.745];
   for (let i = 0, n = angles.length; i < n; i++) {
     const normal = i / (n - 1);
     const angle = angles[i] * Math.PI;
@@ -159,6 +154,7 @@ function addUpDownAnimation(id, duration, amplitude) {
  */
 function createExternalModel(conf) {
   const { parentObj = scene.object, x1, x2, y, z, time1, time2, modelName } = conf;
+  console.log('parentObj', parentObj);
   const id = uuidv4();
   const data = {
     children: [],
