@@ -1,6 +1,15 @@
 import { getTweenValues, uuidv4, } from '../app/util.js';
 import { getDefaultScene, fps, } from './matthaikirchplatz-shared.js';
-import { AdditiveAnimationBlendMode, Euler, InterpolateSmooth, LoopOnce, LoopRepeat, Quaternion } from '../lib/three/build/three.module.js';
+import { 
+  AdditiveAnimationBlendMode, 
+  Euler, 
+  InterpolateSmooth, 
+  Matrix4, 
+  LoopOnce, 
+  LoopRepeat, 
+  Quaternion,
+  Vector3,
+} from '../lib/three/build/three.module.js';
 
 const scene = getDefaultScene([ 0 /* 35 */, 600], 5, true);
 
@@ -28,12 +37,20 @@ export default scene;
   const { uuid: beakId } = createGroup({ x1: -5.5, x2: 5, y: 1.5, z: 2, time1: 9, time2: 33 });
   const beakData = scene.object.children.find(child => child.uuid === beakId);
   const { id: beakTopId } = createExternalModel({ x1: 0, y: 0, z: 0, time1: 0,  
-    modelName: 'beakTop', parentObj: beakData, rotateX: Math.PI * 2, });
+    modelName: 'beakTop', parentObj: beakData, });
   const { id: beakBtmId } = createExternalModel({ x1: 0, y: 0, z: 0, time1: 0,  
-    modelName: 'beakBottom', parentObj: beakData, rotateX: Math.PI * 2, });
+    modelName: 'beakBottom', parentObj: beakData, });
   addLeftRightAnimation(beakId, 2);
   addUpDownAnimation(beakId, 5, 0.5);
   addBeakOpenCloseAnimation(beakId, beakTopId, beakBtmId, 0.9);
+}
+{ // SNAVEL DUN
+  const { uuid: beakId } = createGroup({ x1: 0, x2: 0, y: 1.5, z: 2, time1: 9, time2: 33 });
+  const beakData = scene.object.children.find(child => child.uuid === beakId);
+  const { id: beakBottomId } = createExternalModel({ x1: 0, y: 0, z: 0, time1: 0,  
+    modelName: 'beakThin', parentObj: beakData, });
+  const { id: beakTopId } = createExternalModel({ x1: 0, y: 0, z: 0, time1: 0,  
+    modelName: 'beakThin', parentObj: beakData, rx: Math.PI, });
 }
 
 
@@ -147,30 +164,39 @@ function addUpDownAnimation(id, duration, amplitude) {
  * @returns {Object} Data.
  */
 function createExternalModel(conf) {
-  const { parentObj = scene.object, x1, x2, y, z, time1, time2, modelName } = conf;
-  console.log('parentObj', parentObj);
+  const { parentObj = scene.object, x1, x2, y, z, time1, time2, modelName, 
+    sx = 1, sy = 1, sz = 1, rx = 0, ry = 0, rz = 0, 
+  } = conf;
   const id = uuidv4();
+
+  // apply position, scale and rotation, if any
+  const scaleMatrix = new Matrix4().makeScale(sx, sy, sz);
+  const rotationMatrix = new Matrix4().makeRotationFromEuler(new Euler(rx, ry, rz));
+  const matrix4 = new Matrix4().multiplyMatrices(scaleMatrix, rotationMatrix);
+  matrix4.setPosition(x1, y, z);
+
   const data = {
     children: [],
     id,
     imageFile: 'matthaikirchplatz/crowface1.jpg',
-    keys: [ { time: time1, value: [x1, y, z]} ],
+    matrix: matrix4.elements,
     modelFile: 'matthaikirchplatz.glb',
     modelName,
   }
-  if (x2 && time2) {
-    data.keys.push({ time: time2, value: [x2, y, z]});
-  }
   parentObj.children.push(data);
   
-  // add the main animation (only if there are multiple keys)
-  if (data.keys.length > 1) {
+  // add the main animation (only if there are multiple positions)
+  if (x2 && x2 !== x1) {
     scene.animations[0].tracks.push({
       name: `${id}.position`,
       type: 'vector3',
-      keys: data.keys.map(key => ({ time: key.time * fps, value: [ ...key.value ]})),
+      keys: [
+        { time: time1 * fps, value: [x1, y, z]},
+        { time: time2 * fps, value: [x2, y, z]}
+      ],
     });
   }
+
   return data;
 }
 

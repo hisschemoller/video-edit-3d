@@ -40,7 +40,7 @@ export function loadGLTFFiles(allData) {
  * @param {*} sceneData
  */
 export function replaceGLTFModelData(objectData, sceneData) {
-  const { id, imageFile, keys, modelFile, modelName, } = objectData;
+  const { id, imageFile, matrix, modelFile, modelName, } = objectData;
   if (modelFile && modelName) {
 
     // add image data
@@ -66,13 +66,13 @@ export function replaceGLTFModelData(objectData, sceneData) {
     const externalObject3d = gltfObjects[modelFile].scene.getObjectByName(modelName);
     const geometry = externalObject3d.geometry.toJSON();
     sceneData.geometries.push(geometry);
-
+console.log(matrix);
     // replace object data
     objectData.castShadow = true;
     objectData.geometry = geometry.uuid;
     objectData.layers = 1;
     objectData.material = material.uuid;
-    objectData.matrix = [1,0,0,0 ,0,1,0,0 ,0,0,1,0 , ...keys[0].value ,1];
+    objectData.matrix = matrix;
     objectData.name = id;
     objectData.receiveShadow = true;
     objectData.uuid = id,
