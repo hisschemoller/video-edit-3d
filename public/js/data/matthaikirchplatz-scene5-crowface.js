@@ -1,5 +1,5 @@
 import { getTweenValues, uuidv4, } from '../app/util.js';
-import { getDefaultScene, fps, } from './matthaikirchplatz-shared.js';
+import { addLady, getDefaultScene, fps, } from './matthaikirchplatz-shared.js';
 import { 
   AdditiveAnimationBlendMode, 
   Euler, 
@@ -25,16 +25,16 @@ export default scene;
   addLeftRightAnimation(id, 0.8);
 }
 { // CYLINDER 2
-  const { id } = createExternalModel({x1: -10, x2: 10, y: 0.2, z: 0, time1: 10, time2: 20, modelName: 'cylinder'});
+  const { id } = createExternalModel({x1: -10, x2: 10, y: 0.2, z: 0, time1: 12, time2: 21, modelName: 'cylinder'});
   addLeftRightAnimation(id, 4);
 }
 { // SPHERE
-  const { id } = createExternalModel({x1: -9.0, x2: 11, y: 3, z: -6, time1: 5, time2: 33, modelName: 'sphere'});
+  const { id } = createExternalModel({x1: -9.0, x2: 11, y: 3, z: -6, time1: 5, time2: 33, modelName: 'sphereBeak'});
   addLeftRightAnimation(id, 3);
   addUpDownAnimation(id, 4, 0.5);
 }
 { // SNAVEL
-  const { uuid: beakId } = createGroup({ x1: -5.5, x2: 5, y: 1.5, z: 2, time1: 9, time2: 33 });
+  const { uuid: beakId } = createGroup({ x1: -5.5, x2: 5, y: 1.5, z: 2, time1: 9, time2: 31 });
   const beakData = scene.object.children.find(child => child.uuid === beakId);
   const { id: beakTopId, matrix: matrixTop } = createExternalModel({ x1: 0, y: 0, z: 0, time1: 0,  
     modelName: 'beakFirst', parentObj: beakData, });
@@ -54,6 +54,26 @@ export default scene;
   addLeftRightAnimation(beakId, 3);
   addBeakOpenCloseAnimationClip(beakId, beakTopId, beakBtmId, matrixTop, matrixBtm, 0.6);
 }
+{
+  const x1 = -8, x2 = 8, z = -4, t1 = 18;
+  // VROUW ZONDER HOOFD
+  {
+    const y = -0.5, h = 1.6, vy = 73;
+    addLady( scene, t1, x1, x2, y, z, h, vy);
+  }
+  { // SNAVEL MET KOP
+    const { id: headId } = createExternalModel({ x1: x1 + 0.6, x2: x2 + 0.6, y: 1.6, z: z - 0.5, time1: t1, time2: t1 + 17,
+      modelName: 'sphereIco' });
+    const headData = scene.object.children.find(child => child.id === headId);
+    const { id: beakBtmId, matrix: matrixBtm } = createExternalModel({ x1: 0.2, y: 0, z: 0, time1: 0,  
+      modelName: 'beakTriangle', parentObj: headData, });
+    const { id: beakTopId, matrix: matrixTop } = createExternalModel({ x1: 0.2, y: 0, z: 0, time1: 0,  
+      modelName: 'beakTriangle', parentObj: headData, rx: Math.PI, });
+    addLeftRightAnimation(headId, 3);
+    addBeakOpenCloseAnimationClip(headId, beakTopId, beakBtmId, matrixTop, matrixBtm, 0.6);
+  }
+}
+
 
 
 function addBeakOpenCloseAnimationClip(beakId, topId, btmId, matrixTop, matrixBtm, duration) {
