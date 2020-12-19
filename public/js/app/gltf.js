@@ -66,7 +66,7 @@ export function replaceGLTFModelData(objectData, sceneData) {
     const externalObject3d = gltfObjects[modelFile].scene.getObjectByName(modelName);
     const geometry = externalObject3d.geometry.toJSON();
     sceneData.geometries.push(geometry);
-console.log(matrix);
+
     // replace object data
     objectData.castShadow = true;
     objectData.geometry = geometry.uuid;

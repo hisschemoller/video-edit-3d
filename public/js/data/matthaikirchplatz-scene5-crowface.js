@@ -36,25 +36,27 @@ export default scene;
 { // SNAVEL
   const { uuid: beakId } = createGroup({ x1: -5.5, x2: 5, y: 1.5, z: 2, time1: 9, time2: 33 });
   const beakData = scene.object.children.find(child => child.uuid === beakId);
-  const { id: beakTopId } = createExternalModel({ x1: 0, y: 0, z: 0, time1: 0,  
-    modelName: 'beakTop', parentObj: beakData, });
-  const { id: beakBtmId } = createExternalModel({ x1: 0, y: 0, z: 0, time1: 0,  
-    modelName: 'beakBottom', parentObj: beakData, });
+  const { id: beakTopId, matrix: matrixTop } = createExternalModel({ x1: 0, y: 0, z: 0, time1: 0,  
+    modelName: 'beakFirst', parentObj: beakData, });
+  const { id: beakBtmId, matrix: matrixBtm } = createExternalModel({ x1: 0, y: 0, z: 0, time1: 0,  
+    modelName: 'beakFirst', parentObj: beakData, rx: Math.PI, });
   addLeftRightAnimation(beakId, 2);
   addUpDownAnimation(beakId, 5, 0.5);
-  addBeakOpenCloseAnimation(beakId, beakTopId, beakBtmId, 0.9);
+  addBeakOpenCloseAnimationClip(beakId, beakTopId, beakBtmId, matrixTop, matrixBtm, 0.9);
 }
 { // SNAVEL DUN
-  const { uuid: beakId } = createGroup({ x1: 0, x2: 0, y: 1.5, z: 2, time1: 9, time2: 33 });
+  const { uuid: beakId } = createGroup({ x1: -13, x2: 15, y: 6, z: -20, time1: 15, time2: 24 });
   const beakData = scene.object.children.find(child => child.uuid === beakId);
-  const { id: beakBottomId } = createExternalModel({ x1: 0, y: 0, z: 0, time1: 0,  
+  const { id: beakBtmId, matrix: matrixBtm } = createExternalModel({ x1: 0, y: 0, z: 0, time1: 0,  
     modelName: 'beakThin', parentObj: beakData, });
-  const { id: beakTopId } = createExternalModel({ x1: 0, y: 0, z: 0, time1: 0,  
+  const { id: beakTopId, matrix: matrixTop } = createExternalModel({ x1: 0, y: 0, z: 0, time1: 0,  
     modelName: 'beakThin', parentObj: beakData, rx: Math.PI, });
+  addLeftRightAnimation(beakId, 3);
+  addBeakOpenCloseAnimationClip(beakId, beakTopId, beakBtmId, matrixTop, matrixBtm, 0.6);
 }
 
 
-function addBeakOpenCloseAnimation(beakId, topId, btmId, duration) {
+function addBeakOpenCloseAnimationClip(beakId, topId, btmId, matrixTop, matrixBtm, duration) {
   const animationClip = {
     duration,
     fps,
@@ -63,27 +65,31 @@ function addBeakOpenCloseAnimation(beakId, topId, btmId, duration) {
     tracks: [],
   };
   scene.animations.push(animationClip);
+  animationClip.tracks.push(addBeakOpenCloseAnimationTrack(topId, matrixTop, duration));
+  animationClip.tracks.push(addBeakOpenCloseAnimationTrack(btmId, matrixBtm, duration));
+}
 
-  // top
+function addBeakOpenCloseAnimationTrack(id, matrix, duration) {
   const angles = [0, -0.2, 0, 0];
-  [topId, btmId].forEach((id, index) => {
-    const keys = [];
-    angles[1] *= -1;
-    for (let i = 0, n = angles.length; i < n; i++) {
-      const normal = i / (n - 1);
-      const angle = angles[i] * Math.PI;
-      const quaternion = new Quaternion().setFromEuler(new Euler(0, 0, angle)).normalize();
-      keys.push({
-        time: normal * duration * fps,
-        value: [ quaternion.x, quaternion.y, quaternion.z, quaternion.w ],
-      });
-    }
-    animationClip.tracks.push({
-      name: `${id}.quaternion`,
-      keys,
-      type: 'quaternion',
+  const keys = [];
+  const matrix4 = new Matrix4().fromArray(matrix);
+  const beakQuaternion = new Quaternion().setFromRotationMatrix(matrix4);
+  // angles[1] *= -1;
+  for (let i = 0, n = angles.length; i < n; i++) {
+    const normal = i / (n - 1);
+    const angle = angles[i] * Math.PI;
+    const angleQuaternion = new Quaternion().setFromEuler(new Euler(0, 0, angle)).normalize();
+    const quaternion = beakQuaternion.clone().multiply(angleQuaternion);
+    keys.push({
+      time: normal * duration * fps,
+      value: [ quaternion.x, quaternion.y, quaternion.z, quaternion.w ],
     });
-  });
+  }
+  return {
+    name: `${id}.quaternion`,
+    keys,
+    type: 'quaternion',
+  };
 }
 
 /**
