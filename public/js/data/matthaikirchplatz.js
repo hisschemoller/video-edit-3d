@@ -133,9 +133,9 @@ const data = {
   score: [
     scene1,
     // sceneClouds,
-    // scene2,
-    // scene3,
-    // scene4,
+    scene2,
+    scene3,
+    scene4,
     scene5,
   ],
 };

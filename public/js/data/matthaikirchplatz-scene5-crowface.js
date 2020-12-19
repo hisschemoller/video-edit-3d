@@ -11,7 +11,7 @@ import {
   Vector3,
 } from '../lib/three/build/three.module.js';
 
-const scene = getDefaultScene([ 0 /* 35 */, 600], 5, true);
+const scene = getDefaultScene([ 80 /* 80 */, 600], 5, true);
 
 export default scene;
 
