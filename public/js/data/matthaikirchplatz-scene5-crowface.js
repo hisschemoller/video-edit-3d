@@ -11,7 +11,7 @@ import {
   Vector3,
 } from '../lib/three/build/three.module.js';
 
-const scene = getDefaultScene([ 80 /* 80 */, 600], 5, true);
+const scene = getDefaultScene([ 0 /* 80 */, 600], 5, true);
 
 export default scene;
 
@@ -72,6 +72,20 @@ export default scene;
     addLeftRightAnimation(headId, 3);
     addBeakOpenCloseAnimationClip(headId, beakTopId, beakBtmId, matrixTop, matrixBtm, 0.6);
   }
+}
+{ // VOGELKOP OP STOK
+  const x1 = -5, x2 = 5, z = -14, t1 = 0;
+  const { id: headId } = createExternalModel({ x1: x1 + 0.6, x2: x2 + 0.6, y: 4.6, z: z - 0.5, time1: t1, time2: t1 + 17,
+    modelName: 'sphereIco' });
+  const headData = scene.object.children.find(child => child.id === headId);
+  createExternalModel({ x1: 0, y: 0, z: 0, time1: 0, modelName: 'stick', parentObj: headData, });
+  const { id: beakBtmId, matrix: matrixBtm } = createExternalModel({ x1: 0.2, y: 0, z: 0, time1: 0,  
+    modelName: 'beakTriangle', parentObj: headData, });
+  const { id: beakTopId, matrix: matrixTop } = createExternalModel({ x1: 0.2, y: 0, z: 0, time1: 0,  
+    modelName: 'beakTriangle', parentObj: headData, rx: Math.PI, });
+  addLeftRightAnimation(headId, 3);
+  addUpDownAnimation(headId, 5, 0.8);
+  addBeakOpenCloseAnimationClip(headId, beakTopId, beakBtmId, matrixTop, matrixBtm, 0.4);
 }
 
 
