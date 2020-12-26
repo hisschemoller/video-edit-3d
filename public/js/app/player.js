@@ -7,6 +7,7 @@ import {
 } from './world.js';
 import { draw as drawCanvas, } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
+import { setInfo } from './controls.js';
 
 const scenes = [];
 
@@ -36,11 +37,9 @@ export function setup(config) {
   } else {
     setupWithData(dataSource, config);
   }
-
-  infoTimeEl = document.querySelector('.info__time');
 }
 
-function setupWithData(dataSource, config) {
+async function setupWithData(dataSource, config) {
   const { isCapture, startScene = 0, } = config;
   data = dataSource;
   data.score = sortScoreByLifespanStart(data.score);
@@ -62,7 +61,7 @@ function setupWithData(dataSource, config) {
   // skip to scene by index
   skipToScene(startScene);
 
-  setupWorld(data);
+  await setupWorld(data);
 
   checkForNextScene(position);
   requestAnimationFrame(isCapture ? capture : run);
@@ -89,7 +88,7 @@ function run() {
   checkForNextScene(position);
   drawCanvas(frame);
   animateWorld(deltaTime);
-  infoTimeEl.textContent = (position / 1000).toFixed(1);  
+  setInfo((position / 1000).toFixed(1));  
   frame += 1;
 }
 
@@ -110,7 +109,7 @@ function capture() {
   checkForNextScene(position);
   drawCanvas(frame);
   animateWorld(deltaTime);
-  infoTimeEl.textContent = (position / 1000).toFixed(1);  
+  setInfo((position / 1000).toFixed(1));  
   frame += 1;
 
   // send canvas to node app
