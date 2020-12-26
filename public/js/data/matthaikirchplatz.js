@@ -6,6 +6,7 @@ import scene2 from './matthaikirchplatz-scene2.js';
 import scene3 from './matthaikirchplatz-scene3.js';
 import scene4 from './matthaikirchplatz-scene4.js';
 import scene5 from './matthaikirchplatz-scene5-crowface.js';
+import scene6 from './matthaikirchplatz-scene6-crows.js';
 
 const ppqn = 24; // parts per quarter note
 const bpm = 112; // beats per minute
@@ -136,7 +137,8 @@ const data = {
     // scene2,
     // scene3,
     // scene4,
-    scene5,
+    // scene5,
+    scene6,
   ],
 };
 
