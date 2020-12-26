@@ -1,6 +1,6 @@
 import { setup } from './player.js';
 import convertPreviewToHiRes from './hi-res.js';
-import dataMatthaikirchplatz from '../data/matthaikirchplatz.js';
+import dataMatthaikirchplatz from '../data/matthaikirchplatz/matthaikirchplatz.js';
 // import dataLeidseplein from '../data/leidseplein.js';
 // import dataTest from '../data/test.js';
 // import dataTest2 from '../data/test-2020-01-08.js';

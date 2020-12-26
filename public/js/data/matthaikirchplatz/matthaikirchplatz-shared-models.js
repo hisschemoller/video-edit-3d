@@ -1,5 +1,5 @@
 import { fps, } from './matthaikirchplatz-shared.js';
-import { getTweenValues, uuidv4, } from '../app/util.js';
+import { getTweenValues, uuidv4, } from '../../app/util.js';
 import { 
   AdditiveAnimationBlendMode, 
   Euler, 
@@ -9,7 +9,7 @@ import {
   LoopRepeat, 
   Quaternion,
   Vector3,
-} from '../lib/three/build/three.module.js';
+} from '../../lib/three/build/three.module.js';
 
 export function addBeakOpenCloseAnimationClip(scene, beakId, topId, btmId, matrixTop, matrixBtm, duration) {
   const animationClip = {

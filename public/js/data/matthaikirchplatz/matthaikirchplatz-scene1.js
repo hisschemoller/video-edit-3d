@@ -1,6 +1,5 @@
-import { musicToTime, uuidv4, } from '../app/util.js';
 import { getDefaultScene, fps, } from './matthaikirchplatz-shared.js';
-import createActor from '../app/actor.js';
+import createActor from '../../app/actor.js';
 
 const scene = getDefaultScene([0, 180], 1, false);
 

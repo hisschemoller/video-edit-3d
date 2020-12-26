@@ -1,4 +1,4 @@
-import { musicToTime, setTiming, uuidv4, } from '../app/util.js';
+import { musicToTime, setTiming, uuidv4, } from '../../app/util.js';
 import { fps, } from './matthaikirchplatz-shared.js';
 import sceneClouds from './matthaikirchplatz-scene-clouds.js';
 import scene1 from './matthaikirchplatz-scene1.js';

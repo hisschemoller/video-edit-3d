@@ -1,6 +1,6 @@
-import { uuidv4, } from '../app/util.js';
+import { uuidv4, } from '../../app/util.js';
 import { getDefaultScene, fps, } from './matthaikirchplatz-shared.js';
-import { Euler, LoopOnce, LoopRepeat, Quaternion } from '../lib/three/build/three.module.js';
+import { Euler, LoopOnce, LoopRepeat, Quaternion } from '../../lib/three/build/three.module.js';
 
 let actorStart;
 
