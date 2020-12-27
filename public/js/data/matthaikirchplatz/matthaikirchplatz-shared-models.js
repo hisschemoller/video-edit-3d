@@ -47,12 +47,25 @@ function addBeakOpenCloseAnimationTrack(id, matrix, duration) {
   };
 }
 
-export function addLeftRightAnimation(scene, id, duration) {
+export function addLeftRightAnimation(scene, id, duration, angle = 1.75, baseAngle = 0, rotate = 0) {
+  let angles;
+  switch (rotate) {
+    case 1:
+      baseAngle = 0;
+      angles = [0, 0.5, 1, -0.5, 0];
+      break;
+    case -1:
+      baseAngle = 0;
+      angles = [0, -0.5, 1, 0.5, 0];
+      break;
+    default:
+      angles = [angle, -angle, angle];
+      break;
+  }
   const keys = [];
-  const angles = [1.75, -1.75, 1.745];
   for (let i = 0, n = angles.length; i < n; i++) {
     const normal = i / (n - 1);
-    const angle = angles[i] * Math.PI;
+    const angle = (baseAngle + angles[i]) * Math.PI;
     const quaternion = new Quaternion().setFromEuler(new Euler(0, angle, 0)).normalize();
     keys.push({
       time: normal * duration * fps,
