@@ -1,4 +1,5 @@
 import { fps, } from './munchen-shared.js';
+import scene1 from './munchen-scene1.js';
 
 /**
  * All data.
@@ -12,13 +13,15 @@ const data = {
   },
   camera: {
     speed: 0,
-    fieldOfView: 18,
-    position: [0, 2, 16],
+    fieldOfView: 25,
+    position: [-0.2, 1.6, 16],
     target: [0, 2, 0],
   },
   gltfFiles: [],
   resources: [],
-  score: [],
+  score: [
+    scene1,
+  ],
 };
 
 export default data;
