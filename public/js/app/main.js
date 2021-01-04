@@ -1,6 +1,7 @@
 import { setup } from './player.js';
 import convertPreviewToHiRes from './hi-res.js';
-import dataMatthaikirchplatz from '../data/matthaikirchplatz/matthaikirchplatz.js';
+// import dataMatthaikirchplatz from '../data/matthaikirchplatz/matthaikirchplatz.js';
+import dataMunchen from '../data/munchen/munchen.js';
 // import dataLeidseplein from '../data/leidseplein.js';
 // import dataTest from '../data/test.js';
 // import dataTest2 from '../data/test-2020-01-08.js';
@@ -15,7 +16,7 @@ import dataMatthaikirchplatz from '../data/matthaikirchplatz/matthaikirchplatz.j
 // const hiResData = convertPreviewToHiRes(dataMatthaikirchplatz);
 
 setup({
-  data: dataMatthaikirchplatz,
+  data: dataMunchen,
   isCapture: false,
   startScene: 0,
   captureThrottle: 15,
