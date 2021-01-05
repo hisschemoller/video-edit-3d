@@ -17,7 +17,7 @@ const data = {
     position: [-0.2, 1.6, 16],
     target: [0, 2, 0],
   },
-  gltfFiles: [],
+  gltfFiles: [ 'munchen.glb' ],
   resources: [],
   score: [
     scene1,

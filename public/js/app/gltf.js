@@ -40,7 +40,7 @@ export function loadGLTFFiles(allData) {
  * @param {*} sceneData
  */
 export function replaceGLTFModelData(objectData, sceneData) {
-  const { id, imageFile, matrix, modelFile, modelName, } = objectData;
+  const { flipY = false, id, imageFile, matrix, modelFile, modelName, } = objectData;
   if (modelFile && modelName) {
 
     // add image data
@@ -52,6 +52,7 @@ export function replaceGLTFModelData(objectData, sceneData) {
 
     // add texture data
     const texture = {
+      flipY,
       image: image.uuid,
       uuid: uuidv4(),
     };

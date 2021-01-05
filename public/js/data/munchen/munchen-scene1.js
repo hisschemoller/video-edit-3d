@@ -1,4 +1,5 @@
 import { getDefaultScene, fps, } from './munchen-shared.js';
+import { uuidv4, } from '../../app/util.js';
 import createActor from '../../app/actor.js';
 
 const scene = getDefaultScene([0, 180], 1, false);
@@ -10,6 +11,16 @@ createActor(scene, fps, {
   gw: 5, gh: 0.01, gd: 5,
   cSz: 1024, cSc: 1024 / 5, cOf: 0,
   iOfX: 512, iOfY: 512, iSc: 2,
+});
+
+// TEST_PANEL_0
+scene.object.children.push({
+  children: [],
+  id: uuidv4(),
+  imageFile: 'testimage3d.jpg',
+  matrix: [1,0,0,0 ,0,1,0,0 ,0,0,1,0 , 0,0,0 ,1],
+  modelFile: 'munchen.glb',
+  modelName: 'TestPanel0',
 });
 
 for (let i = 0, n = 8; i < n; i++) {
