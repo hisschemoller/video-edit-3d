@@ -7,7 +7,7 @@ import {
   createGroup,
 } from './matthaikirchplatz-shared-models.js';
 
-const scene = getDefaultScene([ 98 /* 98 */, 600], 6, true);
+const scene = getDefaultScene([ 80 /* 80 */, 600], 6, true);
 
 export default scene;
 

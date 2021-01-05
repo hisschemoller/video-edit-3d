@@ -4,7 +4,7 @@ import createActor from '../../app/actor.js';
 
 let actorStart;
 const height = 2.3;
-const scene = getDefaultScene([ 60 /* 60 */, 95], 4, true);
+const scene = getDefaultScene([ 42 /* 42 */, 75], 4, true);
 
 // hoeveel video pixels per 3d unit?
 // 512/2.5 = 204.8 canvas pixels per unit

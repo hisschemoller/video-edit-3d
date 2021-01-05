@@ -4,10 +4,10 @@ import createActor from '../../app/actor.js';
 
 let actorStart;
 
-const scene = getDefaultScene([0, 40], 2, true);
+const scene = getDefaultScene([0, 23], 2, true);
 
 // WOMAN PREVIEW
-actorStart = 5;
+actorStart = 1;
 createActor(scene, fps, {
   gw: 2.0, gh: 2.3,
   keys: [
@@ -25,7 +25,7 @@ createActor(scene, fps, {
 });
 
 // COUPLE
-actorStart = 22;
+actorStart = 12;
 createActor(scene, fps, {
   gw: 2, gh: 2.5,
   keys: [
