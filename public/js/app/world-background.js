@@ -1,11 +1,11 @@
 import {
   Camera,
-  ImageUtils,
   Mesh,
   MeshBasicMaterial,
   PlaneBufferGeometry,
   Scene,
   Texture,
+  TextureLoader,
 } from '../lib/three/build/three.module.js';
 
 const
@@ -117,7 +117,7 @@ export function setupBackground(data) {
     loadImage();
     
   } else if (hasBackgroundImage) {
-    texture = ImageUtils.loadTexture(`../img/${backgroundImage}`);
+    texture = new TextureLoader().load(`../img/${backgroundImage}`);
   }
 
   if (hasBackgroundVideo || hasBackgroundImage) {
