@@ -23,15 +23,14 @@ scene.object.children.push({
   modelName: 'TestPanel0',
 });
 
-for (let i = 0, n = 8; i < n; i++) {
-
-  // CUBE
-  createActor(scene, fps, {
-    keys: [{t: 0, v: [(Math.random() * 6) - 3, i * 0.75, (Math.random() * 6) - 3]}],
-    img: 'testimage3d.jpg',
-    gw: 0.5, gh: 0.5, gd: 0.5,
-    iOfX: 512, iOfY: 512, iSc: 0.5,
-  });
-}
+// CUBES
+// for (let i = 0, n = 8; i < n; i++) {
+//   createActor(scene, fps, {
+//     keys: [{t: 0, v: [(Math.random() * 6) - 3, i * 0.75, (Math.random() * 6) - 3]}],
+//     img: 'testimage3d.jpg',
+//     gw: 0.5, gh: 0.5, gd: 0.5,
+//     iOfX: 512, iOfY: 512, iSc: 0.5,
+//   });
+// }
 
 export default scene;
