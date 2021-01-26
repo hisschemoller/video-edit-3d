@@ -253,7 +253,13 @@ function createCustomExtrudeMeshesRecursive(rootObject3D, objectData, sceneData,
 function createWorld(data) {
   const { camera: cam = {}, settings = {}, } = data;
   const { height = 360, width = 640, } = settings;
-  const { fieldOfView = 23, position: camPosition = [0, 2, 16], speed = 0, target: camTarget = [0, 2, 0] } = cam;
+  const { 
+    fieldOfView = 23,
+    position: camPosition = [0, 2, 16],
+    rotation: camRotation = [0, 0, 0, 0],
+    speed = 0, target:
+    camTarget = [0, 2, 0],
+  } = cam;
   const cameraTarget = new Vector3(...camTarget);
   cameraSpeed = speed;
 
@@ -280,7 +286,7 @@ function createWorld(data) {
 
   // CAMERA rotation
   const matrix = new Matrix4();
-  matrix.makeRotationY(Math.PI * 0.25);
+  matrix.makeRotationY(camRotation[1]);
   camera.position.applyMatrix4(matrix);
 
   // SCENE
