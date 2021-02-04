@@ -13,7 +13,7 @@ export default function createActor(scene, fps = 30, config = {}) {
     rotate = [1,0,0,0 ,0,1,0,0 ,0,0,1,0],
     rotateY = 0,
 
-    keys = [{t: 0, v: [0, 0]}],
+    keys = [{t: 0, v: [0, 0, 0]}],
 
     // geometry
     // gw: geomWidth = 1, gh: geomHeight = 1, gd: geomDepth = 1,
