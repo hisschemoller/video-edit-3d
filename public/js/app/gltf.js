@@ -27,10 +27,20 @@ function loadGLTFFile(gltfFile) {
  * @param {*} allData
  * @returns
  */
+<<<<<<< HEAD
 export function loadGLTFFiles(allData) {
   const { gltfFiles } = allData;
   return Promise.all(gltfFiles.map(loadGLTFFile));
 }
+=======
+export function addGLTFModelsToData(allData, sceneIndex) {
+  const { settings, score } = allData;
+  const { fps } = settings;
+  const sceneData = score[sceneIndex];
+  const { external3DModels = [] } = sceneData;
+  external3DModels.forEach(modelData => {
+    const { id, imageFile, keys, modelFile, modelName } = modelData;
+>>>>>>> develop
 
 /**
  *

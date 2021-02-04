@@ -324,7 +324,7 @@ function addLights(data) {
   directionalLightOffset = new Vector3(6, 7, 5);
 
   // AMBIENT
-  const ambient = new AmbientLight(0xffffff, 0.6); // color = 0xffffff, intensity = 1
+  const ambient = new AmbientLight(0xffffff, 0.4); // color = 0xffffff, intensity = 1
   scene.add(ambient);
 
   // LIGHT_TARGET
@@ -376,12 +376,14 @@ function addLights(data) {
 export function animate(deltaTime) {
   mixers.forEach(mixer => mixer[0].update(deltaTime));
   
-  camera.translateZ(cameraSpeed);
-  lightTarget.translateZ(cameraSpeed);
+  if (cameraSpeed) {
+    camera.translateZ(cameraSpeed);
+    lightTarget.translateZ(cameraSpeed);
 
-  light.position.copy(lightTarget.position);
-  light.position.add(directionalLightOffset);
-  
+    light.position.copy(lightTarget.position);
+    light.position.add(directionalLightOffset);
+  }
+
   // stats.update();
 
   renderBackground(renderer);
