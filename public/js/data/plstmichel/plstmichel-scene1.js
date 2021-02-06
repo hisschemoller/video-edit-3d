@@ -27,13 +27,13 @@ createActor(scene, fps, {
   keys: [{t: 0, v: [-50, 0, 50]}],
   geom: { w: 100, h: 0.01, d: 100, },
   canvas: { offset: 0, scale: 1024 / 100, size: 1024 },
-  image: { file: 'testimage3d.jpg', offx: 512, offy: 512, scale: 1 }, 
+  image: { file: 'testimage3d.jpg', offx: 0, offy: 1024, scale: 1 }, 
 });
 
 { // N 1585 QUAI DES ORFEVRES - PALAIS DE JUSTICE
   const sX = 0, sY = 0, sW = 983, sH = 551, w = 50;
   createFacade({
-    sX, sY, sW, sH, x: -60, z: -100, w, h: w * (sH / sW),
+    sX, sY, sW, sH, x: -50, z: -50, w, h: w * (sH / sW),
     img: 'plstmichel/parijs-n-1585.jpg',
   });
 }
@@ -41,7 +41,7 @@ createActor(scene, fps, {
 { // N 1579 QUAI DU MARCHÉ NEUF
   const sX = 803, sY = 237, sW = 1100, sH = 445, w = 60;
   createFacade({
-    sX, sY, sW, sH, x: 0, z: -120, w, h: w * (sH / sW),
+    sX, sY, sW, sH, x: -5, z: -60, w, h: w * (sH / sW),
     img: 'plstmichel/parijs-n-1579.jpg',
   });
 }
@@ -49,8 +49,48 @@ createActor(scene, fps, {
 { // O 1583 HOEK OOST MET SEINE
   const sX = 0, sY = 0, sW = 1920, sH = 620, w = 80;
   createFacade({
-    sX, sY, sW, sH, x: -40, z: -99, w, h: w * (sH / sW),
-    img: 'plstmichel/parijs-o-1583.jpg', rotateY: Math.PI * -0.1,
+    sX, sY, sW, sH, x: -50, z: 30, w, h: w * (sH / sW),
+    img: 'plstmichel/parijs-o-1583.jpg', rotateY: Math.PI * 0.5,
+  });
+}
+
+{ // Z 1581 FONTEIN
+  const sX = 4, sY = 17, sW = 1910, sH = 636, w = 90;
+  createFacade({
+    sX, sY, sW, sH, x: 50, z: 50, w, h: w * (sH / sW),
+    img: 'plstmichel/parijs-z-1581.jpg', rotateY: Math.PI,
+  });
+}
+
+{ // W 1600 GILBERT JEUNE
+  const sX = 777, sY = 0, sW = 760, sH = 665, w = 40;
+  createFacade({
+    sX, sY, sW, sH, x: 50, z: 10, w, h: w * (sH / sW),
+    img: 'plstmichel/parijs-w-1600.jpg', rotateY: Math.PI * -0.5,
+  });
+}
+
+{ // W 1582 RUE DE LA HUCHETTE
+  const sX = 376, sY = 0, sW = 1025, sH = 710, w = 40;
+  createFacade({
+    sX, sY, sW, sH, x: 50, z: -30, w, h: w * (sH / sW),
+    img: 'plstmichel/parijs-w-1582.jpg', rotateY: Math.PI * -0.5,
+  });
+}
+
+{ // W 1628 QUAI SAINT MICHEL
+  const sX = 900, sY = 0, sW = 509, sH = 767, w = 20;
+  createFacade({
+    sX, sY, sW, sH, x: 50, z: -50, w, h: w * (sH / sW),
+    img: 'plstmichel/parijs-w-1628.jpg', rotateY: Math.PI * -0.5,
+  });
+}
+
+{ // W 1628 NOTRE DAME
+  const sX = 3, sY = 9, sW = 898, sH = 758, w = 30;
+  createFacade({
+    sX, sY, sW, sH, x: 20, z: -50, w, h: w * (sH / sW),
+    img: 'plstmichel/parijs-w-1628.jpg',
   });
 }
 
