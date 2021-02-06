@@ -54,8 +54,24 @@ createActor(scene, fps, {
   });
 }
 
+{ // O 1584 OOST POORT
+  const sX = 0, sY = 0, sW = 845, sH = 691, w = 30;
+  createFacade({
+    sX, sY, sW, sH, x: -30, z: 50, w, h: w * (sH / sW),
+    img: 'plstmichel/parijs-o-1584.jpg', rotateY: Math.PI * 0.5,
+  });
+}
+
+{ // O 1584 OOST BUSHALTE
+  const sX = 845, sY = 0, sW = 714, sH = 691, w = 20;
+  createFacade({
+    sX, sY, sW, sH, x: -30, z: 20, w, h: w * (sH / sW),
+    img: 'plstmichel/parijs-o-1584.jpg', rotateY: Math.PI,
+  });
+}
+
 { // Z 1581 FONTEIN
-  const sX = 4, sY = 17, sW = 1910, sH = 636, w = 90;
+  const sX = 4, sY = 17, sW = 1910, sH = 636, w = 80;
   createFacade({
     sX, sY, sW, sH, x: 50, z: 50, w, h: w * (sH / sW),
     img: 'plstmichel/parijs-z-1581.jpg', rotateY: Math.PI,
