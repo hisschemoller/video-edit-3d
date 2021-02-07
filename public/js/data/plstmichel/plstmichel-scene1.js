@@ -1,9 +1,15 @@
 import { getDefaultScene, fps, } from './plstmichel-shared.js';
-import { uuidv4, } from '../../app/util.js';
+import createCamera from './plstmichel-camera.js';
 import createActor from '../../app/actor.js';
 
-const scene = getDefaultScene([0, 180], 1, false);
+const scene = getDefaultScene([0, 180], 1, true);
 
+createCamera(scene);
+
+/**
+ * Create a building facade, which is a very thin box.
+ * @param {Object} settings
+ */
 function createFacade(settings) {
   const {
     x = 0, z = -100, w = 10,

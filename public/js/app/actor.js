@@ -5,6 +5,7 @@ import { musicToTime, uuidv4, } from '../app/util.js';
  * @param {Object} scene
  * @param {Number} fps
  * @param {Object} config
+ * @returns {String} Object ID, used as object name as well.
  */
 export default function createActor(scene, fps = 30, config = {}) {
   const {
@@ -131,4 +132,6 @@ export default function createActor(scene, fps = 30, config = {}) {
     type: 'Mesh',
     uuid: objId,
   });
+
+  return objId;
 }
