@@ -54,10 +54,13 @@ export default function createActor(scene, fps = 30, config = {}) {
     // videoTime, videoStartTimeInitial ???
     vt: videoTime = [0, null],
     vt0i: videoStartTimeInitial = config.vt ? config.vt[0] : 0,
+
+    // optional ID and name for the object
+    objectId,
     
   } = config;
   
-  const objId = config.objId || uuidv4();
+  const objId = typeof objectId !== 'undefined' ? objectId : uuidv4();
   const geomId = uuidv4();
 
   // points are custom path or else rectangle

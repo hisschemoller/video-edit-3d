@@ -158,6 +158,15 @@ export function loadScene(allData, sceneIndex) {
     // prepare texture canvases to be animated 
     createSceneCanvases(allData, sceneIndex, model);
 
+    // if there's a parent for the camera, attach it
+    const { parentName } = allData.camera;
+    if (parentName) {
+      const cameraParent = model.getObjectByName(parentName);
+      if (cameraParent) {
+        cameraParent.add(camera);
+      }
+    }
+
     // start animation
     if (model.animations && model.animations.length) {
       // console.log('model.animations', model.animations);

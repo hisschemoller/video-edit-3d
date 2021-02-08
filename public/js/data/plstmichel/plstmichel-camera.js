@@ -16,24 +16,27 @@ import { Euler, LoopOnce, LoopRepeat, Quaternion } from '../../lib/three/build/t
  */
 
 const NUM_SEGMENTS = 10;
-const y = 0;
+const y = 1.8;
 const speed = 2; // 3d units per second
 
 export default function createCamera(scene) {
 
-  // create the camera (stand in)
+  // create the camera parent object
   const cameraId = createActor(scene, fps, {
     geom: { w: 0.25, h: 1, d: 2, },
+    objectId: 'cameraParent',
   });
   const vector3Keys = [];
   const quaternionKeys = [];
 
-  moveTo(vector3Keys, quaternionKeys, 0, -10, -0.5);
-  curveTo(vector3Keys, quaternionKeys, {x: -10, z: -20}, {x: -5, z: -10}, {x: -10, z: -15});
-  // lineTo(vector3Keys, quaternionKeys, -5, -10);
-  // lineTo(vector3Keys, quaternionKeys, -5, -15);
-  // lineTo(vector3Keys, quaternionKeys, 5, -15);
-  // lineTo(vector3Keys, quaternionKeys, 0, -10);
+  moveTo(vector3Keys, quaternionKeys, 0, -10, 1);
+  lineTo(vector3Keys, quaternionKeys, 0, -30);
+  curveTo(vector3Keys, quaternionKeys, {x: -10, z: -40}, {x: -0, z: -35}, {x: -5, z: -40});
+  lineTo(vector3Keys, quaternionKeys, -20, -40);
+  curveTo(vector3Keys, quaternionKeys, {x: -30, z: -30}, {x: -25, z: -40}, {x: -30, z: -35});
+  lineTo(vector3Keys, quaternionKeys, -30, 30);
+  curveTo(vector3Keys, quaternionKeys, {x: -20, z: 40}, {x: -30, z: 35}, {x: -25, z: 40});
+  lineTo(vector3Keys, quaternionKeys, 30, 40);
 
   scene.animations[0].tracks.push({
     name: `${cameraId}.position`,
@@ -74,7 +77,6 @@ function curveTo(vector3Keys, quaternionKeys, endPoint, controlPt1, controlPt2) 
     prevPoint = point;
     segmentStartTimeFPS = timeFPS;
     totalSegmentsLength += segmentLength;
-    console.log(segmentLength, totalSegmentsLength);
   }
 
   const angle = Math.atan2(endPoint.x - controlPt2.x, endPoint.z - controlPt2.z);

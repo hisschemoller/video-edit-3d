@@ -14,9 +14,10 @@ const data = {
   camera: {
     speed: 0,
     fieldOfView: 40,
-    position: [0, 2, 1],
+    position: [0, 2, -1],
     rotation: [0, 0, 0, 0],
     target: [0, 2, 0],
+    parentName: 'cameraParent',
   },
   gltfFiles: [ ],
   resources: [],
