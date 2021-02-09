@@ -4,6 +4,9 @@ import createActor from '../../app/actor.js';
 import { Euler, LoopOnce, LoopRepeat, Quaternion } from '../../lib/three/build/three.module.js';
 
 /**
+ * Create an object in the data that animates along a path of straight and curved segments.
+ * All these segments combine in one big VectorKeyframeTrack.
+ * 
  * Direction angles:
  * left (-x): Math.PI * -0.5
  * right (x): Math.PI * 0.5

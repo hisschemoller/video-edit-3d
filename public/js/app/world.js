@@ -164,6 +164,13 @@ export function loadScene(allData, sceneIndex) {
       const cameraParent = model.getObjectByName(parentName);
       if (cameraParent) {
         cameraParent.add(camera);
+
+        // let directionallight follow the camera path.
+        const directionalLight = scene.getObjectByName('directionalLight');
+        const lightTarget = scene.getObjectByName('lightTarget');
+        directionalLight.position.copy(new Vector3(7, 10, -5));
+        cameraParent.add(directionalLight);
+        cameraParent.add(lightTarget);
       }
     }
 
@@ -339,12 +346,14 @@ function addLights(data) {
   // LIGHT_TARGET
   lightTarget = new Object3D();
   lightTarget.position.set(0, 0, 0);
+  lightTarget.name = 'lightTarget';
   scene.add(lightTarget); 
 
   // DIRECTIONAL
   const d = 5;
   light = new DirectionalLight(0xffffff, 1); // color = 0xffffff, intensity = 1
   light.position.copy(directionalLightOffset);
+  light.name = 'directionalLight';
   light.target = lightTarget;
   light.castShadow = true;
   light.shadow.mapSize.width = 4096;  // default 512
