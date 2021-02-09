@@ -32,8 +32,8 @@ function createFacade(settings) {
 createActor(scene, fps, {
   keys: [{t: 0, v: [-50, 0, 50]}],
   geom: { w: 100, h: 0.01, d: 100, },
-  canvas: { offset: 0, scale: 1024 / 100, size: 1024 },
-  image: { file: 'testimage3d.jpg', offx: 0, offy: 1024, scale: 1 }, 
+  canvas: { offset: 0, scale: 2048 / 100, size: 2048 },
+  image: { file: 'plstmichel/plstmichel-grond.jpg', offx: 0, offy: 2048, scale: 1 }, 
 });
 
 { // N 1585 QUAI DES ORFEVRES - PALAIS DE JUSTICE
