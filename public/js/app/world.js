@@ -33,9 +33,9 @@ import {
   Scene,
   Vector3,
   VectorKeyframeTrack,
-  WebGLRenderer } from '../lib/three/build/three.module.js';
-import { OrbitControls } from '../lib/three/examples/jsm/controls/OrbitControls.js';
-import { TransformControls } from '../lib/three/examples/jsm/controls/TransformControls.js';
+  WebGLRenderer } from '/scripts/three/build/three.module.js';
+import { OrbitControls } from '/scripts/three/examples/jsm/controls/OrbitControls.js';
+import { TransformControls } from '/scripts/three/examples/jsm/controls/TransformControls.js';
 
 let 
   renderer, 
@@ -168,7 +168,7 @@ export function loadScene(allData, sceneIndex) {
         // let directionallight follow the camera path.
         const directionalLight = scene.getObjectByName('directionalLight');
         const lightTarget = scene.getObjectByName('lightTarget');
-        directionalLight.position.copy(new Vector3(7, 10, -5));
+        directionalLight.position.copy(new Vector3(5, 10, -8));
         cameraParent.add(directionalLight);
         cameraParent.add(lightTarget);
       }

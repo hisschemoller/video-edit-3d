@@ -9,7 +9,7 @@ import {
   TextureLoader,
   Vector2,
   Vector3,
-} from '../lib/three/build/three.module.js';
+} from '/scripts/three/build/three.module.js';
 
 /**
  * Create a mesh with an extruded shape and canvas texture.

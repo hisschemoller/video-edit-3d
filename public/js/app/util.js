@@ -1,4 +1,4 @@
-import { Linear, Power1, Power2, TweenLite } from '../lib/gsap/esm/gsap-core.js';
+import { Linear, Power1, Power2, TweenLite } from '/scripts/gsap/gsap-core.js';
 
 let bpm,
   ppqn,

@@ -1,4 +1,4 @@
-import { LoopOnce } from '../../lib/three/build/three.module.js';
+import { LoopOnce } from '/scripts/three/build/three.module.js';
 import { uuidv4, } from '../../app/util.js';
 import createActor from '../../app/actor.js';
 

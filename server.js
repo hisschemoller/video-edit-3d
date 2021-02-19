@@ -22,6 +22,13 @@ const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
 const fs = require('fs');
 
+// allow front-end access to node_modules folder
+app.use('/scripts', express.static(`${__dirname}/node_modules/`));
+
+// set public folder as root
+app.use(express.static('public'));
+
+// listen for HTTP requests on specified port
 server.listen(port, () => {
   console.log('listening on %d', port);
 });
@@ -29,8 +36,6 @@ server.listen(port, () => {
 app.get('public/', function (req, res) {
   res.sendFile(__dirname + 'index.html');
 });
-
-app.use(express.static('public'));
 
 io.sockets.on('connection', function (socket) {
   socket.on('render-frame', function (data) {
