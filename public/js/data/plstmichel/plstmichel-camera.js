@@ -1,7 +1,7 @@
 import { fps, } from './plstmichel-shared.js';
 import { uuidv4, } from '../../app/util.js';
 import createActor from '../../app/actor.js';
-import { Euler, LoopOnce, LoopRepeat, Quaternion } from '/scripts/three/build/three.module.js';
+import { Euler, LoopOnce, LoopRepeat, Quaternion } from '../../lib/three/build/three.module.js';
 
 /**
  * Create an object in the data that animates along a path of straight and curved segments.

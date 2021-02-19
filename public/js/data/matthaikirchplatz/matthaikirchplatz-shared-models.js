@@ -9,7 +9,7 @@ import {
   LoopRepeat, 
   Quaternion,
   Vector3,
-} from '/scripts/three/build/three.module.js';
+} from '../../lib/three/build/three.module.js';
 
 export function addBeakOpenCloseAnimationClip(scene, beakId, topId, btmId, matrixTop, matrixBtm, duration) {
   const animationClip = {

@@ -6,7 +6,7 @@ import {
   Scene,
   Texture,
   TextureLoader,
-} from '/scripts/three/build/three.module.js';
+} from '../lib/three/build/three.module.js';
 
 const
   canvasOffsetX = 0,

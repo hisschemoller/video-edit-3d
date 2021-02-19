@@ -6,6 +6,7 @@
   "author": "Wouter Hisschemöller <wouter.hisschemoller@gmail.com>",
   "description": "Video, 3D and animation in WebGL using three.js",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "start": "node server.js"
   },
@@ -13,8 +14,9 @@
     "express": "^4.17.1",
     "gsap": "^3.6.0",
     "snap": "^1.1.0",
-    "socket.io": "^2.4.0",
-    "three": "^0.121.1"
+    "socket.io": "^2.2.0",
+    "three": "^0.121.1",
+    "three-csm": "^1.1.0"
   },
   "devDependencies": {}
 }

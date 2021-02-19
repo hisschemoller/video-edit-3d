@@ -33,13 +33,15 @@ import {
   Scene,
   Vector3,
   VectorKeyframeTrack,
-  WebGLRenderer } from '/scripts/three/build/three.module.js';
-import { OrbitControls } from '/scripts/three/examples/jsm/controls/OrbitControls.js';
-import { TransformControls } from '/scripts/three/examples/jsm/controls/TransformControls.js';
+  WebGLRenderer } from '../lib/three/build/three.module.js';
+import { OrbitControls } from '../lib/three/examples/jsm/controls/OrbitControls.js';
+import { TransformControls } from '../lib/three/examples/jsm/controls/TransformControls.js';
+import CSM from '../lib/three-csm/build/three-csm.module.js';
 
 let 
   renderer, 
-  camera, 
+  camera,
+  csm,
   directionalLightOffset, 
   light, lightTarget, 
   cameraSpeed, 
@@ -350,45 +352,40 @@ function addLights(data) {
   scene.add(lightTarget); 
 
   // DIRECTIONAL
-  const d = 5;
+  const d = 20;
   light = new DirectionalLight(0xffffff, 1); // color = 0xffffff, intensity = 1
   light.position.copy(directionalLightOffset);
   light.name = 'directionalLight';
   light.target = lightTarget;
   light.castShadow = true;
-  light.shadow.mapSize.width = 4096;  // default 512
+  light.shadow.mapSize.width = 4096; // default 512
   light.shadow.mapSize.height = 4096; // default 512
-  light.shadow.camera.near = 0.5;    // default 0.5
-  light.shadow.camera.far = 500;     // default 500
+  light.shadow.camera.near = 0.5; // default 0.5
+  light.shadow.camera.far = 500; // default 500
   light.shadow.camera.bottom = -d; // default 5
   light.shadow.camera.left = -d; // default 5
-  light.shadow.camera.right = d + 15; // default 5
-  light.shadow.camera.top = d + 15; // default 5
+  light.shadow.camera.right = d; // default 5
+  light.shadow.camera.top = d; // default 5
   scene.add(light);
 
   // HELPER
   // const helper = new CameraHelper(light.shadow.camera);
   // scene.add(helper);
 
-  // CASCADING SHADOW MAPS
-  // https://github.com/vHawk/three-csm
+  // CASCADED SHADOW MAP
+  // csm = new CSM({
+  //   maxFar: camera.far,
+  //   cascades: 4,
+  //   shadowMapSize: 1024,
+  //   lightDirection: new Vector3(1, -1, -1).normalize(), // (5, 10, -8),
+  //   lightIntensity: 1,
+  //   camera: camera,
+  //   parent: scene,
+  // });
+  // let material = new MeshPhongMaterial(); // works with Phong and Standard materials
+  // csm.setupMaterial(material); // must be called to pass all CSM-related uniforms to the shader
+  // console.log('csm', csm, typeof csm);
 }
-
-// GROUND
-// function createGround(settings) {
-//   const { size = {}, } = settings;
-//   const { width = 10, depth = 10, } = size;
-//   const geometry = new PlaneBufferGeometry(width, depth);
-//   const material = new MeshPhongMaterial({color: 0xf7f7f7});
-
-//   const ground = new Mesh(geometry, material);
-//   ground.position.set(0, 0, 0);
-//   ground.rotation.x = - Math.PI / 2;
-//   ground.scale.set(1, 1, 1);
-//   ground.castShadow = false;
-//   ground.receiveShadow = true;
-//   scene.add(ground);
-// }
 
 // ANIMATION LOOP
 export function animate(deltaTime) {
@@ -401,6 +398,8 @@ export function animate(deltaTime) {
     light.position.copy(lightTarget.position);
     light.position.add(directionalLightOffset);
   }
+
+  // csm.update(camera.matrix);
 
   // stats.update();
 

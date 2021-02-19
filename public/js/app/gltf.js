@@ -1,5 +1,5 @@
-import { Matrix4, MeshPhongMaterial, TextureLoader, Vector3 } from '/scripts/three/build/three.module.js';
-import { GLTFLoader } from '/scripts/three/examples/jsm/loaders/GLTFLoader.js';
+import { Matrix4, MeshPhongMaterial, TextureLoader, Vector3 } from '../lib/three/build/three.module.js';
+import { GLTFLoader } from '../lib/three/examples/jsm/loaders/GLTFLoader.js';
 import { uuidv4 } from './util.js';
 
 const gltfObjects = {};
