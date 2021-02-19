@@ -1,5 +1,6 @@
 import { fps, } from './plstmichel-shared.js';
-import scene1 from './plstmichel-scene1.js';
+import scene1 from './plstmichel-walls.js';
+import scene2 from './plstmichel-objects.js';
 
 /**
  * All data.
@@ -19,10 +20,11 @@ const data = {
     target: [0, 2, 0],
     parentName: 'cameraParent',
   },
-  gltfFiles: [ ],
+  gltfFiles: ['plstmichel.glb'],
   resources: [],
   score: [
     scene1,
+    scene2,
   ],
 };
 
