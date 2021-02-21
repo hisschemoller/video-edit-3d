@@ -36,14 +36,39 @@ scene.object.children.push({
   modelName: 'sleutelgat',
 });
 
-// PAAL2 VIERKANT
-scene.object.children.push({
-  id: uuidv4(),
-  imageFile: 'plstmichel/paal-groen.jpg',
-  matrix: [2,0,0,0 ,0,2,0,0 ,0,0,2,0, -10, 0, -45 ,1],
-  modelFile: 'plstmichel.glb',
-  modelName: 'paal2',
-});
+{ // PAAL2 VIERKANT MET DINGEN
+  const x = -10, z = -45;
+  scene.object.children.push({
+    id: uuidv4(),
+    imageFile: 'plstmichel/paal-groen.jpg',
+    matrix: [2,0,0,0 ,0,1,0,0 ,0,0,2,0, x, 0, z,1],
+    modelFile: 'plstmichel.glb',
+    modelName: 'paal2',
+  });
+  scene.object.children.push({
+    id: uuidv4(),
+    imageFile: 'plstmichel/chillida.jpg',
+    matrix: [1.5,0,0,0 ,0,1.5,0,0 ,0,0,0.4,0, x - 0.05, 11, z,1],
+    modelFile: 'plstmichel.glb',
+    modelName: 'rechthoek',
+    rotateY: Math.PI * 0.5,
+  });
+  scene.object.children.push({
+    id: uuidv4(),
+    imageFile: 'plstmichel/green.jpg',
+    matrix: [0.7,0,0,0 ,0,0.7,0,0 ,0,0,0.1,0, x, 7, z-0.05,1],
+    modelFile: 'plstmichel.glb',
+    modelName: 'halfcircle',
+  });
+  scene.object.children.push({
+    id: uuidv4(),
+    imageFile: 'plstmichel/green.jpg',
+    matrix: [0.7,0,0,0 ,0,0.7,0,0 ,0,0,0.1,0, x, 7, z-0.05,1],
+    modelFile: 'plstmichel.glb',
+    modelName: 'halfcircle',
+    rotateY: Math.PI,
+  });
+}
 
 // POORTJE
 // scene.object.children.push({
