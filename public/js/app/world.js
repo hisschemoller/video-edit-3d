@@ -150,7 +150,8 @@ export function loadScene(allData, sceneIndex) {
     const recurseObjectTree = (objectData) => {
 
       // apply custom convenience settings to avoid direct matrix4 settings
-      const { children = [], name, rotateY = 0, } = objectData;
+      const { children = [], name, rotateX = 0, rotateY = 0, } = objectData;
+      model.getObjectByName(name).rotateX(rotateX);
       model.getObjectByName(name).rotateY(rotateY);
 
       children.forEach(childObjectData => recurseObjectTree(childObjectData));

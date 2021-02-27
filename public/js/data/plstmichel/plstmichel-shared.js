@@ -1,4 +1,4 @@
-import { LoopOnce } from '../../lib/three/build/three.module.js';
+import { Euler, LoopOnce, Matrix4 } from '../../lib/three/build/three.module.js';
 import { uuidv4, } from '../../app/util.js';
 import createActor from '../../app/actor.js';
 
@@ -47,4 +47,18 @@ export function getDefaultScene(lifespan, sceneNumber, hasAnimations) {
   }
 
   return scene;
+}
+
+/**
+ * Create matrix from rotation, scale and position.
+ * @param {Object} [conf={}]
+ * @returns {Matrix4}
+ */
+export function getMatrix(conf = {}) {
+  const { x = 0, y = 0, z = 0, sx = 1, sy = 1, sz = 1, rx = 0, ry = 0, rz = 0, } = conf;
+  const scaleMatrix = new Matrix4().makeScale(sx, sy, sz);
+  const rotationMatrix = new Matrix4().makeRotationFromEuler(new Euler(rx, ry, rz));
+  const matrix4 = new Matrix4().multiplyMatrices(scaleMatrix, rotationMatrix);
+  matrix4.setPosition(x, y, z);
+  return matrix4;
 }
