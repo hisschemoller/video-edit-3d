@@ -4,7 +4,20 @@ Video and animation in WebGL using three.js
 
 An app to create a 3D world and project video sequences on the surface of 3D objects. The 3D objects can animate.
 
-## Structure of the main app data
+## Table of contents
+
+- [Structure of the main app data](#structure)
+- [Scene data](#scene)
+- [Animation data](#animation)
+- [Units](#units)
+- [Matrix4](#matrix4)
+- [Preview](#preview)
+- [External 3D model file import](#import)
+- [Animated video position acceleration](#videoanimation)
+- [SVG path to extrude shape](#extrude)
+- [FFMPEG](#ffmpg)
+
+## Structure of the main app data <a name="structure"></a>
 
 All of the 3D world, its animations, texture images and videos and all variable settings are read from one big data object.
 
@@ -26,7 +39,7 @@ The base data structure contains these parts:
 }
 ```
 
-### Scene data
+### Scene data <a name="scene"></a>
 
 The properties `animations`, `geometries`, `metadata`, `materials` and `objects` are in the JSON Object Scene 4.3 format.
 
@@ -80,7 +93,7 @@ Object hierarchy:
 }
 ```
 
-## Animation data
+## Animation data <a name="animation"></a>
 
 Three.js documentation Animation system: https://threejs.org/docs/index.html#manual/en/introduction/Animation-system
 
@@ -108,7 +121,7 @@ Three.js documentation Animation system: https://threejs.org/docs/index.html#man
 ```
 
 
-## Units
+## Units <a name="units"></a>
 
 Geometry path is measured in 3D units.
 
@@ -122,7 +135,7 @@ canvas: {
 }
 ```
 
-## Matrix4
+## Matrix4 <a name="matrix4"></a>
 
 Default
 ```javascript
@@ -137,7 +150,7 @@ Translate
 [ 1,0,0,0 ,0,1,0,0 ,0,0,1,0 ,x,y,z,1 ]
 ```
 
-## Preview
+## Preview <a name="preview"></a>
 
 If video image sequences are too heavy to load in time for the app to run smooth, a preview option exists.
 
@@ -165,7 +178,7 @@ setup({
 });
 ```
 
-## External 3D model file import
+## External 3D model file import <a name="import"></a>
 
 Three.js documentation recommends glTF (GL Transmission Format) files. Blender exports this type.
 
@@ -213,7 +226,7 @@ When a scene loads, the model is taken from the preloaded file and added to the 
 <b>Note:</b> An image texture exported from blender shows too dark in three.js. I read this has something to do with a conversion between sRGB and linear colours, but I didn't really understand. To fix it the texture is created in three.js.
 
 
-## Animated video position acceleration
+## Animated video position acceleration <a name="videoanimation"></a>
 
 When a video - an image sequence actually - is used as the texture of a mesh, the position of the video can be animated. This is used to keep a walking person positioned at the center of a 3D cube, while the person walks from left to right through the video.
 
@@ -236,7 +249,7 @@ At acceleration: 0 the animation is linear. When acceleration is a positive numb
 
 The code that generates the acceleration is in `video-animation.js`.
 
-## SVG path to extrude shape
+## SVG path to extrude shape <a name="extrude"></a>
 
 - In Adobe XD create a line drawing with the pen tool, using only straight line segments.
   - Choose File > Export... > All Artboards...
@@ -256,7 +269,7 @@ Online SVG editors
 ### Align SVG shape with image
 
 
-## FFMPEG
+## FFMPEG <a name="ffmpg"></a>
 
 Convert AVI to MP4.
 The first works best in Quicktime on Mac.
