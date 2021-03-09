@@ -39,6 +39,11 @@ app.get('/img/fs-img', function (req, res) {
   res.sendFile(path.resolve(url));
 });
 
+app.get('/fs-img', function (req, res) {
+  const url = `${req.query.dir}${req.query.img}`;
+  res.sendFile(path.resolve(url));
+});
+
 io.sockets.on('connection', function (socket) {
   socket.on('render-frame', function (data) {
 
