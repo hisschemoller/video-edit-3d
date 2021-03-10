@@ -2,7 +2,7 @@ import { uuidv4, } from '../../app/util.js';
 import createActor from '../../app/actor.js';
 import { getDefaultScene, getMatrix, fps, } from './plstmichel-shared.js';
 
-const scene = getDefaultScene([0, 180], 3, false);
+const scene = getDefaultScene([0, 180], 3, true);
 const modelFile = 'plstmichel.glb';
 export default scene;
 
@@ -11,7 +11,7 @@ export default scene;
   createActor(scene, fps, {
     geom: { w: 1.6, h: 0.9, d: 1 },
     keys: [
-      { t:  0 + actorStart, v: [ 0, 0, -30]},
+      { t:  0 + actorStart, v: [ 0, 0, -25]},
     ],
     canvas: { offset: 0, scale: 512/1.6, size: 512 },
     vSc: 512/640,
@@ -24,19 +24,20 @@ export default scene;
   });
 }
 
-{ // TEST
+{ // MAN MET ROL
   const actorStart = 0;
   createActor(scene, fps, {
-    geom: { w: 16, h: 9, d: 1 },
+    geom: { w: 2, h: 2.7, d: 1 },
     keys: [
-      { t:  0 + actorStart, v: [ -2, 0, -45]},
+      { t:  0 + actorStart, v: [  7, 0, -17]},
+      { t:  8 + actorStart, v: [ -8, 0, -17]},
     ],
-    canvas: { offset: 0, scale: 512/16, size: 512 },
+    canvas: { offset: 0, scale: 512/8, size: 512 },
     vSc: 512/480,
-    vt: [0, 30],
+    vt: [42, 50],
     vKeys: [
-      { t:  0 + actorStart, v: [ 0, 270]},
-      { t: 30 + actorStart, v: [ 0, 270]},
+      { t:  0 + actorStart, v: [ 550, 270]},
+      { t:  8 + actorStart, v: [ -200, 270]},
     ],
     vrid: '1585_preview',
   });

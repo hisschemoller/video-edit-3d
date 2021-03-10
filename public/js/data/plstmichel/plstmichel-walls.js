@@ -41,6 +41,9 @@ createActor(scene, fps, {
   createFacade({
     sX, sY, sW, sH, x: -50, z: -50, w, h: w * (sH / sW),
     img: 'plstmichel/parijs-n-1585.jpg',
+    // img: 'fs-img?dir=/Volumes/Seagate Slim Drive/testfoto/parijs/&img=parijs-n.jpg',
+    // img: 'fs-img?dir=/Users/wouter/Pictures/&img=parijs-test.jpg',
+    // img: 'fs-img?dir=iets&img=anders',
   });
 }
 

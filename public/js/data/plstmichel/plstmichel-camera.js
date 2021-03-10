@@ -19,7 +19,7 @@ import { Euler, LoopOnce, LoopRepeat, Quaternion } from '../../lib/three/build/t
  */
 
 const NUM_SEGMENTS = 10;
-const y = 1.8;
+const y = 0.8;
 const speed = 0.1; // 3d units per second
 
 export default function createCamera(scene) {
