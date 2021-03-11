@@ -12,13 +12,13 @@ createCamera(scene);
  */
 function createFacade(settings) {
   const {
-    x = 0, z = -100, w = 10,
+    x = 0, z = -100, w = 10, h = 10,
     imgH = 1920, imgW = 1080, img,
     sX = 0, sY = 0, sW = 1920, sH = 1080,
     rotateY = 0,
   } = settings;
   const canvasSize = 1024;
-  const h = w * (sH / sW);
+  // const h = w * (sH / sW);
   createActor(scene, fps, {
     keys: [{t: 0, v: [x, 0, z]}],
     geom: { w, h, d: 0.01, },
@@ -37,37 +37,37 @@ createActor(scene, fps, {
 });
 
 { // N 1585 QUAI DES ORFEVRES - PALAIS DE JUSTICE
-  const sX = 0, sY = 0, sW = 983, sH = 551, w = 50;
+  const sX = 0, sY = 0, sW = 983, sH = 551, w = 50; // h = 28
   createFacade({
-    sX, sY, sW, sH, x: -50, z: -50, w, h: w * (sH / sW),
+    sX, sY, sW, sH, x: -50, z: -40, w, h: w * (sH / sW),
     img: 'plstmichel/parijs-n-1585.jpg',
     // img: 'fs-img?dir=/Volumes/Seagate Slim Drive/testfoto/parijs/&img=parijs-n.jpg',
     // img: 'fs-img?dir=/Users/wouter/Pictures/&img=parijs-test.jpg',
-    // img: 'fs-img?dir=iets&img=anders',
+    // img: 'fs-img?dir=iets&img=anders', 
+  });
+}
+
+{ // N 1579 QUAI DU MARCHÉ NEUF (HOEKJE)
+  const sX = 803, sY = 237, sW = 300, sH = 445, w = 10; // h was 24
+  createFacade({
+    sX, sY, sW, sH, x: 0, z: -40, w, h: 18,
+    img: 'plstmichel/parijs-n-1579.jpg', rotateY: Math.PI * 0.5,
   });
 }
 
 { // N 1579 QUAI DU MARCHÉ NEUF
-  const sX = 803, sY = 237, sW = 1100, sH = 445, w = 60;
+  const sX = 803, sY = 237, sW = 600, sH = 445, w = 20; // h was 24, wordt 20
   createFacade({
-    sX, sY, sW, sH, x: -5, z: -60, w, h: w * (sH / sW),
+    sX, sY, sW, sH, x: 0, z: -50, w, h: 18,
     img: 'plstmichel/parijs-n-1579.jpg',
   });
 }
 
 { // O 1583 HOEK OOST MET SEINE
-  const sX = 0, sY = 0, sW = 1920, sH = 620, w = 80;
+  const sX = 270, sY = 0, sW = 1450, sH = 620, w = 60;
   createFacade({
-    sX, sY, sW, sH, x: -50, z: 30, w, h: w * (sH / sW),
+    sX, sY, sW, sH, x: -50, z: 20, w, h: 25.8,
     img: 'plstmichel/parijs-o-1583.jpg', rotateY: Math.PI * 0.5,
-  });
-}
-
-{ // O 1584 OOST POORT
-  const sX = 0, sY = 0, sW = 845, sH = 691, w = 30;
-  createFacade({
-    sX, sY, sW, sH, x: -30, z: 50, w, h: w * (sH / sW),
-    img: 'plstmichel/parijs-o-1584.jpg', rotateY: Math.PI * 0.5,
   });
 }
 
@@ -76,6 +76,14 @@ createActor(scene, fps, {
   createFacade({
     sX, sY, sW, sH, x: -30, z: 20, w, h: w * (sH / sW),
     img: 'plstmichel/parijs-o-1584.jpg', rotateY: Math.PI,
+  });
+}
+
+{ // O 1584 OOST POORT
+  const sX = 0, sY = 0, sW = 845, sH = 691, w = 30;
+  createFacade({
+    sX, sY, sW, sH, x: -30, z: 50, w, h: w * (sH / sW),
+    img: 'plstmichel/parijs-o-1584.jpg', rotateY: Math.PI * 0.5,
   });
 }
 

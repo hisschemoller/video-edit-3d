@@ -41,6 +41,16 @@
 
 ## Bewegende mensen en voertuigen.
 
+* N 1579 QUAI DU MARCHÉ NEUF
+  * Vooral auto's van en naar Ile de la Cité.
+* Z 1581 FONTEIN
+  * Veel lopende mensen, ook stilstaande.
+* W 1582 RUE DE LA HUCHETTE
+  * Tussen de auto's door mensen op de stoep en wat fietsen.
+* O 1583 HOEK OOST MET SEINE
+  * Veel auto's, bussen, fietsen en mensen lopend.
+* O 1584 OOST POORT
+  * Wat mensen op de stoep aan de overkant, bestelwagen Stricher.
 * N 1585 QUAI DES ORFEVRES - PALAIS DE JUSTICE
   * 00:31-00:40 - Man met zwarte hoed van links naar rechts.
   * 00:36-00:41 - Fietser met geel hesje, L>R.
@@ -48,6 +58,10 @@
   * 01:10-01:21 - Man uit taxi, R>L.
   * 01:21-01:44 - Vrouw met lang haar, L>R.
   * 01:29-01:50 - Jongen met scooter, L>R.
+* W 1600 GILBERT JEUNE
+  * Kenmerkende stilstaande groepjes en mensen.
+* W 1628 QUAI SAINT MICHEL
+  * Vooral veel druk verkeer.
 
 ## Frames, preview video en frames.
 
