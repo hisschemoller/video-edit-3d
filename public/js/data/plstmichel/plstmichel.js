@@ -16,9 +16,9 @@ const data = {
   camera: {
     speed: 0,
     fieldOfView: 40,
-    position: [0, 1, -1],
+    position: [0, 1.8, -1],
     rotation: [0, 0, 0, 0],
-    target: [0, 1, 0],
+    target: [0, 1.8, 0],
     parentName: 'cameraParent',
   },
   gltfFiles: ['plstmichel.glb'],
@@ -43,7 +43,7 @@ const data = {
   score: [
     sceneWalls,
     sceneObjects,
-    sceneActors,
+    // sceneActors,
   ],
 };
 

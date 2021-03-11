@@ -2,7 +2,7 @@ import { getDefaultScene, fps, } from './plstmichel-shared.js';
 import createCamera from './plstmichel-camera.js';
 import createActor from '../../app/actor.js';
 
-const scene = getDefaultScene([0, 180], 1, true);
+const scene = getDefaultScene([0, 320], 1, true);
 
 createCamera(scene);
 

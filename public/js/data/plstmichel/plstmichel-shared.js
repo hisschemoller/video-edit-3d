@@ -38,7 +38,7 @@ export function getDefaultScene(lifespan, sceneNumber, hasAnimations) {
 
   if (hasAnimations) {
     scene.animations = [{
-      duration: 90,
+      duration: lifespan[1] - lifespan[0],
       fps,
       loop: LoopOnce,
       name: 'scene-animation',
