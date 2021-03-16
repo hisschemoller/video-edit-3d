@@ -54,6 +54,33 @@ export default function createCamera(scene) {
   curveTo(vector3Keys, quaternionKeys, {x: 30, z:-40}, {x: 0, z: -10}, {x: -10, z: 0});
   lineTo( vector3Keys, quaternionKeys, {x: 40, z:-40});
 
+  // alternative route
+  // moveTo( vector3Keys, quaternionKeys, {x: 20, z:-40}, 0);
+  // lineTo( vector3Keys, quaternionKeys, {x: 20, z: 30});
+  // curveTo(vector3Keys, quaternionKeys, {x: 30, z: 40}, {x: 0, z: 5}, {x: -5, z: 0});
+  // curveTo(vector3Keys, quaternionKeys, {x: 40, z: 30}, {x: 5, z: 0}, {x: 0, z: 5});
+  // lineTo( vector3Keys, quaternionKeys, {x: 40, z: 20});
+  // curveTo(vector3Keys, quaternionKeys, {x: 20, z:  0}, {x: 0, z: -10}, {x: 10, z: 0});
+  // lineTo( vector3Keys, quaternionKeys, {x:-30, z:  0});
+  // curveTo(vector3Keys, quaternionKeys, {x:-40, z:-10}, {x: -5, z: 0}, {x: 0, z: 5});
+  // curveTo(vector3Keys, quaternionKeys, {x:-30, z:-20}, {x: 0, z: -5}, {x: -5, z: 0});
+  // curveTo(vector3Keys, quaternionKeys, {x:-10, z:-10}, {x: 7, z: 0}, {x: -7, z: 0});
+  // lineTo( vector3Keys, quaternionKeys, {x: 30, z:-10});
+  // curveTo(vector3Keys, quaternionKeys, {x: 40, z:-20}, {x: 5, z: 0}, {x: 0, z: 5});
+  // curveTo(vector3Keys, quaternionKeys, {x: 30, z:-30}, {x: 0, z: -5}, {x: 5, z: 0});
+  // lineTo( vector3Keys, quaternionKeys, {x:  0, z:-30});
+  // curveTo(vector3Keys, quaternionKeys, {x:-20, z:-10}, {x: -10, z: 0}, {x: 0, z: -10});
+  // lineTo( vector3Keys, quaternionKeys, {x:-20, z: 10});
+  // curveTo(vector3Keys, quaternionKeys, {x: 10, z: 20}, {x: 0, z: 5}, {x: -5, z: 0});
+  // lineTo( vector3Keys, quaternionKeys, {x: 20, z: 20});
+  // curveTo(vector3Keys, quaternionKeys, {x: 30, z: 30}, {x: 5, z: 0}, {x: 0, z: -5});
+  // curveTo(vector3Keys, quaternionKeys, {x: 20, z: 40}, {x: 0, z: 5}, {x: 5, z: 0});
+  // curveTo(vector3Keys, quaternionKeys, {x: 10, z: 30}, {x: -5, z: 0}, {x: 0, z: 5});
+  // lineTo( vector3Keys, quaternionKeys, {x: 10, z:-20});
+  // curveTo(vector3Keys, quaternionKeys, {x: 30, z:-40}, {x: 0, z: -10}, {x: -10, z: 0});
+  // lineTo( vector3Keys, quaternionKeys, {x: 40, z:-40});
+
+
   console.log(`Total camera travel time: ${(vector3Keys[vector3Keys.length - 1].time / fps).toFixed(2)} sec.`);
 
   scene.animations[0].tracks.push({
