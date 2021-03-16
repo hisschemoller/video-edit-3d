@@ -70,3 +70,9 @@ ffmpeg -i videos_placesaintmichel/IMG_1585.MOV -vf scale=480:-1 videos_placesain
 ffmpeg -i videos_placesaintmichel/IMG_1585_preview.mov frames_placesaintmichel/1585_preview/frame_%05d.png
 
 http://localhost:3012/fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1585_preview/&img=frame_00003.png
+
+
+ffmpeg -i videos_placesaintmichel/IMG_1581.mov -vf "rotate=-0.8*PI/180" -vcodec libx264 -crf 0 -preset medium videos_placesaintmichel/IMG_1581r.mp4
+ffmpeg -i videos_placesaintmichel/IMG_1581r.mp4 frames_placesaintmichel/1581/frame_%05d.png
+ffmpeg -i videos_placesaintmichel/IMG_1581r.mp4 -vf scale=480:-1 videos_placesaintmichel/IMG_1581r_preview.mp4
+ffmpeg -i videos_placesaintmichel/IMG_1581r_preview.mp4 frames_placesaintmichel/1581_preview/frame_%05d.png

@@ -1,4 +1,4 @@
-import { getDefaultScene, fps, } from './plstmichel-shared.js';
+import { getDefaultScene, fps, PREVIEW_SCALE, } from './plstmichel-shared.js';
 import createCamera from './plstmichel-camera.js';
 import createActor from '../../app/actor.js';
 
@@ -15,17 +15,27 @@ function createFacade(settings) {
     x = 0, z = -100, w = 10, h = 10,
     imgH = 1920, imgW = 1080, img,
     sX = 0, sY = 0, sW = 1920, sH = 1080,
+    vrid, vSc = 1, vt = [0, null], vKeys = [{t: 0, v: [0, 0]}],
     rotateY = 0,
   } = settings;
   const canvasSize = 1024;
   // const h = w * (sH / sW);
-  createActor(scene, fps, {
+  const config = {
     keys: [{t: 0, v: [x, 0, z]}],
     geom: { w, h, d: 0.01, },
     canvas: { offset: 0, scale: canvasSize / Math.max(w, h), size: canvasSize },
-    image: { file: img, offx: sX, offy: sY + sH, scale: canvasSize / Math.max(sW, sH) },
     rotateY,
-  });
+  };
+  if (img) {
+    config.image = { file: img, offx: sX, offy: sY + sH, scale: canvasSize / Math.max(sW, sH) };
+  }
+  if (vrid) {
+    config.vrid = vrid;
+    config.vSc = canvasSize / Math.max(sW, sH);
+    config.vt = vt;
+    config.vKeys = [{t: 0, v: [sX, sY + sH]}];
+  }
+  createActor(scene, fps, config);
 }
 
 // GROUND
@@ -88,10 +98,12 @@ createActor(scene, fps, {
 }
 
 { // Z 1581 FONTEIN
-  const sX = 4, sY = 17, sW = 1910, sH = 636, w = 80;
+  const sX = 4*PREVIEW_SCALE, sY = 17*PREVIEW_SCALE, sW = 1910*PREVIEW_SCALE, sH = 636*PREVIEW_SCALE, w = 80;
   createFacade({
     sX, sY, sW, sH, x: 50, z: 50, w, h: w * (sH / sW),
-    img: 'plstmichel/parijs-z-1581.jpg', rotateY: Math.PI,
+    rotateY: Math.PI,
+    // img: 'plstmichel/parijs-z-1581.jpg',
+    vrid: '1581_preview', vSc: 1, vt: [60, null], vKeys: [{t: 0, v: [0, 0]}],
   });
 }
 

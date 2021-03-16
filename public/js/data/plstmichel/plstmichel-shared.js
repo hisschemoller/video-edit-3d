@@ -5,6 +5,8 @@ import createActor from '../../app/actor.js';
 
 export const fps = 15;
 
+export const PREVIEW_SCALE = 0.25;
+
 export function getDefaultScene(lifespan, sceneNumber, hasAnimations) {
   const scene = {
     animations: [],

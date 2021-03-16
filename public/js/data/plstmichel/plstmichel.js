@@ -39,6 +39,14 @@ const data = {
       width: 480,
       height: 270,
     },
+    {
+      id: '1581_preview',
+      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1581_preview/&img=frame_#.png',
+      frames: 5486,
+      fps: 30,
+      width: 480,
+      height: 270,
+    },
   ],
   score: [
     sceneWalls,
