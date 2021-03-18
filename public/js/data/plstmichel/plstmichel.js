@@ -1,5 +1,5 @@
 import { fps, } from './plstmichel-shared.js';
-import sceneWalls from './plstmichel-walls.js';
+import sceneMain, { wallScenes } from './plstmichel-main.js';
 import sceneObjects from './plstmichel-objects.js';
 import sceneActors from './plstmichel-actors.js';
 
@@ -32,6 +32,14 @@ const data = {
       height: 360,
     },
     {
+      id: '1581_preview',
+      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1581_preview/&img=frame_#.png',
+      frames: 5486,
+      fps: 30,
+      width: 480,
+      height: 270,
+    },
+    {
       id: '1585_preview',
       url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1585_preview/&img=frame_#.png',
       frames: 3301,
@@ -40,16 +48,17 @@ const data = {
       height: 270,
     },
     {
-      id: '1581_preview',
-      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1581_preview/&img=frame_#.png',
-      frames: 5486,
+      id: '1600_preview',
+      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1600_preview/&img=frame_#.png',
+      frames: 9647,
       fps: 30,
       width: 480,
       height: 270,
     },
   ],
   score: [
-    sceneWalls,
+    sceneMain,
+    ...wallScenes,
     sceneObjects,
     // sceneActors,
   ],
