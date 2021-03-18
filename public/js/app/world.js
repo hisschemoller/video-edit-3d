@@ -107,8 +107,9 @@ export function getObjectByName(name) {
  * Create all 3D objects and populate the scene.
  * @param {Object} allData 
  * @param {Number} sceneIndex 
+ * @param {Number} position Time position within the main timeline, in seconds.
  */
-export function loadScene(allData, sceneIndex) {
+export function loadScene(allData, sceneIndex, position) {
   const sceneData = allData.score[sceneIndex];
 
   // preprocess: replace the custom extrude geometry data with regular data
@@ -186,8 +187,15 @@ export function loadScene(allData, sceneIndex) {
       for (let i = 0, n = model.animations.length; i < n; i++) {
         const animationAction = mixer.clipAction(model.animations[i]);
         animationAction.setLoop(sceneData.animations[i].loop);
+
+        // If this is the first scene skip the animation to the given position,
+        // because scenes might have been temporary skipped while developing.
+        if (sceneIndex === 0) {
+          animationAction.time = position; // seconds, set time to start from
+        }
+        
         animationAction.play();
-        // console.log('clipAction', animationAction);
+        // console.log('animationAction', animationAction);
       }
       
       mixers.push([mixer, sceneData.clipId]);

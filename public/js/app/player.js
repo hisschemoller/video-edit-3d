@@ -40,7 +40,14 @@ export function setup(config) {
 }
 
 async function setupWithData(dataSource, config) {
-  const { isCapture, startScene = 0, } = config;
+  const {
+    captureThrottle = 1,
+    isCapture,
+    startSceneIndex = 0,
+    startSceneName = undefined,
+    scenesToNotSkip = [],
+  } = config;
+
   data = dataSource;
   data.score = sortScoreByLifespanStart(data.score);
   data.score = convertToMilliseconds(data.score);
@@ -58,21 +65,36 @@ async function setupWithData(dataSource, config) {
     captureThrottle = config.captureThrottle || 1;
   }
 
-  // skip to scene by index
-  skipToScene(startScene);
-
+  // skip to scene by index or name
+  if (startSceneIndex > 0) {
+    skipToSceneByIndex(startSceneIndex, scenesToNotSkip);
+  } else if (startSceneName) {
+    skipToSceneByName(startSceneName, scenesToNotSkip);
+  }
+  
   await setupWorld(data);
 
   checkForNextScene(position);
   requestAnimationFrame(isCapture ? capture : run);
 }
 
-function skipToScene(sceneIndex) {
+function skipToSceneByIndex(sceneIndex, scenesToNotSkip) {
   if (data.score.length) {
-    data.score.splice(0, sceneIndex);
-    position = data.score[0].lifespan[0];
+    position = data.score[sceneIndex].lifespan[0];
     origin = performance.now() - position;
-    data.camera.position[2] = data.camera.position[2] + ((position / 1000) * data.settings.fps * data.camera.speed);
+    let i = sceneIndex;
+    while (--i >= 0) {
+      if (scenesToNotSkip.indexOf(data.score[i].object.name) === -1) {
+        data.score.splice(i, 1);
+      }
+    }
+  }
+}
+
+function skipToSceneByName(sceneName, scenesToNotSkip) {
+  if (data.score.length) {
+    const sceneIndex = data.score.findIndex(scene => scene.object.name === sceneName);
+    skipToSceneByIndex(sceneIndex, scenesToNotSkip);
   }
 }
 
@@ -152,7 +174,7 @@ function checkForNextScene(position) {
         scenes.sort((a, b) => a.lifespan[1] - b.lifespan[1]);
 
         // create the scene's objects
-        loadWorldScene(data, i);
+        loadWorldScene(data, i, position / 1000);
       } else {
 
         // not yet time for the next scene

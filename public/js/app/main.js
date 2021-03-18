@@ -14,11 +14,13 @@ import dataPlstmichel from '../data/plstmichel/plstmichel.js';
 // import dataLockedGroove3 from '../data/locked-groove-3.js';
 // import dataTestSvg from '../data/test-svg.js';
 
-// const hiResData = convertPreviewToHiRes(dataMatthaikirchplatz);
+// const hiResData = convertPreviewToHiRes(dataPlstmichel);
 
 setup({
   data: dataPlstmichel,
   isCapture: false,
-  startScene: 0,
+  // startSceneIndex: 0,
+  // startSceneName: 'scene_walls2',
+  // scenesToNotSkip: ['scene_main', 'scene_objects'],
   captureThrottle: 15,
 });
