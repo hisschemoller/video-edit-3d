@@ -172,7 +172,7 @@ export function loadScene(allData, sceneIndex, position) {
         // let directionallight follow the camera path.
         const directionalLight = scene.getObjectByName('directionalLight');
         const lightTarget = scene.getObjectByName('lightTarget');
-        directionalLight.position.copy(new Vector3(5, 10, -8));
+        directionalLight.position.copy(new Vector3(-5, 10, -8));
         cameraParent.add(directionalLight);
         cameraParent.add(lightTarget);
       }

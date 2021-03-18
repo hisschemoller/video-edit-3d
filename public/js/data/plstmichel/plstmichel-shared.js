@@ -7,7 +7,7 @@ export const fps = 15;
 
 export const PREVIEW_SCALE = 0.25;
 
-export function getDefaultScene(lifespan, sceneNumber, hasAnimations) {
+export function getDefaultScene(lifespan, sceneId, hasAnimations) {
   const scene = {
     animations: [],
     assets: {},
@@ -31,8 +31,8 @@ export function getDefaultScene(lifespan, sceneNumber, hasAnimations) {
     },
     object: {
       type: 'Group',
-      name: `scene${sceneNumber}`,
-      uuid: `scene${sceneNumber}`,
+      name: `scene_${sceneId}`,
+      uuid: `scene_${sceneId}`,
       children: [],
     },
     textures: [],
