@@ -71,6 +71,8 @@ export async function setup(data) {
  */
 export function destroyScene(allData, sceneId) {
   const sceneData = allData.score.find(scene => scene.clipId === sceneId);
+
+  // recursively get the names of all objects in the scene
   const getObjectNamesInScene = (objData, arr) => {
     const { children = [], name } = objData;
     arr.push(name);

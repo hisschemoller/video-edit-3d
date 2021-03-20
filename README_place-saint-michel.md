@@ -100,3 +100,7 @@ ffmpeg -i videos_placesaintmichel/IMG_1581.mov -vf "rotate=-0.8*PI/180" -vcodec 
 ffmpeg -i videos_placesaintmichel/IMG_1581r.mp4 frames_placesaintmichel/1581/frame_%05d.png
 ffmpeg -i videos_placesaintmichel/IMG_1581r.mp4 -vf scale=480:-1 videos_placesaintmichel/IMG_1581r_preview.mp4
 ffmpeg -i videos_placesaintmichel/IMG_1581r_preview.mp4 frames_placesaintmichel/1581_preview/frame_%05d.png
+
+ffmpeg -i videos_placesaintmichel/IMG_1578.MOV frames_placesaintmichel/1578/frame_%05d.png
+ffmpeg -i videos_placesaintmichel/IMG_1578.MOV -vf scale=480:-1 videos_placesaintmichel/IMG_1578_preview.mp4
+ffmpeg -i videos_placesaintmichel/IMG_1578_preview.mp4 frames_placesaintmichel/1578_preview/frame_%05d.png

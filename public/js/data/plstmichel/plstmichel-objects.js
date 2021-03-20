@@ -2,7 +2,7 @@ import { uuidv4, } from '../../app/util.js';
 import createActor from '../../app/actor.js';
 import { getDefaultScene, getMatrix, fps, } from './plstmichel-shared.js';
 
-const scene = getDefaultScene([0, 180], 'objects', false);
+const scene = getDefaultScene([0, 320], 'objects', false);
 const modelFile = 'plstmichel.glb';
 
 // PAAL
