@@ -1,5 +1,6 @@
 import { fps, } from './plstmichel-shared.js';
 import sceneMain, { wallScenes } from './plstmichel-main.js';
+import sceneActors1 from './plstmichel-actors1.js';
 import sceneObjects from './plstmichel-objects.js';
 import sceneActors from './plstmichel-actors.js';
 
@@ -100,6 +101,7 @@ const data = {
     sceneMain,
     ...wallScenes,
     sceneObjects,
+    sceneActors1,
     // sceneActors,
   ],
 };
