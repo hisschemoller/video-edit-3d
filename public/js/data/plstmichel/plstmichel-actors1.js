@@ -27,18 +27,55 @@ export default scene;
 { // MAN VAN LINKS VLAKBIJ
   const actorStart = 10;
   createActor(scene, fps, {
-    geom: { w: 3, h: 3, d: 1 },
+    geom: { w: 2.5, h: 3, d: 1 },
     keys: [
-      { t:  0 + actorStart, v: [  33, 0, -10]},
-      { t:  8 + actorStart, v: [ 5, 0, -3]},
+      { t:  0 + actorStart, v: [  33, -3.1, -10]},
+      { t:  0.01 + actorStart, v: [  33, 0, -10]},
+      { t:  8 + actorStart, v: [ 8, 0, -3]},
     ],
     matrix: getMatrix({ ry: Math.PI * 0, }).elements,
     canvas: { offset: 0, scale: 512/9, size: 512 },
     vSc: 512/480,
-    vt: [106, 117],
+    vt: [106.5, 117.5],
     vKeys: [
       { t:  0 + actorStart, v: [ -200, 250]},
-      { t:  10 + actorStart, v: [ 750, 250]},
+      { t:  10 + actorStart, v: [ 800, 250]},
+    ],
+    vrid: '1581_preview',
+  });
+}
+
+{ // PAAR STIL LINKS
+  const actorStart = 0;
+  createActor(scene, fps, {
+    geom: { w: 3, h: 3, d: 0.5 },
+    keys: [
+      { t:  0 + actorStart, v: [  20, 0, 40]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 100, scale: 512/4, size: 512 },
+    vSc: 512/100,
+    vt: [10, 65],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 50, 192]},
+    ],
+    vrid: '1581_preview',
+  });
+}
+
+{ // PAAR STIL RECHTS
+  const actorStart = 0;
+  createActor(scene, fps, {
+    geom: { w: 3, h: 3, d: 0.5 },
+    keys: [
+      { t:  0 + actorStart, v: [  15, 0, -10]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 100, scale: 512/4, size: 512 },
+    vSc: 512/90,
+    vt: [30, 65],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 380, 192]},
     ],
     vrid: '1581_preview',
   });
