@@ -80,3 +80,24 @@ export default scene;
     vrid: '1581_preview',
   });
 }
+
+{ // VROUW VAN RECHTS
+  const actorStart = 20;
+  createActor(scene, fps, {
+    geom: { w: 2, h: 3, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [  6, -3.2, 8]},
+      { t:  0.01 + actorStart, v: [  6, 0, 8]},
+      { t:  8 + actorStart, v: [ 32, 0, 10]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 0, scale: 512/10, size: 512 },
+    vSc: 512/480,
+    vt: [56, 62],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 450, 270]},
+      { t:  6 + actorStart, v: [ -120, 270]},
+    ],
+    vrid: '1581_preview',
+  });
+}
