@@ -101,3 +101,23 @@ export default scene;
     vrid: '1581_preview',
   });
 }
+
+{ // VROUW VAN RECHTS 2
+  const actorStart = 30;
+  createActor(scene, fps, {
+    geom: { w: 2, h: 3, d: 1 },
+    keys: [
+      { t:  0.01 + actorStart, v: [ 3, 0, 30]},
+      { t:  12 + actorStart, v: [ 27, 0, 30]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 0, scale: 512/23, size: 512 },
+    vSc: 512/480,
+    vt: [36.5, 48],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 260, 180]},
+      { t:  12 + actorStart, v: [ -50, 180 ]},
+    ],
+    vrid: '1581_preview',
+  });
+}
