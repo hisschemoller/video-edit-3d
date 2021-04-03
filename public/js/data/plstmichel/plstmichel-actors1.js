@@ -1,8 +1,44 @@
 import { getDefaultScene, getMatrix, fps, PREVIEW_SCALE, } from './plstmichel-shared.js';
 import createActor from '../../app/actor.js';
 
-const scene = getDefaultScene([0, 320], 'actors1', true);
+const scene = getDefaultScene([0, 48 ], 'actors1', true);
 export default scene;
+
+{ // PAAR STIL LINKS
+  const actorStart = 0;
+  createActor(scene, fps, {
+    geom: { w: 3, h: 3, d: 0.5 },
+    keys: [
+      { t:  0 + actorStart, v: [  20, 0, 40]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 100, scale: 512/4, size: 512 },
+    vSc: 512/100,
+    vt: [10, 65],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 50, 192]},
+    ],
+    vrid: '1581_preview',
+  });
+}
+
+{ // PAAR STIL RECHTS
+  const actorStart = 0;
+  createActor(scene, fps, {
+    geom: { w: 3, h: 3, d: 0.5 },
+    keys: [
+      { t:  0 + actorStart, v: [  15, 0, -10]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 100, scale: 512/4, size: 512 },
+    vSc: 512/90,
+    vt: [30, 65],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 380, 192]},
+    ],
+    vrid: '1581_preview',
+  });
+}
 
 { // MAN EN VROUW VAN RECHTS
   const actorStart = 0;
@@ -45,37 +81,21 @@ export default scene;
   });
 }
 
-{ // PAAR STIL LINKS
-  const actorStart = 0;
+{ // VROUW VAN RECHTS 3
+  const actorStart = 15;
   createActor(scene, fps, {
-    geom: { w: 3, h: 3, d: 0.5 },
+    geom: { w: 2, h: 3, d: 0.5 },
     keys: [
-      { t:  0 + actorStart, v: [  20, 0, 40]},
+      { t:  0 + actorStart, v: [ 10, -3.5, 5]},
+      { t:  0.01 + actorStart, v: [ 10, 0, 5]},
+      { t:  19 + actorStart, v: [ 27, 0, 25]},
     ],
-    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
-    canvas: { offset: 100, scale: 512/4, size: 512 },
-    vSc: 512/100,
-    vt: [10, 65],
+    canvas: { offset: 0, scale: 512/23, size: 512 },
+    vSc: 512/480,
+    vt: [72, 91],
     vKeys: [
-      { t:  0 + actorStart, v: [ 50, 192]},
-    ],
-    vrid: '1581_preview',
-  });
-}
-
-{ // PAAR STIL RECHTS
-  const actorStart = 0;
-  createActor(scene, fps, {
-    geom: { w: 3, h: 3, d: 0.5 },
-    keys: [
-      { t:  0 + actorStart, v: [  15, 0, -10]},
-    ],
-    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
-    canvas: { offset: 100, scale: 512/4, size: 512 },
-    vSc: 512/90,
-    vt: [30, 65],
-    vKeys: [
-      { t:  0 + actorStart, v: [ 380, 192]},
+      { t:  0 + actorStart, v: [ 400, 187], a: 0.8},
+      { t:  19 + actorStart, v: [ 60, 187 ]},
     ],
     vrid: '1581_preview',
   });
@@ -107,6 +127,7 @@ export default scene;
   createActor(scene, fps, {
     geom: { w: 2, h: 3, d: 1 },
     keys: [
+      { t:  0 + actorStart, v: [ 3, -3.2, 30]},
       { t:  0.01 + actorStart, v: [ 3, 0, 30]},
       { t:  12 + actorStart, v: [ 27, 0, 30]},
     ],
@@ -117,6 +138,70 @@ export default scene;
     vKeys: [
       { t:  0 + actorStart, v: [ 260, 180]},
       { t:  12 + actorStart, v: [ -50, 180 ]},
+    ],
+    vrid: '1581_preview',
+  });
+}
+
+{ // STEL VAN RECHTS
+  const actorStart = 20;
+  createActor(scene, fps, {
+    geom: { w: 2, h: 3, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [ 0, -3.5, 18]},
+      { t:  0.01 + actorStart, v: [ 0, 0, 18]},
+      { t:  21 + actorStart, v: [ 27, 0, 36]},
+      { t:  21.01 + actorStart, v: [ 27, -3.5, 36]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 0, scale: 512/25, size: 512 },
+    vSc: 512/480,
+    vt: [64, 85],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 320, 180], a: -0.8},
+      { t:  21 + actorStart, v: [ -30, 180 ]},
+    ],
+    vrid: '1581_preview',
+  });
+}
+
+{ // MAN VAN LINKS GYMSCHOENEN
+  const actorStart = 18;
+  createActor(scene, fps, {
+    geom: { w: 2.5, h: 3, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [  32, -3.5, 6]},
+      { t:  0.01 + actorStart, v: [  32, 0, 6]},
+      { t:  14 + actorStart, v: [ 10, 0, 15]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 0, scale: 512/16, size: 512 },
+    vSc: 512/480,
+    vt: [94, 108],
+    vKeys: [
+      { t:  0 + actorStart, v: [ -50, 210], a: 0.85},
+      { t:  14 + actorStart, v: [ 370, 210]},
+    ],
+    vrid: '1581_preview',
+  });
+}
+
+{ // VROUW VAN LINKS DICHTBIJ
+  const actorStart = 6;
+  createActor(scene, fps, {
+    geom: { w: 2.5, h: 3, d: 0.5 },
+    keys: [
+      { t:  0.01 + actorStart, v: [ 30, -3.5, -17]},
+      { t:  0.01 + actorStart, v: [ 30, 0, -17]},
+      { t:  6 + actorStart, v: [ 10, 0, -14 ]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 0, scale: 512/10, size: 512 },
+    vSc: 512/480,
+    vt: [168, 174],
+    vKeys: [
+      { t:  0 + actorStart, v: [ -100, 260]},
+      { t:  6 + actorStart, v: [ 500, 260]},
     ],
     vrid: '1581_preview',
   });
