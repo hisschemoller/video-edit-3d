@@ -20,7 +20,7 @@ setup({
   data: dataPlstmichel,
   isCapture: false,
   // startSceneIndex: 0,
-  // startSceneName: 'scene_walls19',
-  // scenesToNotSkip: ['scene_main', 'scene_objects'],
+  startSceneName: 'scene_walls3',
+  scenesToNotSkip: ['scene_main', 'scene_objects'],
   captureThrottle: 15,
 });
