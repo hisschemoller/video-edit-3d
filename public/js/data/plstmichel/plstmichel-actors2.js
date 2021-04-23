@@ -11,13 +11,13 @@ export default scene;
 { // MAN ALPINOPET VOOR STOPLICHT
   const actorStart = 0;
   createActor(scene, fps, {
-    geom: { w: 2, h: 4, d: 1 },
+    geom: { w: 2, h: 4, d: 3 },
     keys: [
       { t:  0 + actorStart, v: [  43, 0, 30]},
     ],
     matrix: getMatrix({ ry: Math.PI * 0, }).elements,
-    canvas: { offset: 100, scale: 512/6, size: 512 },
-    vSc: 512/100,
+    canvas: { offset: 150, scale: 512/7, size: 512 },
+    vSc: 512/120,
     vt: [42, 62],
     vKeys: [
       { t:  0 + actorStart, v: [ 290, 190]},
@@ -47,3 +47,40 @@ export default scene;
   });
 }
 
+{ // MUUR NOTRE DAME VERKEER
+  const actorStart = 0;
+  createActor(scene, fps, {
+    geom: { w: 20, h: 4, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [ 30, 0, 0]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 100, scale: 512/25, size: 512 },
+    vSc: 512/440,
+    vt: [20, 90],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 0, 220]},
+    ],
+    vrid: '1628_preview',
+  });
+}
+
+{ // GROENE FIETS VAN LINKS
+  const actorStart = 9;
+  createActor(scene, fps, {
+    geom: { w: 3, h: 3, d: 1 },
+    keys: [
+      { t:  0.01 + actorStart, v: [  24, 0, 15]},
+      { t:  6 + actorStart, v: [  60, 0, 14]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 1, }).elements,
+    canvas: { offset: 100, scale: 512/7, size: 512 },
+    vSc: 512/250,
+    vt: [65, 71],
+    vKeys: [
+      { t:  0 + actorStart, v: [ -100, 260]},
+      { t:  6 + actorStart, v: [ 700, 260]},
+    ],
+    vrid: '1628_preview',
+  });
+}
