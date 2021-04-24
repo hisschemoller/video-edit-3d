@@ -84,3 +84,23 @@ export default scene;
     vrid: '1628_preview',
   });
 }
+
+{ // SKATEBOARDER VAN RECHTS
+  const actorStart = 13;
+  createActor(scene, fps, {
+    geom: { w: 3, h: 3, d: 0.5 },
+    keys: [
+      { t:  0.01 + actorStart, v: [  55, 0, 10]},
+      { t:  6 + actorStart, v: [  25, 0, 10]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 1, }).elements,
+    canvas: { offset: 100, scale: 512/10, size: 512 },
+    vSc: 512/250,
+    vt: [82.3, 89.3],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 600, 225]},
+      { t:  6 + actorStart, v: [ -100, 225]},
+    ],
+    vrid: '1628_preview',
+  });
+}
