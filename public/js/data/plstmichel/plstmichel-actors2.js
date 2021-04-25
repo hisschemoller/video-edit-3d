@@ -57,7 +57,7 @@ export default scene;
     matrix: getMatrix({ ry: Math.PI * 0, }).elements,
     canvas: { offset: 100, scale: 512/25, size: 512 },
     vSc: 512/440,
-    vt: [20, 90],
+    vt: [20, 20 + 34],
     vKeys: [
       { t:  0 + actorStart, v: [ 0, 220]},
     ],

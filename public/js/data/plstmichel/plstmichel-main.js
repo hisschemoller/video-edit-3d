@@ -32,6 +32,7 @@ let wallScene, start = 0, end = 0, duration;
 const o = {
   fountain1581Start: 0,
   gilbertJeune1600Start: 0,
+  seine1583Start: 0,
 };
 
 o.fountain1581Start = 0;
@@ -81,15 +82,16 @@ create1628NotreDame(wallScene, fps);
 create1579QuaiDuMarcheNeuf(wallScene, fps);
 create1579QuaiDuMarcheNeufCorner(wallScene, fps);
 create1585QuaiDesOrfevres(wallScene, fps);
-create1583Seine(wallScene, fps);
+create1583Seine(wallScene, fps, o.seine1583Start);
 create1584BusStop(wallScene, fps);
 create1584GreenGate(wallScene, fps);
 wallScenes.push(wallScene);
 
+o.seine1583Start = 90;
 advanceVideoTimes(119.93148360809344, []);
 wallScene = getDefaultScene([start, end], 'walls6', false);
 create1585QuaiDesOrfevres(wallScene, fps);
-create1583Seine(wallScene, fps);
+create1583Seine(wallScene, fps, o.seine1583Start);
 create1584BusStop(wallScene, fps);
 create1584GreenGate(wallScene, fps);
 wallScenes.push(wallScene);
@@ -287,11 +289,13 @@ export function create1579QuaiDuMarcheNeuf(scene, fps) {
 }
 
 // O 1583 HOEK OOST MET SEINE
-export function create1583Seine(scene, fps) {
-  const sX = 270, sY = 0, sW = 1450, sH = 620, w = 60;
+export function create1583Seine(scene, fps, videoStart = 0) {
+  const sX = 270*PREVIEW_SCALE, sY = 0*PREVIEW_SCALE, sW = 1450*PREVIEW_SCALE, sH = 620*PREVIEW_SCALE, w = 60;
   createFacade(scene, fps, {
     sX, sY, sW, sH, x: -50, z: 20, w, h: 25.8,
-    img: 'plstmichel/parijs-o-1583.jpg', rotateY: Math.PI * 0.5,
+    rotateY: Math.PI * 0.5,
+    // img: 'plstmichel/parijs-o-1583.jpg',
+    vrid: '1583_preview', vSc: 1, vt: [videoStart, null], vKeys: [{t: 0, v: [0, 0]}],
   });
 }
 
