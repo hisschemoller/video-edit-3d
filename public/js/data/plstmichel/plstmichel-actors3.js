@@ -87,3 +87,23 @@ export default scene;
     vrid: '1584_preview',
   });
 }
+
+{ // SNELLE AUTO VAN RECHTS
+  const actorStart = 0;
+  createActor(scene, fps, {
+    geom: { w: 1, h: 3, d: 7 },
+    keys: [
+      { t:  0 + actorStart, v: [  5, 0, -12]},
+      { t:  3.2 + actorStart, v: [  5, 0, 40]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 100, scale: 512/9, size: 512 },
+    vSc: 512/320,
+    vt: [0.5, 4],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 400, 225]},
+      { t:  3.2 + actorStart, v: [ -800, 225]},
+    ],
+    vrid: '1584_preview',
+  });
+}
