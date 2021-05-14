@@ -42,7 +42,7 @@ export function createCanvasTexture(data) {
   canvasEl.height = height;
 
   const ctx = canvasEl.getContext('2d');
-  ctx.fillStyle = '#ffffcc';
+  ctx.fillStyle = '#6c645f';
   ctx.fillRect(0, 0, width, height);
 
   const texture = new Texture(canvasEl);

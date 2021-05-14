@@ -4,6 +4,11 @@
   margin: 0;
 }
 
+html, body {
+  background-color: #333;
+  color: #ccc;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -17,13 +22,17 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-  background-color: #ddd;
   margin: 0;
 	padding: 0;
 	border: 0;
 	font-size: 100%;
 	font-family: sans-serif;
 	vertical-align: baseline;
+}
+button {
+  background: #333;
+  border: 1px solid #666;
+  color: #ccc;
 }
 .display {
   background-color: #eee;

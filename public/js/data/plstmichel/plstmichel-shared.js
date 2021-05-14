@@ -3,7 +3,7 @@ import { uuidv4, } from '../../app/util.js';
 import createActor from '../../app/actor.js';
 
 
-export const fps = 15;
+export const fps = 10;
 
 export const PREVIEW_SCALE = 0.25;
 

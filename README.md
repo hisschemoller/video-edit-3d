@@ -291,10 +291,17 @@ Convert PNG image sequence to MP4.
 ```
 ffmpeg -framerate 30 -i tmp/frame_%05d.png -c:v libx264 -crf 19 -preset slow -c:a aac -b:a 192k -ac 2 output.mp4
 ```
+
 Convert PNG image sequence to MP4. This one works in Quicktime.
 
 ```
 ffmpeg -framerate 30 -i tmp/frame_%05d.png -f mp4 -vcodec libx264 -pix_fmt yuv420p output.mp4
+```
+
+Create video from image sequence with a pause between each image. -r 1.0 is one second per image, -t 31 is total video duration in seconds.
+
+```
+ffmpeg -loop 1 -f image2 -r 1.0 -i spui_%03d.jpg -c:v libx264 -pix_fmt yuv420p -tune stillimage -r 5 -t 41 -y output.mp4
 ```
 
 Convert MOV to MP4, lossless.
