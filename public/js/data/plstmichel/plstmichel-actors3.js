@@ -107,3 +107,65 @@ export default scene;
     vrid: '1584_preview',
   });
 }
+
+{ // FIETSER VAN RECHTS
+  const actorStart = 5;
+  createActor(scene, fps, {
+    geom: { w: 1, h: 3, d: 3.5 },
+    keys: [
+      { t:  0 + actorStart, v: [  2, -3.5, -7.5]},
+      { t:  0.001 + actorStart, v: [  2, 0, -7.5]},
+      { t:  4 + actorStart, v: [  2, 0, 20]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 100, scale: 512/9, size: 512 },
+    vSc: 512/320,
+    vt: [49, 54],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 440, 225]},
+      { t:  5 + actorStart, v: [ -1100, 225]},
+    ],
+    vrid: '1584_preview',
+  });
+}
+
+{ // SNELLE AUTO VAN RECHTS 2
+  const actorStart = 8;
+  createActor(scene, fps, {
+    geom: { w: 1, h: 3, d: 7 },
+    keys: [
+      { t:  0 + actorStart, v: [  -3, 0, -14]},
+      { t:  3.2 + actorStart, v: [  -3, 0, 42]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 100, scale: 512/10, size: 512 },
+    vSc: 512/400,
+    vt: [62.4, 66.4],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 400, 240]},
+      { t:  3.2 + actorStart, v: [ -900, 225]},
+    ],
+    vrid: '1584_preview',
+  });
+}
+
+{ // SNELLE AUTO VAN RECHTS 3
+  const actorStart = 9.5;
+  createActor(scene, fps, {
+    geom: { w: 1, h: 3, d: 7 },
+    keys: [
+      { t:  0 + actorStart, v: [  -5, -3.5, -11]},
+      { t:  0.001 + actorStart, v: [  -5, 0, -11]},
+      { t:  3.2 + actorStart, v: [  -5, 0, 30]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 100, scale: 512/10, size: 512 },
+    vSc: 512/400,
+    vt: [67.3, 71.3],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 400, 240]},
+      { t:  3.2 + actorStart, v: [ -900, 225]},
+    ],
+    vrid: '1584_preview',
+  });
+}
