@@ -169,3 +169,45 @@ export default scene;
     vrid: '1584_preview',
   });
 }
+
+{ // FIETSER VAN RECHTS 2
+  const actorStart = 11;
+  createActor(scene, fps, {
+    geom: { w: 1, h: 3, d: 3.5 },
+    keys: [
+      { t:  0 + actorStart, v: [  -8, -3.5, -7.5]},
+      { t:  0.001 + actorStart, v: [  -8, 0, -7.5]},
+      { t:  4 + actorStart, v: [  -8, 0, 20]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 100, scale: 512/10, size: 512 },
+    vSc: 512/320,
+    vt: [83, 87],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 370, 215]},
+      { t:  5 + actorStart, v: [ -740, 215]},
+    ],
+    vrid: '1584_preview',
+  });
+}
+
+{ // SNELLE AUTO VAN RECHTS 4
+  const actorStart = 14.5;
+  createActor(scene, fps, {
+    geom: { w: 1, h: 3, d: 7 },
+    keys: [
+      { t:  0 + actorStart, v: [  -16, -3.5, -7]},
+      { t:  0.001 + actorStart, v: [  -16, 0, -7]},
+      { t:  5 + actorStart, v: [  -16, 0, 15]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 100, scale: 512/10, size: 512 },
+    vSc: 512/120,
+    vt: [46, 51],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 480, 160]},
+      { t:  5 + actorStart, v: [ -100, 160]},
+    ],
+    vrid: '1583_preview',
+  });
+}
