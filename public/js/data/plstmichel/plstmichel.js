@@ -4,6 +4,7 @@ import sceneActors1 from './plstmichel-actors1.js';
 import sceneActors2 from './plstmichel-actors2.js';
 import sceneActors3 from './plstmichel-actors3.js';
 import sceneActors4 from './plstmichel-actors4.js';
+import sceneActors5 from './plstmichel-actors5.js';
 import sceneObjects from './plstmichel-objects.js';
 import sceneActors from './plstmichel-actors.js';
 
@@ -92,6 +93,14 @@ const data = {
       height: 270,
     },
     {
+      id: '1602_preview',
+      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1602_preview/&img=frame_#.png',
+      frames: 6392,
+      fps: 30,
+      width: 480,
+      height: 270,
+    },
+    {
       id: '1628_preview',
       url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1628_preview/&img=frame_#.png',
       frames: 5231,
@@ -108,6 +117,7 @@ const data = {
     sceneActors2,
     sceneActors3,
     sceneActors4,
+    sceneActors5,
     // sceneActors,
   ],
 };
