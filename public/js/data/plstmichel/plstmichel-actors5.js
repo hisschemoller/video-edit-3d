@@ -87,3 +87,47 @@ export default scene;
     vrid: '1602_preview',
   });
 }
+
+{ // DRIE VAN LINKS NAAR RECHTS
+  const actorStart = 4;
+  createActor(scene, fps, {
+    geom: { w: 4, h: 2.6, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [ -5, -3, -30]},
+      { t:  0.0001 + actorStart, v: [ -5, 0, -30]},
+      { t: 16 + actorStart, v: [ -0, 0, 0]},
+      { t: 16.0001 + actorStart, v: [ -0, -3, 0]},
+    ],
+    canvas: { offset: 0, scale: 512/24, size: 512 },
+    rotateY: Math.PI * -0.5,
+    vSc: 512/480,
+    vt: [27, 43],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 0, 185 ]},
+      { t: 16 + actorStart, v: [ 460, 185 ]},
+    ],
+    vrid: '1582_preview',
+  });
+}
+
+{ // VROUW GROENE JAS NAAR RECHTS
+  const actorStart = 10;
+  createActor(scene, fps, {
+    geom: { w: 2, h: 2.8, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [ 5, -3, -22]},
+      { t:  0.0001 + actorStart, v: [ 5, 0, -22]},
+      { t: 17 + actorStart, v: [ 5, 0, 0]},
+      { t: 17.0001 + actorStart, v: [ 5, -3, 0]},
+    ],
+    canvas: { offset: 0, scale: 512/31, size: 512 },
+    rotateY: Math.PI * -0.5,
+    vSc: 512/480,
+    vt: [89, 106],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 0, 175 ]},
+      { t: 17 + actorStart, v: [ 510, 185 ]},
+    ],
+    vrid: '1582_preview',
+  });
+}

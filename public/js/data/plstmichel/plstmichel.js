@@ -61,6 +61,14 @@ const data = {
       height: 270,
     },
     {
+      id: '1582_preview',
+      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1582_preview/&img=frame_#.png',
+      frames: 4905,
+      fps: 30,
+      width: 480,
+      height: 270,
+    },
+    {
       id: '1583_preview',
       url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1583_preview/&img=frame_#.png',
       frames: 6523,
