@@ -131,3 +131,66 @@ export default scene;
     vrid: '1582_preview',
   });
 }
+
+{ // FIETSER NAAR RECHTS
+  const actorStart = 28;
+  createActor(scene, fps, {
+    geom: { w: 3.6, h: 3.2, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [ 20, -3.5, -28]},
+      { t:  0.0001 + actorStart, v: [ 20, 0, -28]},
+      { t: 11 + actorStart, v: [ 20, 0, 18]},
+    ],
+    canvas: { offset: 0, scale: 512/26, size: 512 },
+    rotateY: Math.PI * -0.5,
+    vSc: 512/480,
+    vt: [16, 27],
+    vKeys: [
+      { t:  0 + actorStart, v: [ -10, 180 ]},
+      { t: 11 + actorStart, v: [ 570, 195 ]},
+    ],
+    vrid: '1582_preview',
+  });
+}
+
+{ // MAN NAAR LINKS
+  const actorStart = 5;
+  createActor(scene, fps, {
+    geom: { w: 2, h: 2.8, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [ -5, 0, -5]},
+      { t: 13 + actorStart, v: [ -5, 0, -18]},
+      { t: 13.0001 + actorStart, v: [ -5, -3, -18]},
+    ],
+    canvas: { offset: 0, scale: 512/31, size: 512 },
+    rotateY: Math.PI * -0.5,
+    vSc: 512/480,
+    vt: [42, 55],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 510, 180 ]},
+      { t: 13 + actorStart, v: [ 160, 180 ]},
+    ],
+    vrid: '1582_preview',
+  });
+}
+
+{ // BUS NAAR RECHTS
+  const actorStart = 32;
+  createActor(scene, fps, {
+    geom: { w: 12, h: 4, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [ 30, -5, -44]},
+      { t:  0.0001 + actorStart, v: [ 30, 0, -44]},
+      { t: 10 + actorStart, v: [ 30, 0, 30]},
+    ],
+    canvas: { offset: 0, scale: 512/20, size: 512 },
+    rotateY: Math.PI * -0.5,
+    vSc: 512/480,
+    vt: [90, 96],
+    vKeys: [
+      { t:  0 + actorStart, v: [ -380, 170 ]},
+      { t: 11 + actorStart, v: [ 1100, 170 ]},
+    ],
+    vrid: '1602_preview',
+  });
+}
