@@ -2,7 +2,7 @@ import { setup } from './player.js';
 import convertPreviewToHiRes from './hi-res.js';
 // import dataMatthaikirchplatz from '../data/matthaikirchplatz/matthaikirchplatz.js';
 // import dataMunchen from '../data/munchen/munchen.js';
-import dataPlstmichel from '../data/plstmichel/plstmichel.js';
+import dataPlaceSaintMichel from '../data/plstmichel/plstmichel.js';
 // import dataLeidseplein from '../data/leidseplein.js';
 // import dataTest from '../data/test.js';
 // import dataTest2 from '../data/test-2020-01-08.js';
@@ -14,13 +14,13 @@ import dataPlstmichel from '../data/plstmichel/plstmichel.js';
 // import dataLockedGroove3 from '../data/locked-groove-3.js';
 // import dataTestSvg from '../data/test-svg.js';
 
-// const hiResData = convertPreviewToHiRes(dataPlstmichel);
+// const hiResData = convertPreviewToHiRes(dataPlaceSaintMichel);
 
 setup({
-  data: dataPlstmichel,
+  data: dataPlaceSaintMichel, // hiResData,
   isCapture: false,
   // startSceneIndex: 0,
-  startSceneName: 'scene_actors5', // 'scene_walls6', // 'scene_walls7', // 'scene_walls3',
+  startSceneName: 'scene_actors6', // 'scene_walls6', // 'scene_walls7', // 'scene_walls3',
   scenesToNotSkip: ['scene_main', 'scene_objects'],
   captureThrottle: 15,
 });

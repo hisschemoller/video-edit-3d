@@ -5,6 +5,7 @@ import sceneActors2 from './plstmichel-actors2.js';
 import sceneActors3 from './plstmichel-actors3.js';
 import sceneActors4 from './plstmichel-actors4.js';
 import sceneActors5 from './plstmichel-actors5.js';
+import sceneActors6 from './plstmichel-actors6.js';
 import sceneObjects from './plstmichel-objects.js';
 import sceneActors from './plstmichel-actors.js';
 
@@ -126,6 +127,7 @@ const data = {
     sceneActors3,
     sceneActors4,
     sceneActors5,
+    sceneActors6,
     // sceneActors,
   ],
 };

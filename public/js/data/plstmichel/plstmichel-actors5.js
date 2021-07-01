@@ -238,7 +238,8 @@ export default scene;
   createActor(scene, fps, {
     geom: { w: 2, h: 2.8, d: 1 },
     keys: [
-      { t:  0 + actorStart, v: [ 12, 0, 0 ]},
+      { t:  0 + actorStart, v: [ 12, -3, 0 ]},
+      { t:  0.0001 + actorStart, v: [ 12, 0, 0 ]},
       { t: 14 + actorStart, v: [ 12, 0, -18 ]},
     ],
     canvas: { offset: 0, scale: 512/28, size: 512 },
@@ -421,7 +422,7 @@ export default scene;
   });
 }
 
-{ // MAN ORANJE HESJE NAAR RECHTS
+{ // MAN GEEL HESJE NAAR RECHTS
   const actorStart = 32;
   createActor(scene, fps, {
     geom: { w: 2, h: 2.8, d: 1 },
