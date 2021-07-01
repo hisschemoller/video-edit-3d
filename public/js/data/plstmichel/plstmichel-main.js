@@ -122,6 +122,7 @@ create1585QuaiDesOrfevres(wallScene, fps);
 create1583Seine(wallScene, fps, o.seine1583Start);
 wallScenes.push(wallScene);
 
+// right left slalom towards Rue de la Huchette
 advanceVideoTimes(153.48865960886963, ['gilbertJeune1600Start']);
 wallScene = getDefaultScene([start, end], 'walls9', false);
 create1600GilbertJeune(wallScene, fps, o.gilbertJeune1600Start);
@@ -131,6 +132,7 @@ create1628NotreDame(wallScene, fps);
 create1579QuaiDuMarcheNeuf(wallScene, fps);
 wallScenes.push(wallScene);
 
+// straight towards Rue de la Huchette
 advanceVideoTimes(178.48865960886963, ['gilbertJeune1600Start']);
 wallScene = getDefaultScene([start, end], 'walls10', false);
 create1600GilbertJeune(wallScene, fps, o.gilbertJeune1600Start);
@@ -138,14 +140,16 @@ create1582RueDeLaHuchette(wallScene, fps);
 create1628QuaiSaintMichel(wallScene, fps);
 wallScenes.push(wallScene);
 
-advanceVideoTimes(188.15903051089296, []);
+// turn towards Dotre Dame
+advanceVideoTimes(197.5340305108929, []);
 wallScene = getDefaultScene([start, end], 'walls11', false);
 create1582RueDeLaHuchette(wallScene, fps);
 create1628QuaiSaintMichel(wallScene, fps);
 create1628NotreDame(wallScene, fps);
 wallScenes.push(wallScene);
 
-advanceVideoTimes(197.8294014129163, []);
+// turn towards east
+advanceVideoTimes(210.32940141291624, []);
 wallScene = getDefaultScene([start, end], 'walls12', false);
 create1628QuaiSaintMichel(wallScene, fps);
 create1628NotreDame(wallScene, fps);
@@ -156,73 +160,88 @@ create1583Seine(wallScene, fps);
 create1584BusStop(wallScene, fps);
 wallScenes.push(wallScene);
 
-advanceVideoTimes(210.3294014129163, []);
+// turn towards startpoint
+advanceVideoTimes(215.1645868639279, ['fountain1581Start']);
 wallScene = getDefaultScene([start, end], 'walls13', false);
+create1579QuaiDuMarcheNeuf(wallScene, fps);
 create1579QuaiDuMarcheNeufCorner(wallScene, fps);
-create1585QuaiDesOrfevres(wallScene, fps);
-create1583Seine(wallScene, fps);
-create1584BusStop(wallScene, fps);
-wallScenes.push(wallScene);
-
-advanceVideoTimes(229.67014321696297, ['fountain1581Start']);
-wallScene = getDefaultScene([start, end], 'walls14', false);
 create1585QuaiDesOrfevres(wallScene, fps);
 create1583Seine(wallScene, fps);
 create1584BusStop(wallScene, fps);
 create1584GreenGate(wallScene, fps);
 create1581Fountain(wallScene, fps, o.fountain1581Start);
-wallScenes.push(wallScene);
-
-advanceVideoTimes(248.42014321696297, ['fountain1581Start']);
-wallScene = getDefaultScene([start, end], 'walls15', false);
-create1584GreenGate(wallScene, fps);
-create1581Fountain(wallScene, fps, o.fountain1581Start);
-wallScenes.push(wallScene);
-
-advanceVideoTimes(258.0905141189863, ['fountain1581Start', 'gilbertJeune1600Start']);
-wallScene = getDefaultScene([start, end], 'walls16', false);
-create1581Fountain(wallScene, fps, o.fountain1581Start);
 create1600GilbertJeune(wallScene, fps, o.gilbertJeune1600Start);
 create1582RueDeLaHuchette(wallScene, fps);
 wallScenes.push(wallScene);
 
-advanceVideoTimes(267.76088502100964, ['fountain1581Start', 'gilbertJeune1600Start']);
-wallScene = getDefaultScene([start, end], 'walls17', false);
-create1581Fountain(wallScene, fps, o.fountain1581Start);
-create1600GilbertJeune(wallScene, fps, o.gilbertJeune1600Start);
-create1582RueDeLaHuchette(wallScene, fps);
-create1628QuaiSaintMichel(wallScene, fps);
-create1628NotreDame(wallScene, fps);
-create1579QuaiDuMarcheNeuf(wallScene, fps);
-create1579QuaiDuMarcheNeufCorner(wallScene, fps);
-create1585QuaiDesOrfevres(wallScene, fps);
-wallScenes.push(wallScene);
+// full route extra walls
+// advanceVideoTimes(210.3294014129163, []);
+// wallScene = getDefaultScene([start, end], 'walls13', false);
+// create1579QuaiDuMarcheNeufCorner(wallScene, fps);
+// create1585QuaiDesOrfevres(wallScene, fps);
+// create1583Seine(wallScene, fps);
+// create1584BusStop(wallScene, fps);
+// wallScenes.push(wallScene);
 
-advanceVideoTimes(292.76088502100964, []);
-wallScene = getDefaultScene([start, end], 'walls18', false);
-create1628QuaiSaintMichel(wallScene, fps);
-create1628NotreDame(wallScene, fps);
-create1579QuaiDuMarcheNeuf(wallScene, fps);
-create1579QuaiDuMarcheNeufCorner(wallScene, fps); 
-create1585QuaiDesOrfevres(wallScene, fps);
-wallScenes.push(wallScene);
+// advanceVideoTimes(229.67014321696297, ['fountain1581Start']);
+// wallScene = getDefaultScene([start, end], 'walls14', false);
+// create1585QuaiDesOrfevres(wallScene, fps);
+// create1583Seine(wallScene, fps);
+// create1584BusStop(wallScene, fps);
+// create1584GreenGate(wallScene, fps);
+// create1581Fountain(wallScene, fps, o.fountain1581Start);
+// wallScenes.push(wallScene);
 
-advanceVideoTimes(312.10162682505626, ['gilbertJeune1600Start']);
-wallScene = getDefaultScene([start, end], 'walls19', false);
-create1582RueDeLaHuchette(wallScene, fps);
-create1628QuaiSaintMichel(wallScene, fps);
-create1628NotreDame(wallScene, fps);
-create1579QuaiDuMarcheNeuf(wallScene, fps);
-create1579QuaiDuMarcheNeufCorner(wallScene, fps);
-create1585QuaiDesOrfevres(wallScene, fps);
-wallScenes.push(wallScene);
+// advanceVideoTimes(248.42014321696297, ['fountain1581Start']);
+// wallScene = getDefaultScene([start, end], 'walls15', false);
+// create1584GreenGate(wallScene, fps);
+// create1581Fountain(wallScene, fps, o.fountain1581Start);
+// wallScenes.push(wallScene);
 
-advanceVideoTimes(318.35162682505626, ['gilbertJeune1600Start']);
-wallScene = getDefaultScene([start, end], 'walls20', false);
-create1582RueDeLaHuchette(wallScene, fps);
-create1628QuaiSaintMichel(wallScene, fps);
-create1628NotreDame(wallScene, fps);
-wallScenes.push(wallScene);
+// advanceVideoTimes(258.0905141189863, ['fountain1581Start', 'gilbertJeune1600Start']);
+// wallScene = getDefaultScene([start, end], 'walls16', false);
+// create1581Fountain(wallScene, fps, o.fountain1581Start);
+// create1600GilbertJeune(wallScene, fps, o.gilbertJeune1600Start);
+// create1582RueDeLaHuchette(wallScene, fps);
+// wallScenes.push(wallScene);
+
+// advanceVideoTimes(267.76088502100964, ['fountain1581Start', 'gilbertJeune1600Start']);
+// wallScene = getDefaultScene([start, end], 'walls17', false);
+// create1581Fountain(wallScene, fps, o.fountain1581Start);
+// create1600GilbertJeune(wallScene, fps, o.gilbertJeune1600Start);
+// create1582RueDeLaHuchette(wallScene, fps);
+// create1628QuaiSaintMichel(wallScene, fps);
+// create1628NotreDame(wallScene, fps);
+// create1579QuaiDuMarcheNeuf(wallScene, fps);
+// create1579QuaiDuMarcheNeufCorner(wallScene, fps);
+// create1585QuaiDesOrfevres(wallScene, fps);
+// wallScenes.push(wallScene);
+
+// advanceVideoTimes(292.76088502100964, []);
+// wallScene = getDefaultScene([start, end], 'walls18', false);
+// create1628QuaiSaintMichel(wallScene, fps);
+// create1628NotreDame(wallScene, fps);
+// create1579QuaiDuMarcheNeuf(wallScene, fps);
+// create1579QuaiDuMarcheNeufCorner(wallScene, fps); 
+// create1585QuaiDesOrfevres(wallScene, fps);
+// wallScenes.push(wallScene);
+
+// advanceVideoTimes(312.10162682505626, ['gilbertJeune1600Start']);
+// wallScene = getDefaultScene([start, end], 'walls19', false);
+// create1582RueDeLaHuchette(wallScene, fps);
+// create1628QuaiSaintMichel(wallScene, fps);
+// create1628NotreDame(wallScene, fps);
+// create1579QuaiDuMarcheNeuf(wallScene, fps);
+// create1579QuaiDuMarcheNeufCorner(wallScene, fps);
+// create1585QuaiDesOrfevres(wallScene, fps);
+// wallScenes.push(wallScene);
+
+// advanceVideoTimes(318.35162682505626, ['gilbertJeune1600Start']);
+// wallScene = getDefaultScene([start, end], 'walls20', false);
+// create1582RueDeLaHuchette(wallScene, fps);
+// create1628QuaiSaintMichel(wallScene, fps);
+// create1628NotreDame(wallScene, fps);
+// wallScenes.push(wallScene);
 
 /**
  * Set video playback positions for a time section.
