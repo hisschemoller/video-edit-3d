@@ -233,6 +233,26 @@ export default scene;
   });
 }
 
+{ // JONGEN KOFFIEBEKER NAAR LINKS
+  const actorStart = 17;
+  createActor(scene, fps, {
+    geom: { w: 2, h: 2.8, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [ 12, 0, 0 ]},
+      { t: 14 + actorStart, v: [ 12, 0, -18 ]},
+    ],
+    canvas: { offset: 0, scale: 512/28, size: 512 },
+    rotateY: Math.PI * -0.5,
+    vSc: 512/480,
+    vt: [17, 31],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 460, 190 ], a: 0.2},
+      { t: 14 + actorStart, v: [ 40, 170 ]},
+    ],
+    vrid: '1582_preview',
+  });
+}
+
 { // FIETSER NAAR RECHTS
   const actorStart = 28;
   createActor(scene, fps, {
@@ -364,8 +384,8 @@ export default scene;
   createActor(scene, fps, {
     geom: { w: 4.5, h: 2.6, d: 1 },
     keys: [
-      { t: 0 + actorStart, v: [ 37, -3, 0]},
-      { t: 0.0001 + actorStart, v: [ 37, 0, 0]},
+      { t: 0 + actorStart, v: [ 37, -3, 4]},
+      { t: 0.0001 + actorStart, v: [ 37, 0, 4]},
       { t: 6 + actorStart, v: [ 37, 0, -30]},
     ],
     canvas: { offset: 0, scale: 512/25, size: 512 },
