@@ -68,3 +68,44 @@ export default scene;
     vrid: '1582_preview',
   });
 }
+
+{ // VROUW LICHTE JAS NAAR RECHTS
+  const actorStart = 9;
+  createActor(scene, fps, {
+    geom: { w: 1.6, h: 3, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [ 45, -3.5, -30]},
+      { t:  0.0001 + actorStart, v: [ 45, 0, -30]},
+      { t: 10 + actorStart, v: [ 45, 0, -10]},
+    ],
+    canvas: { offset: 50, scale: 512/38, size: 512 },
+    rotateY: Math.PI * -0.5,
+    vSc: 512/480,
+    vt: [106, 116],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 55, 170 ]},
+      { t: 10 + actorStart, v: [ 270, 170 ]},
+    ],
+    vrid: '1582_preview',
+  });
+}
+
+{ // TWEE VROUWEN MET ROLKOFFERS
+  const actorStart = 0;
+  createActor(scene, fps, {
+    geom: { w: 3, h: 3, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [ 47, 0, -28]},
+      { t: 20 + actorStart, v: [ 47, 0, -28]},
+    ],
+    canvas: { offset: 50, scale: 512/38 , size: 512 },
+    rotateY: Math.PI * -0.2,
+    vSc: 512/480,
+    vt: [107, 137],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 190, 170 ]},
+      { t: 20 + actorStart, v: [ 190, 170 ]},
+    ],
+    vrid: '1582_preview',
+  });
+}
