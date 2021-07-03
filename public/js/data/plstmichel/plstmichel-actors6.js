@@ -109,3 +109,145 @@ export default scene;
     vrid: '1582_preview',
   });
 }
+
+{ // VROUW OP FIETS NAAR RECHTS
+  const actorStart = 16;
+  createActor(scene, fps, {
+    geom: { w: 3, h: 3, d: 1 },
+    keys: [
+      { t: 0 + actorStart, v: [ 35, 0, -30]},
+      { t: 4 + actorStart, v: [ 50, 0, -30]},
+    ],
+    canvas: { offset: 50, scale: 512/14 , size: 512 },
+    rotateY: Math.PI * 1,
+    vSc: 512/480,
+    vt: [65, 69],
+    vKeys: [
+      { t: 0 + actorStart, v: [ -80, 250 ]},
+      { t: 4 + actorStart, v: [ 440, 250 ]},
+    ],
+    vrid: '1628_preview',
+  });
+}
+
+{ // MAN OP RACEFIETS NAAR RECHTS
+  const actorStart = 17;
+  createActor(scene, fps, {
+    geom: { w: 3, h: 3, d: 1 },
+    keys: [
+      { t: 0 + actorStart, v: [ 35, -3.5, -24]},
+      { t: 0.0001 + actorStart, v: [ 35, 0, -24]},
+      { t: 2 + actorStart, v: [ 50, 0, -24]},
+    ],
+    canvas: { offset: 50, scale: 512/14 , size: 512 },
+    rotateY: Math.PI * 1,
+    vSc: 512/480,
+    vt: [69.9, 71.9],
+    vKeys: [
+      { t: 0 + actorStart, v: [ -80, 250 ]},
+      { t: 2 + actorStart, v: [ 440, 250 ]},
+    ],
+    vrid: '1628_preview',
+  });
+}
+
+{ // MAN OP STEP NAAR RECHTS
+  const actorStart = 18;
+  createActor(scene, fps, {
+    geom: { w: 3, h: 3, d: 1 },
+    keys: [
+      { t: 0 + actorStart, v: [ 35, -3.5, -25]},
+      { t: 0.0001 + actorStart, v: [ 35, 0, -25]},
+      { t: 3 + actorStart, v: [ 50, 0, -25]},
+    ],
+    canvas: { offset: 50, scale: 512/14 , size: 512 },
+    rotateY: Math.PI * 1,
+    vSc: 512/480,
+    vt: [138, 141],
+    vKeys: [
+      { t: 0 + actorStart, v: [ -80, 250 ]},
+      { t: 3 + actorStart, v: [ 440, 250 ]},
+    ],
+    vrid: '1628_preview',
+  });
+}
+
+{ // FIETS NAAR RECHTS
+  const actorStart = 20;
+  createActor(scene, fps, {
+    geom: { w: 3, h: 3, d: 1 },
+    keys: [
+      { t: 0 + actorStart, v: [ 32, 0, -30]},
+      { t: 3 + actorStart, v: [ 48, 0, -30]},
+    ],
+    canvas: { offset: 50, scale: 512/16 , size: 512 },
+    rotateY: Math.PI * 1,
+    vSc: 512/480,
+    vt: [73.7, 76.7],
+    vKeys: [
+      { t: 0 + actorStart, v: [ -100, 240 ]},
+      { t: 3 + actorStart, v: [ 480, 240 ]},
+    ],
+    vrid: '1628_preview',
+  });
+}
+
+{ // MAN OVERKANT RODE JAS NAAR RECHTS
+  const actorStart = 18;
+  createActor(scene, fps, {
+    geom: { w: 2, h: 3.2, d: 1 },
+    keys: [
+      { t: 0 + actorStart, v: [ 22, 0, -48]},
+      { t: 9 + actorStart, v: [ 52.2, 0, -48]},
+    ],
+    canvas: { offset: 50, scale: 512/55 , size: 512 },
+    rotateY: Math.PI * 1,
+    vSc: 512/480,
+    vt: [61, 71],
+    vKeys: [
+      { t: 0 + actorStart, v: [ 115, 190 ]},
+      { t: 10 + actorStart, v: [ 285, 190 ]},
+    ],
+    vrid: '1628_preview',
+  });
+}
+
+{ // MAN OVERKANT SPIJKERBROEK NAAR RECHTS
+  const actorStart = 23;
+  createActor(scene, fps, {
+    geom: { w: 2, h: 3.2, d: 1 },
+    keys: [
+      { t: 0 + actorStart, v: [ 22, 0, -49]},
+      { t: 9 + actorStart, v: [ 50, 0, -49]},
+    ],
+    canvas: { offset: 50, scale: 512/55 , size: 512 },
+    rotateY: Math.PI * 1,
+    vSc: 512/480,
+    vt: [66, 76],
+    vKeys: [
+      { t: 0 + actorStart, v: [ 90, 190 ]},
+      { t: 10 + actorStart, v: [ 300, 190 ]},
+    ],
+    vrid: '1628_preview',
+  });
+}
+
+// { // MAN OVERKANT SPIJKERBROEK NAAR RECHTS
+//   const actorStart = 0;
+//   createActor(scene, fps, {
+//     geom: { w: 2, h: 3.2, d: 1 },
+//     keys: [
+//       { t: 0 + actorStart, v: [ 40, 0, -20]},
+//       { t: 10 + actorStart, v: [ 40, 0, -20]},
+//     ],
+//     canvas: { offset: 50, scale: 512/55 , size: 512 },
+//     rotateY: Math.PI * -0.5,
+//     vSc: 512/480,
+//     vt: [66, 76],
+//     vKeys: [
+//       { t: 0 + actorStart, v: [ 90, 190 ]},
+//       { t: 10 + actorStart, v: [ 300, 190 ]},
+//     ],
+//     vrid: '1628_preview',
+//   });
+// }
