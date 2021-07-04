@@ -232,21 +232,61 @@ export default scene;
   });
 }
 
-// { // MAN OVERKANT SPIJKERBROEK NAAR RECHTS
+{ // RODE AUTO NAAR LINKS
+  const actorStart = 20;
+  createActor(scene, fps, {
+    geom: { w: 5.5, h: 2.8, d: 1 },
+    keys: [
+      { t: 0 + actorStart, v: [ 55.6, 0, -38]},
+      { t: 3 + actorStart, v: [ 30, 0, -38]},
+    ],
+    canvas: { offset: 50, scale: 512/28 , size: 512 },
+    rotateY: Math.PI * 1,
+    vSc: 512/480,
+    vt: [81, 84],
+    vKeys: [
+      { t: 0 + actorStart, v: [ 470, 205 ]},
+      { t: 3 + actorStart, v: [ -170, 205 ]},
+    ],
+    vrid: '1628_preview',
+  });
+}
+
+{ // DONKERBLAUWE AUTO NAAR LINKS
+  const actorStart = 22;
+  createActor(scene, fps, {
+    geom: { w: 6.5, h: 2.8, d: 1 },
+    keys: [
+      { t: 0 + actorStart, v: [ 56.6, 0, -40]},
+      { t: 6 + actorStart, v: [ 30, 0, -40]},
+    ],
+    canvas: { offset: 50, scale: 512/28 , size: 512 },
+    rotateY: Math.PI * 1,
+    vSc: 512/480,
+    vt: [61, 67],
+    vKeys: [
+      { t: 0 + actorStart, v: [ 520, 205 ]},
+      { t: 6 + actorStart, v: [ -120, 205 ]},
+    ],
+    vrid: '1628_preview',
+  });
+}
+
+// { // DONKERBLAUWE AUTO NAAR LINKS
 //   const actorStart = 0;
 //   createActor(scene, fps, {
-//     geom: { w: 2, h: 3.2, d: 1 },
+//     geom: { w: 6.5, h: 2.8, d: 1 },
 //     keys: [
 //       { t: 0 + actorStart, v: [ 40, 0, -20]},
-//       { t: 10 + actorStart, v: [ 40, 0, -20]},
+//       { t: 6 + actorStart, v: [ 40, 0, -20]},
 //     ],
-//     canvas: { offset: 50, scale: 512/55 , size: 512 },
+//     canvas: { offset: 50, scale: 512/28 , size: 512 },
 //     rotateY: Math.PI * -0.5,
 //     vSc: 512/480,
-//     vt: [66, 76],
+//     vt: [61, 67],
 //     vKeys: [
-//       { t: 0 + actorStart, v: [ 90, 190 ]},
-//       { t: 10 + actorStart, v: [ 300, 190 ]},
+//       { t: 0 + actorStart, v: [ 520, 205 ]},
+//       { t: 6 + actorStart, v: [ -120, 205 ]},
 //     ],
 //     vrid: '1628_preview',
 //   });
