@@ -217,8 +217,8 @@ export default scene;
   createActor(scene, fps, {
     geom: { w: 2, h: 3.2, d: 1 },
     keys: [
-      { t: 0 + actorStart, v: [ 22, 0, -49]},
-      { t: 9 + actorStart, v: [ 50, 0, -49]},
+      { t: 0 + actorStart, v: [ 22, 0, -48]},
+      { t: 9 + actorStart, v: [ 50, 0, -48]},
     ],
     canvas: { offset: 50, scale: 512/55 , size: 512 },
     rotateY: Math.PI * 1,
@@ -272,21 +272,62 @@ export default scene;
   });
 }
 
-// { // DONKERBLAUWE AUTO NAAR LINKS
+{ // GROTE SCOOTER NAAR LINKS
+  const actorStart = 23;
+  createActor(scene, fps, {
+    geom: { w: 3.5, h: 2.8, d: 1 },
+    keys: [
+      { t: 0 + actorStart, v: [ 53.6, 0, -37]},
+      { t: 2 + actorStart, v: [ 34, 0, -37]},
+    ],
+    canvas: { offset: 50, scale: 512/34 , size: 512 },
+    rotateY: Math.PI * 1,
+    vSc: 512/480,
+    vt: [71, 73],
+    vKeys: [
+      { t: 0 + actorStart, v: [ 410, 200 ]},
+      { t: 2 + actorStart, v: [ -140, 200 ]},
+    ],
+    vrid: '1628_preview',
+  });
+}
+
+{ // STEP OVERKANT NAAR LINKS
+  const actorStart = 25;
+  createActor(scene, fps, {
+    geom: { w: 2.8, h: 2.8, d: 1 },
+    keys: [
+      { t: 0 + actorStart, v: [ 53, 0, -45]},
+      { t: 4 + actorStart, v: [ 28, 0, -45]},
+      { t: 4.0001 + actorStart, v: [ 28, -3, -45]},
+    ],
+    canvas: { offset: 50, scale: 512/38 , size: 512 },
+    rotateY: Math.PI * 1,
+    vSc: 512/480,
+    vt: [43, 47],
+    vKeys: [
+      { t: 0 + actorStart, v: [ 250, 196 ], a: -0.3},
+      { t: 4 + actorStart, v: [ -10, 196 ]},
+    ],
+    vrid: '1628_preview',
+  });
+}
+
+// { // GROTE SCOOTER NAAR LINKS
 //   const actorStart = 0;
 //   createActor(scene, fps, {
-//     geom: { w: 6.5, h: 2.8, d: 1 },
+//     geom: { w: 3.5, h: 2.8, d: 1 },
 //     keys: [
 //       { t: 0 + actorStart, v: [ 40, 0, -20]},
-//       { t: 6 + actorStart, v: [ 40, 0, -20]},
+//       { t: 2 + actorStart, v: [ 40, 0, -20]},
 //     ],
-//     canvas: { offset: 50, scale: 512/28 , size: 512 },
+//     canvas: { offset: 50, scale: 512/34 , size: 512 },
 //     rotateY: Math.PI * -0.5,
 //     vSc: 512/480,
-//     vt: [61, 67],
+//     vt: [71, 73],
 //     vKeys: [
-//       { t: 0 + actorStart, v: [ 520, 205 ]},
-//       { t: 6 + actorStart, v: [ -120, 205 ]},
+//       { t: 0 + actorStart, v: [ 410, 200 ]},
+//       { t: 2 + actorStart, v: [ -140, 200 ]},
 //     ],
 //     vrid: '1628_preview',
 //   });
