@@ -40,7 +40,7 @@ const data = {
     },
     {
       id: '1578',
-      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1578_preview/&img=frame_#.png',
+      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1578/&img=frame_#.png',
       frames: 5756,
       fps: 30,
       width: 1920,
@@ -56,7 +56,7 @@ const data = {
     },
     {
       id: '1579',
-      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1579_preview/&img=frame_#.png',
+      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1579/&img=frame_#.png',
       frames: 4351,
       fps: 30,
       width: 1920,
@@ -72,7 +72,7 @@ const data = {
     },
     {
       id: '1581',
-      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1581_preview/&img=frame_#.png',
+      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1581/&img=frame_#.png',
       frames: 5486,
       fps: 30,
       width: 1920,
@@ -88,7 +88,7 @@ const data = {
     },
     {
       id: '1582',
-      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1582_preview/&img=frame_#.png',
+      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1582/&img=frame_#.png',
       frames: 4905,
       fps: 30,
       width: 1920,
@@ -104,7 +104,7 @@ const data = {
     },
     {
       id: '1583',
-      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1583_preview/&img=frame_#.png',
+      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1583/&img=frame_#.png',
       frames: 6523,
       fps: 30,
       width: 1920,
@@ -120,7 +120,7 @@ const data = {
     },
     {
       id: '1584',
-      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1584_preview/&img=frame_#.png',
+      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1584/&img=frame_#.png',
       frames: 2560,
       fps: 30,
       width: 1920,
@@ -136,7 +136,7 @@ const data = {
     },
     {
       id: '1585',
-      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1585_preview/&img=frame_#.png',
+      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1585/&img=frame_#.png',
       frames: 3301,
       fps: 30,
       width: 1920,
@@ -152,7 +152,7 @@ const data = {
     },
     {
       id: '1600',
-      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1600_preview/&img=frame_#.png',
+      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1600/&img=frame_#.png',
       frames: 9647,
       fps: 30,
       width: 1920,
@@ -168,7 +168,7 @@ const data = {
     },
     {
       id: '1602',
-      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1602_preview/&img=frame_#.png',
+      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1602/&img=frame_#.png',
       frames: 6392,
       fps: 30,
       width: 1920,
@@ -184,7 +184,7 @@ const data = {
     },
     {
       id: '1628',
-      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1628_preview/&img=frame_#.png',
+      url: 'fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1628/&img=frame_#.png',
       frames: 5231,
       fps: 30,
       width: 1920,
