@@ -327,18 +327,18 @@ function createWorld(data) {
   // clock = new Clock();
 
   // GRID
-  const grid = new GridHelper(5, 5, 0xff0000, 0xff0000);
-  grid.position.set(0, 0, 0);
-  scene.add(grid);
+  // const grid = new GridHelper(5, 5, 0xff0000, 0xff0000);
+  // grid.position.set(0, 0, 0);
+  // scene.add(grid);
   
   // AXES
-  const axesHelper = new AxesHelper(10);
-  scene.add(axesHelper);
+  // const axesHelper = new AxesHelper(10);
+  // scene.add(axesHelper);
   
   // ORBIT CONTROL
-  const orbit = new OrbitControls(camera, renderer.domElement);
-  orbit.target = cameraTarget;
-  orbit.update();
+  // const orbit = new OrbitControls(camera, renderer.domElement);
+  // orbit.target = cameraTarget;
+  // orbit.update();
   
   // TRANSFORM CONTROL
   // const control = new TransformControls(camera, renderer.domElement);

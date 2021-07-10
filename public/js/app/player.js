@@ -18,7 +18,6 @@ let deltaTime;
 let frame = 0;
 let framesPerDraw = 0;
 let frameCounter = -1;
-let infoTimeEl;
 let nextSceneIndex = 0;
 let nextSceneTime = 0;
 let origin = 0;
@@ -41,7 +40,6 @@ export function setup(config) {
 
 async function setupWithData(dataSource, config) {
   const {
-    captureThrottle = 1,
     isCapture,
     startSceneIndex = 0,
     startSceneName = undefined,
@@ -139,8 +137,6 @@ function capture() {
     frame,
     file: getCanvas().toDataURL(),
   });
-
-  infoTimeEl.textContent = (position / 1000).toFixed(1);  
 
   // end if this was the last frame
   if (position < data.score[data.score.length - 1].lifespan[1]) {
