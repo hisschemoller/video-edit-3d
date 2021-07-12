@@ -2,11 +2,37 @@ import { getDefaultScene, getMatrix, fps, PREVIEW_SCALE, } from './plstmichel-sh
 import createActor from '../../app/actor.js';
 
 /**
- * Actors 3, west towards wall 1583, corner of the Seine.
+ * Actors 3, westelijk naar muur 1583, hoek met de Seine.
  */
 
 const scene = getDefaultScene([89, 120 ], 'actors3', true);
 export default scene;
+
+// { // TEST
+//   const actorStart = 0;
+//   createActor(scene, fps, {
+//     geom: { w: 2.1, h: 2.9, d: 1 },
+//     keys: [
+//       { t:  0 + actorStart, v: [ 0, 0, 0]},
+//       { t: 10 + actorStart, v: [ 0, 0, 0]},
+//       // { t:  0 + actorStart, v: [ 30, 0, 46]},
+//       // { t:  6 + actorStart, v: [ 30, 0, 46]},
+//       // { t:  0 + actorStart, v: [ 0, 0, 0]},
+//       // { t: 10 + actorStart, v: [ 0, 0, 0]},
+//       // { t:  0 + actorStart, v: [ 30, 0, 46]},
+//       // { t:  6 + actorStart, v: [ 30, 0, 46]},
+//     ],
+//     canvas: { offset: 150, scale: 512/7 , size: 512 },
+//     rotateY: Math.PI * -0.5,
+//     vSc: 512/250,
+//     vt: [162, 172],
+//     vKeys: [
+//       { t:  0 + actorStart, v: [ 410, 220], a: -0.1},
+//       { t:  10 + actorStart, v: [ -60, 220]},
+//     ],
+//     vrid: '1583_preview',
+//   });
+// }
 
 { // STOPPENDE AUTO
   const actorStart = 0;

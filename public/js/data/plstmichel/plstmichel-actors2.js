@@ -2,27 +2,27 @@ import { getDefaultScene, getMatrix, fps, PREVIEW_SCALE, } from './plstmichel-sh
 import createActor from '../../app/actor.js';
 
 /**
- * 
+ * Actors 2, vanaf fontein bocht naar Notre Dame.
  */
 const EARLIER = 11;
 const scene = getDefaultScene([54 - EARLIER, 88 ], 'actors2', true);
 export default scene;
 
 { // ROKENDE MAN
-  const actorStart = 0;
+  const actorStart = 2;
   createActor(scene, fps, {
     geom: { w: 2.5, h: 4, d: 1 },
     keys: [
       { t:  0 + actorStart, v: [ 35, 0, 43]},
-      { t:  8 + actorStart, v: [ 35, 0, 43]},
+      { t:  13 + actorStart, v: [ 35, 0, 43]},
     ],
     canvas: { offset: 150, scale: 512/7, size: 512 },
     rotateY: Math.PI * -0.5,
     vSc: 512/120,
-    vt: [178, 186],
+    vt: [177, 190],
     vKeys: [
       { t:  0 + actorStart, v: [ 370, 202]},
-      { t:  8 + actorStart, v: [ 370, 202]},
+      { t:  13 + actorStart, v: [ 370, 202]},
     ],
     vrid: '1578_preview',
   });
@@ -209,5 +209,89 @@ export default scene;
       { t:  6 + actorStart, v: [ -100, 225]},
     ],
     vrid: '1628_preview',
+  });
+}
+
+{ // VROUW STEEKT OVER NAAR RECHTS
+  const actorStart = 17 + EARLIER;
+  createActor(scene, fps, {
+    geom: { w: 2.1, h: 2.8, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [ 28, -3, 10]},
+      { t:  0.0001 + actorStart, v: [ 28, 0, 10]},
+      { t: 12 + actorStart, v: [ 28, 0, -7]},
+    ],
+    canvas: { offset: 150, scale: 512/11, size: 512 },
+    rotateY: Math.PI * -0.5,
+    vSc: 512/250,
+    vt: [45, 57],
+    vKeys: [
+      { t:  0 + actorStart, v: [ -40, 205], a: 0},
+      { t:  12 + actorStart, v: [ 305, 205]},
+    ],
+    vrid: '1603_preview',
+  });
+}
+
+{ // MAN STEEKT OVER NAAR RECHTS
+  const actorStart = 23 + EARLIER;
+  createActor(scene, fps, {
+    geom: { w: 2.1, h: 2.9, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [ 22, -3, 4]},
+      { t:  0.0001 + actorStart, v: [ 22, 0, 4]},
+      { t: 7 + actorStart, v: [ 22, 0, -13]},
+    ],
+    canvas: { offset: 150, scale: 512/11, size: 512 },
+    rotateY: Math.PI * -0.5,
+    vSc: 512/250,
+    vt: [52, 59],
+    vKeys: [
+      { t:  0 + actorStart, v: [ -20, 205], a: 0},
+      { t:  7 + actorStart, v: [ 270, 205]},
+    ],
+    vrid: '1603_preview',
+  });
+}
+
+{ // MAN STEEKT SNEL OVER NAAR RECHTS
+  const actorStart = 26 + EARLIER;
+  createActor(scene, fps, {
+    geom: { w: 2.1, h: 3, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [ 16, 0, 5]},
+      { t:  0.0001 + actorStart, v: [ 16, 0, 5]},
+      { t: 6 + actorStart, v: [ 16, 0, -13]},
+    ],
+    canvas: { offset: 150, scale: 512/10, size: 512 },
+    rotateY: Math.PI * -0.5,
+    vSc: 512/250,
+    vt: [79, 85],
+    vKeys: [
+      { t:  0 + actorStart, v: [ -50, 210], a: 0},
+      { t:  6 + actorStart, v: [ 310, 210]},
+    ],
+    vrid: '1603_preview',
+  });
+}
+
+{ // VROUW OP STOEP NAAR LINKS
+  const actorStart = 27 + EARLIER;
+  createActor(scene, fps, {
+    geom: { w: 2.1, h: 2.9, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [ 16, -3, -15]},
+      { t:  0.0001 + actorStart, v: [ 16, 0, -15]},
+      { t: 6 + actorStart, v: [ 16, 0, 4.5]},
+    ],
+    canvas: { offset: 150, scale: 512/7 , size: 512 },
+    rotateY: Math.PI * -0.5,
+    vSc: 512/250,
+    vt: [162, 172],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 410, 220], a: -0.1},
+      { t:  10 + actorStart, v: [ -60, 220]},
+    ],
+    vrid: '1583_preview',
   });
 }
