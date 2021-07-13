@@ -5,7 +5,7 @@ import createActor from '../../app/actor.js';
  * Actors 2, vanaf fontein bocht naar Notre Dame.
  */
 const EARLIER = 11;
-const scene = getDefaultScene([54 - EARLIER, 88 ], 'actors2', true);
+const scene = getDefaultScene([54 - EARLIER, 95 ], 'actors2', true);
 export default scene;
 
 { // ROKENDE MAN
@@ -291,6 +291,26 @@ export default scene;
     vKeys: [
       { t:  0 + actorStart, v: [ 410, 220], a: -0.1},
       { t:  10 + actorStart, v: [ -60, 220]},
+    ],
+    vrid: '1583_preview',
+  });
+}
+
+{ // WITTE VRACHTWAGEN VAN RECHTS
+  const actorStart = 30 + EARLIER;
+  createActor(scene, fps, {
+    geom: { w: 8, h: 3.8, d: 1 },
+    keys: [
+      { t: 0 + actorStart, v: [ 14, 0, -28]},
+      { t: 7 + actorStart, v: [ 12, 0, 8]},
+    ],
+    canvas: { offset: 150, scale: 512/19 , size: 512 },
+    rotateY: Math.PI * -0.5,
+    vSc: 512/250,
+    vt: [190, 197],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 520, 155], a: 0},
+      { t:  7 + actorStart, v: [ -30, 155 ]},
     ],
     vrid: '1583_preview',
   });
