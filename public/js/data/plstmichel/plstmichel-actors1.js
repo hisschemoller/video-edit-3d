@@ -1,8 +1,36 @@
-import { getDefaultScene, getMatrix, fps, PREVIEW_SCALE, } from './plstmichel-shared.js';
+import {
+  addLeftRightAnimation,
+  getDefaultScene,
+  getMatrix,
+  fps,
+  PREVIEW_SCALE,
+} from './plstmichel-shared.js';
 import createActor from '../../app/actor.js';
+import { uuidv4, } from '../../app/util.js';
 
 const scene = getDefaultScene([0, 55 ], 'actors1', true);
 export default scene;
+
+const modelFile = 'plstmichel.glb';
+
+// PAAL
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/paal-groen.jpg',
+  matrix: [1,0,0,0 ,0,1,0,0 ,0,0,1,0, 25, 0, 0 ,1],
+  modelFile, modelName: 'paal',
+});
+
+{ // SCHIJF FONTEIN
+  const id = uuidv4(), leftRightDuration = 6, leftRightAngle = 1.75, leftRightBaseAngle = 0, leftRightRotate = 1;
+  scene.object.children.push({
+    id,
+    imageFile: 'plstmichel/fontein-cirkel.png',
+    matrix: [1,0,0,0 ,0,1,0,0 ,0,0,1,0, 20, 8, 30 ,1],
+    modelFile, modelName: 'disc_fountain',
+  });
+  addLeftRightAnimation(scene, id, leftRightDuration, leftRightAngle, leftRightBaseAngle, leftRightRotate);
+}
 
 { // PAAR STIL LINKS
   const actorStart = 0;

@@ -11,24 +11,24 @@ export default scene;
 // { // TEST
 //   const actorStart = 0;
 //   createActor(scene, fps, {
-//     geom: { w: 2.1, h: 2.9, d: 1 },
+//     geom: { w: 8, h: 3.8, d: 1 },
 //     keys: [
-//       { t:  0 + actorStart, v: [ 0, 0, 0]},
-//       { t: 10 + actorStart, v: [ 0, 0, 0]},
+//       // { t:  0 + actorStart, v: [ 0, 0, 0]},
+//       // { t: 7 + actorStart, v: [ 0, 0, 0]},
 //       // { t:  0 + actorStart, v: [ 30, 0, 46]},
 //       // { t:  6 + actorStart, v: [ 30, 0, 46]},
-//       // { t:  0 + actorStart, v: [ 0, 0, 0]},
-//       // { t: 10 + actorStart, v: [ 0, 0, 0]},
+//       { t: 0 + actorStart, v: [ 0, 0, -12]},
+//       { t: 7 + actorStart, v: [ 0, 0, 10]},
 //       // { t:  0 + actorStart, v: [ 30, 0, 46]},
 //       // { t:  6 + actorStart, v: [ 30, 0, 46]},
 //     ],
-//     canvas: { offset: 150, scale: 512/7 , size: 512 },
+//     canvas: { offset: 150, scale: 512/19 , size: 512 },
 //     rotateY: Math.PI * -0.5,
 //     vSc: 512/250,
-//     vt: [162, 172],
+//     vt: [190, 197],
 //     vKeys: [
-//       { t:  0 + actorStart, v: [ 410, 220], a: -0.1},
-//       { t:  10 + actorStart, v: [ -60, 220]},
+//       { t:  0 + actorStart, v: [ 520, 155], a: 0},
+//       { t:  7 + actorStart, v: [ -30, 155 ]},
 //     ],
 //     vrid: '1583_preview',
 //   });
@@ -74,46 +74,6 @@ export default scene;
   });
 }
 
-{ // VROUW MET MOBIEL VAN LINKS
-  const actorStart = 0;
-  createActor(scene, fps, {
-    geom: { w: 0.5, h: 3, d: 3 },
-    keys: [
-      { t:  0 + actorStart, v: [  -17, 0, 16]},
-      { t:  20 + actorStart, v: [  -17, 0, -9]},
-    ],
-    matrix: getMatrix({ ry: Math.PI * 1, }).elements,
-    canvas: { offset: 100, scale: 512/15, size: 512 },
-    vSc: 512/250,
-    vt: [15, 35],
-    vKeys: [
-      { t:  0 + actorStart, v: [ 0, 175]},
-      { t:  20 + actorStart, v: [ 480, 175]},
-    ],
-    vrid: '1584_preview',
-  });
-}
-
-{ // STOPPENDE VRACHTWAGEN
-  const actorStart = 0;
-  createActor(scene, fps, {
-    geom: { w: 1, h: 5, d: 11 },
-    keys: [
-      { t:  0 + actorStart, v: [  -33, 0, 12]},
-      // { t:  4 + actorStart, v: [  -32, 0, -5]},
-    ],
-    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
-    canvas: { offset: 100, scale: 512/16, size: 512 },
-    vSc: 512/400,
-    vt: [54, 85],
-    vKeys: [
-      { t:  0 + actorStart, v: [ 100, 200]},
-      // { t:  4 + actorStart, v: [ 150, 205]},
-    ],
-    vrid: '1584_preview',
-  });
-}
-
 { // SNELLE AUTO VAN RECHTS
   const actorStart = 0;
   createActor(scene, fps, {
@@ -131,6 +91,68 @@ export default scene;
       { t:  3.2 + actorStart, v: [ -800, 225]},
     ],
     vrid: '1584_preview',
+  });
+}
+
+{ // VROUW MET MOBIEL VAN LINKS
+  const actorStart = 1;
+  createActor(scene, fps, {
+    geom: { w: 0.5, h: 3, d: 3 },
+    keys: [
+      { t:  0 + actorStart, v: [  -17, -3.5, 16]},
+      { t:  0.0001 + actorStart, v: [  -17, 0, 16]},
+      { t:  20 + actorStart, v: [  -17, 0, -9]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 1, }).elements,
+    canvas: { offset: 100, scale: 512/15, size: 512 },
+    vSc: 512/250,
+    vt: [15, 35],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 0, 175]},
+      { t:  20 + actorStart, v: [ 480, 175]},
+    ],
+    vrid: '1584_preview',
+  });
+}
+
+{ // STOPPENDE VRACHTWAGEN
+  const actorStart = 1;
+  createActor(scene, fps, {
+    geom: { w: 1, h: 5, d: 11 },
+    keys: [
+      { t:  0 + actorStart, v: [  -33, -6, 12]},
+      { t:  0.0001 + actorStart, v: [  -33, 0, 12]},
+      { t: 30 + actorStart, v: [  -33, 0, 12]},
+    ],
+    matrix: getMatrix({ ry: Math.PI * 0, }).elements,
+    canvas: { offset: 100, scale: 512/16, size: 512 },
+    vSc: 512/400,
+    vt: [54, 85],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 100, 200]},
+      { t: 30 + actorStart, v: [ 100, 200]},
+    ],
+    vrid: '1584_preview',
+  });
+}
+
+{ // FIETSER VERDER WEG VAN RECHTS
+  const actorStart = 2;
+  createActor(scene, fps, {
+    geom: { w:3.5, h: 2.9, d: 1 },
+    keys: [
+      { t:  0 + actorStart, v: [ -20, 0, -30]},
+      { t: 8 + actorStart, v: [ -20, 0, 22]},
+    ],
+    rotateY: Math.PI * 0.5,
+    canvas: { offset: 100, scale: 512/27, size: 512 },
+    vSc: 512/250,
+    vt: [35, 43],
+    vKeys: [
+      { t:  0 + actorStart, v: [ 500, 155]},
+      { t:  8 + actorStart, v: [ -20, 155]},
+    ],
+    vrid: '1583_preview',
   });
 }
 
@@ -220,19 +242,21 @@ export default scene;
 { // SNELLE AUTO VAN RECHTS 4
   const actorStart = 14.5;
   createActor(scene, fps, {
-    geom: { w: 1, h: 3, d: 7 },
+    geom: { w: 1, h: 3, d: 6.5 },
     keys: [
+      // { t:  0 + actorStart, v: [  -0, 0, 0]},
+      // { t:  5 + actorStart, v: [  -0, 0, 0]},
       { t:  0 + actorStart, v: [  -16, -3.5, -7]},
       { t:  0.001 + actorStart, v: [  -16, 0, -7]},
       { t:  5 + actorStart, v: [  -16, 0, 15]},
     ],
     matrix: getMatrix({ ry: Math.PI * 0, }).elements,
-    canvas: { offset: 100, scale: 512/10, size: 512 },
+    canvas: { offset: 50, scale: 512/11, size: 512 },
     vSc: 512/120,
     vt: [46, 51],
     vKeys: [
-      { t:  0 + actorStart, v: [ 480, 160]},
-      { t:  5 + actorStart, v: [ -100, 160]},
+      { t:  0 + actorStart, v: [ 460, 160], a: 0.2},
+      { t:  5 + actorStart, v: [ -30, 160]},
     ],
     vrid: '1583_preview',
   });

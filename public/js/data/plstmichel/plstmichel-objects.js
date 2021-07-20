@@ -5,7 +5,7 @@ import { getDefaultScene, getMatrix, fps, } from './plstmichel-shared.js';
 const scene = getDefaultScene([0, 320], 'objects', false);
 const modelFile = 'plstmichel.glb';
 
-// PAAL
+// MEERDERE PALEN
 scene.object.children.push({
   id: uuidv4(),
   imageFile: 'plstmichel/paal-groen.jpg',

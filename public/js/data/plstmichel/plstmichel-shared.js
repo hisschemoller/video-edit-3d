@@ -1,4 +1,13 @@
-import { Euler, LoopOnce, Matrix4 } from '../../lib/three/build/three.module.js';
+import { 
+  AdditiveAnimationBlendMode, 
+  Euler, 
+  InterpolateSmooth, 
+  Matrix4, 
+  LoopOnce, 
+  LoopRepeat, 
+  Quaternion,
+  Vector3,
+} from '../../lib/three/build/three.module.js';
 import { uuidv4, } from '../../app/util.js';
 import createActor from '../../app/actor.js';
 
@@ -63,4 +72,56 @@ export function getMatrix(conf = {}) {
   const matrix4 = new Matrix4().multiplyMatrices(scaleMatrix, rotationMatrix);
   matrix4.setPosition(x, y, z);
   return matrix4;
+}
+
+/**
+ *
+ *
+ * @export
+ * @param {Object} scene
+ * @param {String} id
+ * @param {Number} duration
+ * @param {number} [angle=1.75]
+ * @param {number} [baseAngle=0]
+ * @param {number} [rotate=0]
+ */
+export function addLeftRightAnimation(scene, id, duration, angle = 1.75, baseAngle = 0, rotate = 0) {
+  let angles;
+  switch (rotate) {
+    case 1:
+      baseAngle = 0;
+      angles = [0, 0.5, 1, -0.5, 0];
+      break;
+    case -1:
+      baseAngle = 0;
+      angles = [0, -0.5, 1, 0.5, 0];
+      break;
+    default:
+      angles = [angle, -angle, angle];
+      break;
+  }
+  const keys = [];
+  for (let i = 0, n = angles.length; i < n; i++) {
+    const normal = i / (n - 1);
+    const angle = (baseAngle + angles[i]) * Math.PI;
+    const quaternion = new Quaternion().setFromEuler(new Euler(0, angle, 0)).normalize();
+    keys.push({
+      time: normal * duration * fps,
+      value: [ quaternion.x, quaternion.y, quaternion.z, quaternion.w ],
+    });
+  }
+  const animationClip = {
+    duration,
+    fps,
+    loop: LoopRepeat,
+    name: `animation-${id}`,
+    tracks: [
+      {
+        name: `${id}.quaternion`,
+        keys,
+        type: 'quaternion',
+      }
+    ],
+  };
+  scene.animations.push(animationClip);
 }
