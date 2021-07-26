@@ -13,24 +13,89 @@ export default scene;
 
 const modelFile = 'plstmichel.glb';
 
-// PAAL
+// PAAL GROEN
 scene.object.children.push({
   id: uuidv4(),
   imageFile: 'plstmichel/paal-groen.jpg',
-  matrix: [1,0,0,0 ,0,1,0,0 ,0,0,1,0, 25, 0, 0 ,1],
+  matrix: getMatrix({ x: 25, y: 0, z: 0, sy: 2, }).elements,
   modelFile, modelName: 'paal',
 });
 
 { // SCHIJF FONTEIN
-  const id = uuidv4(), leftRightDuration = 6, leftRightAngle = 1.75, leftRightBaseAngle = 0, leftRightRotate = 1;
-  scene.object.children.push({
-    id,
-    imageFile: 'plstmichel/fontein-cirkel.png',
-    matrix: [1,0,0,0 ,0,1,0,0 ,0,0,1,0, 20, 8, 30 ,1],
-    modelFile, modelName: 'disc_fountain',
+  [22, 5].forEach((x) => {
+    const id = uuidv4(), leftRightDuration = 6, leftRightAngle = 1.75, leftRightBaseAngle = 0, leftRightRotate = 1;
+    scene.object.children.push({
+      id,
+      imageFile: 'plstmichel/fontein-cirkel.png',
+      matrix: getMatrix({ x, y: 21, z: 30, rz: Math.PI * 0.5 }).elements,
+      modelFile, modelName: 'disc_fountain',
+    });
+    // addLeftRightAnimation(scene, id, leftRightDuration, leftRightAngle, leftRightBaseAngle, leftRightRotate);
   });
-  addLeftRightAnimation(scene, id, leftRightDuration, leftRightAngle, leftRightBaseAngle, leftRightRotate);
 }
+
+// BOOM 1
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/1580-boom-rechts-1024.png',
+  matrix: getMatrix({ x: -27, y: 12, z: 45, }).elements,
+  modelFile, modelName: 'boom1',
+});
+
+// BOOM 1 ACHTERKANT
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/1580-boom-rechts-1024.png',
+  matrix: getMatrix({ x: -3, y: 9, z: 53, ry: Math.PI, }).elements,
+  modelFile, modelName: 'boom1',
+});
+
+{ // FONTEIN ZUILEN
+  [32, 28, 2, -2].forEach((x) => {
+    scene.object.children.push({
+      id: uuidv4(),
+      imageFile: 'plstmichel/pilaar-fontein.png',
+      matrix: getMatrix({ x, y: 0, z: 20, sx: 1.5, sy: 2, sz: 1.5, }).elements,
+      modelFile, modelName: 'paal',
+    });
+  });
+}
+
+// BOL LAMPEN
+[0, 10, 20, 30, 40].forEach((z) => {
+  scene.object.children.push({
+    id: uuidv4(),
+    imageFile: 'plstmichel/bol-lamp.png',
+    matrix: getMatrix({ x: 40, y: 7, z, sx: 0.5, sy: 0.5, sz: 0.5, }).elements,
+    modelFile, modelName: 'bollamp',
+  });
+});
+
+// BOL LAMPEN
+[-10, -20].forEach((x) => {
+  scene.object.children.push({
+    id: uuidv4(),
+    imageFile: 'plstmichel/bol-lamp.png',
+    matrix: getMatrix({ x, y: 13, z: 40, }).elements,
+    modelFile, modelName: 'bollamp',
+  });
+});
+
+// SLEUTELGAT
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/leger-sleutelgat.jpg',
+  matrix: getMatrix({ x: 0, y: 0, z: 0, sx: 1, sy: 1, sz: 1, }).elements,
+  modelFile, modelName: 'sleutelgat',
+});
+
+// PAAL BOOMBRUIN
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/boomstammen.png',
+  matrix: getMatrix({ x: 43, y: 0, z: 18 , sy: 2, }).elements,
+  modelFile, modelName: 'paal',
+});
 
 { // PAAR STIL LINKS
   const actorStart = 0;

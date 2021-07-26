@@ -350,7 +350,7 @@ function createWorld(data) {
 
 // LIGHTS
 function addLights(data) {
-  directionalLightOffset = new Vector3(6, 7, 5);
+  directionalLightOffset = new Vector3(60, 70, 50);
 
   // AMBIENT
   const ambient = new AmbientLight(0xffffff, 0.4); // color = 0xffffff, intensity = 1
