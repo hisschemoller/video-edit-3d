@@ -16,6 +16,8 @@ export const fps = 10;
 
 export const PREVIEW_SCALE = 0.25;
 
+export const modelFile = 'plstmichel.glb';
+
 export function getDefaultScene(lifespan, sceneId, hasAnimations) {
   const scene = {
     animations: [],

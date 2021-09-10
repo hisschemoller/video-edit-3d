@@ -3,6 +3,7 @@ import {
   getDefaultScene,
   getMatrix,
   fps,
+  modelFile,
   PREVIEW_SCALE,
 } from './plstmichel-shared.js';
 import createActor from '../../app/actor.js';
@@ -10,8 +11,6 @@ import { uuidv4, } from '../../app/util.js';
 
 const scene = getDefaultScene([0, 55 ], 'actors1', true);
 export default scene;
-
-const modelFile = 'plstmichel.glb';
 
 // PAAL GROEN
 scene.object.children.push({
@@ -85,7 +84,7 @@ scene.object.children.push({
 scene.object.children.push({
   id: uuidv4(),
   imageFile: 'plstmichel/leger-sleutelgat.jpg',
-  matrix: getMatrix({ x: 0, y: 0, z: 0, sx: 1, sy: 1, sz: 1, }).elements,
+  matrix: getMatrix({ x: 0, y: 0, z: 0, }).elements,
   modelFile, modelName: 'sleutelgat',
 });
 
@@ -96,6 +95,99 @@ scene.object.children.push({
   matrix: getMatrix({ x: 43, y: 0, z: 18 , sy: 2, }).elements,
   modelFile, modelName: 'paal',
 });
+
+// TEKENING 1 - GEBOGEN DING
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/tekening1.png',
+  matrix: getMatrix({ x: 28, y: 0, z: 10, }).elements,
+  modelFile, modelName: 'tekening1',
+});
+
+// TEKENING 2 - DING OP DRIEPOOT
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/tekening2.png',
+  matrix: getMatrix({ x: 33, y: 0, z: -10, }).elements,
+  modelFile, modelName: 'tekening2',
+});
+
+// PAALTJE
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/paaltje.png',
+  matrix: getMatrix({ x: 28, y: 0, z: -10, sx: 0.5, sy: 0.5, sz: 0.5, }).elements,
+  modelFile, modelName: 'paaltje',
+});
+
+// PAALTJE
+[31, 25, 19, 13].forEach((x) => {
+  scene.object.children.push({
+    id: uuidv4(),
+    imageFile: 'plstmichel/paaltje.png',
+    matrix: getMatrix({ x, y: 0, z: -10, sx: 0.4, sy: 0.4, sz: 0.4, }).elements,
+    modelFile, modelName: 'paaltje',
+  });
+});
+
+// PAALTJE
+[25, 19, 13, 7].forEach((x) => {
+  scene.object.children.push({
+    id: uuidv4(),
+    imageFile: 'plstmichel/paaltje.png',
+    matrix: getMatrix({ x, y: 0, z: 40, sx: 0.5, sy: 0.5, sz: 0.5, }).elements,
+    modelFile, modelName: 'paaltje',
+  });
+});
+
+// TEKENING 3 - VLIEGVELD WAGENTJE
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/tekening3.png',
+  matrix: getMatrix({ x: 28, y: 0, z: -1, sx: 0.5, sy: 0.5, sz: 0.5, }).elements,
+  modelFile, modelName: 'tekening3',
+});
+
+// ERNST
+// scene.object.children.push({
+//   id: uuidv4(),
+//   imageFile: 'plstmichel/ernst.png',
+//   matrix: getMatrix({ x: 23, y: 5, z: -1, sx: 1.5, sy: 1.5, sz: 1.5, }).elements,
+//   modelFile, modelName: 'ernst',
+// });
+
+// TEKENING 4 - VERKEERSKEGEL
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/tekening4.png',
+  matrix: getMatrix({ x: 18, y: 0, z: -1, sx: 4, sy: 4, sz: 4, }).elements,
+  modelFile, modelName: 'tekening4',
+});
+
+// BORD PIJL LINKS
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/links.png',
+  matrix: getMatrix({ x: 26.2, y: 8, z: 0, sx: 3, sy: 3, sz: 3, }).elements,
+  modelFile, modelName: 'links',
+});
+
+// TEKENING 5 - GRIJS DING
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/tekening5en6.png',
+  matrix: getMatrix({ x: 16, y: 0, z: 45 }).elements,
+  modelFile, modelName: 'tekening5',
+});
+
+// TEKENING 6 - GROEN DING
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/tekening5en6.png',
+  matrix: getMatrix({ x: 30, y: 0, z: 38 }).elements,
+  modelFile, modelName: 'tekening6',
+});
+
 
 { // PAAR STIL LINKS
   const actorStart = 0;

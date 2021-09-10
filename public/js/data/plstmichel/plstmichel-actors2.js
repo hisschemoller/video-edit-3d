@@ -1,5 +1,12 @@
-import { getDefaultScene, getMatrix, fps, PREVIEW_SCALE, } from './plstmichel-shared.js';
+import {
+  getDefaultScene,
+  getMatrix,
+  fps, 
+  modelFile,
+  PREVIEW_SCALE, 
+} from './plstmichel-shared.js';
 import createActor from '../../app/actor.js';
+import { uuidv4, } from '../../app/util.js';
 
 /**
  * Actors 2, vanaf fontein bocht naar Notre Dame.
@@ -7,6 +14,14 @@ import createActor from '../../app/actor.js';
 const EARLIER = 11;
 const scene = getDefaultScene([54 - EARLIER, 95 ], 'actors2', true);
 export default scene;
+
+// TEKENING 5 - GRIJS DING
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/tekening5en6.png',
+  matrix: getMatrix({ x: 26, y: 0, z: 46, ry: Math.PI * 0, }).elements,
+  modelFile, modelName: 'tekening5',
+});
 
 { // ROKENDE MAN
   const actorStart = 2;
