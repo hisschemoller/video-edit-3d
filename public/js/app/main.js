@@ -20,7 +20,7 @@ setup({
   data: dataPlaceSaintMichel, // hiResData,
   isCapture: false,
   // startSceneIndex: 0,
-  startSceneName: 'scene_actors7', // 'scene_walls6', // 'scene_walls7', // 'scene_walls3',
+  startSceneName: 'scene_actors2', // 'scene_walls6', // 'scene_actors3', // 'scene_walls7', // 'scene_walls3',
   scenesToNotSkip: ['scene_main', 'scene_objects'],
   captureThrottle: 15,
 });

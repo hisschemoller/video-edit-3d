@@ -23,6 +23,16 @@ scene.object.children.push({
   modelFile, modelName: 'tekening5',
 });
 
+// BOL LAMPEN
+[0, 10, 20, 30, 40].forEach((z) => {
+  scene.object.children.push({
+    id: uuidv4(),
+    imageFile: 'plstmichel/bol-lamp.png',
+    matrix: getMatrix({ x: 46, y: 7, z, sx: 0.5, sy: 0.5, sz: 0.5, }).elements,
+    modelFile, modelName: 'bollamp',
+  });
+});
+
 { // ROKENDE MAN
   const actorStart = 2;
   createActor(scene, fps, {
