@@ -2,6 +2,7 @@ import createExtrude, { createCanvasTexture, createExtrudeGeometry, createExtrud
 import { createCanvases as createSceneCanvases } from './canvas.js';
 import { renderBackground, setupBackground } from './world-background.js';
 import { loadGLTFFiles, replaceGLTFModelData } from './gltf.js';
+import { logMemoryInfo } from './util.js';
 import {
   AmbientLight,
   AnimationClip,
@@ -99,8 +100,17 @@ export function destroyScene(allData, sceneId) {
     }
     scene.remove(object);
   });
+
+  console.info('---------------');
+  console.info('Scene DESTROYED');
+  logMemoryInfo(renderer);
 }
 
+/**
+ * Search 3D object in scene.
+ * @param {String} name 3D object name.
+ * @returns
+ */
 export function getObjectByName(name) {
   return scene.getObjectByName(name);
 }
@@ -217,6 +227,11 @@ export function loadScene(allData, sceneIndex, position) {
     // const clip = new AnimationClip('testClip', 4, tracks);
     // mixer = new AnimationMixer(mesh);
     // mixer.clipAction(clip).play();
+
+
+    console.info('++++++++++++');
+    console.info('Scene LOADED');
+    logMemoryInfo(renderer);
   });
 }
 

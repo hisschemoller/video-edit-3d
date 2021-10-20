@@ -69,6 +69,19 @@ export function convertToMilliseconds(score) {
 }
 
 /**
+ * Log WebGL memory usage info.
+ * @param {Object} renderer WebGLRenderer.
+ */
+export function logMemoryInfo(renderer) {
+  const { memory, render, programs } = renderer.info;
+  console.log('memory.geometries', memory.geometries);
+  console.log('memory.textures', memory.textures);
+  console.log('memory.textures', memory.textures);
+  console.log('render.triangles', render.triangles);
+  console.log('programs.length', programs.length);
+}
+
+/**
  * Sort score so lifespan starttimes are chronological.
  * @export
  * @param {Array} score Score clips.
