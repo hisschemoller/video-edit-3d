@@ -23,6 +23,7 @@ let nextSceneTime = 0;
 let origin = 0;
 let position = 0;
 let socket;
+let startButton;
 
 
 export function setup(config) {
@@ -72,7 +73,15 @@ async function setupWithData(dataSource, config) {
   
   await setupWorld(data);
 
+  startButton = document.querySelector('#overlay button');
+  startButton.addEventListener('click', start);
+}
+
+function start() {
+  startButton.removeEventListener('click', start);
+
   checkForNextScene(position);
+
   requestAnimationFrame(isCapture ? capture : run);
 }
 

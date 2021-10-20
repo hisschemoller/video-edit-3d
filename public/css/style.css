@@ -33,6 +33,7 @@ button {
   background: #333;
   border: 1px solid #666;
   color: #ccc;
+  padding: 10px 20px;
 }
 .display {
   background-color: #eee;
@@ -59,3 +60,15 @@ button {
   background-size: cover;
   background-image: url('../img/leidseplein-background.jpg');
 } */
+#overlay {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  font-size: 40px;
+  height: 100%;
+  justify-content: center;
+  cursor: pointer;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+}
