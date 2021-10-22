@@ -9,8 +9,12 @@ import { draw as drawCanvas, } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
 import { setInfo } from './controls.js';
 
+const SKIP_FRAME_BATCH_SIZE = 30;
 const scenes = [];
 
+let isCaptureState = false;
+let captureFirstFrame;
+let captureLastFrame;
 let captureThrottle;
 let captureCounter = 0;
 let data;
@@ -24,6 +28,8 @@ let origin = 0;
 let position = 0;
 let socket;
 let startButton;
+
+export let isFastforwarding = false;
 
 
 export function setup(config) {
@@ -47,6 +53,8 @@ async function setupWithData(dataSource, config) {
     scenesToNotSkip = [],
   } = config;
 
+  isCaptureState = isCapture;
+
   data = dataSource;
   data.score = sortScoreByLifespanStart(data.score);
   data.score = convertToMilliseconds(data.score);
@@ -59,7 +67,7 @@ async function setupWithData(dataSource, config) {
   position = 0;
   deltaTime = 1 / fps;
 
-  if (isCapture) {
+  if (isCaptureState) {
     socket = io.connect('http://localhost:3012');
     captureThrottle = config.captureThrottle || 1;
   }
@@ -79,10 +87,19 @@ async function setupWithData(dataSource, config) {
 
 function start() {
   startButton.removeEventListener('click', start);
+  const firstFrame = parseInt(document.getElementById('firstframe').value, 10);
+  const lastFrame = parseInt(document.getElementById('lastframe').value, 10);
+  document.getElementById('overlay').remove();
+  
+  if (lastFrame > firstFrame) {
+    captureFirstFrame = firstFrame;
+    captureLastFrame = lastFrame;
+    isFastforwarding = isCaptureState && captureFirstFrame > 0;
+  }
 
   checkForNextScene(position);
 
-  requestAnimationFrame(isCapture ? capture : run);
+  requestAnimationFrame(isCaptureState ? captureFirstFrame > 0 ? skipToStartFrame : capture : run);
 }
 
 function skipToSceneByIndex(sceneIndex, scenesToNotSkip) {
@@ -102,6 +119,34 @@ function skipToSceneByName(sceneName, scenesToNotSkip) {
   if (data.score.length) {
     const sceneIndex = data.score.findIndex(scene => scene.object.name === sceneName);
     skipToSceneByIndex(sceneIndex, scenesToNotSkip);
+  }
+}
+
+/**
+ * Advance through all frames quiickly until the start frame,
+ * then capture from there.
+ */
+function skipToStartFrame() {
+  let isNewScene = false;
+  let whileCounter = 0;
+
+  while (!isNewScene && frame < captureFirstFrame && whileCounter < SKIP_FRAME_BATCH_SIZE) {
+    position += (deltaTime * 1000); // deltaTime = 1 / fps
+    isNewScene = checkForNextScene(position);
+  
+    drawCanvas(frame);
+    frame += 1;
+    whileCounter += 1;
+  }
+
+  console.log(frame);
+  
+  if (frame < captureFirstFrame) {
+    requestAnimationFrame(skipToStartFrame);
+  } else {
+    console.log('skip done', frame);
+    isFastforwarding = false;
+    requestAnimationFrame(capture);
   }
 }
 
@@ -133,19 +178,25 @@ function capture() {
     requestAnimationFrame(capture);
     return;
   }
+
+  if (frame > captureLastFrame) {
+    console.log('done, reached captureLastFrame' + captureLastFrame);
+    return;
+  }
   
   position += (deltaTime * 1000);
   checkForNextScene(position);
   drawCanvas(frame);
   animateWorld(deltaTime);
-  setInfo((position / 1000).toFixed(1));  
-  frame += 1;
+  setInfo((position / 1000).toFixed(1));
 
   // send canvas to node app
   socket.emit('render-frame', {
     frame,
     file: getCanvas().toDataURL(),
   });
+
+  frame += 1;
 
   // end if this was the last frame
   if (position < data.score[data.score.length - 1].lifespan[1]) {
@@ -158,8 +209,10 @@ function capture() {
 /**
  * Check for score scenes to start or end.
  * @param {Number} position Time position within the main timeline, in seconds.
+ * @returns {Boolean} True if the next scene staarts at possition.
  */
 function checkForNextScene(position) {
+  let isNewScene = false;
 
   // check for scenes to start
   if (position >= nextSceneTime) {
@@ -180,6 +233,7 @@ function checkForNextScene(position) {
 
         // create the scene's objects
         loadWorldScene(data, i, position / 1000);
+        isNewScene = true;
       } else {
 
         // not yet time for the next scene
@@ -198,4 +252,6 @@ function checkForNextScene(position) {
       destroyWorldScene(data, scene.clipId);
     }
   }
+
+  return isNewScene;
 }

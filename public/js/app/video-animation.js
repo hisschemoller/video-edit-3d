@@ -1,3 +1,5 @@
+import { isFastforwarding } from './player.js';
+
 /**
  * A image sequence video on a canvas texture.
  * 
@@ -131,7 +133,9 @@ export function create(textureCanvas, data, resources, texture, fps) {
      */
     loadImage = () => {
       if (imgURLNr <= imgURLNrLast && !isWaitingToStart) {
-        img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + Math.round(imgURLNr)).slice(-5) : '99999') + imgURLSuffix;
+        if (!isFastforwarding) {
+          img.src = imgURLPrefix + ((imgURLNr <= 99999) ? ('0000' + Math.round(imgURLNr)).slice(-5) : '99999') + imgURLSuffix;
+        }
         if (imgURLNr < imgURLNrLast) {
           imgURLNr = Math.min(imgURLNr + imgURLNrIncrease, imgURLNrLast);
         } else {

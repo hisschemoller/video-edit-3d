@@ -104,3 +104,10 @@ ffmpeg -i videos_placesaintmichel/IMG_1581r_preview.mp4 frames_placesaintmichel/
 ffmpeg -i videos_placesaintmichel/IMG_1578.MOV frames_placesaintmichel/1578/frame_%05d.png
 ffmpeg -i videos_placesaintmichel/IMG_1578.MOV -vf scale=480:-1 videos_placesaintmichel/IMG_1578_preview.mp4
 ffmpeg -i videos_placesaintmichel/IMG_1578_preview.mp4 frames_placesaintmichel/1578_preview/frame_%05d.png
+
+## WebGL memory test.
+
+https://threejs.org/examples/webgl_test_memory.html
+https://threejs.org/examples/webgl_test_memory2.html
+https://threejs.org/docs/index.html#api/en/renderers/WebGLRenderer.info
+https://www.khronos.org/registry/webgl/conformance-suites/1.0.0/extra/out-of-memory.html

@@ -101,9 +101,9 @@ export function destroyScene(allData, sceneId) {
     scene.remove(object);
   });
 
-  console.info('---------------');
-  console.info('Scene DESTROYED');
-  logMemoryInfo(renderer);
+  // console.info('---------------');
+  // console.info('Scene DESTROYED');
+  // logMemoryInfo(renderer);
 }
 
 /**
@@ -229,9 +229,9 @@ export function loadScene(allData, sceneIndex, position) {
     // mixer.clipAction(clip).play();
 
 
-    console.info('++++++++++++');
-    console.info('Scene LOADED');
-    logMemoryInfo(renderer);
+    // console.info('++++++++++++');
+    // console.info('Scene LOADED');
+    // logMemoryInfo(renderer);
   });
 }
 
