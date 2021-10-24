@@ -111,3 +111,8 @@ https://threejs.org/examples/webgl_test_memory.html
 https://threejs.org/examples/webgl_test_memory2.html
 https://threejs.org/docs/index.html#api/en/renderers/WebGLRenderer.info
 https://www.khronos.org/registry/webgl/conformance-suites/1.0.0/extra/out-of-memory.html
+
+## Also remove after scene end
+
+* AnimationMixer from mixers.
+* Video canvas animations from canvas.js and video-animation.js

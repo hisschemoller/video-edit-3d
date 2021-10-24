@@ -5,7 +5,7 @@ import {
   loadScene as loadWorldScene,
   getCanvas,
 } from './world.js';
-import { draw as drawCanvas, } from './canvas.js';
+import { draw as drawCanvas, videoCanvasesLoadImage, } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
 import { setInfo } from './controls.js';
 
@@ -135,17 +135,17 @@ function skipToStartFrame() {
     isNewScene = checkForNextScene(position);
   
     drawCanvas(frame);
+    animateWorld(deltaTime);
     frame += 1;
     whileCounter += 1;
   }
-
-  console.log(frame);
   
   if (frame < captureFirstFrame) {
     requestAnimationFrame(skipToStartFrame);
   } else {
     console.log('skip done', frame);
     isFastforwarding = false;
+    videoCanvasesLoadImage();
     requestAnimationFrame(capture);
   }
 }
@@ -162,7 +162,7 @@ function run() {
   checkForNextScene(position);
   drawCanvas(frame);
   animateWorld(deltaTime);
-  setInfo((position / 1000).toFixed(1));  
+  setInfo((position / 1000).toFixed(1));
   frame += 1;
 }
 
@@ -180,7 +180,7 @@ function capture() {
   }
 
   if (frame > captureLastFrame) {
-    console.log('done, reached captureLastFrame' + captureLastFrame);
+    console.log('done, reached captureLastFrame', captureLastFrame);
     return;
   }
   

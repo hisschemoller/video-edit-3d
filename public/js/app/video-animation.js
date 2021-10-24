@@ -13,8 +13,9 @@ import { isFastforwarding } from './player.js';
  * @param {Object} resources Resources data from JSON.
  * @param {Object} texture Mesh's texture.
  * @param {Number} fps FPS of the app player.
+ * @param {String} sceneId Scene's sceneData.clipId.
  */
-export function create(textureCanvas, data, resources, texture, fps) {
+export function create(textureCanvas, data, resources, texture, fps, sceneId) {
   const {
     canvasData,
     flipHorizontal = false,
@@ -69,12 +70,16 @@ export function create(textureCanvas, data, resources, texture, fps) {
     videoOffsetStepDistanceX,
     videoOffsetCurrentDistanceX,
 
+    destroy = () => {
+
+    },
+
     /**
      * Draw the video clip frame (an Image element) on the texture's canvas.
      * @see https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
      */
     draw = () => {
-      if (!isWaitingToStart && img) {
+      if (!isFastforwarding && !isWaitingToStart && img) {
         if (repeat) {
           textureCtx.fillStyle = textureCtx.createPattern(img, repeat);
           textureCtx.fillRect(0, 0, textureCanvas.width, textureCanvas.height);
@@ -96,6 +101,11 @@ export function create(textureCanvas, data, resources, texture, fps) {
 
       loadImage();
     },
+
+    /**
+     * Provide this animation's scene's id.
+     */
+    getSceneId = () => sceneId,
 
     /**
      * Initialise the video animation.
@@ -217,6 +227,9 @@ export function create(textureCanvas, data, resources, texture, fps) {
   init();
   
   return {
+    destroy,
     draw,
+    getSceneId,
+    loadImage,
   };
 }

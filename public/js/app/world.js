@@ -1,8 +1,9 @@
 import createExtrude, { createCanvasTexture, createExtrudeGeometry, createExtrudeMesh, } from './extrude.js';
-import { createCanvases as createSceneCanvases } from './canvas.js';
+import { createCanvases as createSceneCanvases, destroyCanvases as destroySceneCanvases } from './canvas.js';
 import { renderBackground, setupBackground } from './world-background.js';
 import { loadGLTFFiles, replaceGLTFModelData } from './gltf.js';
 import { logMemoryInfo } from './util.js';
+import { isFastforwarding } from './player.js';
 import {
   AmbientLight,
   AnimationClip,
@@ -101,6 +102,9 @@ export function destroyScene(allData, sceneId) {
     scene.remove(object);
   });
 
+  // stop and remove all canvas animations
+  destroySceneCanvases(sceneId);
+
   // console.info('---------------');
   // console.info('Scene DESTROYED');
   // logMemoryInfo(renderer);
@@ -172,7 +176,7 @@ export function loadScene(allData, sceneIndex, position) {
     recurseObjectTree(sceneData.object);
 
     // prepare texture canvases to be animated 
-    createSceneCanvases(allData, sceneIndex, model);
+    createSceneCanvases(allData, sceneIndex, sceneData.clipId, model);
 
     // if there's a parent for the camera, attach it
     const { parentName } = allData.camera;
@@ -429,9 +433,11 @@ export function animate(deltaTime) {
 
   // stats.update();
 
-  renderBackground(renderer);
-
-  renderer.render(scene, camera);
+  if (!isFastforwarding) {
+    renderBackground(renderer);
+  
+    renderer.render(scene, camera);
+  }
 }
 
 /**

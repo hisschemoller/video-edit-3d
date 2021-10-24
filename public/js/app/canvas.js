@@ -33,11 +33,28 @@ const animations = [];
 /**
  * Create all canvases for the textures used in a scene.
  * @param {Object} allData The complete configuration data.
- * @param {Number} sceneIndex Scene index
+ * @param {Number} sceneIndex Scene index.
+ * @param {String} sceneId Scene's sceneData.clipId.
+ * @param {Object} rootObject3d 
  */
-export function createCanvases(allData, sceneIndex, rootObject3d) {
+export function createCanvases(allData, sceneIndex, sceneId, rootObject3d) {
   const objectData = allData.score[sceneIndex].object;
-  recurseObjects(objectData, allData, sceneIndex, rootObject3d);
+  recurseObjects(objectData, allData, sceneIndex, sceneId, rootObject3d);
+}
+
+/**
+ * Destroy all canvases for the textures used in a scene.
+ * @param {String} sceneId Scene's sceneData.clipId.
+ */
+export function destroyCanvases(sceneId) {
+  let i = animations.length;
+  while (i > 0) {
+    i--;
+    if (animations[i].animation.getSceneId() === sceneId) {
+      animations[i].animation.destroy();
+      animations.splice(i, 1);
+    }
+  }
 }
 
 /**
@@ -55,8 +72,11 @@ export function draw(frame) {
  * Find all object data recursively.
  * @param {Object} objectData 
  * @param {Object} allData
+ * @param {Number} sceneIndex Scene index.
+ * @param {String} sceneId Scene's sceneData.clipId.
+ * @param {Object} rootObject3d 
  */
-function recurseObjects(objectData, allData, sceneIndex, rootObject3d) {
+function recurseObjects(objectData, allData, sceneIndex, sceneId, rootObject3d) {
   const { canvasId, children = [], geometry: geometryId, name, } = objectData;
   
   if (geometryId) {
@@ -79,7 +99,7 @@ function recurseObjects(objectData, allData, sceneIndex, rootObject3d) {
             flipHorizontal: false,
             videoData: assets[videoId],
           };
-          setupVideoCanvas(data, texture, canvas, resources, fps);
+          setupVideoCanvas(data, texture, canvas, resources, fps, sceneId);
         } else if (imageId) {
           const canvasData = canvases[canvasId];
           const imageData = assets[canvasData.imageId];
@@ -89,7 +109,7 @@ function recurseObjects(objectData, allData, sceneIndex, rootObject3d) {
     }
   }
   
-  children.forEach(childObjectData => recurseObjects(childObjectData, allData, sceneIndex, rootObject3d));
+  children.forEach(childObjectData => recurseObjects(childObjectData, allData, sceneIndex, sceneId, rootObject3d));
 }
 
 /**
@@ -152,10 +172,21 @@ function setupImageCanvas(canvasData, imageData, texture, canvas) {
  * @param {*} canvas 
  * @param {*} resources 
  * @param {*} fps 
+ * @param {String} sceneId Scene's sceneData.clipId.
  */
-function setupVideoCanvas(data, texture, canvas, resources, fps) {
+function setupVideoCanvas(data, texture, canvas, resources, fps, sceneId) {
   animations.push({
-    animation: createVideoAnimation(canvas, data, resources, texture, fps),
+    animation: createVideoAnimation(canvas, data, resources, texture, fps, sceneId),
     texture,
+  });
+}
+
+/**
+ * 
+ * @export
+ */
+export function videoCanvasesLoadImage() {
+  animations.forEach(animation => {
+    animation.animation.loadImage();
   });
 }

@@ -1,5 +1,6 @@
 node_modules
 tmp
 public/frames
+public/img/plstmichel
 rendered
 *.mp4
