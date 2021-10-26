@@ -14,13 +14,15 @@ import dataPlaceSaintMichel from '../data/plstmichel/plstmichel.js';
 // import dataLockedGroove3 from '../data/locked-groove-3.js';
 // import dataTestSvg from '../data/test-svg.js';
 
-// const hiResData = convertPreviewToHiRes(dataPlaceSaintMichel);
+const hiResData = convertPreviewToHiRes(dataPlaceSaintMichel);
 
 setup({
-  data: dataPlaceSaintMichel, // hiResData,
-  isCapture: false,
+  data: hiResData, // dataPlaceSaintMichel,
+  isCapture: true,
   // startSceneIndex: 0,
-  startSceneName: 'scene_actors2', // 'scene_walls6', // 'scene_actors3', // 'scene_walls7', // 'scene_walls3',
-  scenesToNotSkip: ['scene_main', 'scene_objects'],
-  captureThrottle: 15,
+  // startSceneName: 'scene_actors2', // 'scene_walls6', // 'scene_actors3', // 'scene_walls7', // 'scene_walls3',
+  // scenesToNotSkip: ['scene_main', 'scene_objects'],
+  captureThrottle: 15, // 15 is 2 frames rendered a second at 30 FPS
 });
+
+// ffmpeg -framerate 30 -i rendered/frame_%05d.png -f mp4 -vcodec libx264 -pix_fmt yuv420p output.mp4
