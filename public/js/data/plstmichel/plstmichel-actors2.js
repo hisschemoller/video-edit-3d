@@ -9,7 +9,7 @@ import createActor from '../../app/actor.js';
 import { uuidv4, } from '../../app/util.js';
 
 /**
- * Actors 2, vanaf fontein bocht naar Notre Dame.
+ * Actors 2, vanaf fontein bocht naar Notre Dame en verder naar oosten.
  */
 const EARLIER = 11;
 const scene = getDefaultScene([54 - EARLIER, 95 ], 'actors2', true);
@@ -23,14 +23,39 @@ scene.object.children.push({
   modelFile, modelName: 'tekening5',
 });
 
-// BOL LAMPEN
-[0, 10, 20, 30, 40].forEach((z) => {
+// WOLK NOTRE DAME
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/sky-1628.jpg',
+  matrix: getMatrix({ x: 45, y: 17, z: -42, ry: Math.PI * 1, sx: 2, sy: 2, }).elements,
+  modelFile, modelName: 'wolk1',
+});
+
+// WOLK BOULEVARD DU PALAIS
+scene.object.children.push({
+  id: uuidv4(),
+  imageFile: 'plstmichel/sky-1579.jpg',
+  matrix: getMatrix({ x: 5, y: 15, z: -47, ry: Math.PI * 1, sx: 1.8, sy: 1.8, }).elements,
+  modelFile, modelName: 'wolk2',
+});
+
+// BOL LAMPEN EN PALEN
+[-20, -0.5, 10, 20, 30, 40].forEach((z) => {
   scene.object.children.push({
     id: uuidv4(),
     imageFile: 'plstmichel/bol-lamp.png',
     matrix: getMatrix({ x: 46, y: 7, z, sx: 0.5, sy: 0.5, sz: 0.5, }).elements,
     modelFile, modelName: 'bollamp',
   });
+
+  if (z < 30) {
+    scene.object.children.push({
+      id: uuidv4(),
+      imageFile: 'plstmichel/boomstammen.png',
+      matrix: getMatrix({ x: 46, y: 0, z, sx: 0.4, sz: 0.4, }).elements,
+      modelFile, modelName: 'paal',
+    });
+  }
 });
 
 { // ROKENDE MAN

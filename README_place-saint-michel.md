@@ -88,6 +88,18 @@
 
 Total camera travel time: 318.35 sec.
 
+## Scenes
+
+* 0, 320, plstmichel-main.js (ground, camera)
+* ...wallScenes
+* 0, 55, plstmichel-actors1.js
+* 43, 95, plstmichel-actors2.js, vanaf fontein bocht naar Notre Dame en verder naar oosten.
+* 89, 120, plstmichel-actors3.js, westelijk naar muur 1583, hoek met de Seine.
+* 115, 140, plstmichel-actors4.js, west, turn around to east, Rue de la Huchette.
+* 132, 183, plstmichel-actors5.js, east towards Rue de la Huchette.
+* 168, 215.16, plstmichel-actors6.js, passing Notre Dame.
+* 197, 215.16, plstmichel-actors7.js, towards end and start.
+
 ## Frames, preview video en frames.
 
 ```
