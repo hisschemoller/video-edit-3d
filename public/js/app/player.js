@@ -13,8 +13,8 @@ const SKIP_FRAME_BATCH_SIZE = 30;
 const scenes = [];
 
 let isCaptureState = false;
-let captureFirstFrame;
-let captureLastFrame;
+let frameFirst;
+let frameLast;
 let captureThrottle;
 let captureCounter = 0;
 let data;
@@ -30,7 +30,6 @@ let socket;
 let startButton;
 
 export let isFastforwarding = false;
-
 
 export function setup(config) {
   const { data: dataSource } = config;
@@ -87,19 +86,17 @@ async function setupWithData(dataSource, config) {
 
 function start() {
   startButton.removeEventListener('click', start);
-  const firstFrame = parseInt(document.getElementById('firstframe').value, 10);
-  const lastFrame = parseInt(document.getElementById('lastframe').value, 10);
+  frameFirst = parseInt(document.getElementById('firstframe').value, 10);
+  frameLast = parseInt(document.getElementById('lastframe').value, 10);
   document.getElementById('overlay').remove();
   
-  if (lastFrame > firstFrame) {
-    captureFirstFrame = firstFrame;
-    captureLastFrame = lastFrame;
-    isFastforwarding = isCaptureState && captureFirstFrame > 0;
+  if (frameLast > frameFirst) {
+    isFastforwarding = frameFirst > 0;
   }
 
   checkForNextScene(position);
 
-  requestAnimationFrame(isCaptureState ? captureFirstFrame > 0 ? skipToStartFrame : capture : run);
+  requestAnimationFrame(isFastforwarding ? skipToStartFrame : isCaptureState ? capture : run);
 }
 
 function skipToSceneByIndex(sceneIndex, scenesToNotSkip) {
@@ -130,7 +127,7 @@ function skipToStartFrame() {
   let isNewScene = false;
   let whileCounter = 0;
 
-  while (!isNewScene && frame < captureFirstFrame && whileCounter < SKIP_FRAME_BATCH_SIZE) {
+  while (!isNewScene && frame < frameFirst && whileCounter < SKIP_FRAME_BATCH_SIZE) {
     position += (deltaTime * 1000); // deltaTime = 1 / fps
     isNewScene = checkForNextScene(position);
   
@@ -140,13 +137,13 @@ function skipToStartFrame() {
     whileCounter += 1;
   }
   
-  if (frame < captureFirstFrame) {
+  if (frame < frameFirst) {
     requestAnimationFrame(skipToStartFrame);
   } else {
     console.log('skip done', frame);
     isFastforwarding = false;
     videoCanvasesLoadImage();
-    requestAnimationFrame(capture);
+    requestAnimationFrame(isCaptureState ? capture : run);
   }
 }
 
@@ -179,8 +176,8 @@ function capture() {
     return;
   }
 
-  if (frame > captureLastFrame) {
-    console.log('done, reached captureLastFrame', captureLastFrame);
+  if (frameLast > frameFirst && frame > frameLast) {
+    console.log('done, reached frameLast', frameLast);
     return;
   }
   
