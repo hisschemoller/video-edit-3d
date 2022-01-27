@@ -15,7 +15,7 @@
     "gsap": "^3.6.0",
     "snap": "^1.1.0",
     "socket.io": "^2.2.0",
-    "three": "^0.125.0",
+    "three": "^0.137.0",
     "three-csm": "^1.1.0"
   },
   "devDependencies": {}
