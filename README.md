@@ -6,6 +6,7 @@ An app to create a 3D world and project video sequences on the surface of 3D obj
 
 ## Table of contents
 
+- [Using the app](#manual)
 - [Structure of the main app data](#structure)
 - [Scene data](#scene)
 - [Animation data](#animation)
@@ -16,6 +17,15 @@ An app to create a 3D world and project video sequences on the surface of 3D obj
 - [Animated video position acceleration](#videoanimation)
 - [SVG path to extrude shape](#extrude)
 - [FFMPEG](#ffmpg)
+
+## Using the app <a name="manual"></a>
+
+`yarn start` to start Node and the server, then run the app on `http://localhost:3012/`.
+
+Function `setup()` in `main.js` has several options:
+
+* `isCapture` - Set to `true` to render highest resolution PNG frames.
+
 
 ## Structure of the main app data <a name="structure"></a>
 
