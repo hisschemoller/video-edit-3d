@@ -20,11 +20,11 @@ An app to create a 3D world and project video sequences on the surface of 3D obj
 
 ## Using the app <a name="manual"></a>
 
-`yarn start` to start Node and the server, then run the app on `http://localhost:3012/`.
-
-Function `setup()` in `main.js` has several options:
-
-* `isCapture` - Set to `true` to render highest resolution PNG frames.
+* `yarn start` to start Node and the server, then run the app on `http://localhost:3012/`.
+* For Place Saint-Michel all source videos PNG frames, even the preview ones, are on the Samsung external disk.
+* Function `setup()` in `main.js` has several options:
+  * `isCapture` - Set to `true` to render highest resolution PNG frames.
+  * `scenesToPlay` - If used, only play the scenes in this array. To simplify the score.
 
 
 ## Structure of the main app data <a name="structure"></a>

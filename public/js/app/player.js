@@ -47,6 +47,7 @@ export function setup(config) {
 async function setupWithData(dataSource, config) {
   const {
     isCapture,
+    scenesToPlay = [],
     startSceneIndex = 0,
     startSceneName = undefined,
     scenesToNotSkip = [],
@@ -57,6 +58,7 @@ async function setupWithData(dataSource, config) {
   data = dataSource;
   data.score = sortScoreByLifespanStart(data.score);
   data.score = convertToMilliseconds(data.score);
+
   console.log('SCENES: Name, Start, End (in sec)');
   console.table(data.score.reduce((accumulator, scene) => {
     return [...accumulator, [
@@ -77,6 +79,13 @@ async function setupWithData(dataSource, config) {
   if (isCaptureState) {
     socket = io.connect('http://localhost:3012');
     captureThrottle = config.captureThrottle || 1;
+  }
+
+  // reduce score to only those scenes selected to be played
+  if (scenesToPlay.length && data.score.length) {
+    data.score = data.score.reduce((accumulator, scene) => (
+      scenesToPlay.indexOf(scene.object.name) === -1 ? accumulator : [...accumulator, scene]
+    ), [])
   }
 
   // skip to scene by index or name
@@ -128,7 +137,7 @@ function skipToSceneByName(sceneName, scenesToNotSkip) {
 }
 
 /**
- * Advance through all frames quiickly until the start frame,
+ * Advance through all frames quickly until the start frame,
  * then capture from there.
  */
 function skipToStartFrame() {
@@ -229,16 +238,16 @@ function checkForNextScene(position) {
         nextSceneIndex++;
         nextSceneTime = nextSceneIndex < score.length ? score[nextSceneIndex].lifespan[0] : Number.MAX_VALUE;
 
-        // store the scene end time
-        scenes.push({
-          clipId,
-          lifespan,
-        });
-        scenes.sort((a, b) => a.lifespan[1] - b.lifespan[1]);
-
-        // create the scene's objects
-        loadWorldScene(data, i, position / 1000);
-        isNewScene = true;
+          // store the scene end time
+          scenes.push({
+            clipId,
+            lifespan,
+          });
+          scenes.sort((a, b) => a.lifespan[1] - b.lifespan[1]);
+  
+          // create the scene's objects
+          loadWorldScene(data, i, position / 1000);
+          isNewScene = true;
       } else {
 
         // not yet time for the next scene
