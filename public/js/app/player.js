@@ -57,7 +57,15 @@ async function setupWithData(dataSource, config) {
   data = dataSource;
   data.score = sortScoreByLifespanStart(data.score);
   data.score = convertToMilliseconds(data.score);
-  console.log('data', data);
+  console.log('SCENES: Name, Start, End (in sec)');
+  console.table(data.score.reduce((accumulator, scene) => {
+    return [...accumulator, [
+      scene.object.name,
+      Math.round(scene.lifespan[0] / 1000),
+      Math.round(scene.lifespan[1] / 1000)
+    ]];
+  }, []));
+  console.log('DATA: ', data);
 
   const { fps = 30, } = data.settings;
   framesPerDraw = 60 / fps;
