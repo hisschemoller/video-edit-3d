@@ -25,7 +25,7 @@ const fs = require('fs');
 
 // listen for HTTP requests on specified port
 server.listen(port, () => {
-  console.log('listening on %d', port);
+  console.log('listening on http://localhost:%d', port);
 });
 
 // allow front-end access to node_modules folder

@@ -35,10 +35,10 @@ export function setup(config) {
   const { data: dataSource } = config;
   if (typeof dataSource === 'string') {
     fetch(dataSource)
-    .then(response => response.json())
-    .then(response => {
-      setupWithData(response, config);
-    });
+      .then(response => response.json())
+      .then(response => {
+        setupWithData(response, config);
+      });
   } else {
     setupWithData(dataSource, config);
   }
@@ -59,13 +59,12 @@ async function setupWithData(dataSource, config) {
   data.score = sortScoreByLifespanStart(data.score);
   data.score = convertToMilliseconds(data.score);
 
-  console.log('SCENES: Name, Start, End (in sec)');
   console.table(data.score.reduce((accumulator, scene) => {
-    return [...accumulator, [
-      scene.object.name,
-      Math.round(scene.lifespan[0] / 1000),
-      Math.round(scene.lifespan[1] / 1000)
-    ]];
+    return [...accumulator, {
+      'Scene name': scene.object.name,
+      'Start (sec.)': Math.round(scene.lifespan[0] / 1000),
+      'End (sec.)': Math.round(scene.lifespan[1] / 1000)
+  }];
   }, []));
   console.log('DATA: ', data);
 
