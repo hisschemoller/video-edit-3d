@@ -7,7 +7,7 @@ import {
 } from './world.js';
 import { draw as drawCanvas, videoCanvasesLoadImage, } from './canvas.js';
 import { convertToMilliseconds, sortScoreByLifespanStart, } from './util.js';
-import { setInfo } from './controls.js';
+import { showPosition } from './controls.js';
 
 const SKIP_FRAME_BATCH_SIZE = 30;
 const scenes = [];
@@ -22,12 +22,12 @@ let deltaTime;
 let frame = 0;
 let framesPerDraw = 0;
 let frameCounter = -1;
+let isPaused = false;
 let nextSceneIndex = 0;
 let nextSceneTime = 0;
 let origin = 0;
 let position = 0;
 let socket;
-let startButton;
 
 export let isFastforwarding = false;
 
@@ -95,24 +95,26 @@ async function setupWithData(dataSource, config) {
   }
   
   await setupWorld(data);
-
-  startButton = document.querySelector('#overlay button');
-  startButton.addEventListener('click', start);
 }
 
-function start() {
-  startButton.removeEventListener('click', start);
-  frameFirst = parseInt(document.getElementById('firstframe').value, 10);
-  frameLast = parseInt(document.getElementById('lastframe').value, 10);
-  document.getElementById('overlay').remove();
+export function start(firstFrame, lastFrame) {
+  frameFirst = firstFrame;
+  frameLast = lastFrame;
   
-  if (frameLast > frameFirst) {
-    isFastforwarding = frameFirst > 0;
-  }
+  isFastforwarding = frameLast > frameFirst && frameFirst > 0;
 
   checkForNextScene(position);
 
   requestAnimationFrame(isFastforwarding ? skipToStartFrame : isCaptureState ? capture : run);
+}
+
+export function togglePlayPause(pause) {
+  if (!isCaptureState) {
+    isPaused = pause;
+    if (!isPaused) {
+      run();
+    }
+  }
 }
 
 function skipToSceneByIndex(sceneIndex, scenesToNotSkip) {
@@ -164,6 +166,10 @@ function skipToStartFrame() {
 }
 
 function run() {
+  if (isPaused) {
+    return;
+  }
+
   frameCounter++;
   if (frameCounter % framesPerDraw !== 0) {
     requestAnimationFrame(run);
@@ -175,7 +181,7 @@ function run() {
   checkForNextScene(position);
   drawCanvas(frame);
   animateWorld(deltaTime);
-  setInfo((position / 1000).toFixed(1));
+  showPosition(position);
   frame += 1;
 }
 
@@ -201,7 +207,7 @@ function capture() {
   checkForNextScene(position);
   drawCanvas(frame);
   animateWorld(deltaTime);
-  setInfo((position / 1000).toFixed(1));
+  showPosition(position);
 
   // send canvas to node app
   socket.emit('render-frame', {

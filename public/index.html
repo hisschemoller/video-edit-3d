@@ -22,9 +22,13 @@
 				</div>
 			</div>
 			<div id="canvas-container"></div>
-			<div id="controls">
+			<div id="controls" class="controls">
 				<button type="button" id="save-image">Save image as...</button>
-				<span>time: <span id="info__time"></span></span>
+				<input type="checkbox" id="pause-toggle" class="checkbox-hide">
+				<label for="pause-toggle" class="button"></label>
+			</div>
+			<div id="controls2" class="controls">
+				<span>Time: <span id="info__time"></span></span>
 			</div>
 		</div>
     <script src="js/lib/socket.io.js"></script>

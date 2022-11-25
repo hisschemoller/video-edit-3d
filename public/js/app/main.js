@@ -1,4 +1,5 @@
-import { setup } from './player.js';
+import { setup as setupPlayer } from './player.js';
+import { setup as setupUI } from './ui.js';
 import convertPreviewToHiRes from './hi-res.js';
 // import dataMatthaikirchplatz from '../data/matthaikirchplatz/matthaikirchplatz.js';
 // import dataMunchen from '../data/munchen/munchen.js';
@@ -16,7 +17,8 @@ import dataPlaceSaintMichel from '../data/plstmichel/plstmichel.js';
 
 // const hiResData = convertPreviewToHiRes(dataPlaceSaintMichel);
 
-setup({
+setupUI();
+setupPlayer({
   data: dataPlaceSaintMichel,
   isCapture: false,
   // scenesToPlay: ['scene_main', 'scene_actors1'],

@@ -48,20 +48,19 @@ function saveAsImage() {
 
 /**
  * Write info message.
- * @param {String} msg 
+ * @param {Number} position 
  */
-export function setInfo(msg) {
-  infoTimeEl.textContent = msg;
+export function showPosition(position) {
+  infoTimeEl.textContent = (position / 1000).toFixed(2);
 }
 
 /**
  * Module setup.
  */
 // export function setup() {
-  const rootel = document.querySelector('#controls');
-  infoTimeEl = rootel.querySelector('#info__time');
+  infoTimeEl = document.querySelector('#controls2').querySelector('#info__time');
 
-  rootel.querySelector('#save-image').addEventListener('click', e => {
+  document.querySelector('#save-image').addEventListener('click', e => {
     saveAsImage();
   });
 // }
