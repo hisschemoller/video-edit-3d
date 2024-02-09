@@ -228,7 +228,7 @@ scene.object.children.push({
 }
 
 { // MAN VLAKBIJ KOPTELEFOON
-  const actorStart = 1;
+  const actorStart = 0.9;
   createActor(scene, fps, {
     geom: { w: 2.5, h: 3, d: 0.5 },
     keys: [
@@ -238,10 +238,10 @@ scene.object.children.push({
     ],
     canvas: { offset: 0, scale: 512/10, size: 512 },
     vSc: 512/480,
-    vt: [16.5, 19],
+    vt: [16.5, 20],
     vKeys: [
-      { t:  0 + actorStart, v: [ 580, 270]},
-      { t:  2.5 + actorStart, v: [ -220, 270]},
+      { t:  0 + actorStart, v: [ 620, 270]},
+      { t:  3.5 + actorStart, v: [ -500, 270]},
     ],
     vrid: '1580_preview',
   });
