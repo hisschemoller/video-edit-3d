@@ -248,7 +248,7 @@ scene.object.children.push({
 }
 
 { // PAAR STIL RECHTS
-  const actorStart = 7;
+  const actorStart = 6;
   createActor(scene, fps, {
     geom: { w: 3, h: 3, d: 0.5 },
     keys: [
@@ -259,7 +259,7 @@ scene.object.children.push({
     matrix: getMatrix({ ry: Math.PI * 0, }).elements,
     canvas: { offset: 100, scale: 512/4, size: 512 },
     vSc: 512/90,
-    vt: [30, 65],
+    vt: [29, 65],
     vKeys: [
       { t:  0 + actorStart, v: [ 380, 192]},
       { t:  35 + actorStart, v: [ 380, 192]},
@@ -476,7 +476,6 @@ scene.object.children.push({
     vrid: '1580_preview',
   });
 }
-
 
 { // MAN VAN LINKS MET RODE TRUI
   const actorStart = 22;
