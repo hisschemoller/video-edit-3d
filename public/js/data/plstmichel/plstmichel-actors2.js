@@ -27,7 +27,7 @@ scene.object.children.push({
 scene.object.children.push({
   id: uuidv4(),
   imageFile: 'plstmichel/sky-1628.jpg',
-  matrix: getMatrix({ x: 45, y: 17, z: -42, ry: Math.PI * 1, sx: 2, sy: 2, }).elements,
+  matrix: getMatrix({ x: 45, y: 18, z: -42, ry: Math.PI * 1, sx: 2, sy: 2, }).elements,
   modelFile, modelName: 'wolk1',
 });
 
