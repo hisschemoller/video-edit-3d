@@ -213,7 +213,7 @@ scene.object.children.push({
     geom: { w: 3, h: 3, d: 1 },
     keys: [
       { t:  0 + actorStart, v: [  0, 0, -20]},
-      { t: 10 + actorStart, v: [ 25.5, 0, -20]},
+      { t: 10 + actorStart, v: [ 28, 0, -23]},
     ],
     matrix: getMatrix({ ry: Math.PI * 0, }).elements,
     canvas: { offset: 0, scale: 512/9, size: 512 },
