@@ -311,7 +311,7 @@ scene.object.children.push({
   });
 }
 
-{ // FOTOGRAFEREN
+{ // VROUW STILSTAAND FOTOGRAFEREND
   const actorStart = 6;
   createActor(scene, fps, {
     geom: { w: 2, h: 3, d: 0.5 },
@@ -477,14 +477,15 @@ scene.object.children.push({
   });
 }
 
+
 { // MAN VAN LINKS MET RODE TRUI
   const actorStart = 22;
   createActor(scene, fps, {
     geom: { w: 2.5, h: 3, d: 1 },
     keys: [
-      { t:  0 + actorStart, v: [ 30, -3.5, 20]},
-      { t:  0.01 + actorStart, v: [ 30, 0, 20]},
-      { t:  22 + actorStart, v: [ 15, 0, 40]},
+      { t:  0 + actorStart, v: [ 27, -3.5, 20]},
+      { t:  0.01 + actorStart, v: [ 27, 0, 20]},
+      { t:  22 + actorStart, v: [ 12, 0, 40]},
     ],
     matrix: getMatrix({ ry: Math.PI * 0, }).elements,
     canvas: { offset: 0, scale: 512/16, size: 512 },
