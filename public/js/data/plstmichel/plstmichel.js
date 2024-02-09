@@ -16,8 +16,8 @@ import sceneActors from './plstmichel-actors.js';
 const data = {
   settings: {
     backgroundImage: 'plstmichel/plstmichel-lucht.jpg',
-    width: 16 * 50,
-    height: 9 * 50,
+    width: 16 * 70,
+    height: 9 * 70,
     fps,
   },
   camera: {
