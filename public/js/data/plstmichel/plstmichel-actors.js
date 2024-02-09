@@ -2,6 +2,10 @@ import { uuidv4, } from '../../app/util.js';
 import createActor from '../../app/actor.js';
 import { getDefaultScene, getMatrix, fps, } from './plstmichel-shared.js';
 
+/**
+ * Dit bestand wordt niet gebruikt, zie ./plstmichel.js
+ */
+
 const scene = getDefaultScene([0, 180], 3, true);
 const modelFile = 'plstmichel.glb';
 export default scene;

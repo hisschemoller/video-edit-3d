@@ -18,6 +18,8 @@ An app to create a 3D world and project video sequences on the surface of 3D obj
 - [SVG path to extrude shape](#extrude)
 - [FFMPEG](#ffmpg)
 
+- [README_place-saint-michel.md](README_place-saint-michel.md)
+
 ## Using the app <a name="manual"></a>
 
 * `yarn start` to start Node and the server, then run the app on `http://localhost:3012/`.

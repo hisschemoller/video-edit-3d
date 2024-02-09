@@ -70,9 +70,8 @@ button:hover,
 }
 
 .display {
-  background-color: #eee;
-  display: flex;
-  margin: 20px;
+  background-color: #222;
+  border: 1px solid #444;
   padding: 10px 20px;
   text-align: center;
 }
