@@ -184,7 +184,7 @@ function run() {
   checkForNextScene(position);
   drawCanvas(frame);
   animateWorld(deltaTime);
-  showPosition(position);
+  showPosition(position, frame);
   frame += 1;
 }
 

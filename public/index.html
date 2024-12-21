@@ -13,12 +13,16 @@
 					<button type="button">Click to start</button>
 					<div class="overlay__input">
 						<label for="firstframe">First frame</label> 
-						<input type="number" id="firstframe" value="0" />
+						<input type="number" id="firstframe" value="10" />
 					</div>
 					<div class="overlay__input">
 						<label for="lastframe">Last frame</label> 
-						<input type="number" id="lastframe" value="0" />
+						<input type="number" id="lastframe" value="10000" />
 					</div>
+					<p><br>Last frame moet altijd groter zijn dan start frame.<br>
+						Start frame is gerekend vanaf een eventuele<br>
+						startSceneIndex of startSceneName in main.js
+					</p>
 				</div>
 			</div>
 			<div id="canvas-container"></div>
@@ -29,6 +33,7 @@
 			</div>
 			<div id="controls2" class="controls">
 				<span class="display">Time: <span id="info__time"></span></span>
+				<span class="display">Frame: <span id="info__frame"></span></span>
 			</div>
 		</div>
     <script src="js/lib/socket.io.js"></script>

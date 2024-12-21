@@ -1,6 +1,7 @@
 import { getCanvas } from './world.js';
 
-let infoTimeEl;
+const infoTimeEl = document.querySelector('#controls2').querySelector('#info__time');
+const infoFrameEl = document.querySelector('#controls2').querySelector('#info__frame');
 
 /**
  * Create blob.
@@ -50,15 +51,15 @@ function saveAsImage() {
  * Write info message.
  * @param {Number} position 
  */
-export function showPosition(position) {
+export function showPosition(position, frame) {
   infoTimeEl.textContent = (position / 1000).toFixed(2);
+  infoFrameEl.textContent = Math.round((position / 1000) * frame);
 }
 
 /**
  * Module setup.
  */
 // export function setup() {
-  infoTimeEl = document.querySelector('#controls2').querySelector('#info__time');
 
   document.querySelector('#save-image').addEventListener('click', e => {
     saveAsImage();
