@@ -20,7 +20,7 @@ import dataPlaceSaintMichel from '../data/plstmichel/plstmichel.js';
 setupUI();
 setupPlayer({
   data: dataPlaceSaintMichel,
-  isCapture: false,
+  isCapture: true,
   // scenesToPlay: ['scene_main', 'scene_actors1'],
   // startSceneIndex: 0,
   // startSceneName: 'scene_actors2', // 'scene_walls6', // 'scene_actors3', // 'scene_walls7', // 'scene_walls3',

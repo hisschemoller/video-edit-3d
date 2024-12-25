@@ -102,7 +102,7 @@ Total camera travel time: 318.35 sec.
 
 ## Frames, preview video en frames.
 
-```
+```bash
 ffmpeg -i videos_placesaintmichel/IMG_1585.mov frames_placesaintmichel/1585/frame_%05d.png
 ffmpeg -i videos_placesaintmichel/IMG_1585.MOV -vf scale=480:-1 videos_placesaintmichel/IMG_1585_preview.mov
 ffmpeg -i videos_placesaintmichel/IMG_1585_preview.mov frames_placesaintmichel/1585_preview/frame_%05d.png
@@ -110,7 +110,7 @@ ffmpeg -i videos_placesaintmichel/IMG_1585_preview.mov frames_placesaintmichel/1
 
 http://localhost:3012/fs-img?dir=/Volumes/Samsung_X5/frames_placesaintmichel/1585_preview/&img=frame_00003.png
 
-```
+```bash
 ffmpeg -i videos_placesaintmichel/IMG_1581.mov -vf "rotate=-0.8*PI/180" -vcodec libx264 -crf 0 -preset medium videos_placesaintmichel/IMG_1581r.mp4
 ffmpeg -i videos_placesaintmichel/IMG_1581r.mp4 frames_placesaintmichel/1581/frame_%05d.png
 ffmpeg -i videos_placesaintmichel/IMG_1581r.mp4 -vf scale=480:-1 videos_placesaintmichel/IMG_1581r_preview.mp4
@@ -128,12 +128,16 @@ https://threejs.org/examples/webgl_test_memory2.html
 https://threejs.org/docs/index.html#api/en/renderers/WebGLRenderer.info
 https://www.khronos.org/registry/webgl/conformance-suites/1.0.0/extra/out-of-memory.html
 
+
 ## Also remove after scene end
 
 * AnimationMixer from mixers.
 * Video canvas animations from canvas.js and video-animation.js
 
-```
-// png seq to mp4
-ffmpeg -framerate 30 -i rendered/frame_%05d.png -f mp4 -vcodec libx264 -pix_fmt yuv420p output-rendered.mp4
+
+## Render
+
+```bash
+# png seq to mp4
+ffmpeg -framerate 30 -i rendered/frame_%05d.png -f mp4 -vcodec libx264 -pix_fmt yuv420p wouter-hisschemoller_-_place-st-michel-test-render-2024-12-24.mp4
 ```
