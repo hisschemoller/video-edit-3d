@@ -162,8 +162,8 @@ scene.object.children.push({
   });
 }
 
-{ // MAN ALPINOPET VOOR STOPLICHT
-  const actorStart = 0 + EARLIER;
+{ // MAN ALPINOPET VOOR STOPLICHT EN FOTOGRAAF
+  const actorStart = 0 + EARLIER - 1;
   createActor(scene, fps, {
     geom: { w: 2, h: 4, d: 3 },
     keys: [
@@ -174,8 +174,8 @@ scene.object.children.push({
     vSc: 512/120,
     vt: [42, 62],
     vKeys: [
-      { t:  0 + actorStart, v: [ 290, 190]},
-      { t: 20 + actorStart, v: [ 290, 190]},
+      { t:  0 + actorStart, v: [ 295, 190]},
+      { t: 20 + actorStart, v: [ 295, 190]},
     ],
     vrid: '1600_preview',
   });
