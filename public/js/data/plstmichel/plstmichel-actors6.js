@@ -223,7 +223,7 @@ export default scene;
     canvas: { offset: 50, scale: 512/55 , size: 512 },
     rotateY: Math.PI * 1,
     vSc: 512/480,
-    vt: [66, 76],
+    vt: [66.5, 76.5],
     vKeys: [
       { t: 0 + actorStart, v: [ 90, 190 ]},
       { t: 10 + actorStart, v: [ 300, 190 ]},
