@@ -106,7 +106,7 @@ export default scene;
     vt: [126, 129],
     vKeys: [
       { t: 0 + actorStart, v: [ 250, 185 ]},
-      { t: 3 + actorStart, v: [ -30, 185 ]},
+      { t: 3 + actorStart, v: [ -45, 185 ]},
     ],
     vrid: '1579_preview',
   });
