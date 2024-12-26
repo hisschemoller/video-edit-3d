@@ -272,7 +272,7 @@ export default scene;
   });
 }
 
-{ // GROTE SCOOTER NAAR LINKS
+{ // GROTE GROENEE SCOOTER NAAR LINKS
   const actorStart = 23;
   createActor(scene, fps, {
     geom: { w: 3.5, h: 2.8, d: 1 },
@@ -283,7 +283,7 @@ export default scene;
     canvas: { offset: 50, scale: 512/34 , size: 512 },
     rotateY: Math.PI * 1,
     vSc: 512/480,
-    vt: [71, 73],
+    vt: [71.09, 73.09],
     vKeys: [
       { t: 0 + actorStart, v: [ 410, 200 ]},
       { t: 2 + actorStart, v: [ -140, 200 ]},
