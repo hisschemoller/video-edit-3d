@@ -5,7 +5,7 @@ import createActor from '../../app/actor.js';
  * Actors 3, westelijk naar muur 1583, hoek met de Seine.
  */
 
-const scene = getDefaultScene([89, 120 ], 'actors3', true);
+const scene = getDefaultScene([89, 122], 'actors3', true);
 export default scene;
 
 // { // TEST
@@ -74,7 +74,7 @@ export default scene;
   });
 }
 
-{ // SNELLE AUTO VAN RECHTS
+{ // SNELLE GRIJZE AUTO VAN RECHTS
   const actorStart = 0;
   createActor(scene, fps, {
     geom: { w: 1, h: 3, d: 7 },
