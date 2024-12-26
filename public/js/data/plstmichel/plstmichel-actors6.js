@@ -200,10 +200,10 @@ export default scene;
       { t: 0 + actorStart, v: [ 22, 0, -48]},
       { t: 9 + actorStart, v: [ 52.2, 0, -48]},
     ],
-    canvas: { offset: 50, scale: 512/55 , size: 512 },
+    canvas: { offset: 50, scale: 512/63 , size: 512 },
     rotateY: Math.PI * 1,
     vSc: 512/480,
-    vt: [61, 71],
+    vt: [61.5, 71.5],
     vKeys: [
       { t: 0 + actorStart, v: [ 115, 190 ]},
       { t: 10 + actorStart, v: [ 285, 190 ]},
