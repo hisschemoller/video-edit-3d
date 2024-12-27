@@ -351,7 +351,8 @@ scene.object.children.push({
   createActor(scene, fps, {
     geom: { w: 8, h: 3.8, d: 1 },
     keys: [
-      { t: 0 + actorStart, v: [ 14, 0, -28]},
+      { t: 0 + actorStart, v: [ 14, -4, -28]},
+      { t: 0.0001 + actorStart, v: [ 14, 0, -28]},
       { t: 7 + actorStart, v: [ 12, 0, 8]},
     ],
     canvas: { offset: 150, scale: 512/19 , size: 512 },
