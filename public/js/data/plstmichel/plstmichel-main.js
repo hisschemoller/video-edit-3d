@@ -33,6 +33,7 @@ const o = {
   fountain1581Start: 0,
   seine1583Start: 0,
   gilbertJeune1600Start: 0,
+  rueDeLaHuchette: 3,
 };
 
 // towards the fountain
@@ -43,7 +44,7 @@ wallScene = getDefaultScene([start, end], 'walls1', false);
 create1584GreenGate(wallScene, fps);
 create1581Fountain(wallScene, fps, o.fountain1581Start);
 create1600GilbertJeune(wallScene, fps, o.gilbertJeune1600Start);
-create1582RueDeLaHuchette(wallScene, fps);
+// create1582RueDeLaHuchette(wallScene);
 wallScenes.push(wallScene);
 
 // corner part 1
@@ -58,7 +59,7 @@ advanceVideoTimes(63.09074180404672, ['fountain1581Start', 'gilbertJeune1600Star
 wallScene = getDefaultScene([start, end], 'walls3', false);
 create1581Fountain(wallScene, fps, o.fountain1581Start);
 create1600GilbertJeune(wallScene, fps, o.gilbertJeune1600Start);
-create1582RueDeLaHuchette(wallScene, fps);
+create1582RueDeLaHuchette(wallScene, fps, o.rueDeLaHuchette);
 create1628QuaiSaintMichel(wallScene, fps);
 create1628NotreDame(wallScene, fps);
 create1579QuaiDuMarcheNeuf(wallScene, fps);
@@ -288,30 +289,36 @@ function createFacade(scene, fps, settings) {
 }
 
 // N 1585 QUAI DES ORFEVRES - PALAIS DE JUSTICE
-export function create1585QuaiDesOrfevres(scene, fps) {
-  const sX = 0, sY = 0, sW = 983, sH = 551, w = 50; // h = 28
+export function create1585QuaiDesOrfevres(scene, fps, videoStart = 0) {
+  // const sX = 0, sY = 0, sW = 983, sH = 551, w = 50;
+  const sX = 0*PREVIEW_SCALE, sY = 0*PREVIEW_SCALE, sW = 983*PREVIEW_SCALE, sH = 551*PREVIEW_SCALE, w = 50;
   createFacade(scene, fps, {
     sX, sY, sW, sH, x: -50, z: -40, w, h: w * (sH / sW),
-    img: 'plstmichel/parijs-n-1585.jpg',
+    // img: 'plstmichel/parijs-n-1585.jpg',
     // img: 'fs-img?dir=/Volumes/Seagate Slim Drive/testfoto/parijs/&img=parijs-n.jpg',
+    vrid: '1585_preview', vSc: 1, vt: [videoStart, null], vKeys: [{t: 0, v: [0, 0]}],
   });
 }
 
 // N 1579 QUAI DU MARCHÉ NEUF (HOEKJE)
-export function create1579QuaiDuMarcheNeufCorner(scene, fps) {
-  const sX = 803, sY = 237, sW = 300, sH = 445, w = 10; // h was 24
+export function create1579QuaiDuMarcheNeufCorner(scene, fps, videoStart = 0) {
+  // const sX = 803, sY = 237, sW = 300, sH = 445, w = 10;
+  const sX = 803*PREVIEW_SCALE, sY = 237*PREVIEW_SCALE, sW = 300*PREVIEW_SCALE, sH = 445*PREVIEW_SCALE, w = 10;
   createFacade(scene, fps, {
     sX, sY, sW, sH, x: 0, z: -40, w, h: 18,
-    img: 'plstmichel/parijs-n-1579.jpg', rotateY: Math.PI * 0.5,
+    // img: 'plstmichel/parijs-n-1579.jpg', rotateY: Math.PI * 0.5,
+    vrid: '1579_preview', vSc: 1, vt: [videoStart, null], vKeys: [{t: 0, v: [0, 0]}],
   });
 }
 
 // N 1579 QUAI DU MARCHÉ NEUF
-export function create1579QuaiDuMarcheNeuf(scene, fps) {
-  const sX = 803, sY = 237, sW = 600, sH = 445, w = 20; // h was 24, wordt 20
+export function create1579QuaiDuMarcheNeuf(scene, fps, videoStart = 0) {
+  // const sX = 803, sY = 237, sW = 600, sH = 445, w = 20;
+  const sX = 803*PREVIEW_SCALE, sY = 237*PREVIEW_SCALE, sW = 600*PREVIEW_SCALE, sH = 445*PREVIEW_SCALE, w = 20;
   createFacade(scene, fps, {
     sX, sY, sW, sH, x: 0, z: -50, w, h: 18,
-    img: 'plstmichel/parijs-n-1579.jpg',
+    // img: 'plstmichel/parijs-n-1579.jpg',
+    vrid: '1579_preview', vSc: 1, vt: [videoStart, null], vKeys: [{t: 0, v: [0, 0]}],
   });
 }
 
@@ -327,20 +334,24 @@ export function create1583Seine(scene, fps, videoStart = 0) {
 }
 
 // O 1584 OOST BUSHALTE
-export function create1584BusStop(scene, fps) {
-  const sX = 845, sY = 0, sW = 714, sH = 691, w = 20;
+export function create1584BusStop(scene, fps, videoStart = 0) {
+  // const sX = 845, sY = 0, sW = 714, sH = 691, w = 20;
+  const sX = 845*PREVIEW_SCALE, sY = 0*PREVIEW_SCALE, sW = 714*PREVIEW_SCALE, sH = 691*PREVIEW_SCALE, w = 20;
   createFacade(scene, fps, {
     sX, sY, sW, sH, x: -30, z: 20, w, h: w * (sH / sW),
-    img: 'plstmichel/parijs-o-1584.jpg', rotateY: Math.PI,
+    // img: 'plstmichel/parijs-o-1584.jpg', rotateY: Math.PI,
+    vrid: '1584_preview', vSc: 1, vt: [videoStart, null], vKeys: [{t: 0, v: [0, 0]}],
   });
 }
 
 // O 1584 OOST POORT
-export function create1584GreenGate(scene, fps) {
-  const sX = 0, sY = 0, sW = 845, sH = 691, w = 30;
+export function create1584GreenGate(scene, fps, videoStart = 0) {
+  // const sX = 0, sY = 0, sW = 845, sH = 691, w = 30;
+  const sX = 0*PREVIEW_SCALE, sY = 0*PREVIEW_SCALE, sW = 845*PREVIEW_SCALE, sH = 691*PREVIEW_SCALE, w = 30;
   createFacade(scene, fps, {
     sX, sY, sW, sH, x: -30, z: 50, w, h: w * (sH / sW),
-    img: 'plstmichel/parijs-o-1584.jpg', rotateY: Math.PI * 0.5,
+    // img: 'plstmichel/parijs-o-1584.jpg', rotateY: Math.PI * 0.5,
+    vrid: '1584_preview', vSc: 1, vt: [videoStart, null], vKeys: [{t: 0, v: [0, 0]}],
   });
 }
 
@@ -368,29 +379,34 @@ export function create1600GilbertJeune(scene, fps, videoStart = 0) {
 }
 
 // W 1582 RUE DE LA HUCHETTE
-export function create1582RueDeLaHuchette(scene, fps) {
-  const sX = 376, sY = 0, sW = 1025, sH = 710, w = 40;
+  export function create1582RueDeLaHuchette(scene, fps, videoStart = 0) {
+  // const sX = 376, sY = 0, sW = 1025, sH = 710, w = 40;
+  const sX = 376*PREVIEW_SCALE, sY = 0*PREVIEW_SCALE, sW = 1025*PREVIEW_SCALE, sH = 710*PREVIEW_SCALE, w = 40;
   createFacade(scene, fps, {
     sX, sY, sW, sH, x: 50, z: -30, w, h: w * (sH / sW),
-    img: 'plstmichel/parijs-w-1582.jpg', rotateY: Math.PI * -0.5,
+    // img: 'plstmichel/parijs-w-1582.jpg', rotateY: Math.PI * -0.5,
+    vrid: '1582_preview', vSc: 1, vt: [videoStart, null], vKeys: [{t: 0, v: [0, 0]}],
   });
 }
 
 // W 1628 QUAI SAINT MICHEL
-export function create1628QuaiSaintMichel(scene, fps) {
-  const sX = 900, sY = 0, sW = 509, sH = 767, w = 20;
+export function create1628QuaiSaintMichel(scene, fps, videoStart = 0) {
+  // const sX = 900, sY = 0, sW = 509, sH = 767, w = 20;
+  const sX = 900*PREVIEW_SCALE, sY = 0*PREVIEW_SCALE, sW = 509*PREVIEW_SCALE, sH = 767*PREVIEW_SCALE, w = 20;
   createFacade(scene, fps, {
     sX, sY, sW, sH, x: 50, z: -50, w, h: w * (sH / sW),
-    img: 'plstmichel/parijs-w-1628.jpg', rotateY: Math.PI * -0.5,
+    // img: 'plstmichel/parijs-w-1628.jpg', rotateY: Math.PI * -0.5,
+    vrid: '1628_preview', vSc: 1, vt: [videoStart, null], vKeys: [{t: 0, v: [0, 0]}],
   });
 }
 
 // W 1628 NOTRE DAME
-export function create1628NotreDame(scene, fps) {
-  const sX = 3, sY = 9, sW = 898, sH = 758, w = 30;
+export function create1628NotreDame(scene, fps, videoStart = 0) {
+  const sX = 3*PREVIEW_SCALE, sY = 9*PREVIEW_SCALE, sW = 898*PREVIEW_SCALE, sH = 758*PREVIEW_SCALE, w = 30;
   createFacade(scene, fps, {
     sX, sY, sW, sH, x: 20, z: -50, w, h: w * (sH / sW),
-    img: 'plstmichel/parijs-w-1628.jpg',
+    // img: 'plstmichel/parijs-w-1628.jpg',
+    vrid: '1628_preview', vSc: 1, vt: [videoStart, null], vKeys: [{t: 0, v: [0, 0]}],
   });
 }
 
