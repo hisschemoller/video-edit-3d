@@ -354,6 +354,7 @@ export function create1584GreenGate(scene, fps, videoStart = 0) {
   const sX = 0*PREVIEW_SCALE, sY = 0*PREVIEW_SCALE, sW = 845*PREVIEW_SCALE, sH = 691*PREVIEW_SCALE, w = 30;
   createFacade(scene, fps, {
     sX, sY, sW, sH, x: -30, z: 50, w, h: w * (sH / sW),
+    rotateY: Math.PI * 0.5,
     // img: 'plstmichel/parijs-o-1584.jpg', rotateY: Math.PI * 0.5,
     vrid: '1584_preview', vSc: 1, vt: [videoStart, null], vKeys: [{t: 0, v: [0, 0]}],
   });
