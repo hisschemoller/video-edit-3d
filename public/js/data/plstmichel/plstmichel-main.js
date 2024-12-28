@@ -42,7 +42,7 @@ const o = {
 // towards the fountain
 o.fountain1581Start = 0;
 o.gilbertJeune1600Start = 100;
-o.rueDeLaHuchette1582Start = 3;
+o.rueDeLaHuchette1582Start = 5;
 advanceVideoTimes(43.75);
 wallScene = getDefaultScene([sceneStartTime, sceneEndTime], 'walls1', false);
 create1584GreenGate(wallScene, fps);
@@ -384,12 +384,13 @@ export function create1600GilbertJeune(scene, fps, videoStart = 0) {
 
 // W 1582 RUE DE LA HUCHETTE
   export function create1582RueDeLaHuchette(scene, fps, videoStart = 0) {
-  const sX = 376, sY = 0, sW = 1025, sH = 710, w = 40;
-  // const sX = 376*PREVIEW_SCALE, sY = 0*PREVIEW_SCALE, sW = 1025*PREVIEW_SCALE, sH = 710*PREVIEW_SCALE, w = 40;
+  // const sX = 376, sY = 0, sW = 1025, sH = 710, w = 40;
+  const sX = 376*PREVIEW_SCALE, sY = 0*PREVIEW_SCALE, sW = 1025*PREVIEW_SCALE, sH = 710*PREVIEW_SCALE, w = 40;
   createFacade(scene, fps, {
     sX, sY, sW, sH, x: 50, z: -30, w, h: w * (sH / sW),
-    img: 'plstmichel/parijs-w-1582.jpg', rotateY: Math.PI * -0.5,
-    // vrid: '1582_preview', vSc: 1, vt: [videoStart, null], vKeys: [{t: 0, v: [0, 0]}],
+    rotateY: Math.PI * -0.5,
+    // img: 'plstmichel/parijs-w-1582.jpg', rotateY: Math.PI * -0.5,
+    vrid: '1582_preview', vSc: 1, vt: [videoStart, null], vKeys: [{t: 0, v: [0, 0]}],
   });
 }
 
