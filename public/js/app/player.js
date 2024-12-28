@@ -67,8 +67,8 @@ async function setupWithData(dataSource, config) {
       'Scene name': scene.object.name,
       'Start (sec.)': Math.round(scene.lifespan[0] / 1000),
       'End (sec.)': Math.round(scene.lifespan[1] / 1000),
-      'Start (frames)': Math.round((scene.lifespan[0] / 1000) * 30),
-      'End (frames)': Math.round((scene.lifespan[1] / 1000) * 30),
+      'Start frame': Math.round((scene.lifespan[0] / 1000) * 30),
+      'End frame': Math.round((scene.lifespan[1] / 1000) * 30),
   }];
   }, []));
   console.log('FPS: ', fps);

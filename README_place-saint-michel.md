@@ -65,26 +65,26 @@
 
 ## Camera path
 
-* lineTo 43.75
-* curveTo 53.420370902023365
-* curveTo 63.09074180404672
-* lineTo 69.34074180404671
-* curveTo 88.68148360809344
-* lineTo 119.93148360809344
-* curveTo 129.60185451011677
-* curveTo 139.2722254121401
-* curveTo 153.48865960886963
-* lineTo 178.48865960886963
-* curveTo 188.15903051089296
-* curveTo 197.8294014129163
-* lineTo 210.3294014129163
-* curveTo 229.67014321696297
-* lineTo 248.42014321696297
-* curveTo 258.0905141189863
-* curveTo 267.76088502100964
-* lineTo 292.76088502100964
-* curveTo 312.10162682505626
-* lineTo 318.35162682505626
+* lineTo 43.75 (towards the fountain)
+* curveTo 53.420370902023365 (corner part 1)
+* curveTo 63.09074180404672 (corner part 2)
+* lineTo 69.34074180404671 (passed gilbert jeune)
+* curveTo 88.68148360809344 (wide corner)
+* lineTo 119.93148360809344 (towards the green door)
+* curveTo 129.60185451011677 (corner part 1)
+* curveTo 139.2722254121401 (corner part 2)
+* curveTo 153.48865960886963 (right left slalom towards Rue de la Huchette)
+* lineTo 178.48865960886963 (straight towards Rue de la Huchette)
+* curveTo 188.15903051089296 (turn towards Notre Dame)
+* curveTo 197.8294014129163 (turn towards east)
+* lineTo 210.3294014129163 (turn towards startpoint ??? nee, klopt niet meer)
+* curveTo 229.67014321696297 ()
+* lineTo 248.42014321696297 ()
+* curveTo 258.0905141189863 ()
+* curveTo 267.76088502100964 ()
+* lineTo 292.76088502100964 ()
+* curveTo 312.10162682505626 ()
+* lineTo 318.35162682505626 ()
 
 Total camera travel time: 318.35 sec.
 

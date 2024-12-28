@@ -153,6 +153,7 @@ export default scene;
   });
 }
 
+// DEZE WAS AL UITGECOMMENTARIEERD
 // { // GROTE SCOOTER NAAR LINKS
 //   const actorStart = 0;
 //   createActor(scene, fps, {
