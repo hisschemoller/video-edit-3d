@@ -39,7 +39,7 @@ const o = {
   rueDeLaHuchette1582Start: 0,
 };
 
-// towards the fountain
+// 1.towards the fountain
 o.fountain1581Start = 0;
 o.gilbertJeune1600Start = 100;
 o.rueDeLaHuchette1582Start = 5;
@@ -51,14 +51,14 @@ create1600GilbertJeune(wallScene, fps, o.gilbertJeune1600Start);
 create1582RueDeLaHuchette(wallScene, fps, o.rueDeLaHuchette1582Start);
 wallScenes.push(wallScene);
 
-// corner part 1
+// 2. corner part 1
 advanceVideoTimes(53.420370902023365, ['fountain1581Start']);
 wallScene = getDefaultScene([sceneStartTime, sceneEndTime], 'walls2', false);
 create1581Fountain(wallScene, fps, o.fountain1581Start);
 create1600GilbertJeune(wallScene, fps, o.gilbertJeune1600Start);
 wallScenes.push(wallScene);
 
-// corner part 2
+// 3. corner part 2
 advanceVideoTimes(63.09074180404672, ['fountain1581Start', 'gilbertJeune1600Start']);
 wallScene = getDefaultScene([sceneStartTime, sceneEndTime], 'walls3', false);
 create1581Fountain(wallScene, fps, o.fountain1581Start);
@@ -71,7 +71,8 @@ create1579QuaiDuMarcheNeufCorner(wallScene, fps);
 create1585QuaiDesOrfevres(wallScene, fps);
 wallScenes.push(wallScene);
 
-// passed gilbert jeune
+// 4. passing gilbert jeune
+
 advanceVideoTimes(69.34074180404671, ['gilbertJeune1600Start']);
 wallScene = getDefaultScene([sceneStartTime, sceneEndTime], 'walls4', false);
 create1600GilbertJeune(wallScene, fps, o.gilbertJeune1600Start);

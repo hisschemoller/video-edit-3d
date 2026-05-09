@@ -9,6 +9,7 @@ import sceneActors6 from './plstmichel-actors6.js';
 import sceneActors7 from './plstmichel-actors7.js';
 import sceneObjects from './plstmichel-objects.js';
 import sceneActors from './plstmichel-actors.js';
+import sceneActorsTest from './plstmichel-actors-test.js';
 
 /**
  * All data.
@@ -235,13 +236,14 @@ const data = {
     sceneMain,
     ...wallScenes,
     sceneObjects,
-    sceneActors1,
-    sceneActors2,
-    sceneActors3,
-    sceneActors4,
-    sceneActors5,
-    sceneActors6,
-    sceneActors7,
+    sceneActorsTest,
+    // sceneActors1,
+    // sceneActors2,
+    // sceneActors3,
+    // sceneActors4,
+    // sceneActors5,
+    // sceneActors6,
+    // sceneActors7,
     // sceneActors,
   ],
 };
