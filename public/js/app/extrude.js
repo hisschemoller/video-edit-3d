@@ -37,6 +37,15 @@ export default function createExtrude(id, data) {
 export function createCanvasTexture(data) {
   const { width, height, offsetX, offsetY, scale } = data;
 
+  const isVideoActor = data.videoId !== undefined;
+  if (isVideoActor) {
+    console.log('width', width);
+    console.log('height', height);
+    console.log('offsetX', offsetX);
+    console.log('offsetY', offsetY);
+    console.log('scale', scale);
+  }
+
   const canvasEl = document.createElement('canvas');
   canvasEl.width = width;
   canvasEl.height = height;

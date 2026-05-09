@@ -234,8 +234,8 @@ const data = {
   ],
   score: [
     sceneMain,
-    ...wallScenes,
-    sceneObjects,
+    // ...wallScenes,
+    // sceneObjects,
     sceneActorsTest,
     // sceneActors1,
     // sceneActors2,
