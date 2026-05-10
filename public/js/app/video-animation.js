@@ -16,6 +16,7 @@ import { isFastforwarding } from './player.js';
  * @param {String} sceneId Scene's sceneData.clipId.
  */
 export function create(textureCanvas, data, resources, texture, fps, sceneId) {
+  console.log('video-animation.js create');
   const {
     canvasData,
     flipHorizontal = false,
@@ -133,6 +134,11 @@ export function create(textureCanvas, data, resources, texture, fps, sceneId) {
       imgURLNrFirst = Math.floor(start * resourceFPS) + 1;
       imgURLNrLast = end ? Math.min(resourceFrames, Math.floor(end * resourceFPS)) : resourceFrames;
       imgURLNrIncrease = resourceFPS / fps;
+
+      console.log('resourceWidth', resourceWidth);
+      console.log('videoScale', videoScale);
+      console.log('dWidth = resourceWidth * videoScale = ', resourceWidth * videoScale);
+      console.log('dWidth is de breedte van het canvas die beschreven wordt, logischerwijze het hele canvas.');
       
       updateKeys();
       loadImage();
