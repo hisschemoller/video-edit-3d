@@ -39,6 +39,7 @@ export function createCanvasTexture(data) {
 
   const isVideoActor = data.videoId !== undefined;
   if (isVideoActor) {
+    console.log('---');
     console.log('extrude.js createCanvasTexture');
     // console.trace();
     console.log('data.width', width);
@@ -65,7 +66,7 @@ export function createCanvasTexture(data) {
     console.log('texture.offset', texture.offset);
     console.log('texture.repeat', texture.repeat);
     console.log('De canvas bestrijkt de hele textuur in breedte een hoogte.');
-    console.log('By een repeat van 1 bestrijkt de textuur een face precies geheel in breedte een hoogte.');
+    console.log('Bij een repeat van 1 bestrijkt de textuur een face precies geheel in breedte een hoogte.');
   }
 
   return texture;

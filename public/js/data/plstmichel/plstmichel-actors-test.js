@@ -17,16 +17,18 @@ export default scene;
   createActor(scene, fps, {
     geom: { w: 3, h: 3, d: 1 },
     keys: [
-      { t:  0 + actorStart, v: [  0, 0, -20]},
-      { t: 10 + actorStart, v: [ 28, 0, -23]},
+      { t:  0 + actorStart, v: [  20, 0, -20]}, // TEST, stil blijven staan
+      // { t:  0 + actorStart, v: [  0, 0, -20]},
+      // { t: 10 + actorStart, v: [ 28, 0, -23]},
     ],
     matrix: getMatrix({ ry: Math.PI * 0, }).elements,
-    canvas: { offset: 0, scale: 512/9, size: 512 },
+    // canvas: { offset: 0, scale: 512/9, size: 512 },
+    canvas: { offset: 0, scale: 270 / 3, size: 512 }, // TEST
     vSc: 512/480,
     vt: [23, 33],
     vKeys: [
-      { t:  0 + actorStart, v: [ 550, 250]},
-      { t:  10 + actorStart, v: [ -200, 250]},
+      { t:  0 + actorStart, v: [ 550, 270]},
+      { t:  10 + actorStart, v: [ -200, 270]},
     ],
     vrid: '1581_preview',
   });

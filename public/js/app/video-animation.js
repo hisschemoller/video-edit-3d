@@ -16,7 +16,6 @@ import { isFastforwarding } from './player.js';
  * @param {String} sceneId Scene's sceneData.clipId.
  */
 export function create(textureCanvas, data, resources, texture, fps, sceneId) {
-  console.log('video-animation.js create');
   const {
     canvasData,
     flipHorizontal = false,
@@ -112,6 +111,8 @@ export function create(textureCanvas, data, resources, texture, fps, sceneId) {
      * Initialise the video animation.
      */
     init = () => {
+      console.log('---');
+      console.log('video-animation.js init');
       textureCtx = textureCanvas.getContext('2d');
       img = new Image();
 
@@ -137,6 +138,8 @@ export function create(textureCanvas, data, resources, texture, fps, sceneId) {
 
       console.log('resourceWidth', resourceWidth);
       console.log('videoScale', videoScale);
+      console.log('videoScale is vaak 512/480, wat er voor zorgt dat een (preview) video van 480px breedte opgeschaald wordt zodat het canvas van 512 px in de gehele breedte met de video gevuld wordt. Maar andere waardes worden soms ook gebruikt.');
+      console.log('videoScale staat voor hoeveel pixels op 1 3D unit passen. Dus 1 betekent 1 pixel per 3D unit. Als je een video van 270 px hoogte een 3D plane van 3 units hoog precies wilt laten vullleen, dan moet de scale 270/3 zijn.');
       console.log('dWidth = resourceWidth * videoScale = ', resourceWidth * videoScale);
       console.log('dWidth is de breedte van het canvas die beschreven wordt, logischerwijze het hele canvas.');
       
